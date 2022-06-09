@@ -268,6 +268,10 @@
 
 }
 
+.footer__phone {
+    white-space: nowrap;
+}
+
 .footer__contact_phone {
     display: flex;
 }

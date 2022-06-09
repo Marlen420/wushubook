@@ -10,11 +10,13 @@ import News from './pages/News/News.jsx'
 import Statistics from './pages/Statistics/Statistics.jsx'
 import Users from './pages/Users/Users.jsx'
 import NavBar from './components/NavBar/NavBar.jsx'
+import Header from './components/Headers/Headers.jsx';
 
 
 function App() {
   return (
     <div >
+      <Header />
       <NavBar />
       <Routes >
         <Route path='/*' element={<Home />} />
