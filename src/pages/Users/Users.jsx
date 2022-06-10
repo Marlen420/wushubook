@@ -6,8 +6,8 @@ import styles from './Users.module.css'
 function Users() {
 
     return (
-        <div>
-            Users
+        <div className={styles.content} >
+            Пользователи
         </div>
     )
 }

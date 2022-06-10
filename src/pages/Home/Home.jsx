@@ -6,6 +6,7 @@ import ImagesCunFu from '../../images/images.svg'
 import LocationsIcon from '../../images/locations.svg'
 import EmailIcon from '../../images/Email.svg'
 import TelephonIcon from '../../images/telefon.svg'
+import PhotoMain from '../../images/PhotoMain.svg'
 
 function Home() {
     let newEvents = [
@@ -60,6 +61,10 @@ function Home() {
 
     return (
         <div className={styles.conteiner} >
+            <div className={styles.conteiner__banner}>
+                <img src={PhotoMain} alt='' className={styles.conteiner__photo} />
+
+            </div>
 
             <h1 className={styles.conteiner__title} ><span className={styles.conteiner__line} >
                 Мероприятия
@@ -175,7 +180,7 @@ function Home() {
 
 
 
-        </div>
+        </div >
     )
 }
 

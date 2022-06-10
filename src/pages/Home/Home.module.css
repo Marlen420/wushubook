@@ -4,7 +4,7 @@
     text-align: center;
     line-height: 50px;
     margin: 0 auto;
-
+    margin-top: 80px;
     font-family: 'Lato', sans-serif;
     border-bottom: 1px solid #ABABAB;
     line-height: 0.1em;
@@ -14,6 +14,29 @@
 .conteiner__title .conteiner__line {
     background: #fff;
     padding: 0 40px;
+
+}
+
+.conteiner__banner {
+
+    width: 96%;
+    margin: 0 auto;
+    /* background: #C4C4C4; */
+    border: 1px solid #E3E9FF;
+    box-shadow: 0px -1px 4px #DBDBF4;
+    border-radius: 8px;
+    margin-top: 14px;
+
+}
+
+.conteiner__photo {
+    margin: 0 auto;
+    display: block;
+    max-width: 100%;
+    border-radius: 8px;
+
+
+    height: auto
 }
 
 .conteiner__tema {
@@ -131,6 +154,7 @@
     /* background: red; */
 
 }
+
 
 
 

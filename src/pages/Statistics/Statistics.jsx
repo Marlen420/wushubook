@@ -4,7 +4,7 @@ import styles from './Statistics.module.css'
 function Statistics() {
 
     return (
-        <div>Statistics</div>
+        <div className={styles.content} >Статистика</div>
     )
 }
 

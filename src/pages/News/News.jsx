@@ -5,7 +5,7 @@ import styles from './News.module.css'
 function News() {
 
     return (
-        <div>News</div>
+        <div className={styles.content} >Новости</div>
     )
 }
 

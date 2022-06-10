@@ -6,7 +6,7 @@ import styles from './Documents.module.css'
 function Documents() {
 
     return (
-        <div>Documents</div>
+        <div className={styles.content} >Документы</div>
     )
 }
 
