@@ -47,6 +47,7 @@ const Authorization = () => {
                     <Input 
                     type="email" 
                     name='email'
+                    value={email}
                     onChange={handleEmailChange} 
                     required/>
                 </div>
@@ -57,6 +58,7 @@ const Authorization = () => {
                     <Input 
                     type={showPassword ? 'text' : 'password'} 
                     name='password' 
+                    value={password}
                     onChange={handlePasswordChange}
                     required/>
                     <img 

@@ -15,6 +15,7 @@ const Login = () => {
             <Routes>
                 <Route path="/sign-in" element={<Authorization />} />
                 <Route path="/sign-up" element={<Registration />} />
+                <Route path="/sign-up" element={<Registration />} />
             </Routes>
         </div>
     </div>

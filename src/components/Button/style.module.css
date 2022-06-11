@@ -1,6 +1,7 @@
 .primary {
     width: 100%;
     font-size: 24px;
+    font-weight: 700;
     text-align: center;
     background-color: #798FDF;
     color: #fff;
@@ -24,6 +25,7 @@
 .secondary {
     width: 100%;
     font-size: 24px;
+    font-weight: 700;
     text-align: center;
     background: none;
     color: #798FDF;
@@ -37,6 +39,7 @@
 .secondary:hover {
     color: #6786F4;
 }
+
 
 /* .secondary:focus {
     border: 4px solid #5B73CE;

@@ -1,19 +1,18 @@
 .holder {
     width: 35%;
     height: 100%;
-    padding: 10% 0;
-
 }
 
 .title {
     width: 100%;
     text-align: center;
-    height: 15%;
     font-size: 42px;
+    margin: 50px 0 0 0;
 }
 
 .form {
     box-sizing: border-box;
+    margin: 50px 0;
 }
 
 .input_holder {
@@ -22,7 +21,7 @@
 }
 
 .input_label {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 500;
 }
 
@@ -48,13 +47,21 @@
     padding: 10px 0;
 }
 
-.bottom_side {
+.input_list_holder {
+    margin-bottom: 50px;
 }
 
 .bottom_title {
     margin: 10px 0;
     width: 100%;
     text-align: center;
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 400;
+}
+
+.password_show_button {
+    position: absolute;
+    right: 3%;
+    top: 45%;
+    cursor: pointer;
 }
