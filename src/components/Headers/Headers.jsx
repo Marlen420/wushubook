@@ -1,12 +1,6 @@
 import React, { useState } from 'react'
 import styles from './Headers.module.css'
-import Logo from '../../images/logo312.svg'
-import PersonIcon from '../../images/PersonIcon.svg'
-import NotificationIcon from '../../images/Notification.svg'
-import MessageIcon from '../../images/message.svg'
-import MousMesssage from '../../images/Active.svg'
-import MousNotification from '../../images/Clock1.svg'
-import MousPerson from '../../images/Person1.svg'
+import { Logo, PersonIcon, NotificationIcon, MessageIcon, MousMesssage, MousNotification, MousPerson } from '../../images/inedex.js'
 import { NavLink } from 'react-router-dom'
 
 function Header() {

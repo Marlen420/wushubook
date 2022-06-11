@@ -1,12 +1,11 @@
 import React from 'react'
 import styles from './Home.module.css';
-import TimeIcon from '../../images/timeClock.svg'
-import CheckIcon from '../../images/CheckIcon.svg'
-import ImagesCunFu from '../../images/images.svg'
-import LocationsIcon from '../../images/locations.svg'
-import EmailIcon from '../../images/Email.svg'
-import TelephonIcon from '../../images/telefon.svg'
-import PhotoMain from '../../images/PhotoMain.svg'
+import {
+    TimeIcon, CheckIcon, ImagesCunFu, LocationsIcon, EmailIcon, TelephonIcon,
+    PhotoMain
+} from '../../images/inedex.js'
+
+
 
 function Home() {
     let newEvents = [
@@ -56,7 +55,8 @@ function Home() {
             title: 'Определились чемпионы республики по традиционному ушу',
             texst: 'С 11 по 14 апреля 2021 г. в г. Бишкек прошелушу, посвященный 30-ла детей и юношреля 2021 г. в г. Бишкек прошел чемпионат Кыргызской Республики по традиционному ушу, посвященный 30-летию независимости Кыргызстана и 85 летию Национального »',
             date: '12.06.2021 06:04'
-        }
+        },
+
     ]
 
     return (
@@ -115,7 +115,7 @@ function Home() {
                 Новости
             </span></h1>
 
-            <div className={styles.conteinerNews} >
+            <div className={styles.conteinerNews}>
                 {
                     news.map(item =>
                         <article key={item.id} className={styles.conteinerNews__block} >

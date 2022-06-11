@@ -30,7 +30,7 @@ function NavBar() {
 
                 {MenuItems.map((item, index) => {
                     return (
-                        < NavLink className={styles.navbar__link}
+                        < NavLink key={index} className={styles.navbar__link}
                             to={item.to} > {item.title}
                         </NavLink>
 

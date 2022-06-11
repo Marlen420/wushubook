@@ -175,10 +175,11 @@
     box-shadow: 0px 0px 7px #E2E1FD;
     border-radius: 8px;
 
-    width: 410px;
+    width: 400px;
     margin: 20px;
 
 }
+
 
 @media screen and (max-width: 459px) {
     .conteinerNews__block {
@@ -219,6 +220,19 @@
 
 }
 
+.conteinerNews__block:hover .conteinerNews__title {
+    color: #5B73CE;
+}
+
+
+
+.conteinerNews__block:hover {
+    color: #5B73CE;
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1.1);
+    box-shadow: 0px 0px 25px 15px #DDDBFF;
+}
 
 
 
