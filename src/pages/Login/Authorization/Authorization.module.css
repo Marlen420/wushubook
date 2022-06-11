@@ -40,6 +40,10 @@
     padding: 10px 0;
 }
 
+.forgot_password:hover {
+    color: #6786F4;
+}
+
 .bottom_title {
     margin: 10px 0;
     width: 100%;
