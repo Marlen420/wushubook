@@ -1,63 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './Home.module.css';
 import {
-    TimeIcon, CheckIcon, ImagesCunFu, LocationsIcon, EmailIcon, TelephonIcon,
+    TimeIcon, CheckIcon, LocationsIcon, EmailIcon, TelephonIcon,
     PhotoMain
 } from '../../images/inedex.js'
+import { useDispatch, useSelector } from 'react-redux'
+import { Circles } from 'react-loader-spinner'
+
 
 
 
 function Home() {
-    let newEvents = [
-        {
-            id: 3,
-            title: 'Мировой чемпионат среди детей по ушу ',
-            city: 'Бишкек  ',
-            date: '22.07.2022, 9:00'
-        }
 
-    ]
+    const { status, error, newsEvents, lastEvents, news } = useSelector(state => state.main)
 
-    let lastEvents = [
-        {
-            id: 2,
-            title: 'Мировой чемпионат среди детей по ушу',
-            city: 'Бишкек',
-            date: '22.07.2022, 9:00'
-        },
-        {
-            id: 3,
-            title: 'Мировой чемпионат среди детей по ушу',
-            city: 'Бишкек',
-            date: '22.07.2022, 9:00'
-        }
-
-    ]
-
-
-    let news = [
-        {
-            id: '4',
-            images: ImagesCunFu, // url
-            title: 'Определились чемпионы республики по традиционному ушу',
-            texst: 'С 11 по 14 апреля 2021 г. в г. Бишкек прошел чемпионат Кыргызской Республики по традиционному ушу, посвященный 30-летию независимости Кыргызстана и 85 летию Национального Центра детей и юношества «Сейтек».',
-            date: '12.06.2021 06:04'
-        },
-        {
-            id: '7',
-            images: ImagesCunFu, // url
-            title: 'Определились чемпионы республики по традиционному ушу',
-            texst: 'С 11 по 14 апреля 2021 г. в г. Бишкек прошел чемпионат Кыргызской Республики по традиционному ушу, посвященный 30-летию независимости Кыргызстана и 85 летию Национального Центра детей и юношества «Сейтек». С 11 по 14 апреля 2021 г. в г. Бишкек прошел чемпионат Кыргызской Республики по традиционному ушу, посвященный 30-летию независимости Кыргызстана и 85 летию Национального Центра детей и юношества «Сейтек»С 11 по 14 апреля 2021 г. в г. Бишкек прошел чемпионат Кыргызской Республики по традиционному ушу, посвященный 30-летию независимости Кыргызстана и 85 летию Национального Центра детей и юношества «Сейтек»',
-            date: '12.06.2021 06:04'
-        }, {
-            id: '8',
-            images: ImagesCunFu, // url
-            title: 'Определились чемпионы республики по традиционному ушу',
-            texst: 'С 11 по 14 апреля 2021 г. в г. Бишкек прошелушу, посвященный 30-ла детей и юношреля 2021 г. в г. Бишкек прошел чемпионат Кыргызской Республики по традиционному ушу, посвященный 30-летию независимости Кыргызстана и 85 летию Национального »',
-            date: '12.06.2021 06:04'
-        },
-
-    ]
 
     return (
         <div className={styles.conteiner} >
@@ -70,8 +26,11 @@ function Home() {
                 Мероприятия
             </span></h1>
             <p className={styles.conteiner__tema}>Новые мероприятия:</p>
+
+            {status === 'loading' && <div className={styles.spinner} ><Circles ariaLabel="loading-indicator" /> </div>}
+            {error && <div className={styles.spinner} >{error}</div>}
             {
-                newEvents.map(item =>
+                newsEvents.map((item) =>
                     <div key={item.id} className={styles.wrapper}>
 
                         <article className={styles.wrapper__events}>
@@ -92,8 +51,16 @@ function Home() {
 
 
             <p className={styles.conteiner__tema}>Предыдущие мероприятия:</p>
+            {
+                status === 'loading' &&
+                <div className={styles.spinner} >
+                    <Circles ariaLabel="loading-indicator" color={'#A384E7'} />
+                </div>
+            }
+            {error && <div className={styles.spinner} >{error}</div>}
 
             <div className={styles.content}>
+
                 {
                     lastEvents.map(item =>
                         <article key={item.id} className={styles.wrapperLastEvents__lastEvents}>
@@ -116,6 +83,8 @@ function Home() {
             </span></h1>
 
             <div className={styles.conteinerNews}>
+                {status === 'loading' && <div className={styles.spinner} ><Circles ariaLabel="loading-indicator" /> </div>}
+                {error && <div className={styles.spinner} >{error}</div>}
                 {
                     news.map(item =>
                         <article key={item.id} className={styles.conteinerNews__block} >
@@ -175,10 +144,6 @@ function Home() {
                 </div>
 
             </footer>
-
-
-
-
 
         </div >
     )

@@ -1,5 +1,5 @@
-import React from 'react'
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/Home.jsx';
 import Calendar from './pages/Calendar/Calendar.jsx'
@@ -11,9 +11,20 @@ import Statistics from './pages/Statistics/Statistics.jsx'
 import Users from './pages/Users/Users.jsx'
 import NavBar from './components/NavBar/NavBar.jsx'
 import Header from './components/Headers/Headers.jsx';
+import { getLastEvent, getNewEvent, getNews } from './api/main.js';
 
 
 function App() {
+
+  const dispatch = useDispatch()
+
+
+  useEffect(() => {
+    dispatch(getNewEvent())
+    dispatch(getLastEvent())
+    dispatch(getNews())
+  }, [dispatch])
+
   return (
     <div >
       <Header />
@@ -27,6 +38,7 @@ function App() {
         <Route path='/news' element={<News />} />
         <Route path='/statistics' element={<Statistics />} />
         <Route path='/users' element={<Users />} />
+
 
       </Routes>
 
