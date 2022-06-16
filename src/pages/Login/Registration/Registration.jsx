@@ -55,57 +55,57 @@ function Registration() {
                         className={styles.input_label}
                         htmlFor="name">Имя</label>
                         <Input 
-                        type="text" 
-                        name='name'
-                        onChange={handleChangeName}
-                        required/>
+                            type="text" 
+                            name='name'
+                            onChange={handleChangeName}
+                            required/>
                     </div>
                     <div className={styles['lastname_holder', 'input_holder']}>
                         <label 
-                        className={styles.input_label}
-                        htmlFor="lastname">Фамилия</label>
+                            className={styles.input_label}
+                            htmlFor="lastname">Фамилия</label>
                         <Input 
-                        type="text" 
-                        name='lastname'
-                        onChange={handleChangeLastname}
-                        required/>
+                            type="text" 
+                            name='lastname'
+                            onChange={handleChangeLastname}
+                            required/>
                     </div>
                     <div className={styles['email_holder', 'input_holder']}>
                         <label 
-                        className={styles.input_label}
-                        htmlFor="email">Почта</label>
+                            className={styles.input_label}
+                            htmlFor="email">Почта</label>
                         <Input 
-                        type="email" 
-                        name='email' 
-                        onChange={handleEmailChange}
-                        required/>
+                            type="email" 
+                            name='email' 
+                            onChange={handleEmailChange}
+                            required/>
                     </div>
                     <div className={styles['password_holder', 'input_holder']}>
                         <label 
-                        className={styles.input_label}
-                        htmlFor="password">Пароль</label>
+                            className={styles.input_label}
+                            htmlFor="password">Пароль</label>
                         <Input 
-                        type={showPassword ? 'text' : 'password'} 
-                        name='password' 
-                        value={password}
-                        onChange={handlePasswordChange}
-                        required/>
+                            type={showPassword ? 'text' : 'password'} 
+                            name='password' 
+                            value={password}
+                            onChange={handlePasswordChange}
+                            required/>
                         <img 
-                        onClick={handleShowPassword}
-                        src={showPassword ? Eye : EyeSlash} 
-                        alt="show password image"
-                        className={styles.password_show_button}/>
+                            onClick={handleShowPassword}
+                            src={showPassword ? Eye : EyeSlash} 
+                            alt="show password image"
+                            className={styles.password_show_button}/>
                     </div>
                     <div className={styles['confirm_password_holder', 'input_holder']}>
                         <label 
-                        className={styles.input_label}
-                        htmlFor="confirm password">Повторить пароль</label>
+                            className={styles.input_label}
+                            htmlFor="confirm password">Повторить пароль</label>
                         <Input 
-                        type={showConfirmPassword ? 'text' : 'password'} 
-                        name='confirm password' 
-                        value={confirmPassword}
-                        onChange={handleConfirmPasswordChange}
-                        required/>
+                            type={showConfirmPassword ? 'text' : 'password'} 
+                            name='confirm password' 
+                            value={confirmPassword}
+                            onChange={handleConfirmPasswordChange}
+                            required/>
                         <img 
                         onClick={handleShowConfirmPassword}
                         src={showConfirmPassword ? Eye : EyeSlash}

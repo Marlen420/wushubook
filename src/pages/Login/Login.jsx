@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import Authorization from './Authorization/Authorization'
 import Registration from './Registration/Registration'
 import styles from './Login.module.css';
-import background from '../../images/AuthBackground.png';
+import {background} from '../../images';
 
 const Login = () => {
   return (
@@ -15,7 +15,7 @@ const Login = () => {
             <Routes>
                 <Route path="/sign-in" element={<Authorization />} />
                 <Route path="/sign-up" element={<Registration />} />
-                <Route path="/sign-up" element={<Registration />} />
+                {/* <Route path="/sign-up" element={<Registration />} /> */}
             </Routes>
         </div>
     </div>

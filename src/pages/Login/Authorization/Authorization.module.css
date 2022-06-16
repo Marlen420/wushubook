@@ -27,6 +27,11 @@
     right: 3%;
     top: 45%;
     cursor: pointer;
+    @media (max-width: 720px) {
+        top: 20%;
+    }
+
+
 }
 
 .forgot_password {
