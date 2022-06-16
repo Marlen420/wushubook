@@ -6,8 +6,8 @@ import styles from './Clubs.module.css'
 function Clubs() {
 
     return (
-        <div>
-            Clubs
+        <div className={styles.content} >
+            Клубы
         </div>
     )
 }

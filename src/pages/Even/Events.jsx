@@ -5,7 +5,7 @@ import styles from './Events.module.css';
 function Events() {
 
     return (
-        <div>
+        <div className={styles.content} >
             Мероприятия
 
         </div>

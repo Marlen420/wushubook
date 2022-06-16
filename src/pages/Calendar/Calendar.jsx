@@ -5,7 +5,7 @@ import styles from './Calendar.module.css';
 function Calendar() {
 
     return (
-        <div>Calendar</div>
+        <div className={styles.content}  >Календарь</div>
     )
 }
 
