@@ -3,13 +3,13 @@ import { Route, Routes } from 'react-router-dom'
 import Authorization from './Authorization/Authorization'
 import Registration from './Registration/Registration'
 import styles from './Login.module.css';
-import {background} from '../../images';
+import {BackgroundImage} from '../../images/inedex';
 
 const Login = () => {
   return (
     <div className={styles.login_page}>
         <div className={styles.left_side}>
-            <img src={background} alt="background image" className={styles.img_holder} />
+            <img src={BackgroundImage} alt="background image" className={styles.img_holder} />
         </div>
         <div className={styles.right_side}>
             <Routes>
