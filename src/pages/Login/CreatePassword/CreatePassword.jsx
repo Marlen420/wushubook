@@ -16,29 +16,32 @@ const CreatePassword = ({action}) => {
 
     return (
         <div className={Styles.page}>
-            <div className={Styles.title}>
-                {action === 'reset' 
-                ? "Восстановление пароля"
-                : "Создание пароля"}
-            </div>
-            <form>
-                <div className={Styles.input_holder}>
-                    <label htmlFor="password">Пароль</label>
-                    <Input
-                    name="password"
-                    onChange={handlePasswordChange}
-                    type="password"/>
+            <h1 className={Styles.title}>
+                    {action === 'reset' 
+                    ? "Восстановление пароля"
+                    : "Создание пароля"}
+            </h1>
+            <form className={Styles.form}>
+                <div className={Styles.input_list}>
+                    <div className={Styles.input_holder}>
+                        <label htmlFor="password">Пароль</label>
+                        <Input
+                        name="password"
+                        onChange={handlePasswordChange}
+                        type="password"/>
+                    </div>
+                    <div className={Styles.input_holder}>
+                        <label htmlFor="confirm-password">Подтвердите пароль</label>
+                        <Input
+                        name="confirm-password"
+                        onChange={handleConfirmPasswordChange}
+                        type="password"/>
+                    </div>
                 </div>
-                <div className={Styles.input_holder}>
-                    <label htmlFor="confirm-password">Подтвердите пароль</label>
-                    <Input
-                    name="confirm-password"
-                    onChange={handleConfirmPasswordChange}
-                    type="password"/>
-                </div>
-                <Button 
-                title={ action === "reset" ? "Установить пароль" : "Зарегистрироваться"}
-                type="submit"/>
+                <Button
+                    type="submit">
+                    { action === "reset" ? "Установить пароль" : "Зарегистрироваться"}
+                </Button>
             </form>
         </div>
     )

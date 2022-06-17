@@ -34,6 +34,11 @@
 
 }
 
+.secondary {
+    width: 100%;
+    text-align: center;
+}
+
 .forgot_password {
     font-size: 18px;
     font-weight: 600;
@@ -49,10 +54,27 @@
     color: #6786F4;
 }
 
+.bottom_side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.secondary {
+    font-size: 20px;
+    text-decoration: none;
+    font-weight: 700;
+    color: #798FDF;
+}
+
 .bottom_title {
     margin: 10px 0;
     width: 100%;
     text-align: center;
     font-size: 18px;
     font-weight: 400;
+}
+
+.button_holder {
+    margin-top: 50px;
 }

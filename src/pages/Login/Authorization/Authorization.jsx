@@ -68,15 +68,17 @@ const Authorization = () => {
                     className={styles.password_show_button}/>
                 </div>
                 <Link to="/" className={styles.forgot_password}>Забыли пароль?</Link>
-                <Button
-                type='submit'>Войти</Button>
+                <div className={styles.button_holder}>
+                    <Button
+                        type='submit'>Войти</Button>
+                </div>
             </form>
             <div className={styles.bottom_side}>
                 <p
                 className={styles.bottom_title}>Еще нет аккаунта?</p>
                 <Link 
                 to="/login/sign-up"
-                projectType='secondary'>Зарегистрироваться</Link>
+                className={styles.secondary}>Зарегистрироваться</Link>
             </div>
         </div>
     )
