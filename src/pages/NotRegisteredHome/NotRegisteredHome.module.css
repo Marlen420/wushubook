@@ -1,0 +1,166 @@
+.conteiner__title {
+    width: 96%;
+    /* font-size: 42px; */
+    text-align: center;
+    line-height: 50px;
+    margin: 0 auto;
+    margin-top: 80px;
+    font-family: 'Lato', sans-serif;
+    border-bottom: 1px solid #ABABAB;
+    line-height: 0.1em;
+    /* margin: 20px; */
+}
+
+.conteiner__title .conteiner__line {
+    background: #fff;
+    padding: 0 40px;
+
+}
+
+.conteiner__tema {
+    font-family: 'Lato', sans-serif;
+
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: #000000;
+    margin-top: 60px;
+    margin-left: 25px;
+}
+
+.content {
+    display: flex;
+    /* overflow: scroll; */
+
+
+    padding-left: 10px;
+    margin-top: 30px;
+
+    flex-wrap: wrap;
+
+}
+
+.content_block {
+    max-width: 370px;
+    background: #F9F9FF;
+    border: 1px solid #F8F8FF;
+    box-shadow: 0px 0px 7px #E2E1FD;
+    border-radius: 8px;
+
+
+    margin: 10px;
+
+}
+
+.content__date {
+    max-width: 61px;
+    margin: 16px;
+    font-family: 'Lato', sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    /* font-size: 50px; */
+    line-height: 100%;
+    /* identical to box height, or 50px */
+
+    font-size: 50px;
+    letter-spacing: 0.05em;
+
+    color: #000000;
+
+
+}
+
+.content__title {
+    margin-top: 100px;
+    margin-left: 16px;
+    font-family: 'Lato', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 100%;
+    /* identical to box height, or 20px */
+
+    letter-spacing: 0.05em;
+
+    color: #000000;
+}
+
+
+.content__time {
+    font-family: 'Lato', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+
+    letter-spacing: 0.05em;
+    margin-left: 16px;
+    color: #000000;
+    margin-top: 60px;
+}
+
+.content__address {
+    font-family: 'Lato', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0.05em;
+    margin: 16px;
+
+
+}
+
+
+
+.conteiner__tema2 {
+    font-family: 'Lato', sans-serif;
+
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: #000000;
+    margin-top: 70px;
+    margin-left: 25px;
+
+
+}
+
+.headers {
+    display: flex;
+    /* background: red; */
+    margin-left: 24px;
+    margin-top: 15px;
+
+}
+
+.headers__title {
+
+    font-style: normal;
+    /* font-weight: 400; */
+    font-size: 14px;
+    line-height: 16px;
+
+    padding-top: 23px;
+    padding-left: 15px;
+    color: #414141;
+}
+
+.content__data2 {
+
+    font-family: 'Lato', sans-serif;
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 100%;
+    /* identical to box height, or 16px */
+    /* background: red; */
+    position: relative;
+    top: -32px;
+    left: 8px;
+    /* background: red; */
+    letter-spacing: 0.05em;
+
+    color: #000000;
+}

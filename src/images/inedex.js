@@ -13,6 +13,8 @@ import MessageIcon from './message.svg'
 import MousMesssage from './Active.svg'
 import MousNotification from './Clock1.svg'
 import MousPerson from './Person1.svg'
+import Menu from './Menu.png'
+import Cross from './crosss.png'
 
 export {
     TimeIcon,
@@ -22,7 +24,8 @@ export {
     EmailIcon,
     TelephonIcon,
     PhotoMain,
-
+    Menu,
+    Cross,
     Logo,
     PersonIcon,
     NotificationIcon,

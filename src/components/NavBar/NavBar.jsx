@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import styles from './NavBar.module.css'
 import { NavLink } from 'react-router-dom';
 import { MenuItems } from './MenuItems.js'
-import ReorderIcon from '@material-ui/icons/Reorder';
-import CloseIcon from '@material-ui/icons/Close';
+
+import { Menu, Cross } from '../../images/inedex.js'
 
 //Headers
 
@@ -18,9 +18,15 @@ function NavBar() {
 
             <div onClick={handleClick} className={styles.menuIcon}>
                 {clicked ?
-                    <CloseIcon fontSize="large" />
+
+                    <img src={Cross} alt='' className={styles.menu} />
                     :
-                    <ReorderIcon fontSize="large" />}
+
+                    <img src={Menu} alt='' className={styles.menu} />
+
+
+                }
+
 
             </div>
 
