@@ -6,6 +6,5 @@ export default configureStore({
   reducer: {
       profile: profileSlice,
       news: newsSlice
-
   },
 })

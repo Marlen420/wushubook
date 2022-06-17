@@ -1,6 +1,6 @@
 .primary {
     width: 100%;
-    font-size: 24px;
+    font-size: 20px;
     text-align: center;
     background-color: #798FDF;
     color: #fff;
@@ -23,7 +23,7 @@
 
 .secondary {
     width: 100%;
-    font-size: 24px;
+    font-size: 20px;
     text-align: center;
     background: none;
     color: #798FDF;
