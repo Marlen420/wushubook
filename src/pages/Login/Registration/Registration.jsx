@@ -24,6 +24,7 @@ function Registration() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [ isSent, setIsSent ] = useState(false);
 
     const handleChangeName = (e) => setName(e.target.value);
     const handleChangeLastname = (e) => setLastname(e.target.value);
@@ -40,16 +41,18 @@ function Registration() {
     const handleFormSubmit = (e) => {
         e.preventDefault();
         console.log(name, lastname, email);
+        setIsSent(true);
     }
 
     return (
         <div className={styles.holder}>
             <h1 className={styles.title}>Регистрация</h1>
-            <form
-            onSubmit={handleFormSubmit} 
-            className={styles.form}>
+            {!isSent &&
+            <>
+                <form
+                onSubmit={handleFormSubmit} 
+                className={styles.form}>
                 <div className={styles.input_list_holder}>
-
                     <div className={styles['name_holder', 'input_holder']}>
                         <label 
                         className={styles.input_label}
@@ -123,6 +126,11 @@ function Registration() {
                 onClick={handleSigninButton}
                 projectType='secondary'>Войти</Button>
             </div>
+            </>}
+            {isSent &&
+                <div className={styles.sent_message_holder}>
+                    <p className={styles.sent_message}>Для завершения регистрации перейдите по ссылке в письме, отправленном на вашу почту <b>{email}</b></p>
+                </div>}
         </div>
     )
 }
