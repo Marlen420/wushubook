@@ -1,11 +1,16 @@
-import React from 'react'
-import { Route, Routes } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import Authorization from './Authorization/Authorization'
 import Registration from './Registration/Registration'
 import styles from './Login.module.css';
 import {BackgroundImage} from '../../images/inedex';
 
 const Login = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  useEffect(()=>{
+    if (location.pathname === '/login') navigate('/login/sign-in');
+  }, [location])
   return (
     <div className={styles.login_page}>
         <div className={styles.left_side}>

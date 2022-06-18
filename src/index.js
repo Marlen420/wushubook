@@ -15,9 +15,9 @@ root.render(
     <Provider store={store}>
     <BrowserRouter>
       <Routes>
-        <Route path="/login/*" element={<Login />} />
         <Route path="/login/create-password" element={<CreatePassword action="create" />} />
         <Route path="/login/reset-password" element={<CreatePassword  action="reset" />} />
+        <Route path="/login/*" element={<Login />} />
         <Route path="/*" element={<App />} />
       </Routes>
     </BrowserRouter>
