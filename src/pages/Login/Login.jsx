@@ -10,11 +10,11 @@ const Login = () => {
   const navigate = useNavigate();
   useEffect(()=>{
     if (location.pathname === '/login') navigate('/login/sign-in');
-  }, [location])
+  }, [location, navigate])
   return (
     <div className={styles.login_page}>
         <div className={styles.left_side}>
-            <img src={BackgroundImage} alt="background image" className={styles.img_holder} />
+            <img src={BackgroundImage} alt="backgrounds" className={styles.img_holder} />
         </div>
         <div className={styles.right_side}>
             <Routes>

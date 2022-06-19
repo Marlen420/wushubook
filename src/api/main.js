@@ -14,17 +14,16 @@ const API = axios.create({
 
 export const getNewEvent = createAsyncThunk(
     'main/getNewEvent',
-    async function (_, { rejectWithValue }) {
+    async function(_, { rejectWithValue }) {
         try {
             const response = await API.get('users')
             if (response.status != 200) {
                 throw new Error("Server Error!")
             }
-            console.log(newsEvents)
+            // console.log(newsEvents)
             // console.log("response:", response)
             return newsEvents
-        }
-        catch (error) {
+        } catch (error) {
             return rejectWithValue(error.message)
         }
 
@@ -32,7 +31,7 @@ export const getNewEvent = createAsyncThunk(
 
 export const getLastEvent = createAsyncThunk(
     'main/getLastEvent',
-    async function (_, { rejectWithValue }) {
+    async function(_, { rejectWithValue }) {
         try {
             const response = await API.get('users')
             if (response.status != 200) {
@@ -40,8 +39,7 @@ export const getLastEvent = createAsyncThunk(
             }
 
             return lastEvents
-        }
-        catch (error) {
+        } catch (error) {
             return rejectWithValue(error.message)
         }
 
@@ -49,7 +47,7 @@ export const getLastEvent = createAsyncThunk(
 
 export const getNews = createAsyncThunk(
     'main/getNews',
-    async function (_, { rejectWithValue }) {
+    async function(_, { rejectWithValue }) {
         try {
             const response = await API.get('users')
             if (response.status != 200) {
@@ -57,8 +55,7 @@ export const getNews = createAsyncThunk(
             }
 
             return news
-        }
-        catch (error) {
+        } catch (error) {
             return rejectWithValue(error.message)
         }
 

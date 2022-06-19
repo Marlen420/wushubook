@@ -2,30 +2,31 @@ import { createSlice } from '@reduxjs/toolkit'
 
 
 export const counterSlice = createSlice({
-  name: 'profile',
-  initialState: {
-    login: {
-      isLogged: true,
-      role: 'unauthorized'
+    name: 'profile',
+    initialState: {
+        login: {
+            isLogged: false,
+            role: 'unauthorized'
+        },
     },
-  },
-  reducers: {
-    setLogin: (state) => {
-        state.login.isLogged = true;
-    },
-    setRole: (state, action) => {
-      state.role = action.payload;
-    },
+    reducers: {
+        setLogin: (state) => {
+            state.login.isLogged = true;
+        },
+        setRole: (state, action) => {
+            state.role = action.payload;
+        },
 
-  },
+    },
 })
 
 
 // Action creators are generated for each case reducer function
-export const {  
-  incrementByAmount, 
-  setLogin, 
-  setRole } = counterSlice.actions
+export const {
+    incrementByAmount,
+    setLogin,
+    setRole
+} = counterSlice.actions
 
 // export const incrementAsync = (amount) => (dispatch) => {
 //     setTimeout(() => {

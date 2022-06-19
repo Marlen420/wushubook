@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
+import React, {  useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './Authorization.module.css';
 import Eye from '../icons/Eye.svg';
 import EyeSlash from '../icons/EyeSlash.svg';
 import Button from '../../../components/Button';
 import Input from '../../../components/Input';
+import ForgotPassword from './ForgotPassword/ForgotPassword';
+import { useSelector } from 'react-redux';
 
 
 const Authorization = () => {
@@ -15,19 +16,18 @@ const Authorization = () => {
     const [password, setPassword] = useState('');
 
     const [showPassword, setShowPassword] = useState(false);
-    const [isDisabledButton, setIsDisabledButton] = useState(false);
-    // const isLogged = useSelector((state) => state.counter.login.isLogged);
-    // useEffect(() => {
-    //     if (isLogged) navigate('/');
-    // }, [navigate])
+    const [isActiveForgotPassword, setIsActiveForgotPassword] = useState(false);
+    const isLogged = useSelector((state) => state.profile.login.isLogged);
+    useEffect(() => {
+        if (isLogged) navigate('/');
+    }, [navigate, isLogged])
 
     const handleEmailChange = (e) => setEmail(e.target.value);
     const handlePasswordChange = (e) => setPassword(e.target.value);
     const handleShowPassword = () => setShowPassword(!showPassword);
 
-    const handleSignupButton = () => {
-        navigate('/login/sign-up');
-    }
+    const handleCloseForgotPasswordWindow = () => setIsActiveForgotPassword(false);
+    const handleOpenForgotPasswordWindow = () => setIsActiveForgotPassword(true);
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
@@ -36,6 +36,11 @@ const Authorization = () => {
 
     return (
         <div className={styles.holder}>
+            {
+                isActiveForgotPassword &&
+                <ForgotPassword 
+                closeWindow={handleCloseForgotPasswordWindow}/>
+            }
             <h1 className={styles.title}>Добро пожаловать!</h1>
             <form
             onSubmit={handleFormSubmit} 
@@ -64,10 +69,12 @@ const Authorization = () => {
                     <img 
                     onClick={handleShowPassword}
                     src={showPassword ? Eye : EyeSlash} 
-                    alt="show password image"
+                    alt="show password"
                     className={styles.password_show_button}/>
                 </div>
-                <Link to="/" className={styles.forgot_password}>Забыли пароль?</Link>
+                <p
+                onClick={handleOpenForgotPasswordWindow}
+                className={styles.forgot_password}>Забыли пароль?</p>
                 <div className={styles.button_holder}>
                     <Button
                         type='submit'>Войти</Button>

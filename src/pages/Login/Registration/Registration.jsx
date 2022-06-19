@@ -7,9 +7,9 @@ import Eye from '../icons/Eye.svg';
 import EyeSlash from '../icons/EyeSlash.svg';
 
 // Validation
-const validationForm = (data) => {
-    return true;
-}
+// const validationForm = (data) => {
+//     return true;
+// }
 
 //Регистрация
 
@@ -33,7 +33,7 @@ function Registration() {
     const handleConfirmPasswordChange = (e) => setConfirmPassword(e.target.value);
 
     const handleShowPassword = () => setShowPassword(!showPassword);
-    const handleShowConfirmPassword = () => setShowPassword(!showConfirmPassword);
+    const handleShowConfirmPassword = () => setShowConfirmPassword(!showConfirmPassword);
 
 
     const handleSigninButton = () => navigate('/login/sign-in');
@@ -53,7 +53,7 @@ function Registration() {
                 onSubmit={handleFormSubmit} 
                 className={styles.form}>
                 <div className={styles.input_list_holder}>
-                    <div className={styles['name_holder', 'input_holder']}>
+                    <div className={styles.input_holder}>
                         <label 
                         className={styles.input_label}
                         htmlFor="name">Имя</label>
@@ -63,7 +63,7 @@ function Registration() {
                             onChange={handleChangeName}
                             required/>
                     </div>
-                    <div className={styles['lastname_holder', 'input_holder']}>
+                    <div className={styles.input_holder}>
                         <label 
                             className={styles.input_label}
                             htmlFor="lastname">Фамилия</label>
@@ -73,7 +73,7 @@ function Registration() {
                             onChange={handleChangeLastname}
                             required/>
                     </div>
-                    <div className={styles['email_holder', 'input_holder']}>
+                    <div className={styles.input_holder}>
                         <label 
                             className={styles.input_label}
                             htmlFor="email">Почта</label>
@@ -83,7 +83,7 @@ function Registration() {
                             onChange={handleEmailChange}
                             required/>
                     </div>
-                    <div className={styles['password_holder', 'input_holder']}>
+                    <div className={styles.input_holder}>
                         <label 
                             className={styles.input_label}
                             htmlFor="password">Пароль</label>
@@ -92,14 +92,14 @@ function Registration() {
                             name='password' 
                             value={password}
                             onChange={handlePasswordChange}
-                            required/>
+                            required={true}/>
                         <img 
                             onClick={handleShowPassword}
                             src={showPassword ? Eye : EyeSlash} 
-                            alt="show password image"
+                            alt="show password"
                             className={styles.password_show_button}/>
                     </div>
-                    <div className={styles['confirm_password_holder', 'input_holder']}>
+                    <div className={styles.input_holder}>
                         <label 
                             className={styles.input_label}
                             htmlFor="confirm password">Повторить пароль</label>
@@ -112,7 +112,7 @@ function Registration() {
                         <img 
                         onClick={handleShowConfirmPassword}
                         src={showConfirmPassword ? Eye : EyeSlash}
-                        alt="show password image"
+                        alt="show password"
                         className={styles.password_show_button}/>
                     </div>
                 </div>
