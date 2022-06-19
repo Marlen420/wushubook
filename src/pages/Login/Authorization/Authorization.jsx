@@ -24,6 +24,7 @@ const Authorization = () => {
     const { isLogged } = login;
     useEffect(() => {
         if (isLogged) navigate('/');
+        
     }, [navigate, isLogged])
 
     const handleEmailChange = (e) => setEmail(e.target.value);
