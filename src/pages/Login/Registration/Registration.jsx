@@ -5,6 +5,9 @@ import Input from '../../../components/Input';
 import { useNavigate } from 'react-router-dom';
 import Eye from '../icons/Eye.svg';
 import EyeSlash from '../icons/EyeSlash.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSignup } from '../../../api/login';
+import { TailSpin } from 'react-loader-spinner';
 
 // Validation
 // const validationForm = (data) => {
@@ -14,7 +17,9 @@ import EyeSlash from '../icons/EyeSlash.svg';
 //Регистрация
 
 function Registration() {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { status } = useSelector(state=>state.profile);
 
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -40,14 +45,18 @@ function Registration() {
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        console.log(name, lastname, email);
-        setIsSent(true);
+        const data = {
+            name: name + ' ' + lastname,
+            email,
+            password
+        };
+        dispatch(setSignup(data));
     }
 
     return (
         <div className={styles.holder}>
             <h1 className={styles.title}>Регистрация</h1>
-            {!isSent &&
+            {status !== "Signup link sent" &&
             <>
                 <form
                 onSubmit={handleFormSubmit} 
@@ -117,7 +126,13 @@ function Registration() {
                     </div>
                 </div>
                 <Button
-                type='submit'>Зарегистрироваться</Button>
+                type='submit'>
+                    {status === "Sending signup link"
+                    ? <TailSpin 
+                    height={30}
+                    color='white'/>
+                    : 'Зарегистрироваться'}
+                </Button>
             </form>
             <div className={styles.bottom_side}>
                 <p
@@ -127,7 +142,7 @@ function Registration() {
                 projectType='secondary'>Войти</Button>
             </div>
             </>}
-            {isSent &&
+            {status === "Signup link sent" &&
                 <div className={styles.sent_message_holder}>
                     <p className={styles.sent_message}>Для завершения регистрации перейдите по ссылке в письме, отправленном на вашу почту <b>{email}</b></p>
                 </div>}

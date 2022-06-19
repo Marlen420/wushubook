@@ -1,26 +1,40 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import Button from '../../../components/Button';
 import Input from '../../../components/Input';
 import Styles from './CreatePassword.module.css';
 
-const CreatePassword = ({action = 'create'}) => {
+const getInfo = (info) => {
+    let i = 0;
+    while(info[i] !== 'M') {
+        i++;
+    }
+    const id = info.slice(0, i);
+    console.log(id);
+    const token = info.slice(i+1, info.length);
+    console.log(token);
+    return {userId: 1, token: 111};
+}
+
+const RecoverPassword = ({action = 'create'}) => {
     const navigate = useNavigate()
+    const { info } = useParams();
     const [ password, setPassword ] = useState('');
     const [ conforPassword, setConfirmPassword ] = useState('');
 
     const handlePasswordChange = (e) => setPassword(e.target.value);
     const handleConfirmPasswordChange = (e) => setConfirmPassword(e.target.value);
+    const { userId, token } = getInfo(info);
     const handleSubmitForm = (e) => {
         e.preventDefault();
-        console.log({password, conforPassword});
         navigate('/login');
+        console.log(userId, token);
     }
 
     return (
         <div className={Styles.page}>
             <h1 className={Styles.title}>
-                    Создание пароля
+                    Восстановление пароля
             </h1>
             <form 
             onSubmit={handleSubmitForm}
@@ -43,11 +57,11 @@ const CreatePassword = ({action = 'create'}) => {
                 </div>
                 <Button
                     type="submit">
-                    Зарегистрироваться
+                    Установить пароль
                 </Button>
             </form>
         </div>
     )
 }
 
-export default CreatePassword
+export default RecoverPassword

@@ -7,6 +7,7 @@ import Login from './pages/Login/Login';
 import './index.css'
 import store from './redux/store';
 import CreatePassword from './pages/Login/CreatePassword/CreatePassword';
+import RecoverPassword from './pages/Login/CreatePassword/RecoverPassword';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -15,8 +16,8 @@ root.render(
     <Provider store={store}>
     <BrowserRouter>
       <Routes>
-        <Route path="/login/create-password" element={<CreatePassword action="create" />} />
-        <Route path="/login/reset-password" element={<CreatePassword  action="reset" />} />
+        <Route path="/login/create-password/:info" element={<CreatePassword/>} />
+        <Route path="/login/reset-password/:info" element={<RecoverPassword/>} />
         <Route path="/login/*" element={<Login />} />
         <Route path="/*" element={<App />} />
       </Routes>

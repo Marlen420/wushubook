@@ -3,19 +3,25 @@ import Input from '../../../../components/Input';
 import styles from './forgotPassword.module.css';
 import { CloseIcon } from '../../../../images/inedex';
 import Button from '../../../../components/Button';
+import { useDispatch, useSelector } from 'react-redux';
+import { TailSpin } from 'react-loader-spinner';
+import { setForgotPassword } from '../../../../api/login';
 
 const ForgotPassword = ({ closeWindow }) => {
     const [email, setEmail] = useState('');
     const [isSentMessage, setIsSentMessage] = useState(false);
 
+    const { status } = useSelector(state=>state.profile);
+    const dispatch = useDispatch();
+
     const handleSubmitForm = (e) => {
         e.preventDefault();
-        setIsSentMessage(true);
+        dispatch(setForgotPassword(email));
     }
     return (
             <div className={styles.window_holder}>
                 <div className={styles.window_background}>
-                    {!isSentMessage &&
+                    {status !== "Forgot password link sent" &&
                     <form 
                     className={styles.form}
                     onSubmit={handleSubmitForm}>
@@ -37,10 +43,16 @@ const ForgotPassword = ({ closeWindow }) => {
                         <div className={styles.button_holder}>
                             <Button
                                 type="submit"
-                                projectType="forgot_password">Продолжить</Button>
+                                projectType="forgot_password">
+                                    {status === "Sending forgot link"
+                                    ? <TailSpin 
+                                    height={30}
+                                    color='white'/>
+                                    : "Продолжить"}
+                            </Button>
                         </div>
                     </form>}
-                    {isSentMessage &&
+                    {status === "Forgot password link sent" &&
                     <>
                         <div className={styles.form_header}>
                             <img src={CloseIcon} alt="close"/>
