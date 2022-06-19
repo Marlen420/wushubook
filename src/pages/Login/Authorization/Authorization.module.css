@@ -30,8 +30,6 @@
     @media (max-width: 720px) {
         top: 20%;
     }
-
-
 }
 
 .secondary {
@@ -77,4 +75,9 @@
 
 .button_holder {
     margin-top: 50px;
+}
+
+.error_title {
+    color: red;
+    font-weight: 700;
 }

@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { setLogin } from '../../../api/login';
 
 
 export const counterSlice = createSlice({
@@ -8,24 +9,31 @@ export const counterSlice = createSlice({
             isLogged: false,
             role: 'unauthorized'
         },
+        status: 'Active',
+        error: null
     },
-    reducers: {
-        setLogin: (state) => {
+    reducers: {},
+    extraReducers: {
+        [setLogin.pending]: (state) => {
+            state.status = 'Loading';
+            state.error = null;
+        },
+        [setLogin.fulfilled]: (state, action) => {
+            state.status = "Resolved";
             state.login.isLogged = true;
+            state.login.role = action.payload.role;
         },
-        setRole: (state, action) => {
-            state.role = action.payload;
-        },
-
-    },
+        [setLogin.rejected]: (state, action) => {
+            state.status = "Rejected";
+            state.error = action.payload;
+        }
+    }
 })
 
 
 // Action creators are generated for each case reducer function
 export const {
     incrementByAmount,
-    setLogin,
-    setRole
 } = counterSlice.actions
 
 // export const incrementAsync = (amount) => (dispatch) => {

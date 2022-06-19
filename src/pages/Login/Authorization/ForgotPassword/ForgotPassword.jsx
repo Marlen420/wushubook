@@ -7,12 +7,6 @@ import Button from '../../../../components/Button';
 const ForgotPassword = ({ closeWindow }) => {
     const [email, setEmail] = useState('');
     const [isSentMessage, setIsSentMessage] = useState(false);
-    
-    const NewInput = () => (
-        <Input
-        value={email}
-        onChange={(e)=>setEmail(e.target.value)}/>
-    )
 
     const handleSubmitForm = (e) => {
         e.preventDefault();
@@ -27,16 +21,18 @@ const ForgotPassword = ({ closeWindow }) => {
                     onSubmit={handleSubmitForm}>
                         <div className={styles.form_header}>
                             <img
+                            onClick={closeWindow}
                             className={styles.close_icon}
-                            src={CloseIcon} 
+                            src={CloseIcon}
                             alt="close"/>
                         </div>
                         <div className={styles.form_content}>
                             <h2 className={styles.form_title}>Восстановление пароля</h2>
                             <label className={styles.input_label}>Почта</label>
                             <Input 
-                            type="text" 
-                            onChange={(e)=>setEmail(e.target.value)}/>
+                            type="email"
+                            onChange={(e)=>setEmail(e.target.value)}
+                            required={true}/>
                         </div>
                         <div className={styles.button_holder}>
                             <Button

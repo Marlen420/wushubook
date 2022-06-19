@@ -6,18 +6,22 @@ import EyeSlash from '../icons/EyeSlash.svg';
 import Button from '../../../components/Button';
 import Input from '../../../components/Input';
 import ForgotPassword from './ForgotPassword/ForgotPassword';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { setLogin } from '../../../api/login';
+import { TailSpin } from 'react-loader-spinner';
 
 
 const Authorization = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const [showPassword, setShowPassword] = useState(false);
     const [isActiveForgotPassword, setIsActiveForgotPassword] = useState(false);
-    const isLogged = useSelector((state) => state.profile.login.isLogged);
+    const { status, error, login } = useSelector(state=>state.profile);
+    const { isLogged } = login;
     useEffect(() => {
         if (isLogged) navigate('/');
     }, [navigate, isLogged])
@@ -31,7 +35,7 @@ const Authorization = () => {
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        console.log({email, password});
+        dispatch(setLogin({email, password}));
     }
 
     return (
@@ -72,12 +76,21 @@ const Authorization = () => {
                     alt="show password"
                     className={styles.password_show_button}/>
                 </div>
+                {error === 'Invalid login or password' &&
+                <p className={styles.error_title }>*Неправильная почта или пароль</p>}
                 <p
                 onClick={handleOpenForgotPasswordWindow}
                 className={styles.forgot_password}>Забыли пароль?</p>
                 <div className={styles.button_holder}>
                     <Button
-                        type='submit'>Войти</Button>
+                        type='submit'>
+                            {status === 'Loading'
+                            ? <TailSpin 
+                            height={35}
+                            color='white'
+                            />
+                            : 'Войти' }
+                    </Button>
                 </div>
             </form>
             <div className={styles.bottom_side}>

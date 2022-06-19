@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router';
 import Button from '../../../components/Button';
 import Input from '../../../components/Input';
 import Styles from './CreatePassword.module.css';
 
-const CreatePassword = ({action}) => {
+const CreatePassword = ({action = 'create'}) => {
+    const navigate = useNavigate()
     const [ password, setPassword ] = useState('');
     const [ conforPassword, setConfirmPassword ] = useState('');
 
@@ -12,6 +14,7 @@ const CreatePassword = ({action}) => {
     const handleSubmitForm = (e) => {
         e.preventDefault();
         console.log({password, conforPassword});
+        navigate('/login');
     }
 
     return (
@@ -21,7 +24,9 @@ const CreatePassword = ({action}) => {
                     ? "Восстановление пароля"
                     : "Создание пароля"}
             </h1>
-            <form className={Styles.form}>
+            <form 
+            onSubmit={handleSubmitForm}
+            className={Styles.form}>
                 <div className={Styles.input_list}>
                     <div className={Styles.input_holder}>
                         <label htmlFor="password">Пароль</label>
