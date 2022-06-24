@@ -20,9 +20,11 @@ function NavBar() {
                 {clicked ?
 
                     <img src={Cross} alt='' className={styles.menu} />
+                    // <p className={styles.menu}>&#10006;</p>
                     :
 
                     <img src={Menu} alt='' className={styles.menu} />
+                    // <p className={styles.menu}> &#9776; </p>
 
 
                 }

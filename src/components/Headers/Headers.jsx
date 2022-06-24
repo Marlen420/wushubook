@@ -11,8 +11,10 @@ function Header() {
 
     return (
         <div className={styles.header} >
-            <div  >
+
+            <div className={styles.headers1} >
                 <NavLink to='/*'>     <img src={Logo} alt='' className={styles.header__logo} /> </NavLink>
+                <h1 className={styles.headers__title}> Федерация традиционного ушу Кыргызской Республики </h1>
 
             </div>
 

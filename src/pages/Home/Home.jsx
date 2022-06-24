@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './Home.module.css';
 import {
     TimeIcon, CheckIcon, LocationsIcon, EmailIcon, TelephonIcon,
@@ -7,23 +7,29 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { Circles } from 'react-loader-spinner'
 import Footer from '../../components/Footer/Footer';
+import Main from '../../components/Modals/Main/Main.jsx';
 
 
 
 
 function Home() {
 
-    const { status, error, newsEvents, lastEvents, news } = useSelector(state => state.main)
+    const [active, setActive] = useState(false)
 
+    const { status, error, newsEvents, lastEvents, news } = useSelector(state => state.main)
+    const isOpenModal = () => {
+        setActive(true)
+
+    }
 
     return (
         <div className={styles.conteiner} >
-            <div className={styles.conteiner__banner}>
+            <div className={styles.conteiner__banner} >
                 <img src={PhotoMain} alt='' className={styles.conteiner__photo} />
 
             </div>
 
-            <h1 className={styles.conteiner__title} ><span className={styles.conteiner__line} >
+            <h1 className={styles.conteiner__title} ><span className={styles.conteiner__line} onClick={isOpenModal} >
                 Мероприятия
             </span></h1>
             <p className={styles.conteiner__tema}>Новые мероприятия:</p>
@@ -102,7 +108,7 @@ function Home() {
             </div>
 
             <Footer />
-
+            <Main active={active} setActive={setActive} />
         </div >
     )
 }

@@ -17,6 +17,13 @@
 }
 
 
+.menu {
+    width: 36px;
+    height: 36px;
+
+
+}
+
 
 .navbar__link:hover {
     color: #798FDF;
@@ -99,8 +106,12 @@ li {
     }
 }
 
-.menu {
-    width: 36px;
-    height: 36px;
 
+@media screen and (max-width: 477px) {
+    .menuIcon {
+
+        margin-top: -15px;
+        /* background: rebeccapurple; */
+        margin-right: 42px;
+    }
 }

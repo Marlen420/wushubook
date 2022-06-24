@@ -5,7 +5,7 @@ import LocationsIcon from './locations.svg'
 import EmailIcon from './Email.svg'
 import TelephonIcon from './telefon.svg'
 import PhotoMain from './PhotoMain.svg'
-
+import Time from './time.svg'
 import Logo from './logo312.svg'
 import PersonIcon from './PersonIcon.svg'
 import NotificationIcon from './Notification.svg'
@@ -15,8 +15,10 @@ import MousNotification from './Clock1.svg'
 import MousPerson from './Person1.svg'
 import Menu from './Menu.png'
 import Cross from './crosss.png'
+import Fon from './fon.svg'
 
 export {
+    Time,
     TimeIcon,
     CheckIcon,
     ImagesCunFu,
@@ -32,5 +34,6 @@ export {
     MessageIcon,
     MousMesssage,
     MousNotification,
-    MousPerson
+    MousPerson,
+    Fon
 }
