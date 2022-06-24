@@ -1,12 +1,14 @@
-import React from "react";
-import styles from './News.module.css'
-import { Fon } from '../../images/inedex.js'
+import React, { useState } from "react";
+import styles from './MainNews.module.css'
+import { Fon } from '../../../images/inedex.js'
 import { NavLink } from 'react-router-dom'
-import Footer from "../../components/Footer/Footer";
+
+import { useDispatch, useSelector } from 'react-redux'
 //Новости 
 
-function News() {
-
+function MainNews() {
+    // const { status, error, newsEvents, lastEvents, news } = useSelector(state => state.main)
+    const dispatch = useDispatch()
     let date = [
         {
             id: 1,
@@ -31,36 +33,45 @@ function News() {
         }
     ]
 
+
+    const readMore = (item) => {
+        // dispatch()
+
+
+    }
+
     return (
-        <div>
-            <div className={styles.news} >
-                <h1 className={styles.news__title}>Последние новости</h1>
 
-                <div className={styles.content}>
-                    {
-                        date.map(item =>
-                            <div className={styles.conteiner}>
-                                <div className={styles.conteiner__imgCon} >
-                                    <img src={item.images} alt='' className={styles.conteiner__img} />
-                                </div>
+        <div className={styles.news} >
+            <h1 className={styles.news__title}>Последние новости</h1>
 
-                                <div className={styles.conteiner__texst}>
-                                    <time className={styles.conteiner__texst_date}>{item.date}</time>
-                                    <h1 className={styles.conteiner__texst_title} >{item.title}</h1>
-                                    <p className={styles.conteiner__texst_text} >{item.text}</p>
-                                </div>
-                                <button className={styles.conteiner__about} > Читать далее </button>
-
+            <div className={styles.content}>
+                {
+                    date.map(item =>
+                        <div className={styles.conteiner} key={item.id}>
+                            <div className={styles.conteiner__imgCon} >
+                                <img src={item.images} alt='' className={styles.conteiner__img} />
                             </div>
-                        )
-                    }
-                </div>
 
+                            <div className={styles.conteiner__texst}>
+                                <time className={styles.conteiner__texst_date}>{item.date}</time>
+                                <h1 className={styles.conteiner__texst_title} >{item.title}</h1>
+                                <p className={styles.conteiner__texst_text} >{item.text}</p>
+                            </div>
+                            <NavLink to='/moreNews'>  <button className={styles.conteiner__about}
+                                onClick={() => readMore(item)} > Читать далее </button> </NavLink>
 
+                        </div>
+                    )
+                }
             </div>
-            <Footer />
+
+            {/* <MainNews date={infoMore} /> */}
+
         </div>
+
+
     )
 }
 
-export default News;
+export default MainNews;

@@ -6,12 +6,14 @@ import Calendar from './pages/Calendar/Calendar.jsx'
 import Clubs from './pages/Clubs/Clubs.jsx'
 import Document from './pages/Documents/Documents.jsx'
 import Events from './pages/Even/Events.jsx'
-import News from './pages/News/News.jsx'
+import MainNews from './pages/News/MainNews/MainNews.jsx'
 import Statistics from './pages/Statistics/Statistics.jsx'
 import Users from './pages/Users/Users.jsx'
 import NavBar from './components/NavBar/NavBar.jsx'
 import Header from './components/Headers/Headers.jsx';
 import { getLastEvent, getNewEvent, getNews } from './api/main.js';
+import Footer from './components/Footer/Footer.jsx';
+import MoreNews from './pages/News/MoreNews/MoreNews.jsx';
 
 
 function App() {
@@ -35,13 +37,13 @@ function App() {
         <Route path='/clubs' element={<Clubs />} />
         <Route path='/document' element={<Document />} />
         <Route path='/events' element={<Events />} />
-        <Route path='/news' element={<News />} />
+        <Route path='/news' element={<MainNews />} />
         <Route path='/statistics' element={<Statistics />} />
         <Route path='/users' element={<Users />} />
-
+        <Route path='/moreNews' element={<MoreNews />} />
 
       </Routes>
-
+      <Footer />
     </div>
   );
 }
