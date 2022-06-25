@@ -1,5 +1,4 @@
-export const MenuItems = [
-    {
+export const MenuItems = [{
         title: 'Новости',
         to: '/news'
 

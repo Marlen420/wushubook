@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import styles from './Headers.module.css'
 import { Logo, PersonIcon, NotificationIcon, MessageIcon, MousMesssage, MousNotification, MousPerson } from '../../images/inedex.js'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 function Header() {
+    const navigate = useNavigate();
 
     const [isIconPerson, setIconPerson] = useState(PersonIcon)
     const [isIconMessage, setIconMessage] = useState(MessageIcon)
     const [isIconNotification, setNotification] = useState(NotificationIcon)
+
+    const handleProfileClick = () => navigate('/profile');
 
     return (
         <div className={styles.header} >
@@ -27,7 +30,8 @@ function Header() {
 
                 <img className={styles.header__icon} src={isIconPerson} alt=''
                     onMouseEnter={() => setIconPerson(MousPerson)}
-                    onMouseOut={() => setIconPerson(PersonIcon)} />
+                    onMouseOut={() => setIconPerson(PersonIcon)}
+                    onClick={handleProfileClick}/>
             </div>
         </div>
     )

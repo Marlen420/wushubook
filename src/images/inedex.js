@@ -15,6 +15,7 @@ import MousNotification from './Clock1.svg'
 import MousPerson from './Person1.svg'
 import BackgroundImage from './AuthBackground.png';
 import CloseIcon from './Close.svg';
+import ProfileImage from './ProfileImage.png';
 
 export {
     TimeIcon,
@@ -32,5 +33,6 @@ export {
     MousMesssage,
     MousNotification,
     MousPerson,
-    CloseIcon
+    CloseIcon,
+    ProfileImage
 }

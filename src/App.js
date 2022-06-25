@@ -12,6 +12,7 @@ import Users from './pages/Users/Users.jsx'
 import NavBar from './components/NavBar/NavBar.jsx'
 import Header from './components/Headers/Headers.jsx';
 import { getLastEvent, getNewEvent, getNews } from './api/main.js';
+import Profile from './pages/Profile/Profile.jsx';
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
         <Route path='/news' element={<News />} />
         <Route path='/statistics' element={<Statistics />} />
         <Route path='/users' element={<Users />} />
+        <Route path='/profile' element={<Profile />} />
 
         {isLogged && 
         <Route path='/calendar' element={<Calendar />} />}
