@@ -1,4 +1,5 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
+
 import mainSlice from './reducers/mainSlice'
 
 
@@ -9,7 +10,8 @@ const middleware = getDefaultMiddleware({
 });
 export default configureStore({
     reducer: {
-        main: mainSlice
+        main: mainSlice,
+
 
 
     },

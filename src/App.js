@@ -14,6 +14,7 @@ import Header from './components/Headers/Headers.jsx';
 import { getLastEvent, getNewEvent, getNews } from './api/main.js';
 import Footer from './components/Footer/Footer.jsx';
 import MoreNews from './pages/News/MoreNews/MoreNews.jsx';
+import Chat from './pages/Chat/Chat.jsx';
 
 
 function App() {
@@ -41,9 +42,10 @@ function App() {
         <Route path='/statistics' element={<Statistics />} />
         <Route path='/users' element={<Users />} />
         <Route path='/moreNews' element={<MoreNews />} />
+        <Route path='/chat' element={<Chat />} />
 
       </Routes>
-      <Footer />
+
     </div>
   );
 }

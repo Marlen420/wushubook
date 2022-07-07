@@ -16,8 +16,33 @@ import MousPerson from './Person1.svg'
 import Menu from './Menu.png'
 import Cross from './crosss.png'
 import Fon from './fon.svg'
-
+import UserPhoto from './userPhoto.svg'
+import Check from './chek.svg'
+import NoReact from './Icon11.svg'
+import Wave from './wave.svg'
+import Play from './Play.svg'
+import Pausa from './Pausa.svg'
+import UserNotIcon from './User.svg'
+import Search from './Search.svg'
+import EditIconSideChatHeaders from './Edit-alt.svg'
+import Skrepka from './Iconsss.svg'
+import mikrafon from './mikrafon.svg'
+import flyIcon from './111.png'
+import LogoOut from './logOut.png'
 export {
+    LogoOut,
+    flyIcon,
+    mikrafon,
+    Skrepka,
+    UserNotIcon,
+    Search,
+    EditIconSideChatHeaders,
+    Play,
+    Pausa,
+    Wave,
+    NoReact,
+    Check,
+    UserPhoto,
     Time,
     TimeIcon,
     CheckIcon,
