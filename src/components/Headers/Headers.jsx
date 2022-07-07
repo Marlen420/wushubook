@@ -2,12 +2,17 @@ import React, { useState } from 'react'
 import styles from './Headers.module.css'
 import { Logo, PersonIcon, NotificationIcon, MessageIcon, MousMesssage, MousNotification, MousPerson } from '../../images/inedex.js'
 import { NavLink } from 'react-router-dom'
+import Notificatons from '../Notificatons/Notificatons'
 
 function Header() {
-
+    const [isOpen, setIsOpen] = useState(false)
     const [isIconPerson, setIconPerson] = useState(PersonIcon)
     const [isIconMessage, setIconMessage] = useState(MessageIcon)
     const [isIconNotification, setNotification] = useState(NotificationIcon)
+
+    const toggleIsOpen = () => {
+        setIsOpen(!isOpen)
+    }
 
     return (
         <div className={styles.header} >
@@ -23,14 +28,27 @@ function Header() {
                     onMouseEnter={() => setIconMessage(MousMesssage)}
                     onMouseOut={() => setIconMessage(MessageIcon)}
                 />
-                <img className={styles.header__icon} src={isIconNotification} alt=''
+                {
+                    isOpen ? <img className={styles.header__icon} onClick={toggleIsOpen} src={MousNotification} alt='' />
+                        :
+                        <img className={styles.header__icon} src={NotificationIcon} onClick={toggleIsOpen} alt='' />
+                }
+                {/* <img className={styles.header__icon} src={isIconNotification} alt=''
                     onMouseEnter={() => setNotification(MousNotification)}
-                    onMouseOut={() => setNotification(NotificationIcon)} />
+                    onMouseOut={() => setNotification(NotificationIcon)}
+                    onClick={toggleIsOpen}
+                /> */}
 
                 <img className={styles.header__icon} src={isIconPerson} alt=''
                     onMouseEnter={() => setIconPerson(MousPerson)}
                     onMouseOut={() => setIconPerson(PersonIcon)} />
             </div>
+
+
+            {
+                isOpen && <Notificatons />
+            }
+
         </div>
     )
 }
