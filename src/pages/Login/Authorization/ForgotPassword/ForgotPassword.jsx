@@ -5,7 +5,7 @@ import { CloseIcon } from '../../../../images/inedex';
 import Button from '../../../../components/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { TailSpin } from 'react-loader-spinner';
-import { setForgotPassword } from '../../../../api/login';
+import { setForgotPassword } from '../../../../api/login.api';
 
 const ForgotPassword = ({ closeWindow }) => {
     const [email, setEmail] = useState('');

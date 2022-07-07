@@ -5,6 +5,8 @@ import LocationsIcon from './locations.svg'
 import EmailIcon from './Email.svg'
 import TelephonIcon from './telefon.svg'
 import PhotoMain from './PhotoMain.svg'
+import Selected from './selectedIcon.svg';
+import EditIcon from './edit.png';
 
 import Logo from './logo312.svg'
 import PersonIcon from './PersonIcon.svg'
@@ -16,6 +18,7 @@ import MousPerson from './Person1.svg'
 import BackgroundImage from './AuthBackground.png';
 import CloseIcon from './Close.svg';
 import ProfileImage from './ProfileImage.png';
+import UserDeleteIcon from './DeleteIcon.png';
 
 export {
     TimeIcon,
@@ -34,5 +37,8 @@ export {
     MousNotification,
     MousPerson,
     CloseIcon,
-    ProfileImage
+    ProfileImage,
+    Selected,
+    EditIcon,
+    UserDeleteIcon
 }

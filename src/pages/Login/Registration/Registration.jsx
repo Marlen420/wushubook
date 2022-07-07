@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import Eye from '../icons/Eye.svg';
 import EyeSlash from '../icons/EyeSlash.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSignup } from '../../../api/login';
+import { setSignup } from '../../../api/login.api';
 import { TailSpin } from 'react-loader-spinner';
 
 // Validation

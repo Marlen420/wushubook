@@ -7,3 +7,17 @@
     border: 1px solid #E2E2E2;
     border-radius: 8px;
 }
+
+.search {
+    width: 100%;
+    font-size: 16px;
+    outline: none;
+    border: 1px solid #F2F2F2;
+    padding: 12px 40px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(200, 200, 200, .5);
+}
+
+.search::placeholder {
+    color: #D9D9D9;
+}

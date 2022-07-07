@@ -7,7 +7,7 @@ import Button from '../../../components/Button';
 import Input from '../../../components/Input';
 import ForgotPassword from './ForgotPassword/ForgotPassword';
 import { useSelector, useDispatch } from 'react-redux';
-import { setLogin } from '../../../api/login';
+import { setLogin } from '../../../api/login.api';
 import { TailSpin } from 'react-loader-spinner';
 
 

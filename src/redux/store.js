@@ -1,18 +1,20 @@
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
 import newsSlice from './features/counter/newsSlice'
 import profileSlice from './features/counter/profileSlice'
+import usersSlice from './features/counter/usersSlice';
 import mainSlice from './reducers/mainSlice'
 
-const middleware = getDefaultMiddleware({
-    immutableCheck: false,
-    serializableCheck: false,
-    thunk: true,
-});
+// const middleware = getDefaultMiddleware({
+//     immutableCheck: false,
+//     serializableCheck: false,
+//     thunk: true,
+// });
 export default configureStore({
     reducer: {
         profile: profileSlice,
         news: newsSlice,
-        main: mainSlice
+        main: mainSlice,
+        users: usersSlice
 
     },
 })

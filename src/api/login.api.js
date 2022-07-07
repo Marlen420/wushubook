@@ -1,14 +1,7 @@
-import axios from 'axios'
 import { createAsyncThunk } from '@reduxjs/toolkit'
+import API from '../utils/axiosConfig';
 
-let GetToken = localStorage.getItem('token')
-const API = axios.create({
-    baseURL: process.env.REACT_APP_API,
-    headers: {
-        ContentType: 'application/json',
-        // Authorization: `Bearer ${GetToken}`,
-    }
-})
+
 
 export const setLogin = createAsyncThunk(
     'profilt/setLogin',
