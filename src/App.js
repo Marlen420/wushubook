@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import Home from './pages/Home/Home.jsx';
 import Calendar from './pages/Calendar/Calendar.jsx'
 import Clubs from './pages/Clubs/Clubs.jsx'
@@ -16,8 +16,9 @@ import Profile from './pages/Profile/Profile.jsx';
 
 
 function App() {
-  const {isLogged} = useSelector(state=>state.profile.login);
+  const { isLogged } = useSelector(state=>state.profile.login);
   const dispatch = useDispatch()
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getNewEvent())
@@ -27,6 +28,8 @@ function App() {
 
   return (
     <div >
+      {isLogged
+      ? <>
       <Header />
       <NavBar />
       <Routes >
@@ -43,6 +46,11 @@ function App() {
         <Route path='/calendar' element={<Calendar />} />}
       
       </Routes>
+      </>
+      : <>
+        <h1>Not registered</h1>
+        <button onClick={()=>navigate('/login')}>Login</button>
+      </>}
 
     </div>
   );

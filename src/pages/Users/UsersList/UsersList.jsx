@@ -7,7 +7,7 @@ import ListHeader from './ListHeader';
 import Pagination from './Pagination';
 import UserItem from './UserItem/UserItem';
 
-const UsersList = ({roleFilter, users, selected}) => {
+const UsersList = ({roleFilter, users, selected, handleNewUserButton}) => {
     // Constants
     const dispatch = useDispatch();
     
@@ -22,7 +22,7 @@ const UsersList = ({roleFilter, users, selected}) => {
     // Effects
     useEffect(()=>{
         dispatch(setCurrent({page, roleFilter}));
-    }, [page])
+    }, [roleFilter, page, dispatch])
     return (
         <div className={styles.holder_list}>
             <div className={styles.holder_inner}>

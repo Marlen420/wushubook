@@ -46,7 +46,7 @@ function Registration() {
     const handleFormSubmit = (e) => {
         e.preventDefault();
         const data = {
-            name: name + ' ' + lastname,
+            name: name + '/' + lastname,
             email,
             password
         };
@@ -129,7 +129,7 @@ function Registration() {
                 type='submit'>
                     {status === "Sending signup link"
                     ? <TailSpin 
-                    height={30}
+                    height={24}
                     color='white'/>
                     : 'Зарегистрироваться'}
                 </Button>

@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+// import { useDispatch } from 'react-redux'
 import NewUserView from './View/NewUserView';
 
 const NewUser = ({closeWindow}) => {
     // Constats
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     // States
     const [role, setRole] = useState(0);
@@ -27,9 +27,17 @@ const NewUser = ({closeWindow}) => {
     const handleEmailChange = (e) => setEmail(e.target.value);
     const handleSubmitForm = (e) => {
         e.preventDefault();
+        e.stopPropagation();
         const data = {name, email, patronymic, role};
         console.log('New user: ', data);
     }
+
+    // Onload
+    useEffect(()=>{
+        document.body.style.overflow = 'hidden';
+        return ()=>document.body.style.overflow = 'auto';
+    }, [])
+
     return (
         <NewUserView 
         role={role}

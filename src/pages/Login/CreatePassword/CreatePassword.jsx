@@ -1,11 +1,31 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router';
+import React, { useEffect, useState } from 'react'
+import { TailSpin } from 'react-loader-spinner';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router';
+import { checkToken, setNewPassword } from '../../../api/login.api';
 import Button from '../../../components/Button';
 import Input from '../../../components/Input';
+import { setError } from '../../../redux/features/counter/profileSlice';
 import Styles from './CreatePassword.module.css';
 
+const getInfo = (info) => {
+    let i = 0;
+    while(info[i] !== 'M') {
+        i++;
+    }
+    const id = info.slice(0, i);
+    console.log('Id: ', id);
+    const token = info.slice(i+1, info.length);
+    console.log('Token: ', token);
+    return {userId: 1, token: 111};
+}
+
 const CreatePassword = ({action = 'create'}) => {
+    const { info } = useParams();
+    const { userId, token } = getInfo(info);
+    const { checkTmp, status, error } = useSelector(state=>state.profile);
     const navigate = useNavigate()
+    const dispatch = useDispatch();
     const [ password, setPassword ] = useState('');
     const [ conforPassword, setConfirmPassword ] = useState('');
 
@@ -13,12 +33,30 @@ const CreatePassword = ({action = 'create'}) => {
     const handleConfirmPasswordChange = (e) => setConfirmPassword(e.target.value);
     const handleSubmitForm = (e) => {
         e.preventDefault();
-        console.log({password, conforPassword});
-        navigate('/login');
+        if (password !== conforPassword) 
+        {
+            dispatch(setError('* Пароли не совпадают'));
+            return;
+        }
+        dispatch(setNewPassword({id: userId, tmp: token, password}));
     }
 
+    useEffect(()=>{
+        dispatch(checkToken(getInfo(info)));
+    }, [dispatch]);
+
+    useEffect(()=>{
+        if (checkTmp === false) navigate('/');
+    }, [checkTmp]);
+
+    useEffect(()=>{
+        if (status === 'Set new password') navigate('/login/sign-in');
+    })
+
     return (
-        <div className={Styles.page}>
+        <>
+        {checkTmp !== true
+        ? <div className={Styles.page}>
             <h1 className={Styles.title}>
                     Создание пароля
             </h1>
@@ -41,12 +79,20 @@ const CreatePassword = ({action = 'create'}) => {
                         type="password"/>
                     </div>
                 </div>
+                {/* {error &&
+                <p className={Styles.error_message}>{error}</p>} */}
                 <Button
                     type="submit">
-                    Зарегистрироваться
+                    {status === 'Setting new password'
+                    ? <TailSpin 
+                    height={24}
+                    color='white'/>
+                    : 'Зарегистрироваться'}
                 </Button>
             </form>
         </div>
+        : <h1>Loading</h1>}
+        </>
     )
 }
 

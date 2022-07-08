@@ -3,7 +3,7 @@ import { ROLES_FILTER } from '../../../const/user_roles';
 import styles from './nav.module.css';
 import { Button } from '../../../components/index';
 
-const UsersNav = ({roleFilter, setRoleFilter}) => {
+const UsersNav = ({roleFilter, setRoleFilter, handleNewUserButton}) => {
     return (
         <div className={styles.nav_holder}>
             <div className={styles.nav_inner}>
@@ -21,6 +21,7 @@ const UsersNav = ({roleFilter, setRoleFilter}) => {
                 </div>
                 <div className={styles.add_user_button}>
                     <Button
+                    onClick={handleNewUserButton}
                     projectType="add_user"
                     type="button">Добавить пользователя</Button>
                 </div>

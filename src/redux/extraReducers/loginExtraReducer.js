@@ -1,17 +1,84 @@
-import { setForgotPassword, setLogin, setSignup } from "../../api/login.api";
+import { setUpdateUser, setForgotPassword, setLogin, setSignup, checkToken, setNewPassword, setConfirmStatus } from "../../api/login.api";
 
-export const loginExtraReducers = {
+export const setConfirmStatusExtra = {
+    [setConfirmStatus.pending]: (state) => {
+        state.status = 'Setting confirm status';
+        state.error = null;
+    },
+    [setConfirmStatus.fulfilled]: (state) => {
+        state.status = 'Confirmed status';
+        state.error = null;
+    },
+    [setConfirmStatus.rejected]: (state, action) => {
+        state.status = 'Rejected confirm status';
+        state.error = action.payload;
+    }
+}
+
+export const setNewPasswordExtra = {
+    [setNewPassword.pending]: (state) => {
+        state.status = 'Setting new password';
+        state.error = null;
+    },
+    [setNewPassword.fulfilled]: (state) => {
+        state.status = 'Set new password';
+        state.error = null;
+    },
+    [setNewPassword.rejected]: (state, action) => {
+        state.status = 'Rejected set new password';
+        state.error = action.payload;
+    }
+}
+
+export const checkTokenExtra = {
+    [checkToken.pending]: (state) => {
+        state.status = 'Checking tmp';
+        state.error = null;
+    },
+    [checkToken.fulfilled]: (state) => {
+        state.status = 'Active';
+        state.error = null;
+        state.checkTmp = true;
+    },
+    [checkToken.rejected]: (state, action) => {
+        state.status = 'Rejected check tmp';
+        state.error = action;
+        state.checkTmp = false;
+    }
+}
+
+export const setUpdateUserExtra = {
+    [setUpdateUser.pending]: (state) => {
+        state.status = 'Updating profile';
+        state.error = null;
+    },
+    [setUpdateUser.fulfilled]: (state, action) => {
+        state.status = 'Active';
+        state.error = null;
+        state.user = action.payload;
+        console.log(action.payload);
+    },
+    [setUpdateUser.rejected]: (state, action) => {
+        state.status = 'Rejected update profile';
+        state.error = action.payload;
+    }
+}
+
+export const setLoginExtra = {
     [setLogin.pending]: (state) => {
         state.status = 'Loading';
         state.error = null;
     },
     [setLogin.fulfilled]: (state, action) => {
-        state.status = "Resolved";
+        state.status = 'Active';
+        state.error = null;
         state.login.isLogged = true;
-        state.login.role = action.payload.role;
+        const { role, ...data } = action.payload.role;
+        state.login.role = role;
+        state['user'] = action.payload;
     },
     [setLogin.rejected]: (state, action) => {
-        state.status = "Rejected";
+        state.status = 'Rejected login';
         state.error = action.payload;
     }
 }

@@ -87,7 +87,7 @@ const Authorization = () => {
                         type='submit'>
                             {status === 'Loading'
                             ? <TailSpin 
-                            height={35}
+                            height={24}
                             color='white'
                             />
                             : 'Войти' }

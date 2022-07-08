@@ -1,4 +1,5 @@
 import React from 'react';
+import { TailSpin } from 'react-loader-spinner';
 import Button from '../../../components/Button';
 import Input from '../../../components/Input';
 import styles from './personal.module.css';
@@ -9,10 +10,14 @@ const PersonalInfo = ({
     email, setEmail,
     phone, setPhone,
     country, setCountry,
-    city, setCity
+    city, setCity,
+    handleSubmitForm,
+    status
 }) => {
     return (
-        <div className={styles.personal_dashboard}>
+        <form 
+            onSubmit={handleSubmitForm}
+            className={styles.personal_dashboard}>
             <div className={styles.input_line}>
                 <div className={styles.input_holder}>
                     <label htmlFor="name">Имя</label>
@@ -69,12 +74,16 @@ const PersonalInfo = ({
             </div>
             <div className={styles.button_holder}>
                 <div className={styles.button}>
-                    <Button>
-                        Сохранить
+                    <Button type="submit">
+                        {status === 'Updating profile'
+                        ? <TailSpin
+                            height={24}
+                            color='white'/>
+                        : 'Сохранить'}
                     </Button>
                 </div>
             </div>
-        </div>
+        </form>
     )
 }
 

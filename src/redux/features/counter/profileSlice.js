@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { loginExtraReducers, signupExtraReducers, forgotPasswordExtraReducers } from '../../extraReducers/loginExtraReducer';
+import { signupExtraReducers, forgotPasswordExtraReducers, setLoginExtra, setUpdateUserExtra, checkTokenExtra, setNewPasswordExtra, setConfirmStatusExtra } from '../../extraReducers/loginExtraReducer';
 
 
 export const counterSlice = createSlice({
@@ -10,20 +10,27 @@ export const counterSlice = createSlice({
             role: 'unauthorized'
         },
         status: 'Active',
-        error: null
+        error: null,
+        checkTmp: null
     },
-    reducers: {},
+    reducers: {
+        setError: (state, action) => state.error = action.payload,
+    },
     extraReducers: {
-        ...loginExtraReducers,
         ...signupExtraReducers,
-        ...forgotPasswordExtraReducers
+        ...forgotPasswordExtraReducers,
+        ...setLoginExtra,
+        ...setUpdateUserExtra,
+        ...checkTokenExtra,
+        ...setNewPasswordExtra,
+        ...setConfirmStatusExtra,
     }
 })
 
 
 // Action creators are generated for each case reducer function
 export const {
-    incrementByAmount,
+    setError,
 } = counterSlice.actions
 
 // export const incrementAsync = (amount) => (dispatch) => {

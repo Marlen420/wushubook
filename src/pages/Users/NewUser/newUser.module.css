@@ -7,9 +7,65 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    top: 0;
+    left: 0;
 }
 
 .form {
     width: 35%;
     background-color: #fff;
+    position: relative;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.close_icon {
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+}
+
+.form_title {
+    font-size: 24px;
+    margin: 24px 24px;
+    color: #000;
+    width: 100%;
+    text-align: start;
+    font-weight: 500;
+    box-sizing: border-box;
+}
+
+.form_role {
+    margin: 10px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form_role {
+    color: #000;
+}
+
+.form_radio_holder {
+    display: flex;
+    width: 20%;
+    align-items: center;
+}
+
+.form_role label {
+    cursor: pointer;
+    font-size: 16px;
+    text-align: start;
+}
+
+.form_role input {
+    cursor: pointer;
+}
+
+.form_radio_holder {
+    width: 20px;
+    height: 20px;
 }

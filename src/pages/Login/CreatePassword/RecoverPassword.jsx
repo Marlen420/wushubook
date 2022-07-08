@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router';
+import { checkToken } from '../../../api/login.api';
 import Button from '../../../components/Button';
 import Input from '../../../components/Input';
 import Styles from './CreatePassword.module.css';
@@ -18,6 +20,7 @@ const getInfo = (info) => {
 
 const RecoverPassword = ({action = 'create'}) => {
     const navigate = useNavigate()
+    const dispatch = useDispatch();
     const { info } = useParams();
     const [ password, setPassword ] = useState('');
     const [ conforPassword, setConfirmPassword ] = useState('');
@@ -30,7 +33,9 @@ const RecoverPassword = ({action = 'create'}) => {
         navigate('/login');
         console.log(userId, token);
     }
-
+    useEffect(()=>{
+        dispatch(checkToken({id: userId, tmp: token}));
+    }, [dispatch]);
     return (
         <div className={Styles.page}>
             <h1 className={Styles.title}>

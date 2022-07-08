@@ -17,7 +17,7 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/login/create-password/:info" element={<CreatePassword/>} />
-        <Route path="/login/reset-password/:info" element={<RecoverPassword/>} />
+        <Route path="/reset-password/:info" element={<RecoverPassword/>} />
         <Route path="/login/*" element={<Login />} />
         <Route path="/*" element={<App />} />
       </Routes>

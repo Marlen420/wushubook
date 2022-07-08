@@ -44,6 +44,7 @@ function Users() {
                 search={search}
                 setSearch={handleSearchChange}/>
             <UsersNav
+                handleNewUserButton={handleAddUser}
                 roleFilter={roleFilter}
                 setRoleFilter={setRoleFilter}/>
             <UsersList
