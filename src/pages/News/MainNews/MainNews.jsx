@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import styles from './MainNews.module.css'
 import { Fon } from '../../../images/inedex.js'
 import { NavLink } from 'react-router-dom'
-
+import Footer from '../../../components/Footer/Footer.jsx'
 import { useDispatch, useSelector } from 'react-redux'
 //Новости 
 
 function MainNews() {
-    // const { status, error, newsEvents, lastEvents, news } = useSelector(state => state.main)
+    const { news } = useSelector(state => state.main)
     const dispatch = useDispatch()
+    console.log("Ne: ", news)
+
     let date = [
         {
             id: 1,
@@ -47,10 +49,10 @@ function MainNews() {
 
             <div className={styles.content}>
                 {
-                    date.map(item =>
+                    news.map(item =>
                         <div className={styles.conteiner} key={item.id}>
                             <div className={styles.conteiner__imgCon} >
-                                <img src={item.images} alt='' className={styles.conteiner__img} />
+                                <img src={item.image} alt='' className={styles.conteiner__img} />
                             </div>
 
                             <div className={styles.conteiner__texst}>
@@ -67,6 +69,7 @@ function MainNews() {
             </div>
 
             {/* <MainNews date={infoMore} /> */}
+            <Footer />
 
         </div>
 

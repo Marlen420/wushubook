@@ -49,6 +49,7 @@
     width: 52%;
 
 
+
 }
 
 .conteiner__texst_date {
@@ -79,11 +80,18 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 120%;
-    /* or 19px */
 
 
     color: #3F3F3F;
 
+
+
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
 }
 
 .conteiner__about {

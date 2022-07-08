@@ -1,10 +1,97 @@
 .content {
-    font-family: 'Lato', sans-serif;
-    font-style: normal;
+    margin-left: 29px;
+    margin-top: 66px;
+    margin-right: 28px;
+    /* background: red; */
+}
 
-    font-size: 24px;
-    line-height: 29px;
-    color: #798FDF;
-    margin-top: 40px;
-    text-align: center;
+.content__title {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 120%;
+    /* or 38px */
+
+    letter-spacing: 0.04em;
+
+    color: #000000;
+}
+
+select {
+    background: #F9F9FF;
+    border: 1px solid #EFEFEF;
+    border-radius: 8px;
+    width: 224px;
+    height: 49px;
+    padding-left: 15px;
+    margin-top: 44px;
+
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    border-radius: 8px;
+    line-height: 22px;
+}
+
+option {
+    margin-top: 20px;
+    width: 225px;
+    height: 243px;
+    background: #F9F9FF;
+    border: 1px solid #EFEFEF;
+    border-radius: 8px;
+}
+
+
+
+.ButtonNavigations {
+    margin-top: 83px;
+
+
+    display: flex;
+
+    border-bottom: 1px solid #E8E8E8;
+
+}
+
+
+.chart {
+    /* background: red; */
+    /* height: 621px; */
+    width: 96%;
+    margin: auto;
+    margin-top: 24px;
+    margin-bottom: 61px;
+    overflow-x: scroll;
+}
+
+.chart_diagram {
+    /* width: 1323px; */
+    /* width: 96%; */
+    /* background: red; */
+    /* overflow-x: scroll; */
+}
+
+@media screen and (max-width: 1075px) {
+    .chart {
+
+        margin-bottom: 0px;
+
+    }
+
+
+
+}
+
+@media screen and (max-width: 713px) {
+
+
+    .chart {
+        overflow-x: scroll;
+
+    }
+
+
 }

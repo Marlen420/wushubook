@@ -17,10 +17,10 @@ function Home() {
 
     const [active, setActive] = useState(false)
 
-    const { status, error, newsEvents, lastEvents, news } = useSelector(state => state.main)
+    const { status, error, newsEvents, lastEvents } = useSelector(state => state.main)
+    console.log("l: ", newsEvents.Registering_Date_NewEvent)
     const isOpenModal = () => {
         setActive(true)
-
     }
 
     return (
@@ -30,15 +30,24 @@ function Home() {
 
             </div>
 
-            <h1 className={styles.conteiner__title} ><span className={styles.conteiner__line} onClick={isOpenModal} >
-                Мероприятия
-            </span></h1>
+            <h1 className={styles.conteiner__title} >
+                <span className={styles.conteiner__line} onClick={isOpenModal} >
+                    Мероприятия
+                </span>
+            </h1>
             <p className={styles.conteiner__tema}>Новые мероприятия:</p>
 
-            {status === 'loading' && <div className={styles.spinner} ><Circles ariaLabel="loading-indicator" /> </div>}
-            {error && <div className={styles.spinner} >{error}</div>}
             {
-                newsEvents.map((item) =>
+                status === 'loading' && <div className={styles.spinner} >
+                    <Circles ariaLabel="loading-indicator" />
+                </div>
+            }
+
+            {
+                error && <div className={styles.spinner} >{error}</div>
+            }
+            {
+                newsEvents.Registering_Date_NewEvent?.map((item) =>
                     <div key={item.id} className={styles.wrapper}>
 
                         <article className={styles.wrapper__events}>
@@ -70,7 +79,7 @@ function Home() {
             <div className={styles.content}>
 
                 {
-                    lastEvents.map(item =>
+                    lastEvents.Registering_Date_Last_Event?.map(item =>
                         <article key={item.id} className={styles.wrapperLastEvents__lastEvents}>
                             <img src={CheckIcon} alt='' className={styles.wrapper__icon} />
 
@@ -86,12 +95,13 @@ function Home() {
                     )
                 }
             </div>
-            <h1 className={`${styles.conteiner__title} ${styles.content__hight} `} ><span className={styles.conteiner__line} >
-                Новости
-            </span></h1>
+            <h1 className={`${styles.conteiner__title} ${styles.content__hight} `} >
+                <span className={styles.conteiner__line} >
+                    Новости
+                </span></h1>
 
             <OtherNews />
-
+            <Footer />
 
             <Main active={active} setActive={setActive} />
         </div >

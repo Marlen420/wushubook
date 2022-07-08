@@ -41,6 +41,7 @@
 }
 
 .content_block {
+    min-width: 370px;
     max-width: 370px;
     background: #F9F9FF;
     border: 1px solid #F8F8FF;

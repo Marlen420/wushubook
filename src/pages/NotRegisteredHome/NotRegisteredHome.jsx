@@ -1,50 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './NotRegisteredHome.module.css'
 import { Logo } from '../../images/inedex.js'
 import Footer from '../../components/Footer/Footer.jsx'
-
+import { useSelector, useDispatch } from 'react-redux';
+import { getLastEvent, getNewEvent } from '../../api/main.js';
 
 function NotRegisteredHome() {
+    const dispatch = useDispatch()
 
-    let UpcomingEvents = [
-        {
-            id: 1,
-            date: '22 ',
-            title: 'Чемпионат среди детей',
-            time: '9:00-12:00',
-            address: 'г. Бишкек, Национальный Центр детей и юношества «Сейтек»'
-        },
-        {
-            id: 2,
-            date: '22 ',
-            title: 'Чемпионат среди детей',
-            time: '9:00-12:00',
-            address: 'г. Бишкек, Национальный Центр детей и юношества «Сейтек»'
-        },
-        {
-            id: 3,
-            date: '22 ',
-            title: 'Чемпионат среди детей ',
-            time: '9:00-12:00',
-            address: 'г. Бишкек, Национальный Центр детей и юношества «Сейтек»'
-        },
-        {
-            id: 2,
-            date: '22 ',
-            title: 'Чемпионат среди детей',
-            time: '9:00-12:00',
-            address: 'г. Бишкек, Национальный Центр детей и юношества «Сейтек»'
-        },
-        {
-            id: 3,
-            date: '22 ',
-            title: 'Чемпионат среди детей ',
-            time: '9:00-12:00',
-            address: 'г. Бишкек, Национальный Центр детей и юношества «Сейтек»'
-        },
+    const { status, error, newsEvents, lastEvents } = useSelector(state => state.main)
+    console.log("LasEvent: ", lastEvents)
+
+    useEffect(() => {
+        dispatch(getNewEvent())
+        dispatch(getLastEvent())
+
+    }, [dispatch])
 
 
-    ]
+
+
 
     return (
         <div className={styles.conteiner}>
@@ -63,16 +38,18 @@ function NotRegisteredHome() {
 
             <div className={styles.content}>
                 {
-                    UpcomingEvents.map((item) =>
+                    newsEvents.NotRegistering_Date_News_Event?.slice(0, 3).map(item =>
 
                         <div key={item.id} className={styles.content_block}>
-                            <h1 className={styles.content__date}> {item.date} <span className={styles.content__data2}>июня</span></h1>
+                            <h1 className={styles.content__date}> {item.onlyDay} <span className={styles.content__data2}>{item.onlyMonth}</span></h1>
                             <h1 className={styles.content__title}>{item.title}</h1>
-                            <p className={styles.content__time}>{item.time}</p>
-                            <p className={styles.content__address}>{item.address}</p>
+                            <p className={styles.content__time}>{item.startTimeFinish}</p>
+                            <p className={styles.content__address}>{item.city}</p>
+
 
                         </div>
-                    )}
+                    )
+                }
 
             </div>
 
@@ -85,12 +62,12 @@ function NotRegisteredHome() {
 
             <div className={styles.content}>
                 {
-                    UpcomingEvents.map((item) =>
+                    lastEvents.NotRegistering_Date_Last_Event?.slice(0, 3).map((item) =>
 
                         <div key={item.id} className={styles.content_block}>
-                            <h1 className={styles.content__date}> {item.date} <span className={styles.content__data2}>июня</span></h1>
+                            <h1 className={styles.content__date}> {item.onlyDay} <span className={styles.content__data2}>{item.onlyMonth}</span></h1>
                             <h1 className={styles.content__title}>{item.title}</h1>
-                            <p className={styles.content__time}>{item.time}</p>
+                            <p className={styles.content__time}>{item.startTimeFinish}</p>
                             <p className={styles.content__address}>{item.address}</p>
 
                         </div>

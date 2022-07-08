@@ -10,8 +10,4 @@ const Time = ({ date }) =>
 
 
 
-// Time.propTypes = {   
-//   date: PropTypes.string
-// };
-
 export default Time;
