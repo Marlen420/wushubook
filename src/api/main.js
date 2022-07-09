@@ -147,7 +147,6 @@ export const getNewEvent = createAsyncThunk(
                 throw new Error("Server Error!")
             }
 
-            //             return response.data
             return All_New_Events
 
         }
@@ -176,9 +175,9 @@ export const getLastEvent = createAsyncThunk(
 
 export const getNews = createAsyncThunk(
     'main/getNews',
-    async function (_, { rejectWithValue }) {
+    async function (id, { rejectWithValue }) {
         try {
-            const response = await API.get('news')
+            const response = await API.get(`news`)
             if (response.status !== 200) {
                 throw new Error("Server Error!")
             }
@@ -190,3 +189,23 @@ export const getNews = createAsyncThunk(
         }
 
     })
+
+export const getNewsId = createAsyncThunk(
+    'main/getNewsId',
+
+    async function ({ id, navigations }, { rejectWithValue }) {
+        try {
+            const response = await API.get(`news/getById/${id}`)
+            if (response.status !== 200) {
+                throw new Error("Server Error!")
+            }
+            navigations('/moreNews')
+            return response.data
+
+        }
+        catch (error) {
+            return rejectWithValue(error.message)
+        }
+
+    })
+

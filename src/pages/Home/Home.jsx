@@ -18,7 +18,7 @@ function Home() {
     const [active, setActive] = useState(false)
 
     const { status, error, newsEvents, lastEvents } = useSelector(state => state.main)
-    console.log("l: ", newsEvents.Registering_Date_NewEvent)
+
     const isOpenModal = () => {
         setActive(true)
     }
@@ -46,6 +46,7 @@ function Home() {
             {
                 error && <div className={styles.spinner} >{error}</div>
             }
+
             {
                 newsEvents.Registering_Date_NewEvent?.map((item) =>
                     <div key={item.id} className={styles.wrapper}>
@@ -74,6 +75,7 @@ function Home() {
                     <Circles ariaLabel="loading-indicator" color={'#A384E7'} />
                 </div>
             }
+
             {error && <div className={styles.spinner} >{error}</div>}
 
             <div className={styles.content}>
@@ -88,10 +90,7 @@ function Home() {
                                 <p className={styles.wrapper__city}>{item.city} </p>
                                 <time className={styles.wrapper__time}>{item.date}</time>
                             </div>
-
                         </article>
-
-
                     )
                 }
             </div>

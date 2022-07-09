@@ -106,7 +106,8 @@
     /* background: red; */
 
     height: 500px;
-    overflow: auto;
+    overflow-x: hidden;
+
 
 
 }

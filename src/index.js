@@ -14,8 +14,7 @@ root.render(
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          <Route path="login" element={<Login />} />
-
+          <Route path="/login" element={<Login />} />
           <Route path="/*" element={<App />} />
           <Route path='/not' element={<NotRegisteredHome />} />
         </Routes>

@@ -1,18 +1,26 @@
 import React, { useState } from 'react'
 import styles from './Headers.module.css'
 import { Logo, PersonIcon, NotificationIcon, MessageIcon, MousMesssage, MousNotification, MousPerson } from '../../images/inedex.js'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import Notificatons from '../Notificatons/Notificatons'
 
 function Header() {
-    const [isOpen, setIsOpen] = useState(false)
+    const navigations = useNavigate()
+    const [isOpenNotificationIcon, setIsOpenNotificationIcon] = useState(false)
     const [isIconPerson, setIconPerson] = useState(PersonIcon)
-    const [isIconMessage, setIconMessage] = useState(MessageIcon)
-    const [isIconNotification, setNotification] = useState(NotificationIcon)
+    const [isOpenMessage, setIsOpenMessage] = useState(false)
 
-    const toggleIsOpen = () => {
-        setIsOpen(!isOpen)
+
+    const toggleIsOpenNotificationIcon = () => {
+        setIsOpenNotificationIcon(!isOpenNotificationIcon)
     }
+
+    const toggleIsOpenMessage = () => {
+        setIsOpenMessage(!isOpenMessage)
+        navigations('/chat')
+
+    }
+
 
     return (
         <div className={styles.header} >
@@ -24,20 +32,30 @@ function Header() {
             </div>
 
             <div className={styles.header__allIcon} >
-                <img className={styles.header__icon} src={isIconMessage} alt=''
-                    onMouseEnter={() => setIconMessage(MousMesssage)}
-                    onMouseOut={() => setIconMessage(MessageIcon)}
-                />
                 {
-                    isOpen ? <img className={styles.header__icon} onClick={toggleIsOpen} src={MousNotification} alt='' />
+                    isOpenMessage ?
+                        <NavLink to='/chat'>    <img className={styles.header__icon} onClick={toggleIsOpenMessage}
+                            src={MousMesssage} alt='' /></NavLink>
                         :
-                        <img className={styles.header__icon} src={NotificationIcon} onClick={toggleIsOpen} alt='' />
+                        <img className={styles.header__icon} src={MessageIcon}
+                            onClick={toggleIsOpenMessage} alt='' />
                 }
-                {/* <img className={styles.header__icon} src={isIconNotification} alt=''
-                    onMouseEnter={() => setNotification(MousNotification)}
-                    onMouseOut={() => setNotification(NotificationIcon)}
-                    onClick={toggleIsOpen}
+
+
+
+                {/* <img className={styles.header__icon} src={isIconMessage} alt=''
+                    onMouseEnter={() => setIconMessage(MousMesssage)}
+                    onMouseOut={() => setIconMessage(MousMesssage)}
                 /> */}
+                {
+                    isOpenNotificationIcon ?
+                        <img className={styles.header__icon} onClick={toggleIsOpenNotificationIcon}
+                            src={MousNotification} alt='' />
+                        :
+                        <img className={styles.header__icon} src={NotificationIcon}
+                            onClick={toggleIsOpenNotificationIcon} alt='' />
+                }
+
 
                 <img className={styles.header__icon} src={isIconPerson} alt=''
                     onMouseEnter={() => setIconPerson(MousPerson)}
@@ -46,7 +64,7 @@ function Header() {
 
 
             {
-                isOpen && <Notificatons />
+                isOpenNotificationIcon && <Notificatons />
             }
 
         </div>

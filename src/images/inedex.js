@@ -29,7 +29,9 @@ import Skrepka from './Iconsss.svg'
 import mikrafon from './mikrafon.svg'
 import flyIcon from './111.png'
 import LogoOut from './logOut.png'
+import people from './people.svg'
 export {
+    people,
     LogoOut,
     flyIcon,
     mikrafon,

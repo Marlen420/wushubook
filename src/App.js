@@ -43,7 +43,6 @@ function App() {
         <Route path='/users' element={<Users />} />
         <Route path='/moreNews' element={<MoreNews />} />
         <Route path='/chat' element={<Chat />} />
-
       </Routes>
 
     </div>

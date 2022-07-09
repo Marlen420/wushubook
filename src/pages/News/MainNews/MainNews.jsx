@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import styles from './MainNews.module.css'
 import { Fon } from '../../../images/inedex.js'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import Footer from '../../../components/Footer/Footer.jsx'
 import { useDispatch, useSelector } from 'react-redux'
+import { getNewsId } from "../../../api/main";
 //Новости 
 
 function MainNews() {
-    const { news } = useSelector(state => state.main)
+
+    const { news, newsId } = useSelector(state => state.main)
     const dispatch = useDispatch()
     console.log("Ne: ", news)
 
+    const navigations = useNavigate()
     let date = [
         {
             id: 1,
@@ -37,8 +40,8 @@ function MainNews() {
 
 
     const readMore = (item) => {
-        // dispatch()
 
+        dispatch(getNewsId({ id: item.id, navigations }))
 
     }
 
@@ -60,8 +63,10 @@ function MainNews() {
                                 <h1 className={styles.conteiner__texst_title} >{item.title}</h1>
                                 <p className={styles.conteiner__texst_text} >{item.text}</p>
                             </div>
-                            <NavLink to='/moreNews'>  <button className={styles.conteiner__about}
-                                onClick={() => readMore(item)} > Читать далее </button> </NavLink>
+
+                            <button className={styles.conteiner__about}
+                                onClick={() => readMore(item)} > Читать далее </button>
+
 
                         </div>
                     )
@@ -72,8 +77,6 @@ function MainNews() {
             <Footer />
 
         </div>
-
-
     )
 }
 

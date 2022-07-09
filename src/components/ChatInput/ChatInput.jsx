@@ -21,7 +21,6 @@ function ChatInput() {
             <input className={styles.chat__input_text} onChange={e => setValue(e.target.value)}
                 type='text' placeholder="Напишите сообщение..." />
 
-
             {
                 value ? <img className={styles.chat__input_simbvol_icon1} src={flyIcon} alt='' />
                     :

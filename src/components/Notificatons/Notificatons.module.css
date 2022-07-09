@@ -28,6 +28,7 @@
 
 }
 
+
 @media screen and (max-width:840px) {
     .notificatons__conteiner {
         position: absolute;
@@ -86,6 +87,24 @@
     height: 360px;
     overflow: auto;
     margin-bottom: 50px;
+    /* background: red; */
+}
+
+
+
+.notifications__ul ::-webkit-scrollbar {
+    width: 5px !important;
+}
+
+.notifications__ul ::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.notifications__ul ::-webkit-scrollbar-thumb {
+    background-color: red;
+    border-radius: 50%;
+    border: 6px solid transparent;
+    background-clip: content-box;
 }
 
 .notifications__ul_text {

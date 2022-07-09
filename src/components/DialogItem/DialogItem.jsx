@@ -30,7 +30,7 @@ function DialogItem({ user, message, unreaded }) {
 
             <div className={styles.dialog__item_avator}>
                 {
-                    <Avator user={user.avator.UserPhoto} />
+                    <Avator user={user.avator} />
                 }
 
                 <div className={user.isOnline ? styles.dialog__item__online : ''}>

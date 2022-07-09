@@ -5,6 +5,7 @@ import { Circles } from 'react-loader-spinner'
 function OtherNews() {
 
     const { status, error, news } = useSelector(state => state.main)
+
     return (
         <div className={styles.conteinerNews}>
             {

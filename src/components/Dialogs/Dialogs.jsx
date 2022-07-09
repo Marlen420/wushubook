@@ -32,7 +32,7 @@ export const Dialogs = ({ items, onSearch, inputValue }) => {
 
                 <DialogItem
                     user={item.user}
-                    // unreaded ={items.user.}
+                    unreaded={items.user}
                     message={item}
 
                 />

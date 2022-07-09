@@ -1,19 +1,9 @@
 
-import { Chart as ChartJS } from 'chart.js/auto'
-import { Chart } from 'react-chartjs-2'
+import 'chart.js/auto'
 import React, { useState } from 'react';
 import styles from './Statistics.module.css'
 import Select from "react-select";
 import { Tab } from './TabCss';
-import {
-    // Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend,
-} from 'chart.js';
 import { Bar, Line } from 'react-chartjs-2';
 
 // to 
