@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router';
 import { checkToken } from '../../../api/login.api';
 import Button from '../../../components/Button';
@@ -12,36 +12,52 @@ const getInfo = (info) => {
         i++;
     }
     const id = info.slice(0, i);
-    console.log(id);
     const token = info.slice(i+1, info.length);
-    console.log(token);
-    return {userId: 1, token: 111};
+    return {userId: id, token: token};
 }
 
-const RecoverPassword = ({action = 'create'}) => {
+const RecoverPassword = () => {
+    // Constants
     const navigate = useNavigate()
     const dispatch = useDispatch();
     const { info } = useParams();
-    const [ password, setPassword ] = useState('');
-    const [ conforPassword, setConfirmPassword ] = useState('');
+    const {  checkTmp, status, error } = useSelector(state=>state.profile);
+    const { userId, token } = getInfo(info);
 
+    // States
+    const [ password, setPassword ] = useState('');
+    const [ confirmPassword, setConfirmPassword ] = useState('');
+
+    // Functions
     const handlePasswordChange = (e) => setPassword(e.target.value);
     const handleConfirmPasswordChange = (e) => setConfirmPassword(e.target.value);
-    const { userId, token } = getInfo(info);
     const handleSubmitForm = (e) => {
         e.preventDefault();
-        navigate('/login');
-        console.log(userId, token);
+        const data = {
+            id: userId,
+            tmp: token,
+            password
+        }
+        console.log(data);
     }
+    // Onload effects
     useEffect(()=>{
-        dispatch(checkToken({id: userId, tmp: token}));
+        if (checkTmp === false) navigate('/login');
+    }, [checkTmp])
+
+    useEffect(()=>{
+        console.log('info: ', getInfo(info));
+        dispatch(checkToken(getInfo(info)));
     }, [dispatch]);
+
     return (
+        <>
+        {checkTmp === true &&
         <div className={Styles.page}>
             <h1 className={Styles.title}>
                     Восстановление пароля
             </h1>
-            <form 
+            <form
             onSubmit={handleSubmitForm}
             className={Styles.form}>
                 <div className={Styles.input_list}>
@@ -49,6 +65,7 @@ const RecoverPassword = ({action = 'create'}) => {
                         <label htmlFor="password">Пароль</label>
                         <Input
                         name="password"
+                        value={password}
                         onChange={handlePasswordChange}
                         type="password"/>
                     </div>
@@ -56,6 +73,7 @@ const RecoverPassword = ({action = 'create'}) => {
                         <label htmlFor="confirm-password">Подтвердите пароль</label>
                         <Input
                         name="confirm-password"
+                        value={confirmPassword}
                         onChange={handleConfirmPasswordChange}
                         type="password"/>
                     </div>
@@ -65,7 +83,8 @@ const RecoverPassword = ({action = 'create'}) => {
                     Установить пароль
                 </Button>
             </form>
-        </div>
+        </div>}
+        </>
     )
 }
 

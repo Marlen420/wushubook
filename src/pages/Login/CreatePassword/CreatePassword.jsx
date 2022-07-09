@@ -14,10 +14,8 @@ const getInfo = (info) => {
         i++;
     }
     const id = info.slice(0, i);
-    console.log('Id: ', id);
     const token = info.slice(i+1, info.length);
-    console.log('Token: ', token);
-    return {userId: 1, token: 111};
+    return {userId: id, token: token};
 }
 
 const CreatePassword = ({action = 'create'}) => {
@@ -46,7 +44,7 @@ const CreatePassword = ({action = 'create'}) => {
     }, [dispatch]);
 
     useEffect(()=>{
-        if (checkTmp === false) navigate('/');
+        if (checkTmp === false) navigate('/login');
     }, [checkTmp]);
 
     useEffect(()=>{

@@ -18,6 +18,11 @@ const getRole = {
     'trainer': 'Тренер'
 }
 
+const getName = (name) => {
+    const str = name.split('');
+    str[str.findIndex((i)=>i==='/')] = ' ';
+    return str.join('');
+}
 const UserItem = ({item}) => {
     const {users, selected} = useSelector(state=>state.users);
     const dispatch = useDispatch();
@@ -38,7 +43,7 @@ const UserItem = ({item}) => {
                 </div>
             </div>
             <p className={styles.item_column + ' ' + styles.column_id}>{item.id}</p>
-            <p className={styles.item_column + ' ' + styles.column_name}>{item.name}</p>
+            <p className={styles.item_column + ' ' + styles.column_name}>{getName(item.name)}</p>
             <p className={styles.item_column + ' ' + styles.column_role}>{getRole[item.role]}</p>
             <p className={styles.item_column + ' ' + styles.column_email}>{item.email}</p>
             <p className={styles.item_column + ' ' + styles.column_date}>{item.appointment_date}</p>

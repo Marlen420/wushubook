@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { ROLES_FIND } from '../../../const/user_roles';
+import usePagination from '../../../hooks/usePagination/usePagination';
 import { setCurrent } from '../../../redux/features/counter/usersSlice';
 import styles from './list.module.css';
 import ListHeader from './ListHeader';
@@ -14,15 +15,17 @@ const UsersList = ({roleFilter, users, selected, handleNewUserButton}) => {
     // States
     const [page, setPage] = useState(1);
 
+    // Hooks
+    const { next, prev, jump, currentData, currentPage, maxPage } = usePagination(users[ROLES_FIND[roleFilter]].data, 1);
+
     // Functions
-    const handleIndexClick = (number) => {
-        setPage(number);
-    }
 
     // Effects
-    useEffect(()=>{
-        dispatch(setCurrent({page, roleFilter}));
-    }, [roleFilter, page, dispatch])
+    // useEffect(()=>{
+    //     dispatch(setCurrent({page, roleFilter}));
+    // }, [roleFilter, page, dispatch])
+
+
     return (
         <div className={styles.holder_list}>
             <div className={styles.holder_inner}>
@@ -31,7 +34,7 @@ const UsersList = ({roleFilter, users, selected, handleNewUserButton}) => {
                 users={users.users}/>
                 <div className={styles.users_list_holder}>
                     <div className={styles.users_list_inner}>
-                        {users[ROLES_FIND[roleFilter]]?.current?.map((item)=>(
+                        {currentData().map((item)=>(
                            <UserItem
                             key={item.id} 
                             item={item}/>
@@ -39,10 +42,12 @@ const UsersList = ({roleFilter, users, selected, handleNewUserButton}) => {
                     </div>
                 </div>
                 <Pagination
-                    max={54}
-                    onIndexClick={handleIndexClick}
-                    limitPerPage={10}
-                    current={page}/>
+                    max={maxPage}
+                    onIndexClick={jump}
+                    onNextClick={next}
+                    onPrevClick={prev}
+                    limitPerPage={1}
+                    currentPage={currentPage}/>
             </div>
         </div>
     )

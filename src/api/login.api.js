@@ -89,7 +89,7 @@ export const setForgotPassword = createAsyncThunk(
     'profile/setForgotPassword',
     async function(data, { rejectWithValue }) {
         try {
-            const response = await API.patch(`/users/forgot-password/${data}`, { link: process.env.REACT_APP_API });
+            const response = await API.patch(`/users/forgot-password/${data}`, { link: process.env.REACT_APP_HOST + '/login/rest-password' });
             if (response.status === 200) return response.data;
             throw new Error('Something went wrong!');
         } catch (e) {
