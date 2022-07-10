@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import { TailSpin } from 'react-loader-spinner';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router';
-import { checkToken } from '../../../api/login.api';
+import { checkToken, setNewPassword } from '../../../api/login.api';
 import Button from '../../../components/Button';
 import Input from '../../../components/Input';
 import Styles from './CreatePassword.module.css';
@@ -33,12 +34,13 @@ const RecoverPassword = () => {
     const handleConfirmPasswordChange = (e) => setConfirmPassword(e.target.value);
     const handleSubmitForm = (e) => {
         e.preventDefault();
+        if (password !== confirmPassword) return;
         const data = {
             id: userId,
             tmp: token,
             password
         }
-        console.log(data);
+        dispatch(setNewPassword(data));
     }
     // Onload effects
     useEffect(()=>{
@@ -46,9 +48,16 @@ const RecoverPassword = () => {
     }, [checkTmp])
 
     useEffect(()=>{
-        console.log('info: ', getInfo(info));
         dispatch(checkToken(getInfo(info)));
     }, [dispatch]);
+
+    useEffect(()=>{
+        if (status === 'Set new password') navigate('/login');
+    }, [checkTmp])
+
+    useEffect(()=>{
+        if (status === 'Set new password') navigate('/login/sign-in');
+    }, [status])
 
     return (
         <>
@@ -80,7 +89,11 @@ const RecoverPassword = () => {
                 </div>
                 <Button
                     type="submit">
-                    Установить пароль
+                    {status === 'Setting new password'
+                    ? <TailSpin 
+                    height={24}
+                    color='white'/>
+                    : "Установить пароль"}
                 </Button>
             </form>
         </div>}

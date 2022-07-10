@@ -22,7 +22,7 @@ const CreatePassword = ({action = 'create'}) => {
     const { info } = useParams();
     const { userId, token } = getInfo(info);
     const { checkTmp, status, error } = useSelector(state=>state.profile);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const [ password, setPassword ] = useState('');
     const [ conforPassword, setConfirmPassword ] = useState('');
@@ -46,14 +46,14 @@ const CreatePassword = ({action = 'create'}) => {
     useEffect(()=>{
         if (checkTmp === false) navigate('/login');
     }, [checkTmp]);
-
+    console.log(status);
     useEffect(()=>{
         if (status === 'Set new password') navigate('/login/sign-in');
-    })
+    }, [status]);
 
     return (
         <>
-        {checkTmp !== true
+        {checkTmp === true
         ? <div className={Styles.page}>
             <h1 className={Styles.title}>
                     Создание пароля

@@ -7,7 +7,6 @@ export const setConfirmStatus = createAsyncThunk(
     async(id, { rejectWithValue }) => {
         try {
             const response = await API.patch(`/users/update-registered-status/${id}`);
-            console.log(response.data);
             return response.data;
         } catch (e) {
             return rejectWithValue(e.response.data.message);
@@ -20,7 +19,6 @@ export const setNewPassword = createAsyncThunk(
     async(data, { rejectWithValue }) => {
         try {
             const response = await API.patch('/users/addPassword', data);
-            console.log(response.data);
             return response.data;
         } catch (e) {
             return rejectWithValue(e.response.data.message);
@@ -33,7 +31,6 @@ export const checkToken = createAsyncThunk(
     async(data, { rejectWithValue }) => {
         try {
             const response = await API.get(`/users/check-valid?id=${data.userId}&tmp=${data.token}`);
-            console.log(response.data);
             return response.data;
         } catch (e) {
             return rejectWithValue(e.reseponse.data.message);
@@ -47,7 +44,6 @@ export const setUpdateUser = createAsyncThunk(
         try {
             const response = await API.patch(`/users/${data.id}`, data.data);
             const { tmp, status, password, experience, category, rank, appointment_date, ...rest } = response.data;
-            console.log('Response: ', rest);
             return rest;
         } catch (e) {
             return rejectWithValue(e.response.data.message);
@@ -61,8 +57,6 @@ export const setLogin = createAsyncThunk(
         try {
             const response = await API.post('/auth/login', data);
             localStorage.setItem('jwt-token', response.data.token);
-            console.log(response.data);
-            console.log(jwt_decode(response.data.token));
             const { exp, iat, ...userData } = jwt_decode(response.data.token);
             if (response.status === 201) return userData;
             throw new Error('Incorrect email or password');
@@ -76,7 +70,8 @@ export const setSignup = createAsyncThunk(
     'profile/setSignup',
     async function(data, { rejectWithValue }) {
         try {
-            const response = await API.post('/users/independent', { link: process.env.REACT_APP_API, ...data });
+            data['link'] = process.env.REACT_APP_HOST + '/login/confirm-account';
+            const response = await API.post('/users/independent', data);
             if (response.status === 201) return response.data;
             throw new Error('Some thing went wrong!');
         } catch (e) {
@@ -89,7 +84,8 @@ export const setForgotPassword = createAsyncThunk(
     'profile/setForgotPassword',
     async function(data, { rejectWithValue }) {
         try {
-            const response = await API.patch(`/users/forgot-password/${data}`, { link: process.env.REACT_APP_HOST + '/login/rest-password' });
+            data['link'] = process.env.REACT_APP_HOST + '/login/reset-password';
+            const response = await API.patch(`/users/forgot-password`, data);
             if (response.status === 200) return response.data;
             throw new Error('Something went wrong!');
         } catch (e) {

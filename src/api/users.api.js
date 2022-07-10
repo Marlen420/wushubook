@@ -6,7 +6,6 @@ export const setUsersList = createAsyncThunk(
     async function(role, { rejectWithValue }) {
         try {
             const response = await API.get(`/users?role=${role}`);
-            console.log(response.data);
             return {
                 ...response.data,
                 role: role === '' ? 'users' : role

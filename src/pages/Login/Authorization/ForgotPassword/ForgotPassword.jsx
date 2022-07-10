@@ -16,7 +16,7 @@ const ForgotPassword = ({ closeWindow }) => {
 
     const handleSubmitForm = (e) => {
         e.preventDefault();
-        dispatch(setForgotPassword(email));
+        dispatch(setForgotPassword({email}));
     }
     return (
             <div className={styles.window_holder}>
