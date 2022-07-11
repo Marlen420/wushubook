@@ -39,6 +39,7 @@ button {
     outline: none;
     border: none;
     cursor: pointer;
+    align-items: center;
 }
 
 .secondary:hover {
@@ -95,6 +96,7 @@ button {
     outline: none;
     border: none;
     cursor: pointer;
+    align-items: center;
 }
 
 .confirm_primary:hover {

@@ -38,6 +38,8 @@ const NewUser = ({closeWindow}) => {
         return ()=>document.body.style.overflow = 'auto';
     }, [])
 
+    console.log(role);
+
     return (
         <NewUserView 
         role={role}

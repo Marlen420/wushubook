@@ -32,6 +32,7 @@ const NewUserView = ({
                         <div className={styles.radio_input_holder}>
                             <Input
                                 type="radio"
+                                projectType='radio'
                                 value="trainer"
                                 name="role"
                                 id="role-trainer"/>
@@ -42,6 +43,7 @@ const NewUserView = ({
                         <div className={styles.radio_input_holder}>
                             <Input
                                 type="radio"
+                                projectType='radio'
                                 value="secretar"
                                 name="role"
                                 id="role-secretar"/>
@@ -52,6 +54,7 @@ const NewUserView = ({
                         <div className={styles.radio_input_holder}>
                             <Input
                                 type="radio"
+                                projectType='radio'
                                 value="judge"
                                 name="role"
                                 id="role-judge"/>
@@ -59,15 +62,55 @@ const NewUserView = ({
                         <label htmlFor="role-judge">Судья</label>
                     </div>
                 </div>
+                <div className={styles.text_input_list}>
+                    <div className={styles.text_input_holder}>
+                        <label htmlFor="">Имя</label>
+                        <Input
+                            type="text"
+                            value={name}
+                            onChange={setName}/>
+                    </div>
+                    <div className={styles.text_input_holder}>
+                        <label htmlFor="">Фамиилия</label>
+                        <Input
+                            type="text"
+                            value={lastname}
+                            onChange={setLastname}/>
+                    </div>
+                    <div className={styles.text_input_holder}>
+                        <label htmlFor="">Клубы</label>
+                        <Input
+                            type="text"/>
+                    </div>
+                    <div className={styles.text_input_holder}>
+                        <label htmlFor="">Спортивный разряд</label>
+                        <Input
+                            type="text"/>
+                    </div>
+                    <div className={styles.text_input_holder}>
+                        <label htmlFor="">Спортивный разряд</label>
+                        <Input
+                            type="text"/>
+                    </div>
+                    <div className={styles.text_input_holder}>
+                        <label htmlFor="">Почта</label>
+                        <Input
+                            type="text"
+                            value={email}
+                            onChange={setEmail}/>
+                    </div>
+                </div>
                 <div className={styles.buttons_holder}>
                     <Button
                         type="button"
-                        projectType="confirm_secondary"
-                        onClick={closeWindow}/>
+                        projectType="secondary"
+                        onClick={closeWindow}>
+                        Назад
+                    </Button>
                     <Button
                         type="submit"
                         projectType="confirm_primary">
-                        
+                        Добавить
                     </Button>
                 </div>
             </form>
