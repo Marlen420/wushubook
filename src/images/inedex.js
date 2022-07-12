@@ -2,7 +2,7 @@ import TimeIcon from './timeClock.svg'
 import CheckIcon from './CheckIcon.svg'
 import ImagesCunFu from './images.svg'
 import LocationsIcon from './locations.svg'
-import EmailIcon from './Email.svg'
+import EmailIcon from './emailMain 31 (1).svg'
 import TelephonIcon from './telefon.svg'
 import PhotoMain from './PhotoMain.svg'
 import Time from './time.svg'
@@ -30,7 +30,18 @@ import mikrafon from './mikrafon.svg'
 import flyIcon from './111.png'
 import LogoOut from './logOut.png'
 import people from './people.svg'
+
+import email from './email.svg'
+import telephonIconNotRegister from './telofaoIcon.svg'
+import payload from './Polygon 2.svg'
+import payloadClose from './PClose 2 (1).svg'
+
+
 export {
+    payloadClose,
+    payload,
+    email,
+    telephonIconNotRegister,
     people,
     LogoOut,
     flyIcon,

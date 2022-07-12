@@ -1,14 +1,7 @@
-import axios from 'axios'
+
 import { createAsyncThunk } from '@reduxjs/toolkit'
+import { API } from './API'
 
-
-const API = axios.create({
-    baseURL: 'http://167.172.33.23:5000/',
-    headers: {
-        ContentType: 'application/json',
-        // Authorization: `Bearer ${GetToken}`,
-    }
-})
 
 
 

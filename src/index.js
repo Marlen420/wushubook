@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from './pages/Authorization/Authorization.jsx';
 import store from './redux/store';
-import NotRegisteredHome from './pages/NotRegisteredHome/NotRegisteredHome';
+import NotRegisteredHome from './pages/NotRegisteredHome/index.jsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 

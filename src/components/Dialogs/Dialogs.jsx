@@ -1,11 +1,9 @@
 import React from "react";
-import DialogItem from "../DialogItem/DialogItem";
-import IconReaded from "../IconReaded/IconReaded";
-import Time from "../Time/Time";
+import DialogItem from "../DialogItem/index.jsx";
+import IconReaded from "../IconReaded/index.jsx";
+
 import orderBy from 'lodash/orderBy';
-// import isToday from "date-fns/isToday";
-import styles from './dialogs.modules.css'
-import { Search, EditIconSideChatHeaders } from '../../images/inedex.js'
+
 
 
 
@@ -37,9 +35,6 @@ export const Dialogs = ({ items, onSearch, inputValue }) => {
 
                 />
             ))}
-
-
-
 
         </div>
 

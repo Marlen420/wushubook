@@ -1,23 +1,40 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import OtherNews from '../OtherNews/OtherNews.jsx'
-import styles from './MoreNews.module.css'
-import { Circles } from 'react-loader-spinner'
-import Footer from '../../../components/Footer/Footer.jsx'
+import { OtherNews } from '../index.js'
+import styles from './index.module.css'
+import { Oval } from 'react-loader-spinner'
+import Footer from '../../../components/Footer/index.jsx'
+import { NavLink, useNavigate, useLocation } from 'react-router-dom'
 
 function MoreNews() {
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+        console.log("hello")
+        window.scrollTo(0, 0);
+    }, [pathname]);
 
     const { newsId, status } = useSelector(state => state.main)
     console.log("newId: ", newsId)
 
 
     return (
-        < div >
+        <div>
             {
-                status === 'loading' && <div className={styles.spinner} >
-                    <Circles ariaLabel="loading-indicator" />
-                </div>}
+                status == 'loading' && <div className={styles.spinner} >
+                    <Oval
+                        ariaLabel="loading-indicator"
+                        height={100}
+                        width={100}
+                        strokeWidth={5}
+                        strokeWidthSecondary={3}
 
+                        color="lightblue"
+                        secondaryColor="white"
+
+                    />
+                </div>
+            }
 
             <div className={styles.content} key={newsId.id} >
                 <img src={newsId.image} alt='' className={styles.content__image} />
