@@ -3,7 +3,6 @@ import eventSlice from './features/counter/eventSlice';
 import newsSlice from './features/counter/newsSlice'
 import profileSlice from './features/counter/profileSlice'
 import usersSlice from './features/counter/usersSlice';
-import { configureStore } from '@reduxjs/toolkit'
 
 import mainSlice from './reducers/mainSlice'
 import statisticsSlice from './reducers/statisticsSlice';

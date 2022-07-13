@@ -5,12 +5,11 @@ import Home from './pages/Home/index.jsx';
 import Calendar from './pages/Calendar/Calendar.jsx'
 import Clubs from './pages/Clubs/index.jsx'
 import Document from './pages/Documents/Documents.jsx'
-import Events from './pages/Even/Events.jsx'
+import Events from './pages/Event/Events.jsx'
 import MainNews from './pages/News/MainNews/MainNews.jsx'
 import Statistics from './pages/Statistics/index.jsx'
 import Users from './pages/Users/Users.jsx'
-import NavBar from './components/NavBar/index.jsx'
-import Header from './components/Headers/index.jsx';
+import { NavBar, Header } from './components';
 import { getLastEvent, getNewEvent, getNews } from './api/main.js';
 import Profile from './pages/Profile/Profile.jsx';
 
@@ -18,7 +17,6 @@ import Profile from './pages/Profile/Profile.jsx';
 import * as MoreNews from './pages/News/index.js';
 import Chat from './pages/Chat/index.jsx';
 import { getStatistics } from './api/statistics.js';
-import Chart from './pages/chart.js';
 import NotRegisteredHome from './pages/NotRegisteredHome/index.jsx';
 
 
@@ -51,7 +49,6 @@ function App() {
         <Route path='/profile' element={<Profile />} />
         <Route path='/moreNews' element={<MoreNews />} />
         <Route path='/chat' element={<Chat />} />
-        <Route path='/chart' element={<Chart />} />
         
         {isLogged &&
         <Route path='/calendar' element={<Calendar />} />}
