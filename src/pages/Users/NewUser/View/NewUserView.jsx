@@ -8,6 +8,8 @@ const NewUserView = ({
     lastname, setLastname,
     email, setEmail,
     role, setRole,
+    city, setCity,
+    country, setCountry,
     patronymic, setPatronymic,
     club, setClub,
     category, setCategory,
@@ -22,85 +24,108 @@ const NewUserView = ({
                 onClick={(e)=>e.stopPropagation()}
                 className={styles.form}
                 onSubmit={addUser}>
-                <img 
-                    className={styles.close_icon}
-                    src={CloseIcon} 
-                    alt="close"/>
-                <h2 className={styles.form_title}>Добавление пользователя</h2>
-                <div className={styles.form_role}>
-                    <div className={styles.form_radio_holder}>
-                        <div className={styles.radio_input_holder}>
-                            <Input
-                                type="radio"
-                                projectType='radio'
-                                value="trainer"
-                                name="role"
-                                id="role-trainer"/>
-                        </div>
-                        <label htmlFor="role-trainer">Тренер</label>
+                <div className={styles.form_header}>
+                    <h2 className={styles.form_title}>
+                        Добавление пользователя
+                    </h2>
+                    <img 
+                        className={styles.close_icon}
+                        src={CloseIcon}
+                        onClick={closeWindow} 
+                        alt="close"/>
+                </div>
+                <div className={styles.form_content}>
+                    <div className={styles.form_role}>
+                        <div className={styles.form_radio_holder}>
+                            <div className={styles.radio_input_holder}>
+                                <Input
+                                    type="radio"
+                                    projectType='radio'
+                                    value="trainer"
+                                    name="role"
+                                    onChange={setRole}
+                                    id="role-trainer"/>
+                                </div>
+                                <label htmlFor="role-trainer">Тренер</label>
+                            </div>
+                            <div className={styles.form_radio_holder}>
+                                <div className={styles.radio_input_holder}>
+                                    <Input
+                                        type="radio"
+                                        projectType='radio'
+                                        value="secretary"
+                                        name="role"
+                                        onChange={setRole}
+                                        id="role-secretar"/>
+                                </div>
+                                <label htmlFor="role-secretar">Секретарь</label>
+                            </div>
+                            <div className={styles.form_radio_holder}>
+                                <div className={styles.radio_input_holder}>
+                                    <Input
+                                        type="radio"
+                                        projectType='radio'
+                                        value="judge"
+                                        name="role"
+                                        onChange={setRole}
+                                        id="role-judge"/>
+                                </div>
+                                <label htmlFor="role-judge">Судья</label>
+                            </div>
                     </div>
-                    <div className={styles.form_radio_holder}>
-                        <div className={styles.radio_input_holder}>
+                    <div className={styles.form_input_list}>
+                        <div className={styles.form_input_holder}>
+                            <label htmlFor="name">Имя</label>
                             <Input
-                                type="radio"
-                                projectType='radio'
-                                value="secretar"
-                                name="role"
-                                id="role-secretar"/>
+                                name="name"
+                                value={name}
+                                onChange={setName}/>
                         </div>
-                        <label htmlFor="role-secretar">Секретарь</label>
-                    </div>
-                    <div className={styles.form_radio_holder}>
-                        <div className={styles.radio_input_holder}>
+                        <div className={styles.form_input_holder}>
+                            <label htmlFor="lastname">Фамилия</label>
                             <Input
-                                type="radio"
-                                projectType='radio'
-                                value="judge"
-                                name="role"
-                                id="role-judge"/>
+                                name="lastname"
+                                value={lastname}
+                                onChange={setLastname}/>
                         </div>
-                        <label htmlFor="role-judge">Судья</label>
+                        <div className={styles.form_input_holder}>
+                            <label htmlFor="category">Спортивный разряд</label>
+                            <Input
+                                name="category"
+                                value={category}
+                                onChange={setCategory}/>
+                        </div>
+                        <div className={styles.form_input_holder}>
+                            <label htmlFor="club">Клубы</label>
+                            <Input
+                                name="club"
+                                value={club}
+                                onChange={setClub}/>
+                        </div>
+                        <div className={styles.form_input_holder}>
+                            <label htmlFor="country">Страна</label>
+                            <Input
+                                name="country"
+                                value={country}
+                                onChange={setCountry}/>
+                        </div>
+                        <div className={styles.form_input_holder}>
+                            <label htmlFor="city">Город</label>
+                            <Input
+                                name="city"
+                                value={city}
+                                onChange={setCity}/>
+                        </div>
+                        <div className={styles.form_input_holder}>
+                            <label htmlFor="email">Почта</label>
+                            <Input
+                                name="email"
+                                value={email}
+                                onChange={setEmail}/>
+                        </div>
                     </div>
                 </div>
-                <div className={styles.text_input_list}>
-                    <div className={styles.text_input_holder}>
-                        <label htmlFor="">Имя</label>
-                        <Input
-                            type="text"
-                            value={name}
-                            onChange={setName}/>
-                    </div>
-                    <div className={styles.text_input_holder}>
-                        <label htmlFor="">Фамиилия</label>
-                        <Input
-                            type="text"
-                            value={lastname}
-                            onChange={setLastname}/>
-                    </div>
-                    <div className={styles.text_input_holder}>
-                        <label htmlFor="">Клубы</label>
-                        <Input
-                            type="text"/>
-                    </div>
-                    <div className={styles.text_input_holder}>
-                        <label htmlFor="">Спортивный разряд</label>
-                        <Input
-                            type="text"/>
-                    </div>
-                    <div className={styles.text_input_holder}>
-                        <label htmlFor="">Спортивный разряд</label>
-                        <Input
-                            type="text"/>
-                    </div>
-                    <div className={styles.text_input_holder}>
-                        <label htmlFor="">Почта</label>
-                        <Input
-                            type="text"
-                            value={email}
-                            onChange={setEmail}/>
-                    </div>
-                </div>
-                <div className={styles.buttons_holder}>
+                <div className={styles.form_footer}>
                     <Button
                         type="button"
                         projectType="secondary"
@@ -119,3 +144,4 @@ const NewUserView = ({
 }
 
 export default NewUserView
+

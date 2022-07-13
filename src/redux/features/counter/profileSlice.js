@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { signupExtraReducers, forgotPasswordExtraReducers, setLoginExtra, setUpdateUserExtra, checkTokenExtra, setNewPasswordExtra, setConfirmStatusExtra } from '../../extraReducers/loginExtraReducer';
+import { signupExtraReducers, forgotPasswordExtraReducers, setLoginExtra, setUpdateUserExtra, checkTokenExtra, setNewPasswordExtra, setConfirmStatusExtra, setUpdatePasswordExtra } from '../../extraReducers/loginExtraReducer';
 
 
 export const counterSlice = createSlice({
@@ -24,6 +24,7 @@ export const counterSlice = createSlice({
         ...checkTokenExtra,
         ...setNewPasswordExtra,
         ...setConfirmStatusExtra,
+        ...setUpdatePasswordExtra,
     }
 })
 

@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { deleteUser } from '../../../api/users.api';
-import { ROLES_FIND } from '../../../const/user_roles';
 import { deleteUserExtra, setUsersListExtra } from '../../extraReducers/usersExtraReducer';
 
 
@@ -14,33 +13,21 @@ export const counterSlice = createSlice({
         },
         users: {
             data: null,
-            current: [],
-            page: 0,
-            total: 0,
             status: 'Active',
             error: null
         },
         trainer: {
             data: null,
-            current: [],
-            page: 0,
-            total: 0,
             status: 'Active',
             error: null
         },
         secretary: {
             data: null,
-            current: [],
-            page: 0,
-            total: 0,
             status: 'Active',
             error: null
         },
         judge: {
             data: null,
-            current: [],
-            page: 0,
-            total: 0,
             status: 'Active',
             error: null
         },
@@ -51,23 +38,17 @@ export const counterSlice = createSlice({
         ...deleteUserExtra,
     },
     reducers: {
-        setSelectAll: (state, action) => {
-            state.selected = [];
-            state.selected = action.payload;
+        setUnselectItem: (state, action) => {
+            state.selected = state.selected.filter((i)=>i!==action.payload)
         },
         setSelectItem: (state, action) => {
-            state.selected = [...state.selected, action.payload];
+            state.selected = [...state.selected, action.payload]
         },
         setUnselectAll: (state) => {
-            state.selected = [];
+            state.selected = []
         },
-        setUnselectItem: (state, action) => {
-            state.selected = state.selected.filter((item) => item.id !== action.payload.id);
-        },
-        setCurrent: (state, action) => {
-            if (state[ROLES_FIND[action.payload.roleFilter]].data) {
-                state[ROLES_FIND[action.payload.roleFilter]].current = state[ROLES_FIND[action.payload.roleFilter]].data.slice((action.payload.page * 10 - 10), (action.payload.page * 10));
-            }
+        setSelectAll: (state, action)=> {
+            state.selected = action.payload
         },
         setDeleteId: (state, action) => {
             // Set confirm modal true

@@ -1,4 +1,4 @@
-import { setUpdateUser, setForgotPassword, setLogin, setSignup, checkToken, setNewPassword, setConfirmStatus } from "../../api/login.api";
+import { setUpdateUser, setForgotPassword, setLogin, setSignup, checkToken, setNewPassword, setConfirmStatus, setUpdatePassword } from "../../api/login.api";
 
 export const setConfirmStatusExtra = {
     [setConfirmStatus.pending]: (state) => {
@@ -44,6 +44,21 @@ export const checkTokenExtra = {
         state.status = 'Rejected check tmp';
         state.error = action;
         state.checkTmp = false;
+    }
+}
+
+export const setUpdatePasswordExtra = {
+    [setUpdatePassword.pending]: (state) => {
+        state.status = 'Updating password';
+        state.error = null;
+    },
+    [setUpdatePassword.fulfilled]: (state) => {
+        state.status =  'Active';
+        state.error = null;
+    },
+    [setUpdatePassword.rejected]: (state, action) => {
+        state.status = 'Rejected update password';
+        state.error = action.payload;
     }
 }
 

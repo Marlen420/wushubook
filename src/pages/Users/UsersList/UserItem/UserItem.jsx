@@ -1,18 +1,9 @@
 import React from 'react';
 import styles from './user.module.css';
 import { Checkbox } from '../../../../components/index';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { EditIcon, UserDeleteIcon } from '../../../../images/inedex';
 import { setDeleteId } from '../../../../redux/features/counter/usersSlice';
-
-const isSelected = (id, selected) => {
-    if (selected) {
-        for (let i of selected) {
-            if (i.id === id) return true;
-        }
-    }
-    return false;
-}
 
 const getRole = {
     'trainer': 'Тренер'
@@ -23,8 +14,7 @@ const getName = (name) => {
     str[str.findIndex((i)=>i==='/')] = ' ';
     return str.join('');
 }
-const UserItem = ({item}) => {
-    const {users, selected} = useSelector(state=>state.users);
+const UserItem = ({item, isSelectedItem, onSelectItem}) => {
     const dispatch = useDispatch();
 
     const handleDeleteItem = () => {
@@ -32,13 +22,12 @@ const UserItem = ({item}) => {
     }
 
     return (
-        <div className={styles.item_holder + ' ' + (isSelected(item.id, selected) && styles.selected_item)}>
+        <div className={styles.item_holder + ' ' + (isSelectedItem(item.id) && styles.selected_item)}>
             <div className={styles.column_checkbox}>
                 <div className={styles.checkbox_holder}>
                     <Checkbox
-                        checked={isSelected(item.id, selected)}
-                        item={item}
-                        usersList={users.current}
+                        onSelectItem={()=>onSelectItem(item.id)}
+                        checked={isSelectedItem(item.id)}
                         mode="select item"/>
                 </div>
             </div>

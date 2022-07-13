@@ -9,7 +9,7 @@ const API = axios.create({
     }
 })
 
-axios.interceptors.request.use(
+API.interceptors.request.use(
     async req => {
         req.headers['Authorization'] = `Bearer ${token}`;
         return req;

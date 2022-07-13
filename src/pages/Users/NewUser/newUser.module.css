@@ -13,10 +13,15 @@
 
 .form {
     width: 500px;
+    max-height: 80%;
     background-color: #fff;
     position: relative;
     border-radius: 8px;
     box-sizing: border-box;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .close_icon {
@@ -35,6 +40,12 @@
     text-align: start;
     font-weight: 500;
     box-sizing: border-box;
+}
+
+.form_content {
+    width: 100%;
+    flex-grow: 1;
+    overflow: auto;
 }
 
 .form_role {
@@ -69,23 +80,23 @@
     /* padding-bottom: 3px; */
 }
 
-.text_input_list {
+.form_input_list {
     width: 100%;
     box-sizing: border-box;
     padding: 0 25px;
     margin-bottom: 50px;
 }
 
-.text_input_holder {
+.form_input_holder {
     text-align: start;
 }
 
-.text_input_holder label {
+.form_input_holder label {
     font-size: 10px;
     color: #424242;
 }
 
-.buttons_holder {
+.form_footer {
     height: 50px;
     width: 100%;
     display: flex;

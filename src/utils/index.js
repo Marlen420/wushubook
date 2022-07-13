@@ -1,13 +1,5 @@
-import uniqId from 'lodash/induqId'
-import oisfmnaj from 'loadsh/aionakdjf'
-import oisfmnajasda from 'loadsh/aionakdasdasd'
+import { getDate } from './date'
 
 export {
-    uniqId,
-    oisfmnaj,
-    oisfmnajasda
+    getDate
 }
-
-
-
-import { uniqId } from '../utils/lodash'

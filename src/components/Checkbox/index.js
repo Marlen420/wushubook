@@ -1,7 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import { Selected } from '../../images/inedex';
-import { setSelectAll, setSelectItem, setUnselectAll, setUnselectItem } from '../../redux/features/counter/usersSlice';
 import styles from './checkbox.module.css';
 
 
@@ -10,25 +8,17 @@ const Checkbox = ({
     mode="select item",
     usersList,
     item,
+    onSelectItem,
+    onSelectAll,
     ...props
 }) => {
 
-    const dispatch = useDispatch();
-
-    // Functions
-    const handleAllClick = () => {
-        if (checked) dispatch(setUnselectAll(usersList));
-        else dispatch(setSelectAll(usersList));
-    }
-    const handleItemClick = (e) => {
-        if (checked) dispatch(setUnselectItem(item));
-        else dispatch(setSelectItem(item))
-    }
     return (
-        <div 
+        <div
+        onClick={mode==='select item' ? onSelectItem : onSelectAll}
         className={(checked && styles.active_holder) + ' ' + styles.holder}>
             <input
-                onChange={mode === "select all" ? handleAllClick : handleItemClick}
+                readOnly
                 type="checkbox"
                 checked={checked}
                 {...props}/>

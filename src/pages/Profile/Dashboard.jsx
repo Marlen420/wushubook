@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
-import { setUpdateUser } from '../../api/login.api';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUpdatePassword, setUpdateUser } from '../../api/login.api';
 import PasswordDashboard from './password/PasswordDashboard';
 import PersonalInfo from './personal/PersonalInfo';
 import styles from './profile.module.css';
@@ -22,7 +22,7 @@ const Dashboard = ({
     phone, email,
     country, city,
     image, status,
-    id
+    error, id
 }) => {
     const dispatch = useDispatch();
     const [profileName, setProfileName] = useState(name ? getName(name) : '');
@@ -50,10 +50,14 @@ const Dashboard = ({
     const handleConfirmPasswordChange = (e) => setConfirmPassword(e.target.value);
     const handleNewPasswordChange = (e) => setNewPassword(e.target.value);
 
+    const handleUpdatePassword = (e) =>  {
+        e.preventDefault();
+        if (newPassword !== confirmPassword) return;
+        dispatch(setUpdatePassword({password, new_password: newPassword}));
+    }
 
     const handleUpdateProfile = (e) => {
         e.preventDefault();
-        console.log('Update');
         const newName = profileName + '/' + profileLastname;
         const data = {
             name: newName,
@@ -89,12 +93,15 @@ const Dashboard = ({
             {/* Profile password */}
             <h1 className={styles.dashboard_title}>Изменения пароля</h1>
             <PasswordDashboard
+            error={error}
+            status={status}
             password={password}
             setPassword={handlePasswordChange}
             confirmPassword={confirmPassword}
             setConfirmPassword={handleConfirmPasswordChange}
             newPassword={newPassword}
-            setNewPassword={handleNewPasswordChange}/>
+            setNewPassword={handleNewPasswordChange}
+            handleSubmitForm={handleUpdatePassword}/>
         </div>
     )
 }

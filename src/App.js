@@ -5,7 +5,7 @@ import Home from './pages/Home/Home.jsx';
 import Calendar from './pages/Calendar/Calendar.jsx'
 import Clubs from './pages/Clubs/Clubs.jsx'
 import Document from './pages/Documents/Documents.jsx'
-import Events from './pages/Even/Events.jsx'
+import Events from './pages/Event/Events.jsx'
 import News from './pages/News/News.jsx'
 import Statistics from './pages/Statistics/Statistics.jsx'
 import Users from './pages/Users/Users.jsx'

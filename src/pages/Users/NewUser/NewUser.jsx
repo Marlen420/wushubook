@@ -10,6 +10,8 @@ const NewUser = ({closeWindow}) => {
     const [role, setRole] = useState(0);
     const [name, setName] = useState('');
     const [lastname, setLastname] = useState('');
+    const [country, setCountry] = useState('');
+    const [city, setCity] = useState('');
     const [patronymic, setPatronymic] = useState('');
     const [club, setClub] = useState('');
     const [category, setCategory] = useState('');
@@ -19,6 +21,8 @@ const NewUser = ({closeWindow}) => {
     // Functions
     const handleRoleChange = (e) => setRole(e.target.value);
     const handleNameChange = (e) => setName(e.target.value);
+    const handleCountryChange = (e) => setCountry(e.target.value);
+    const handelCityChange = (e) => setCity(e.target.value);
     const handleLastnameChange = (e) => setLastname(e.target.value);
     const handlePatronymicChange = (e) => setPatronymic(e.targe.value);
     const handleClubChange = (e) => setClub(e.target.value);
@@ -28,8 +32,9 @@ const NewUser = ({closeWindow}) => {
     const handleSubmitForm = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        const data = {name, email, patronymic, role};
+        const data = {name: name+'/'+lastname, email, role, club, category};
         console.log('New user: ', data);
+        // dispatch();
     }
 
     // Onload
@@ -38,13 +43,14 @@ const NewUser = ({closeWindow}) => {
         return ()=>document.body.style.overflow = 'auto';
     }, [])
 
-    console.log(role);
 
     return (
         <NewUserView 
         role={role}
         name={name}
         lastname={lastname}
+        country={country}
+        city={city}
         patronymic={patronymic}
         club={club}
         category={category}
@@ -53,6 +59,8 @@ const NewUser = ({closeWindow}) => {
         setRole={handleRoleChange}
         setName={handleNameChange}
         setLastname={handleLastnameChange}
+        setCountry={handleCountryChange}
+        setCity={handelCityChange}
         setPatronymic={handlePatronymicChange}
         setClub={handleClubChange}
         setCategory={handleCategoryChange}

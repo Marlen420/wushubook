@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import API from '../utils/axiosConfig';
 import jwt_decode from 'jwt-decode';
 
+
 export const setConfirmStatus = createAsyncThunk(
     'profile/setConfirmStatus',
     async(id, { rejectWithValue }) => {
@@ -34,6 +35,19 @@ export const checkToken = createAsyncThunk(
             return response.data;
         } catch (e) {
             return rejectWithValue(e.reseponse.data.message);
+        }
+    }
+)
+
+export const setUpdatePassword = createAsyncThunk(
+    'profile/setUpdatePassword',
+    async(data, { rejectWithValue }) => {
+        try {
+            const response = await API.patch(`/users/profile-change-password`, data);
+            console.log(response.data);
+            return response.data;
+        } catch (e) {
+            return rejectWithValue(e.response.data.message);
         }
     }
 )
