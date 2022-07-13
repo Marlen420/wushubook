@@ -1,6 +1,6 @@
 
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { API } from './API'
+import API from '../utils/axiosConfig';
 
 
 
@@ -200,5 +200,4 @@ export const getNewsId = createAsyncThunk(
             return rejectWithValue(error.message)
         }
 
-    })
-
+})
