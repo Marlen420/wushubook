@@ -72,6 +72,7 @@ export const setLogin = createAsyncThunk(
             const response = await API.post('/auth/login', data);
             localStorage.setItem('jwt-token', response.data.token);
             const { exp, iat, ...userData } = jwt_decode(response.data.token);
+            localStorage.setItem('jwt-user', JSON.stringify(...userData));
             if (response.status === 201) return userData;
             throw new Error('Incorrect email or password');
         } catch (e) {

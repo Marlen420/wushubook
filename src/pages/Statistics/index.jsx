@@ -107,7 +107,7 @@ function Statistics() {
                         <img src={payload} className={styles.arrow}
                             alt='Not find ArrowTopIcon' />}
                     {<input value={selesctClubs}
-                        className={styles.input} />}
+                        className={styles.input} readOnly/>}
                 </div >
                 {
                     isOpenSalary && (

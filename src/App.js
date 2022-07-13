@@ -6,7 +6,6 @@ import Calendar from './pages/Calendar/Calendar.jsx'
 import Clubs from './pages/Clubs/index.jsx'
 import Document from './pages/Documents/Documents.jsx'
 import Events from './pages/Event/Events.jsx'
-import MainNews from './pages/News/MainNews/MainNews.jsx'
 import Statistics from './pages/Statistics/index.jsx'
 import Users from './pages/Users/Users.jsx'
 import { NavBar, Header } from './components';
@@ -14,7 +13,7 @@ import { getLastEvent, getNewEvent, getNews } from './api/main.js';
 import Profile from './pages/Profile/Profile.jsx';
 
 
-import * as MoreNews from './pages/News/index.js';
+import {MainNews, MoreNews, OtherNews } from './pages/News/index.js';
 import Chat from './pages/Chat/index.jsx';
 import { getStatistics } from './api/statistics.js';
 import NotRegisteredHome from './pages/NotRegisteredHome/index.jsx';
@@ -23,7 +22,6 @@ import NotRegisteredHome from './pages/NotRegisteredHome/index.jsx';
 function App() {
   const { isLogged } = useSelector(state=>state.profile.login);
   const dispatch = useDispatch()
-  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getNewEvent())

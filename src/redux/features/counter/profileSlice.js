@@ -6,12 +6,13 @@ export const counterSlice = createSlice({
     name: 'profile',
     initialState: {
         login: {
-            isLogged: false,
+            isLogged: localStorage.getItem('jwt-token') ? true : false,
             role: 'unauthorized'
         },
         status: 'Active',
         error: null,
-        checkTmp: null
+        checkTmp: null,
+        user: localStorage.getItem('jwt-user') ? JSON.parse(localStorage.getItem('jwt-user')) : null
     },
     reducers: {
         setError: (state, action) => state.error = action.payload,
