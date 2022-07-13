@@ -3,13 +3,12 @@ import eventSlice from './features/counter/eventSlice';
 import newsSlice from './features/counter/newsSlice'
 import profileSlice from './features/counter/profileSlice'
 import usersSlice from './features/counter/usersSlice';
-import mainSlice from './reducers/mainSlice'
+import { configureStore } from '@reduxjs/toolkit'
 
-// const middleware = getDefaultMiddleware({
-//     immutableCheck: false,
-//     serializableCheck: false,
-//     thunk: true,
-// });
+import mainSlice from './reducers/mainSlice'
+import statisticsSlice from './reducers/statisticsSlice';
+
+
 export default configureStore({
     reducer: {
         profile: profileSlice,
@@ -17,5 +16,6 @@ export default configureStore({
         main: mainSlice,
         users: usersSlice,
         events: eventSlice,
+        statistics: statisticsSlice
     },
 })
