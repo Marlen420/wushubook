@@ -48,7 +48,7 @@ function NotRegisteredHome() {
                     </div>
 
 
-                    <NavLink to='/login'> <button className={styles.headers__contact_btn}>Войти </button>  </NavLink>
+                    <NavLink to='/login'> <button className={styles.headers__contact_btn}>Войти </button></NavLink>
 
                 </div>
 
@@ -95,13 +95,7 @@ function NotRegisteredHome() {
             </div>
 
 
-
-
-
-
             <p className={styles.conteiner__tema2}> Предыдущие мероприятия:</p>
-
-
             {
                 status === 'loading' && <div className={styles.spinner} >
                     <Oval
@@ -122,7 +116,8 @@ function NotRegisteredHome() {
                     lastEvents.NotRegistering_Date_Last_Event?.slice(0, 3).map((item) =>
 
                         <div key={item.id} className={styles.content_block}>
-                            <h1 className={styles.content__date}> {item.onlyDay} <span className={styles.content__data2}>{item.onlyMonth}</span></h1>
+                            <h1 className={styles.content__date}> {item.onlyDay}
+                                <span className={styles.content__data2}>{item.onlyMonth}</span></h1>
                             <h1 className={styles.content__title}>{item.title}</h1>
                             <p className={styles.content__time}>{item.startTimeFinish}</p>
                             <p className={styles.content__address}>{item.address}</p>

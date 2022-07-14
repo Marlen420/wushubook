@@ -12,7 +12,7 @@ const All_Last_Events =
         {
             id: 2,
             title: "Чемпионат среди детей",
-            onlyDay: 25, // Здесь нужно передать только день проведение мероприятии
+            onlyDay: 25,
             onlyMonth: 'март', // Здесь только месяц проведение мероприятии
             startTimeFinish: '9:00-12:00', // Здесь время,  начало мероприятии и конец
             city: "Бишкек",
@@ -133,7 +133,7 @@ const All_New_Events =
 
 export const getNewEvent = createAsyncThunk(
     'main/getNewEvent',
-    async function(_, { rejectWithValue }) {
+    async function (_, { rejectWithValue }) {
         try {
             const response = await API.get('events/newEvents')
             if (response.status !== 200) {
@@ -151,7 +151,7 @@ export const getNewEvent = createAsyncThunk(
 
 export const getLastEvent = createAsyncThunk(
     'main/getLastEvent',
-    async function(_, { rejectWithValue }) {
+    async function (_, { rejectWithValue }) {
         try {
             const response = await API.get('/events/pastEvents')
             if (response.status !== 200) {
