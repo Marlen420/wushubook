@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import API from '../utils/axiosConfig';
 import jwt_decode from 'jwt-decode';
+import jwtDecode from 'jwt-decode';
 
 
 export const setConfirmStatus = createAsyncThunk(
@@ -71,10 +72,8 @@ export const setLogin = createAsyncThunk(
         try {
             const response = await API.post('/auth/login', data);
             localStorage.setItem('jwt-token', response.data.token);
-            const { exp, iat, ...userData } = jwt_decode(response.data.token);
-            localStorage.setItem('jwt-user', JSON.stringify(...userData));
-            if (response.status === 201) return userData;
-            throw new Error('Incorrect email or password');
+            localStorage.setItem('jwt-user', JSON.stringify(jwtDecode(response.data.token)));
+            return jwtDecode(response.data.token);
         } catch (e) {
             return rejectWithValue(e.response.data.message);
         }
