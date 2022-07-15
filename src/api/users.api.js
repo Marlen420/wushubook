@@ -18,6 +18,7 @@ export const setNewUser = createAsyncThunk(
     'users/setNewUser',
     async(data, { rejectWithValue }) => {
         try {
+            data['link'] = process.env.REACT_APP_HOST + '/login/create-password';
             const response = await API.post('/users/referral', data);
             console.log(response.data);
             return response.data;
