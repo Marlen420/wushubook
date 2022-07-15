@@ -42,6 +42,8 @@ import email from './Email.svg'
 import telephonIconNotRegister from './telofaoIcon.svg'
 import payload from './Polygon 2.svg'
 import payloadClose from './PClose 2 (1).svg'
+import addFileIcon from './add_file_icon.svg';
+import PdfIcon from './pdf-icon.png';
 
 
 export {
@@ -87,5 +89,7 @@ export {
     EditIcon,
     UserDeleteIcon,
     Fon,
-    Approve
+    Approve,
+    addFileIcon,
+    PdfIcon,
 }

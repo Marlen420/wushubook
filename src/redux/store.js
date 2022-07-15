@@ -1,4 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
+import clubsSlice from './features/counter/clubsSlice';
+import documentSlice from './features/counter/documentSlice';
 import eventSlice from './features/counter/eventSlice';
 import newsSlice from './features/counter/newsSlice'
 import profileSlice from './features/counter/profileSlice'
@@ -15,6 +17,8 @@ export default configureStore({
         main: mainSlice,
         users: usersSlice,
         events: eventSlice,
-        statistics: statisticsSlice
+        statistics: statisticsSlice,
+        documents: documentSlice,
+        clubs: clubsSlice
     },
 })
