@@ -10,18 +10,15 @@ function MoreNews() {
     const { pathname } = useLocation();
 
     useEffect(() => {
-        console.log("hello")
         window.scrollTo(0, 0);
     }, [pathname]);
 
     const { newsId, status } = useSelector(state => state.main)
-    console.log("newId: ", newsId)
-
 
     return (
         <div>
             {
-                status == 'loading' && <div className={styles.spinner} >
+                status === 'loading' && <div className={styles.spinner} >
                     <Oval
                         ariaLabel="loading-indicator"
                         height={100}
@@ -37,7 +34,9 @@ function MoreNews() {
             }
 
             <div className={styles.content} key={newsId.id} >
+                {/* <div className={styles.conteiner__images}> */}
                 <img src={newsId.image} alt='' className={styles.content__image} />
+                {/* </div> */}
 
                 <div className={styles.content__info} >
                     <h1 className={styles.content__info_title}>{newsId.title}</h1>

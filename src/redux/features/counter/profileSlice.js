@@ -14,9 +14,12 @@ export const counterSlice = createSlice({
         checkTmp: null,
         user: localStorage.getItem('jwt-user') ? JSON.parse(localStorage.getItem('jwt-user')) : null
     },
+
     reducers: {
         setError: (state, action) => state.error = action.payload,
+        setLogOut: (state) => { state.login.isLogged = false }
     },
+
     extraReducers: {
         ...signupExtraReducers,
         ...forgotPasswordExtraReducers,
@@ -26,6 +29,7 @@ export const counterSlice = createSlice({
         ...setNewPasswordExtra,
         ...setConfirmStatusExtra,
         ...setUpdatePasswordExtra,
+
     }
 })
 
@@ -33,6 +37,7 @@ export const counterSlice = createSlice({
 // Action creators are generated for each case reducer function
 export const {
     setError,
+    setLogOut
 } = counterSlice.actions
 
 // export const incrementAsync = (amount) => (dispatch) => {

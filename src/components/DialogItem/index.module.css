@@ -59,8 +59,8 @@
 }
 
 .dialog__item_info_name {
-    font-family: 'Lato';
-    font-style: normal;
+    /* font-family: 'Lato'; */
+    /* font-style: normal; */
     font-weight: 600;
     font-size: 18px;
     line-height: 22px;
@@ -84,7 +84,7 @@ b {
 }
 
 .dialog__item_date {
-    font-family: 'Lato';
+    /* font-family: 'Lato'; */
     font-style: normal;
     font-weight: 300;
     font-size: 16px;
@@ -95,8 +95,8 @@ b {
 }
 
 .dialog__item_dateMe {
-    font-family: 'Lato';
-    font-style: normal;
+    /* font-family: 'Lato'; */
+    /* font-style: normal; */
     font-weight: 400;
     font-size: 16px;
     line-height: 19px;
@@ -106,8 +106,8 @@ b {
 }
 
 .dialog__item__text {
-    font-family: 'Lato';
-    font-style: normal;
+    /* font-family: 'Lato';
+    font-style: normal; */
     font-weight: 400;
     font-size: 16px;
     line-height: 19px;

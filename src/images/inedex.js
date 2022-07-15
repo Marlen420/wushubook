@@ -37,14 +37,23 @@ import mikrafon from './mikrafon.svg'
 import flyIcon from './111.png'
 import LogoOut from './logOut.png'
 import people from './people.svg'
+<<<<<<< HEAD
 import Approve from './Approve.svg';
 import email from './Email.svg'
+=======
+import email from './email.svg'
+>>>>>>> origin/dev2
 import telephonIconNotRegister from './telofaoIcon.svg'
 import payload from './Polygon 2.svg'
 import payloadClose from './PClose 2 (1).svg'
-
+import photoPeople from './Account.svg'
+import profilIcon from './profilIcon.svg'
+import goOutIcon from './IconGoOut.svg'
 
 export {
+    goOutIcon,
+    profilIcon,
+    photoPeople,
     payloadClose,
     payload,
     email,
