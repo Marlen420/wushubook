@@ -11,6 +11,7 @@ import { createNewEvent, deleteEvent, setNewEventsList, setPastEventsList } from
 import NewEvent from "./NewEvent/NewEvent";
 
 //Мероприятия
+const perPage = 3;
 
 function Events() {
     // Constants
@@ -25,7 +26,8 @@ function Events() {
         jump,
         next,
         prev
-    } = usePagination(([...newEvents || [], ...pastEvents || []]), 3);
+    } = usePagination(([...newEvents || [], ...pastEvents || []]), perPage);
+
 
     // States
     const [isNewEvent, setIsNewEvent] = useState(false);
@@ -118,6 +120,7 @@ function Events() {
                 currentData={currentData}
                 currentPage={currentPage}
                 maxPage={maxPage}
+                perPage={perPage}
                 jump={jump}
                 prev={prev}
                 next={next}

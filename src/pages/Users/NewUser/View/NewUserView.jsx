@@ -2,6 +2,15 @@ import React from 'react';
 import { Button, Input } from '../../../../components';
 import { CloseIcon } from '../../../../images/inedex';
 import styles from '../newUser.module.css';
+import JudgeRole from './JudgeRole';
+import SecretaryRole from './SecretaryRole';
+import TrainerRole from './TrainerRole';
+
+
+
+
+
+
 
 const NewUserView = ({
     name, setName,
@@ -10,11 +19,14 @@ const NewUserView = ({
     role, setRole,
     city, setCity,
     country, setCountry,
-    patronymic, setPatronymic,
+    date, setDate,
     club, setClub,
     category, setCategory,
     judgeCategory, setJudgeCategory,
-    closeWindow, addUser
+    closeWindow, addUser,
+    eventCount, setEventCount,
+    experience, setExperience,
+    appointmentDate, setAppointmentDate
 }) => {
     return (
         <div 
@@ -43,6 +55,7 @@ const NewUserView = ({
                                     projectType='radio'
                                     value="trainer"
                                     name="role"
+                                    checked={role === 'trainer' ? true : false}
                                     onChange={setRole}
                                     id="role-trainer"/>
                                 </div>
@@ -55,6 +68,7 @@ const NewUserView = ({
                                         projectType='radio'
                                         value="secretary"
                                         name="role"
+                                        checked={role === 'secretary' ? true : false}
                                         onChange={setRole}
                                         id="role-secretar"/>
                                 </div>
@@ -67,76 +81,71 @@ const NewUserView = ({
                                         projectType='radio'
                                         value="judge"
                                         name="role"
+                                        checked={role === 'judge' ? true : false}
                                         onChange={setRole}
                                         id="role-judge"/>
                                 </div>
                                 <label htmlFor="role-judge">Судья</label>
                             </div>
                     </div>
-                    <div className={styles.form_input_list}>
-                        <div className={styles.form_input_holder}>
-                            <label htmlFor="name">Имя</label>
-                            <Input
-                                name="name"
-                                value={name}
-                                onChange={setName}/>
-                        </div>
-                        <div className={styles.form_input_holder}>
-                            <label htmlFor="lastname">Фамилия</label>
-                            <Input
-                                name="lastname"
-                                value={lastname}
-                                onChange={setLastname}/>
-                        </div>
-                        <div className={styles.form_input_holder}>
-                            <label htmlFor="category">Спортивный разряд</label>
-                            <Input
-                                name="category"
-                                value={category}
-                                onChange={setCategory}/>
-                        </div>
-                        <div className={styles.form_input_holder}>
-                            <label htmlFor="club">Клубы</label>
-                            <Input
-                                name="club"
-                                value={club}
-                                onChange={setClub}/>
-                        </div>
-                        <div className={styles.form_input_holder}>
-                            <label htmlFor="country">Страна</label>
-                            <Input
-                                name="country"
-                                value={country}
-                                onChange={setCountry}/>
-                        </div>
-                        <div className={styles.form_input_holder}>
-                            <label htmlFor="city">Город</label>
-                            <Input
-                                name="city"
-                                value={city}
-                                onChange={setCity}/>
-                        </div>
-                        <div className={styles.form_input_holder}>
-                            <label htmlFor="email">Почта</label>
-                            <Input
-                                name="email"
-                                value={email}
-                                onChange={setEmail}/>
-                        </div>
+                    {role === 'trainer' &&
+                    <TrainerRole 
+                        name={name}
+                        setName={setName}
+                        lastname={lastname}
+                        setLastname={setLastname}
+                        city={city}
+                        setCity={setCity}
+                        email={email}
+                        setEmail={setEmail}
+                        country={country}
+                        setCountry={setCountry}
+                        judgeCategory={judgeCategory}
+                        setJudgeCategory={setJudgeCategory}/>}
+
+                    {role === 'secretary' &&
+                    <SecretaryRole 
+                        name={name}
+                        setName={setName}
+                        lastname={lastname}
+                        setLastname={setLastname}
+                        eventCount={eventCount}
+                        setEventCount={setEventCount}
+                        email={email}
+                        setEmail={setEmail}/>}
+
+                    {role === 'judge' &&
+                    <JudgeRole
+                        name={name}
+                        setName={setName}
+                        lastname={lastname}
+                        setLastname={setLastname}
+                        date={date}
+                        setDate={setDate}
+                        category={category}
+                        setCategory={setCategory}
+                        judgeCategory={judgeCategory}
+                        setJudgeCategory={setJudgeCategory}
+                        experience={experience}
+                        setExperience={setExperience}
+                        email={email}
+                        setEmail={setEmail}
+                        appointmentDate={appointmentDate}
+                        setAppointmentDate={setAppointmentDate}/>}
+                
                     </div>
-                </div>
-                <div className={styles.form_footer}>
-                    <Button
-                        type="button"
-                        projectType="secondary"
-                        onClick={closeWindow}>
-                        Назад
-                    </Button>
-                    <Button
-                        type="submit"
-                        projectType="confirm_primary">
-                        Добавить
-                    </Button>
+                    <div className={styles.form_footer}>
+                        <Button
+                            type="button"
+                            projectType="secondary"
+                            onClick={closeWindow}>
+                            Назад
+                        </Button>
+                        <Button
+                            type="submit"
+                            projectType="confirm_primary">
+                            Добавить
+                        </Button>
                 </div>
             </form>
         </div>

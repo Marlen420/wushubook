@@ -7,16 +7,18 @@ const NewUser = ({closeWindow}) => {
     // const dispatch = useDispatch();
 
     // States
-    const [role, setRole] = useState(0);
+    const [role, setRole] = useState('trainer');
     const [name, setName] = useState('');
     const [lastname, setLastname] = useState('');
     const [country, setCountry] = useState('');
     const [city, setCity] = useState('');
-    const [patronymic, setPatronymic] = useState('');
     const [club, setClub] = useState('');
     const [category, setCategory] = useState('');
     const [judgeCategory, setJudgeCategory] = useState('');
     const [email, setEmail] = useState('');
+    const [appointmentDate, setAppointmentDate] = useState('');
+    const [eventCount, setEventCount] = useState('');
+    const [experience, setExperience] = useState('');
 
     // Functions
     const handleRoleChange = (e) => setRole(e.target.value);
@@ -24,7 +26,6 @@ const NewUser = ({closeWindow}) => {
     const handleCountryChange = (e) => setCountry(e.target.value);
     const handelCityChange = (e) => setCity(e.target.value);
     const handleLastnameChange = (e) => setLastname(e.target.value);
-    const handlePatronymicChange = (e) => setPatronymic(e.targe.value);
     const handleClubChange = (e) => setClub(e.target.value);
     const handleCategoryChange = (e) => setCategory(e.target.value);
     const handleJudgeCategoryChange = (e) => setJudgeCategory(e.target.value);
@@ -32,7 +33,12 @@ const NewUser = ({closeWindow}) => {
     const handleSubmitForm = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        const data = {name: name+'/'+lastname, email, role, club, category};
+        const submitName = name+'/'+lastname;
+        const date = {};
+        if (role === 'trainer') {
+            date['name'] = submitName;
+            date['']
+        }
         console.log('New user: ', data);
         // dispatch();
     }
@@ -51,17 +57,17 @@ const NewUser = ({closeWindow}) => {
         lastname={lastname}
         country={country}
         city={city}
-        patronymic={patronymic}
         club={club}
         category={category}
         judgeCategory={judgeCategory}
         email={email}
+        experience={experience}
+        appointmentDate={appointmentDate}
         setRole={handleRoleChange}
         setName={handleNameChange}
         setLastname={handleLastnameChange}
         setCountry={handleCountryChange}
         setCity={handelCityChange}
-        setPatronymic={handlePatronymicChange}
         setClub={handleClubChange}
         setCategory={handleCategoryChange}
         setJudgeCategory={handleJudgeCategoryChange}
@@ -70,5 +76,4 @@ const NewUser = ({closeWindow}) => {
         closeWindow={closeWindow}/>
     )
 }
-
 export default NewUser

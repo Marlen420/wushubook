@@ -86,7 +86,7 @@ option {
     /* right: 0; */
 }
 
-li {
+.content li {
     font-family: 'Lato';
     font-style: normal;
     font-weight: 400;
@@ -98,7 +98,7 @@ li {
     padding-top: 5px;
 }
 
-li:hover {
+.content li:hover {
     background: #E0E6FF;
 }
 

@@ -73,7 +73,7 @@ const Dashboard = ({
     return (
         <div className={styles.dashboard}>
             {/* Profile Data */}
-            <h1 className={styles.dashboard_title}>Личная переписка</h1>
+            <h1 className={styles.dashboard_title}>Личная информация</h1>
             <PersonalInfo
             status={status}
             name={profileName}

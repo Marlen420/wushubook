@@ -1,7 +1,8 @@
 import style from './pagination.module.css';
 
 const Pagination = ({max, limitPerPage=10, currentPage, onNextClick, onPrevClick, onIndexClick}) => {
-    const arr = new Array(Math.ceil((max || 0)/limitPerPage)).fill(0);
+    const arr = new Array(max).fill(0);
+    console.log('Max: ', max);
 
     return(
         <div className={style.pagination_container}>

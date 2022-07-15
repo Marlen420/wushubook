@@ -18,6 +18,7 @@ const EventList = ({
     prev,
     next,
     onDelete,
+    perPage,
 }) => {
     return (
     <>
@@ -38,7 +39,7 @@ const EventList = ({
             {maxPage > 1 &&
             <Pagination
                 currentPage={currentPage}
-                limitPerPage={10}
+                limitPerPage={perPage}
                 onIndexClick={jump}
                 onNextClick={next}
                 onPrevClick={prev}
