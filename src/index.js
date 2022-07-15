@@ -9,22 +9,22 @@ import store from './redux/store';
 import CreatePassword from './pages/Login/CreatePassword/CreatePassword';
 import RecoverPassword from './pages/Login/CreatePassword/RecoverPassword';
 import ConfirmAccount from './pages/Login/CreatePassword/ConfirmAccount';
-import NotRegisteredHome from './pages/NotRegisteredHome/index.jsx';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/login/create-password/:info" element={<CreatePassword/>} />
-        <Route path="/login/reset-password/:info" element={<RecoverPassword/>} />
-        <Route path="/login/confirm-account/:info" element={<ConfirmAccount/>} />
-        <Route path="/login/*" element={<Login />} />
-        <Route path="/*" element={<App />} />
-      </Routes>
-    </BrowserRouter>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login/create-password/:info" element={<CreatePassword />} />
+          <Route path="/login/reset-password/:info" element={<RecoverPassword />} />
+          <Route path="/login/confirm-account/:info" element={<ConfirmAccount />} />
+          <Route path="/login/*" element={<Login />} />
+          <Route path="/*" element={<App />} />
+        </Routes>
+      </BrowserRouter>
     </Provider>
   </React.StrictMode>
 );

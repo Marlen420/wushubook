@@ -53,7 +53,7 @@ export const setUpdatePasswordExtra = {
         state.error = null;
     },
     [setUpdatePassword.fulfilled]: (state) => {
-        state.status =  'Active';
+        state.status = 'Active';
         state.error = null;
     },
     [setUpdatePassword.rejected]: (state, action) => {
@@ -85,6 +85,7 @@ export const setLoginExtra = {
         state.error = null;
     },
     [setLogin.fulfilled]: (state, action) => {
+        console.log("SET")
         state.status = 'Active';
         state.error = null;
         state.login.isLogged = true;
@@ -95,6 +96,7 @@ export const setLoginExtra = {
     [setLogin.rejected]: (state, action) => {
         state.status = 'Rejected login';
         state.error = action.payload;
+        state['error'] = action.payload;
     }
 }
 

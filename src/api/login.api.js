@@ -1,11 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import API from '../utils/axiosConfig';
-import jwt_decode from 'jwt-decode';
+import jwtDecode from 'jwt-decode';
 
 
 export const setConfirmStatus = createAsyncThunk(
     'profile/setConfirmStatus',
-    async(id, { rejectWithValue }) => {
+    async (id, { rejectWithValue }) => {
         try {
             const response = await API.patch(`/users/update-registered-status/${id}`);
             return response.data;
@@ -17,7 +17,7 @@ export const setConfirmStatus = createAsyncThunk(
 
 export const setNewPassword = createAsyncThunk(
     'profile/setNewPassword',
-    async(data, { rejectWithValue }) => {
+    async (data, { rejectWithValue }) => {
         try {
             const response = await API.patch('/users/addPassword', data);
             return response.data;
@@ -29,7 +29,7 @@ export const setNewPassword = createAsyncThunk(
 
 export const checkToken = createAsyncThunk(
     'profile/checkToken',
-    async(data, { rejectWithValue }) => {
+    async (data, { rejectWithValue }) => {
         try {
             const response = await API.get(`/users/check-valid?id=${data.userId}&tmp=${data.token}`);
             return response.data;
@@ -41,7 +41,7 @@ export const checkToken = createAsyncThunk(
 
 export const setUpdatePassword = createAsyncThunk(
     'profile/setUpdatePassword',
-    async(data, { rejectWithValue }) => {
+    async (data, { rejectWithValue }) => {
         try {
             const response = await API.patch(`/users/profile-change-password`, data);
             console.log(response.data);
@@ -54,7 +54,7 @@ export const setUpdatePassword = createAsyncThunk(
 
 export const setUpdateUser = createAsyncThunk(
     'profile/updateUser',
-    async(data, { rejectWithValue }) => {
+    async (data, { rejectWithValue }) => {
         try {
             const response = await API.patch(`/users/${data.id}`, data.data);
             const { tmp, status, password, experience, category, rank, appointment_date, ...rest } = response.data;
@@ -67,13 +67,12 @@ export const setUpdateUser = createAsyncThunk(
 
 export const setLogin = createAsyncThunk(
     'profilt/setLogin',
-    async function(data, { rejectWithValue }) {
+    async function (data, { rejectWithValue }) {
         try {
             const response = await API.post('/auth/login', data);
             localStorage.setItem('jwt-token', response.data.token);
-            const { exp, iat, ...userData } = jwt_decode(response.data.token);
-            if (response.status === 201) return userData;
-            throw new Error('Incorrect email or password');
+            localStorage.setItem('jwt-user', JSON.stringify(jwtDecode(response.data.token)));
+            return jwtDecode(response.data.token);
         } catch (e) {
             return rejectWithValue(e.response.data.message);
         }
@@ -82,7 +81,7 @@ export const setLogin = createAsyncThunk(
 
 export const setSignup = createAsyncThunk(
     'profile/setSignup',
-    async function(data, { rejectWithValue }) {
+    async function (data, { rejectWithValue }) {
         try {
             data['link'] = process.env.REACT_APP_HOST + '/login/confirm-account';
             const response = await API.post('/users/independent', data);
@@ -96,7 +95,7 @@ export const setSignup = createAsyncThunk(
 
 export const setForgotPassword = createAsyncThunk(
     'profile/setForgotPassword',
-    async function(data, { rejectWithValue }) {
+    async function (data, { rejectWithValue }) {
         try {
             data['link'] = process.env.REACT_APP_HOST + '/login/reset-password';
             const response = await API.patch(`/users/forgot-password`, data);

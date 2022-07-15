@@ -1,16 +1,21 @@
 import React, { useState } from 'react'
 import styles from './index.module.css'
-import { Logo, PersonIcon, NotificationIcon, MessageIcon, MousMesssage, MousNotification, MousPerson } from '../../images/inedex.js'
+import { Logo, PersonIcon, profilIcon, goOutIcon, payloadClose, payload, NotificationIcon, MessageIcon, MousMesssage, photoPeople, MousNotification, MousPerson } from '../../images/inedex.js'
 import { NavLink, useNavigate } from 'react-router-dom'
 import Notificatons from '../Notificatons/index.jsx'
+import { useDispatch, useSelector } from 'react-redux'
+import { setLogOut } from '../../redux/features/counter/profileSlice'
 
 
-function Header() {
+function Headers() {
     const navigations = useNavigate()
     const [isOpenNotificationIcon, setIsOpenNotificationIcon] = useState(false)
     const [isIconPerson, setIconPerson] = useState(PersonIcon)
     const [isOpenMessage, setIsOpenMessage] = useState(false)
+    const [isOpenSalary, setIsOpenSalary] = useState(false)
+    const [selesctClubs, setSelesctClubs] = useState('Все клубы')
 
+    const { login } = useSelector(state => state.profile)
 
     const toggleIsOpenNotificationIcon = () => {
         setIsOpenNotificationIcon(!isOpenNotificationIcon)
@@ -22,7 +27,28 @@ function Header() {
 
     }
 
-    const handleProfileNavigate = () => navigations('/profile');
+    const togglingSalary = () => {
+        setIsOpenSalary(!isOpenSalary)
+    }
+
+
+    const dispatch = useDispatch()
+    const handleProfileNavigate = () => {
+
+        setIsOpenSalary(!isOpenSalary)
+        navigations('/profile')
+    }
+    const hanldeExitNavigate = () => {
+        localStorage.removeItem('jwt-user')
+        localStorage.removeItem('jwt-token')
+        setIsOpenSalary(!isOpenSalary)
+        dispatch(setLogOut())
+
+    }
+
+    const infoProfil = [{ icon: profilIcon, text: 'Профиль', onClick: handleProfileNavigate },
+    { icon: goOutIcon, text: 'Выход', onClick: hanldeExitNavigate }]
+
 
     return (
         <div className={styles.header} >
@@ -49,6 +75,8 @@ function Header() {
                     onMouseEnter={() => setIconMessage(MousMesssage)}
                     onMouseOut={() => setIconMessage(MousMesssage)}
                 /> */}
+
+
                 {
                     isOpenNotificationIcon ?
                         <img className={styles.header__icon} onClick={toggleIsOpenNotificationIcon}
@@ -59,10 +87,51 @@ function Header() {
                 }
 
 
+
+
+                <div className={styles.f} >
+                    <div onClick={togglingSalary}>
+                        {isOpenSalary ? <img src={payloadClose} alt='Not find ArrowDownIcon'
+                            className={styles.arrowOpenIcon} />
+                            :
+                            <img src={payload} className={styles.arrow}
+                                alt='Not find ArrowTopIcon' />}
+
+                        <div className={styles.headers_profil}>
+                            <img src={photoPeople} alt='' className={styles.headers_profil_icon} />
+                            <p className={styles.headers_profil_name}>Иван петров</p>
+                        </div>
+
+                    </div >
+                    {
+                        isOpenSalary && (
+                            <div>
+                                <ul className={styles.headers_profil_pops} >
+                                    {
+                                        infoProfil.map(option => (
+                                            <div className={styles.headers_profil_popsUp} onClick={option.onClick}  >
+                                                <li className={styles.headers_profil_hover} key={Math.random()}>
+                                                    <img src={option.icon} alt='' />
+
+                                                </li >
+                                                <li className={styles.headers_profil_hover} key={Math.random()}>
+                                                    {option.text}
+
+                                                </li >
+                                            </div>
+                                        ))
+                                    }
+                                </ul>
+                            </div>
+                        )}
+                </div>
+
+
+                {/* 
                 <img className={styles.header__icon} src={isIconPerson} alt=''
                     onMouseEnter={() => setIconPerson(MousPerson)}
                     onMouseOut={() => setIconPerson(PersonIcon)}
-                    onClick={handleProfileNavigate}/>
+                    onClick={handleProfileNavigate} /> */}
             </div>
 
 
@@ -74,4 +143,5 @@ function Header() {
     )
 }
 
-export default Header
+
+export default Headers;

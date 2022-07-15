@@ -12,9 +12,7 @@
     font-size: 32px;
     line-height: 120%;
     /* or 38px */
-
     letter-spacing: 0.04em;
-
     color: #000000;
 }
 
@@ -26,7 +24,6 @@ select {
     height: 49px;
     padding-left: 15px;
     margin-top: 44px;
-
     font-family: 'Lato';
     font-style: normal;
     font-weight: 500;
@@ -44,18 +41,11 @@ option {
     border-radius: 8px;
 }
 
-
-
 .ButtonNavigations {
     margin-top: 83px;
-
-
     display: flex;
-
     border-bottom: 1px solid #E8E8E8;
-
 }
-
 
 .chart {
     /* background: red; */
@@ -69,7 +59,6 @@ option {
 
 .input {
     position: relative;
-
     width: 224px;
     height: 49px;
     background: #F9F9FF;
@@ -79,28 +68,20 @@ option {
     z-index: 1;
 }
 
-
-
-ul {
-
+.content ul {
     width: 225px;
     background: #F9F9FF;
     border: 1px solid #EFEFEF;
     border-radius: 8px;
-
     margin-top: 2px;
-
     padding-top: 8px;
-
 }
 
 .arrow {
     position: absolute;
     left: 225px;
-
     bottom: 354px;
     /* background: red; */
-
     z-index: 5;
     /* right: 0; */
 }
@@ -111,41 +92,24 @@ li {
     font-weight: 400;
     font-size: 16px;
     line-height: 19px;
-
     color: #000000;
     padding-left: 18px;
     padding-bottom: 15px;
     padding-top: 5px;
 }
 
-
-li:hover {
+.li:hover {
     background: #E0E6FF;
 }
 
-
-
-
-
-
 @media screen and (max-width: 1075px) {
     .chart {
-
         margin-bottom: 0px;
-
     }
-
-
-
 }
 
 @media screen and (max-width: 713px) {
-
-
     .chart {
         overflow-x: scroll;
-
     }
-
-
 }

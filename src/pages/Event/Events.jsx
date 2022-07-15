@@ -25,7 +25,7 @@ function Events() {
         jump,
         next,
         prev
-    } = usePagination(([...newEvents || [], ...pastEvents || []]), 10);
+    } = usePagination(([...newEvents || [], ...pastEvents || []]), 3);
 
     // States
     const [isNewEvent, setIsNewEvent] = useState(false);

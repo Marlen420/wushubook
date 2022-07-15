@@ -1,6 +1,6 @@
 
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { API } from './API'
+import API from '../utils/axiosConfig';
 
 
 
@@ -135,11 +135,11 @@ export const getNewEvent = createAsyncThunk(
     'main/getNewEvent',
     async function (_, { rejectWithValue }) {
         try {
-            const response = await API.get('events/newEvents')
+            const response = await API.get(`events?start=${new Date()}end=${2022 - 12 - 31}`)
             if (response.status !== 200) {
                 throw new Error("Server Error!")
             }
-
+            console.log("l: ", All_New_Events)
             return All_New_Events
 
         }
@@ -153,11 +153,11 @@ export const getLastEvent = createAsyncThunk(
     'main/getLastEvent',
     async function (_, { rejectWithValue }) {
         try {
-            const response = await API.get('/events/pastEvents')
+            const response = await API.get(`events?end=${new Date()}`)
             if (response.status !== 200) {
                 throw new Error("Server Error!")
             }
-
+            console.log("respose: ", response.data)
             return All_Last_Events
         }
         catch (error) {
@@ -170,7 +170,7 @@ export const getNews = createAsyncThunk(
     'main/getNews',
     async function (id, { rejectWithValue }) {
         try {
-            const response = await API.get(`news`)
+            const response = await API.get('news')
             if (response.status !== 200) {
                 throw new Error("Server Error!")
             }
@@ -201,4 +201,3 @@ export const getNewsId = createAsyncThunk(
         }
 
     })
-

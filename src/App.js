@@ -9,9 +9,10 @@ import Events from './pages/Event/Events.jsx'
 import Statistics from './pages/Statistics/index.jsx'
 import Users from './pages/Users/Users.jsx'
 import { NavBar, Header } from './components';
+
 import { getLastEvent, getNewEvent, getNews } from './api/main.js';
 import Profile from './pages/Profile/Profile.jsx';
-
+import Headers from './components/Headers/Headers.jsx'
 
 import { MainNews, MoreNews, OtherNews } from './pages/News/index.js';
 import Chat from './pages/Chat/index.jsx';
@@ -34,7 +35,7 @@ function App() {
     <div >
       {isLogged
         ? <>
-          <Header />
+          <Headers />
           <NavBar />
           <Routes >
             <Route path='/*' element={<Home />} />
@@ -47,9 +48,10 @@ function App() {
             <Route path='/profile' element={<Profile />} />
             <Route path='/moreNews' element={<MoreNews />} />
             <Route path='/chat' element={<Chat />} />
-
-            {isLogged &&
-              <Route path='/calendar' element={<Calendar />} />}
+            {
+              isLogged &&
+              <Route path='/calendar' element={<Calendar />} />
+            }
 
           </Routes>
         </>

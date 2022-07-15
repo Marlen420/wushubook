@@ -41,9 +41,14 @@ import email from './email.svg'
 import telephonIconNotRegister from './telofaoIcon.svg'
 import payload from './Polygon 2.svg'
 import payloadClose from './PClose 2 (1).svg'
-
+import photoPeople from './Account.svg'
+import profilIcon from './profilIcon.svg'
+import goOutIcon from './IconGoOut.svg'
 
 export {
+    goOutIcon,
+    profilIcon,
+    photoPeople,
     payloadClose,
     payload,
     email,
