@@ -2,19 +2,22 @@ export const ROLES_FILTER = [
     'Все пользователи',
     'Тренеры',
     'Секретари',
-    'Судьи'
+    'Судьи',
+    'В ожидании'
 ]
 
 export const QUERY_ROLES = [
     '',
     'trainer',
     'secretary',
-    'judge'
+    'judge',
+    ''
 ]
 
 export const ROLES_FIND = [
     'users',
     'trainer',
     'secretary',
-    'judge'
+    'judge',
+    'pending'
 ]

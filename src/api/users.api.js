@@ -1,9 +1,22 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import API from "../utils/axiosConfig";
 
+export const approveUser = createAsyncThunk(
+    'users/approveUser',
+    async(id, { rejectWithValue }) => {
+        try {
+            const response = await API.patch(`/users/approve-user/${id}`);
+            console.log(response.data);
+            return response.data;
+        } catch (e) {
+            return rejectWithValue(e.respones.data.message);
+        }
+    }
+)
+
 export const setNewUser = createAsyncThunk(
     'users/setNewUser',
-    async (data, { rejectWithValue }) => {
+    async(data, { rejectWithValue }) => {
         try {
             const response = await API.post('/users/referral', data);
             console.log(response.data);
@@ -16,12 +29,12 @@ export const setNewUser = createAsyncThunk(
 
 export const setUsersList = createAsyncThunk(
     'users/setUsersList',
-    async function(role, { rejectWithValue }) {
+    async function({ role, status }, { rejectWithValue }) {
         try {
-            const response = await API.get(`/users?role=${role}`);
+            let response = await API.get(`/users/get-role-status?role=${role}&status=${status}`);
             return {
-                ...response.data,
-                role: role === '' ? 'users' : role
+                data: response.data,
+                role: role === '' ? (status === '' ? 'users' : 'pending') : role
             };
         } catch (e) {
             return rejectWithValue(e.response.data.message);

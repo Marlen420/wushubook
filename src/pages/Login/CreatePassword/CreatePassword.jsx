@@ -44,13 +44,13 @@ const CreatePassword = ({action = 'create'}) => {
     }, [dispatch]);
 
     useEffect(()=>{
-        if (checkTmp === false) navigate('/login');
+        // if (checkTmp === false) navigate('/login');
+        alert(checkTmp);
     }, [checkTmp]);
-    console.log(status);
     useEffect(()=>{
-        if (status === 'Set new password') navigate('/login/sign-in');
+        // if (status === 'Set new password') navigate('/login/sign-in');
     }, [status]);
-
+    alert("Here");
     return (
         <>
         {checkTmp === true

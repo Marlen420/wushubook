@@ -85,7 +85,6 @@ export const setLoginExtra = {
         state.error = null;
     },
     [setLogin.fulfilled]: (state, action) => {
-        console.log("SET")
         state.status = 'Active';
         state.error = null;
         state.login.isLogged = true;

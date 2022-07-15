@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUsersList } from '../../api/users.api';
+import { approveUser, deleteUser, setNewUser, setUsersList } from '../../api/users.api';
 import { QUERY_ROLES, ROLES_FIND } from '../../const/user_roles';
 import usePagination from '../../hooks/usePagination/usePagination';
-import { setSelectAll, setSelectItem, setUnselectAll, setUnselectItem } from '../../redux/features/counter/usersSlice';
+import { setDeleteId, setSelectAll, setSelectItem, setUnselectAll, setUnselectItem } from '../../redux/features/counter/usersSlice';
 import NewUser from './NewUser/NewUser';
 import styles from './Users.module.css'
 import UsersHeader from './UsersHeader/UsersHeader';
@@ -13,7 +13,6 @@ import UsersList from './UsersList/UsersList';
 import UsersNav from './UsersNav/UsersNav';
 
 //Пользователи
-
 function Users() {
     // Constants
     const dispatch = useDispatch();
@@ -23,7 +22,8 @@ function Users() {
     // States
     const [search, setSearch] = useState('');
     const [roleFilter, setRoleFilter] = useState(0);
-    const [newUser, setNewUser] = useState(false);
+    const [newUserWindow, setNewUserWindow] = useState(false);
+
     
     // Hooks
     const { 
@@ -38,13 +38,19 @@ function Users() {
 
     // Onload
     useEffect(()=>{
-        if (!users[ROLES_FIND[roleFilter]].data) dispatch(setUsersList(QUERY_ROLES[roleFilter]))
-    }, [roleFilter, dispatch, users])
+        dispatch(setUsersList({role: QUERY_ROLES[roleFilter], status: roleFilter === 4 ? 1 : ''}))
+    }, [roleFilter, dispatch])
+
+    useEffect(()=>{
+        if (users.user.status === 'Set new user') setNewUserWindow(false);
+        if (users.user.status === 'User deleted' || users.user.status === 'User approved') dispatch(setUsersList({role: QUERY_ROLES[roleFilter], status: roleFilter === 4 ? 0 : ''}))
+    }, [users.user.status])
 
     // Functions
     const handleSearchChange = (e) => setSearch(e.target.value);
-    const handleAddUser = () => setNewUser(true);
-    const handleCloseNewUser = () => setNewUser(false);
+    const handleAddUser = () => setNewUserWindow(true);
+    const handleCloseNewUser = () => setNewUserWindow(false);
+
 
     const isSelectedItem = useCallback((id)=>{
         if (selected.length === 0) return false;
@@ -67,12 +73,19 @@ function Users() {
     const onSelectItem = useCallback((id) => isSelectedItem(id) ? dispatch(setUnselectItem(id)) : dispatch(setSelectItem(id)), [dispatch, isSelectedItem])
     const onSelectAll = useCallback(() => isSelectedAll() ? dispatch(setUnselectAll()) : dispatch(setSelectAll(getAllId())), [dispatch, isSelectedAll,  getAllId])
 
+    const handleDeleteUser = (id) => dispatch(deleteUser(id));
+    const handleNewUserSet = (data) => dispatch(setNewUser(data))
+    const handleApproveUser = (id) => dispatch(approveUser(id));
+
     // Debug
 
     return (
         <div className={styles.content}>
-            {newUser &&
-            <NewUser closeWindow={handleCloseNewUser}/>}
+            {newUserWindow &&
+            <NewUser
+                status={users.user.status}
+                submitForm={handleNewUserSet}
+                closeWindow={handleCloseNewUser}/>}
             {users.user.deleteId &&
             <Confirm/>}
 
@@ -84,6 +97,11 @@ function Users() {
                 roleFilter={roleFilter}
                 setRoleFilter={setRoleFilter}/>
             <UsersList
+                allData={users[ROLES_FIND[roleFilter]].data || []}
+                search={search}
+                setSearch={setSearch}
+                deleteUser={handleDeleteUser}
+                approveUser={handleApproveUser}
                 roleFilter={roleFilter}
                 selected={users.selected}
                 isSelectedItem={isSelectedItem}

@@ -1,11 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { deleteUser } from '../../../api/users.api';
-import { deleteUserExtra, setUsersListExtra } from '../../extraReducers/usersExtraReducer';
+import { approveUserExtra, deleteUserExtra, setNewUserExtra, setUsersListExtra } from '../../extraReducers/usersExtraReducer';
 
 
 export const counterSlice = createSlice({
     name: 'users',
     initialState: {
+        pending: {
+            status: "Active",
+            error: null,
+            data: null,
+        },
         user: {
             status: "Active",
             error: null,
@@ -36,10 +41,12 @@ export const counterSlice = createSlice({
     extraReducers: {
         ...setUsersListExtra,
         ...deleteUserExtra,
+        ...setNewUserExtra,
+        ...approveUserExtra,
     },
     reducers: {
         setUnselectItem: (state, action) => {
-            state.selected = state.selected.filter((i)=>i!==action.payload)
+            state.selected = state.selected.filter((i) => i !== action.payload)
         },
         setSelectItem: (state, action) => {
             state.selected = [...state.selected, action.payload]
@@ -47,7 +54,7 @@ export const counterSlice = createSlice({
         setUnselectAll: (state) => {
             state.selected = []
         },
-        setSelectAll: (state, action)=> {
+        setSelectAll: (state, action) => {
             state.selected = action.payload
         },
         setDeleteId: (state, action) => {

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 // import { useDispatch } from 'react-redux'
 import NewUserView from './View/NewUserView';
 
-const NewUser = ({closeWindow}) => {
+const NewUser = ({closeWindow, submitForm, status}) => {
     // Constats
     // const dispatch = useDispatch();
 
@@ -30,18 +30,29 @@ const NewUser = ({closeWindow}) => {
     const handleCategoryChange = (e) => setCategory(e.target.value);
     const handleJudgeCategoryChange = (e) => setJudgeCategory(e.target.value);
     const handleEmailChange = (e) => setEmail(e.target.value);
+    
+    const valid = (e) => e ? e : null;
+    const isNumber = (e) => +e || null;
+
     const handleSubmitForm = (e) => {
         e.preventDefault();
         e.stopPropagation();
         const submitName = name+'/'+lastname;
-        const date = {};
-        if (role === 'trainer') {
-            date['name'] = submitName;
-            date['']
-        }
-        console.log('New user: ', data);
-        // dispatch();
+        const data = {};
+        data['name'] = submitName;
+        data['role'] = role;
+        data['email'] = email;
+        data['category'] = valid(category);
+        data['experience'] = isNumber(experience);
+        data['country'] = valid(country);
+        data['city'] = valid(city);
+        data['rank'] = valid(category);
+        submitForm(data);
+        console.log('Email', email);
+        console.log(data);
     }
+    
+    
 
     // Onload
     useEffect(()=>{
@@ -52,6 +63,7 @@ const NewUser = ({closeWindow}) => {
 
     return (
         <NewUserView 
+        status={status}
         role={role}
         name={name}
         lastname={lastname}

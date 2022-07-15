@@ -1,4 +1,4 @@
-import { createNewEvent, deleteEvent, setNewEventsList, setPastEventsList } from "../../api/event.api";
+import { createNewEvent, deleteEvent, setEventList } from "../../api/event.api";
 
 // Delete event
 export const deleteEventExtra = {
@@ -32,35 +32,18 @@ export const createNewEventExtra = {
     }
 }
 
-// Upcoming events list extra reducer
-export const setNewEventsListExtra = {
-    [setNewEventsList.pending]: (state) => {
+// All events
+export const setEventListExtra = {
+    [setEventList.pending]: (state) => {
         state.status = 'Loading';
         state.error = null;
     },
-    [setNewEventsList.fulfilled]: (state, action) => {
-        state.newEvents = action.payload;
+    [setEventList.fulfilled]: (state, action) => {
+        state.data = action.payload;
         state.error = null;
     },
-    [setNewEventsList.rejected]: (state, action) => {
+    [setEventList.rejected]: (state, action) => {
         state.status = 'Rejected loading events';
         state.error = action.payload;
     }
 }
-
-// Passed events list extra reducer
-export const setPastEventsListExtra = {
-    [setPastEventsList.pending]: (state) => {
-        state.status = 'Loading';
-        state.error = null;
-    },
-    [setPastEventsList.fulfilled]: (state, action) => {
-        state.pastEvents = action.payload;
-        state.error = null;
-    },
-    [setPastEventsList.rejected]: (state, action) => {
-        state.status = 'Rejected loading events';
-        state.error = action.payload;
-    }
-}
-

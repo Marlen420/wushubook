@@ -2,11 +2,14 @@ import React from 'react';
 import styles from './user.module.css';
 import { Checkbox } from '../../../../components/index';
 import { useDispatch } from 'react-redux';
-import { EditIcon, UserDeleteIcon } from '../../../../images/inedex';
+import { Approve, EditIcon, UserDeleteIcon } from '../../../../images/inedex';
 import { setDeleteId } from '../../../../redux/features/counter/usersSlice';
 
 const getRole = {
-    'trainer': 'Тренер'
+    'trainer': 'Тренер',
+    'admin': 'Админ',
+    'secretary': 'Секретарь',
+    'judge': 'Судья'
 }
 
 const getName = (name) => {
@@ -14,12 +17,16 @@ const getName = (name) => {
     str[str.findIndex((i)=>i==='/')] = ' ';
     return str.join('');
 }
-const UserItem = ({item, isSelectedItem, onSelectItem}) => {
-    const dispatch = useDispatch();
 
+
+const UserItem = ({item, isSelectedItem, onSelectItem, deleteUser, roleFilter, approveUser}) => {
+    
+    
     const handleDeleteItem = () => {
-        dispatch(setDeleteId(item.id));
+        deleteUser(item.id)
     }
+
+    const handleAppriveUtem = () => approveUser(item.id);
 
     return (
         <div className={styles.item_holder + ' ' + (isSelectedItem(item.id) && styles.selected_item)}>
@@ -37,10 +44,16 @@ const UserItem = ({item, isSelectedItem, onSelectItem}) => {
             <p className={styles.item_column + ' ' + styles.column_email}>{item.email}</p>
             <p className={styles.item_column + ' ' + styles.column_date}>{item.appointment_date}</p>
             <p className={styles.item_column + ' ' + styles.column_options}>
-                <img 
+                {roleFilter === 4
+                ? <img 
+                    className={styles.options_approve}
+                    src={Approve}
+                    onClick={handleAppriveUtem}
+                    alt="edit"/>
+                : <img 
                     className={styles.options_edit}
                     src={EditIcon}
-                    alt="edit"/>
+                    alt="edit"/>}
                 <img
                     onClick={handleDeleteItem}
                     className={styles.options_delete}

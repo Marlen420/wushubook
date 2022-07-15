@@ -7,15 +7,16 @@ import styles from './Events.module.css';
 import { usePagination } from '../../hooks/usePagination/usePagination';
 import { useCallback } from "react";
 import { useEffect } from "react";
-import { createNewEvent, deleteEvent, setNewEventsList, setPastEventsList } from "../../api/event.api";
+import { createNewEvent, deleteEvent, setEventList} from "../../api/event.api";
 import NewEvent from "./NewEvent/NewEvent";
+import { setEventListExtra } from "../../redux/extraReducers/eventExtraReducer";
 
 //Мероприятия
 const perPage = 3;
 
 function Events() {
     // Constants
-    const { newEvents, pastEvents, selected, status, error } = useSelector(state=>state.events);
+    const { data, selected, status, error } = useSelector(state=>state.events);
     const dispatch = useDispatch();
 
     // Hooks
@@ -26,7 +27,7 @@ function Events() {
         jump,
         next,
         prev
-    } = usePagination(([...newEvents || [], ...pastEvents || []]), perPage);
+    } = usePagination((data || []), perPage);
 
 
     // States
@@ -37,21 +38,19 @@ function Events() {
     
     // Onload
     useEffect(()=>{
-        dispatch(setPastEventsList());
-        dispatch(setNewEventsList());
+        dispatch(setEventList({start: '', end: ''}));
+        console.log("Loading");
     }, [dispatch])
     
     useEffect(()=>{
         if (status === 'Deleted event') {
-            dispatch(setStatus('Active'));    
-            dispatch(setPastEventsList());
-            dispatch(setNewEventsList());
+            dispatch(setStatus('Active'));
+            dispatch(setEventListExtra())
         }
         if (status === 'Created new event') {
             setIsNewEvent(false);
-            dispatch(setStatus('Active'));    
-            dispatch(setPastEventsList());
-            dispatch(setNewEventsList());
+            dispatch(setStatus('Active'));
+            dispatch(setEventListExtra())
         }
     }, [status, dispatch])
 

@@ -5,6 +5,11 @@ import Pagination from '../../../components/Pagination/index';
 import UserItem from './UserItem/UserItem';
 
 const UsersList = ({
+    allData,
+    search,
+    setSearch,
+    deleteUser,
+    approveUser,
     roleFilter, 
     users, 
     selected,
@@ -31,12 +36,27 @@ const UsersList = ({
                     isSelectedItem={isSelectedItem}/>
                 <div className={styles.users_list_holder}>
                     <div className={styles.users_list_inner}>
-                        {currentData().map((item)=>(
+                        {search === ''
+                        ? currentData().map((item)=>(
                            <UserItem
                                 key={item.id}
                                 item={item}
+                                roleFilter={roleFilter}
                                 isSelectedItem={isSelectedItem}
-                                onSelectItem={onSelectItem}/>
+                                onSelectItem={onSelectItem}
+                                deleteUser={deleteUser}
+                                approveUser={approveUser}/>
+                        ))
+                        : allData.filter((item)=>item.name.toLowerCase().includes(search.toLowerCase()) || item.email.toLowerCase().includes(search.toLowerCase()))
+                        .map((item)=>(
+                            <UserItem
+                                key={item.id}
+                                item={item}
+                                roleFilter={roleFilter}
+                                isSelectedItem={isSelectedItem}
+                                onSelectItem={onSelectItem}
+                                deleteUser={deleteUser}
+                                approveUser={approveUser}/>
                         ))}
                     </div>
                 </div>

@@ -24,7 +24,7 @@ const EventItem = ({
                 </div>
             </div>
             <p className={style.item_column + ' ' + style.column_name}>{item.title}</p>
-            <p className={style.item_column + ' ' + style.column_date}>{getDate(item.date)}</p>
+            <p className={style.item_column + ' ' + style.column_date}>{getDate(item.start)}</p>
             <div className={style.item_column + ' ' + style.column_options}>
                 <img 
                     className={style.options_edit}

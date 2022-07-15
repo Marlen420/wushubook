@@ -46,6 +46,7 @@
     display: flex;
     padding-right: 50px;
     justify-content: flex-end;
+    align-items: center;
 }
 
 .item_column {
@@ -55,11 +56,18 @@
     text-align: start;
 }
 
+.options_approve {
+    width: 35px;
+    margin: 0 30px;
+    cursor: pointer;
+}
+
 .options_edit {
     margin: 0 30px;
     cursor: pointer;
 }
 
 .options_delete {
+    height: 20px;
     cursor: pointer;
 }

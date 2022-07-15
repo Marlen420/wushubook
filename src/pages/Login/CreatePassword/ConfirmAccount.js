@@ -28,7 +28,9 @@ const ConfirmAccount = () => {
 
     useEffect(()=>{
         if (checkTmp === false) navigate('/login');
-        if (checkTmp === true) dispatch(setConfirmStatus(userId));
+        if (checkTmp === true) {
+            dispatch(setConfirmStatus(userId));
+        }
     }, [checkTmp]);
 
     useEffect(()=>{

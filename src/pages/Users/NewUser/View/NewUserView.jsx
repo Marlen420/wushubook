@@ -1,4 +1,5 @@
 import React from 'react';
+import { TailSpin } from 'react-loader-spinner';
 import { Button, Input } from '../../../../components';
 import { CloseIcon } from '../../../../images/inedex';
 import styles from '../newUser.module.css';
@@ -13,6 +14,7 @@ import TrainerRole from './TrainerRole';
 
 
 const NewUserView = ({
+    status, error,
     name, setName,
     lastname, setLastname,
     email, setEmail,
@@ -144,7 +146,11 @@ const NewUserView = ({
                         <Button
                             type="submit"
                             projectType="confirm_primary">
-                            Добавить
+                            {status === 'Setting new user'
+                            ? <TailSpin
+                            height={24}
+                            color='white'/>
+                            : 'Добавить'}
                         </Button>
                 </div>
             </form>

@@ -37,7 +37,7 @@ import mikrafon from './mikrafon.svg'
 import flyIcon from './111.png'
 import LogoOut from './logOut.png'
 import people from './people.svg'
-
+import Approve from './Approve.svg';
 import email from './Email.svg'
 import telephonIconNotRegister from './telofaoIcon.svg'
 import payload from './Polygon 2.svg'
@@ -86,5 +86,6 @@ export {
     Selected,
     EditIcon,
     UserDeleteIcon,
-    Fon
+    Fon,
+    Approve
 }
