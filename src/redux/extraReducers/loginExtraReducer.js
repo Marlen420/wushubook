@@ -1,4 +1,10 @@
-import { setUpdateUser, setForgotPassword, setLogin, setSignup, checkToken, setNewPassword, setConfirmStatus, setUpdatePassword } from "../../api/login.api";
+import { setUpdateUser, setForgotPassword, setLogin, setSignup, checkToken, setNewPassword, setConfirmStatus, setUpdatePassword, setProfile } from "../../api/login.api";
+
+export const setProfileExtra = {
+    [setProfile.fulfilled]: (state, action) => {
+        state.user = action.payload;
+    }
+}
 
 export const setConfirmStatusExtra = {
     [setConfirmStatus.pending]: (state) => {

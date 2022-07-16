@@ -1,18 +1,24 @@
 import React, { useEffect } from 'react';
 import styles from './index.module.css';
 import { Time } from '../../../images/inedex.js'
+import { useDispatch, useSelector } from 'react-redux';
+import { setProfile } from '../../../api/login.api';
 
 
 
 
 
 function Main() {
+    const dispatch = useDispatch();
+    const { id } = useSelector(state=>state.profile.user);
 
     useEffect(() => {
-        document.body.style.overflow = 'hidden'
+        document.body.style.overflow = 'hidden';
         return () => document.body.style.overflow = 'auto'
     }, [])
-
+    useEffect(()=>{
+        dispatch(setProfile(id));
+    }, [dispatch, window]);
     return (
 
         <div className={styles.active}

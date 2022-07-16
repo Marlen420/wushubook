@@ -44,7 +44,7 @@ function App() {
           <Routes>
             <Route path='/*' element={<Home userStatus={user.status} />} />
             {
-              user.status === '1' &&
+              user.status !== '2' &&
               <>
                 <Route path='/clubs' element={<Clubs />} />
                 <Route path='/document' element={<Document />} />

@@ -79,10 +79,8 @@ option {
 }
 
 .content__OpenIcon {
-
     display: inline;
     position: relative;
-
 }
 
 .arrow {
@@ -98,20 +96,14 @@ option {
     /* right: 0; */
 }
 
-<<<<<<< HEAD
-.content li {
-=======
 .arrow1 {
     position: absolute;
     right: 15px;
     top: 30%;
-
     z-index: 5;
-
 }
 
-li {
->>>>>>> origin/dev2
+.content li {
     font-family: 'Lato';
     font-style: normal;
     font-weight: 400;
