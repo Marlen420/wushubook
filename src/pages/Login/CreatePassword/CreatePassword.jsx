@@ -33,7 +33,7 @@ const CreatePassword = ({action = 'create'}) => {
         e.preventDefault();
         if (password !== conforPassword) 
         {
-            dispatch(setError('* Пароли не совпадают'));
+            dispatch(setError({error: '* Пароли не совпадают', type: 'create-password'}));
             return;
         }
         dispatch(setNewPassword({id: userId, tmp: token, password}));

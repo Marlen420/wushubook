@@ -11,11 +11,15 @@ export const counterSlice = createSlice({
         },
         status: 'Active',
         error: null,
+        errorType: null,
         checkTmp: null,
         user: localStorage.getItem('jwt-user') ? JSON.parse(localStorage.getItem('jwt-user')) : null
     },
     reducers: {
-        setError: (state, action) => state.error = action.payload,
+        setError: (state, action) => {
+            state.error = action.payload.error;
+            state.errorType = action.payload.type;
+        }
     },
     extraReducers: {
         ...signupExtraReducers,

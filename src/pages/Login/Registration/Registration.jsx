@@ -8,6 +8,9 @@ import EyeSlash from '../icons/EyeSlash.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSignup } from '../../../api/login.api';
 import { TailSpin } from 'react-loader-spinner';
+import { isValidated, validateForm } from '../../../utils/passwordValidation';
+import eachQuarterOfInterval from 'date-fns/esm/fp/eachQuarterOfInterval/index.js';
+import { setError } from '../../../redux/features/counter/profileSlice';
 
 // Validation
 // const validationForm = (data) => {
@@ -19,7 +22,7 @@ import { TailSpin } from 'react-loader-spinner';
 function Registration() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { status } = useSelector(state=>state.profile);
+    const { status, error, errorType } = useSelector(state=>state.profile);
 
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -50,7 +53,19 @@ function Registration() {
             email,
             password
         };
-        dispatch(setSignup(data));
+        validateForm({
+            name: name + lastname,
+            email,
+            password,
+            confirmPassword,
+        }, (text)=>dispatch(setError({error: text, errorType: 'login-validation'})));
+        if (isValidated({
+            name: name + lastname,
+            email,
+            password,
+            confirmPassword,
+        })) dispatch(setSignup(data));
+        else return;
     }
 
     return (
@@ -125,14 +140,18 @@ function Registration() {
                         className={styles.password_show_button}/>
                     </div>
                 </div>
-                <Button
-                type='submit'>
-                    {status === "Sending signup link"
-                    ? <TailSpin 
-                    height={24}
-                    color='white'/>
-                    : 'Зарегистрироваться'}
-                </Button>
+                {error &&
+                <p className={styles.error_message}>*{error}</p>}
+                <div className={styles.button_holder}>
+                    <Button
+                    type='submit'>
+                        {status === "Sending signup link"
+                        ? <TailSpin 
+                        height={24}
+                        color='white'/>
+                        : 'Зарегистрироваться'}
+                    </Button>
+                </div>
             </form>
             <div className={styles.bottom_side}>
                 <p

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useFile from "../../hooks/usePagination/useFile";
 import { deleteDocument } from "../../redux/features/counter/documentSlice";
@@ -29,6 +29,15 @@ function Documents() {
     const handleAddFile = (e) => e.target.nextSibling?.click();
     const handleDeleteDocument = (id) => dispatch(deleteDocument(id));
     const handleUploadFilesChange = (e) => setUploadFiles(e.target.files);
+
+    useEffect(()=>{
+        if (uploadFiles) {
+            uploadFiles.forEach((item)=>{
+                const file = {id: new Date()};
+                console.log(item);
+            })
+        }
+    }, [uploadFiles]);
 
     console.log(uploadFiles);
 
