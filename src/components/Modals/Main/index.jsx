@@ -15,7 +15,8 @@ function Main() {
 
     return (
 
-        <div className={styles.modal}  >
+        <div className={styles.active}
+            onClick={(e) => e.stopPropagation()}>
             <div className={styles.modal__content}>
 
                 <div className={styles.content} >

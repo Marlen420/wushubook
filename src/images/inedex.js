@@ -48,8 +48,10 @@ import PdfIcon from './pdf-icon.png';
 import photoPeople from './Account.svg'
 import profilIcon from './profilIcon.svg'
 import goOutIcon from './IconGoOut.svg'
+import peopleNotIcon from './Iconssssssssss.svg'
 
 export {
+    peopleNotIcon,
     goOutIcon,
     profilIcon,
     photoPeople,

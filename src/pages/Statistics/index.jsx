@@ -100,15 +100,18 @@ function Statistics() {
 
 
             <div  >
-                <div onClick={togglingSalary}>
+                <div className={styles.content__OpenIcon} onClick={togglingSalary}>
                     {isOpenSalary ? <img src={payloadClose} alt='Not find ArrowDownIcon'
-                        className={styles.arrow} />
+                        className={styles.arrow1} />
                         :
                         <img src={payload} className={styles.arrow}
                             alt='Not find ArrowTopIcon' />}
                     {<input value={selesctClubs}
                         className={styles.input} readOnly />}
+
                 </div >
+
+
                 {
                     isOpenSalary && (
                         <div>

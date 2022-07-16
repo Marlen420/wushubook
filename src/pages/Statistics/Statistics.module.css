@@ -6,11 +6,12 @@
 }
 
 .content__title {
-    font-family: 'Lato';
+    /* font-family: 'Lato'; */
     font-style: normal;
     font-weight: 700;
     font-size: 32px;
     line-height: 120%;
+    margin-bottom: 40px;
     /* or 38px */
     letter-spacing: 0.04em;
     color: #000000;
@@ -77,16 +78,40 @@ option {
     padding-top: 8px;
 }
 
+.content__OpenIcon {
+
+    display: inline;
+    position: relative;
+
+}
+
 .arrow {
     position: absolute;
+    right: 15px;
+    top: 50%;
+    /* left: 5px; */
+    /* position: absolute;
     left: 225px;
-    bottom: 354px;
+    bottom: 354px; */
     /* background: red; */
     z-index: 5;
     /* right: 0; */
 }
 
+<<<<<<< HEAD
 .content li {
+=======
+.arrow1 {
+    position: absolute;
+    right: 15px;
+    top: 30%;
+
+    z-index: 5;
+
+}
+
+li {
+>>>>>>> origin/dev2
     font-family: 'Lato';
     font-style: normal;
     font-weight: 400;

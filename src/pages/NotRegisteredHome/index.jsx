@@ -12,7 +12,7 @@ function NotRegisteredHome() {
     const dispatch = useDispatch()
 
     const { status, error, newsEvents, lastEvents } = useSelector(state => state.main)
-    console.log("LasEvent: ", lastEvents)
+
 
     useEffect(() => {
         dispatch(getNewEvent())
@@ -48,7 +48,7 @@ function NotRegisteredHome() {
                     </div>
 
 
-                    <NavLink to='/login'> <button className={styles.headers__contact_btn}>Войти </button></NavLink>
+                    <NavLink style={{ textDecoration: 'none' }} to='/login'> <button className={styles.headers__contact_btn}>Войти </button></NavLink>
 
                 </div>
 
@@ -85,7 +85,7 @@ function NotRegisteredHome() {
                             <h1 className={styles.content__date}> {item.onlyDay} <span className={styles.content__data2}>{item.onlyMonth}</span></h1>
                             <h1 className={styles.content__title}>{item.title}</h1>
                             <p className={styles.content__time}>{item.startTimeFinish}</p>
-                            <p className={styles.content__address}>{item.city}</p>
+                            <p className={styles.content__address}>{item.city}, {item.adress} </p>
 
 
                         </div>
@@ -116,12 +116,11 @@ function NotRegisteredHome() {
                     lastEvents.NotRegistering_Date_Last_Event?.slice(0, 3).map((item) =>
 
                         <div key={item.id} className={styles.content_block}>
-                            <h1 className={styles.content__date}> {item.onlyDay}
-                                <span className={styles.content__data2}>{item.onlyMonth}</span></h1>
+                            <h1 className={styles.content__date}> {item.onlyDay} <span className={styles.content__data2}>{item.onlyMonth}</span></h1>
                             <h1 className={styles.content__title}>{item.title}</h1>
                             <p className={styles.content__time}>{item.startTimeFinish}</p>
-                            <p className={styles.content__address}>{item.address}</p>
-
+                            {/* <p className={styles.content__address}>{item.address}</p> */}
+                            <p className={styles.content__address}>{item.city}, {item.adress} </p>
                         </div>
                     )}
 
@@ -131,7 +130,7 @@ function NotRegisteredHome() {
             <Footer />
 
 
-        </div>
+        </div >
     )
 }
 

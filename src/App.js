@@ -8,21 +8,23 @@ import Document from './pages/Documents/Documents.jsx'
 import Events from './pages/Event/Events.jsx'
 import Statistics from './pages/Statistics/index.jsx'
 import Users from './pages/Users/Users.jsx'
-import { NavBar, Header } from './components';
-
+import { NavBar } from './components';
 import { getLastEvent, getNewEvent, getNews } from './api/main.js';
 import Profile from './pages/Profile/Profile.jsx';
 import Headers from './components/Headers/Headers.jsx'
-
-import { MainNews, MoreNews, OtherNews } from './pages/News/index.js';
+import { MainNews, MoreNews } from './pages/News/index.js';
 import Chat from './pages/Chat/index.jsx';
 import { getStatistics } from './api/statistics.js';
 import NotRegisteredHome from './pages/NotRegisteredHome/index.jsx';
 
+import jwt_decode from "jwt-decode";
 
 function App() {
   const { isLogged } = useSelector(state => state.profile.login);
+  const { user } = useSelector(state => state.profile)
   const dispatch = useDispatch()
+
+
 
   useEffect(() => {
     dispatch(getNewEvent())
@@ -31,23 +33,33 @@ function App() {
     dispatch(getStatistics())
   }, [dispatch])
 
+
+
   return (
-    <div >
+    <div>
       {isLogged
         ? <>
           <Headers />
           <NavBar />
-          <Routes >
-            <Route path='/*' element={<Home />} />
-            <Route path='/clubs' element={<Clubs />} />
-            <Route path='/document' element={<Document />} />
-            <Route path='/events' element={<Events />} />
-            <Route path='/news' element={<MainNews />} />
-            <Route path='/statistics' element={<Statistics />} />
-            <Route path='/users' element={<Users />} />
-            <Route path='/profile' element={<Profile />} />
-            <Route path='/moreNews' element={<MoreNews />} />
-            <Route path='/chat' element={<Chat />} />
+          <Routes>
+            <Route path='/*' element={<Home userStatus={user.status} />} />
+            {
+              user.status === '1' &&
+              <>
+                <Route path='/clubs' element={<Clubs />} />
+                <Route path='/document' element={<Document />} />
+                <Route path='/events' element={<Events />} />
+                <Route path='/news' element={<MainNews />} />
+                <Route path='/statistics' element={<Statistics />} />
+                {
+                  user.role === 'admin' &&
+                  <Route path='/users' element={<Users />} />
+                }
+                <Route path='/profile' element={<Profile />} />
+                <Route path='/moreNews' element={<MoreNews />} />
+                <Route path='/chat' element={<Chat />} />
+              </>
+            }
             {
               isLogged &&
               <Route path='/calendar' element={<Calendar />} />

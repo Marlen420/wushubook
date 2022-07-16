@@ -255,7 +255,7 @@ function Chat() {
                                 avator={UserPhoto}
                                 text='Hello World Hello  World Hello World Hello WorldHello World Hello World  World Hello World  World Hello World  ' />
 
-                            <Message
+                            {/* <Message
 
                                 // date="Sun Apr 21 2019 21:55:29"
                                 audio={song}
@@ -266,7 +266,7 @@ function Chat() {
                                     avator: { UserPhoto }
                                 }}
                             />
-
+ */}
 
 
 

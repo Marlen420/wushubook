@@ -9,20 +9,25 @@ import { Oval, Circles } from 'react-loader-spinner'
 import Footer from '../../components/Footer/index.jsx';
 
 import OtherNews from '../News/OtherNews/OtherNews';
+import Main from '../../components/Modals/Main';
 
 
 
 
 
-function Home() {
+function Home({ userStatus }) {
 
 
-
+    console.log(userStatus)
+    console.log(typeof userStatus)
     const { status, error, newsEvents, lastEvents } = useSelector(state => state.main)
 
 
     return (
         <div className={styles.conteiner}>
+            {userStatus === 1 &&
+                <Main />}
+
             <div className={styles.conteiner__banner}>
                 <img src={PhotoMain} alt=''
                     className={styles.conteiner__photo} />
@@ -66,7 +71,7 @@ function Home() {
                             <div >
                                 <h1 className={styles.wrapper__title} >{item.title} </h1>
                                 <p className={styles.wrapper__city}>{item.city} </p>
-                                <time className={styles.wrapper__time}>{item.date}</time>
+                                <time className={styles.wrapper__time}>{item.allDataTime}</time>
                             </div>
 
                         </article>
@@ -79,7 +84,7 @@ function Home() {
 
             <p className={styles.conteiner__tema}>Предыдущие мероприятия:</p>
             {
-                status == 'loading' && <div className={styles.spinner} >
+                status === 'loading' && <div className={styles.spinner} >
                     <Oval
                         ariaLabel="loading-indicator"
                         height={100}
@@ -106,7 +111,7 @@ function Home() {
                             <div className={styles.wrapperLastEvents__lastEvents2} >
                                 <h1 className={styles.wrapper__title} >{item.title} </h1>
                                 <p className={styles.wrapper__city}>{item.city} </p>
-                                <time className={styles.wrapper__time}>{item.date}</time>
+                                <time className={styles.wrapper__time}>{item.allDataTime}</time>
                             </div>
                         </article>
                     )
