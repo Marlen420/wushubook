@@ -45,8 +45,14 @@ import payloadClose from './PClose 2 (1).svg'
 import addFileIcon from './add_file_icon.svg';
 import PdfIcon from './pdf-icon.png';
 
+import photoPeople from './Account.svg'
+import profilIcon from './profilIcon.svg'
+import goOutIcon from './IconGoOut.svg'
 
 export {
+    goOutIcon,
+    profilIcon,
+    photoPeople,
     payloadClose,
     payload,
     email,

@@ -41,9 +41,13 @@ function OtherNews() {
             {
                 news.slice(0, 3).map(item =>
                     <article key={item.id} className={styles.conteinerNews__block} onClick={() => readMore(item)} >
+
                         <div className={styles.conteinerNews__block_for_img} >
                             <img src={item.image} alt='' className={styles.conteinerNews__images} />
                         </div>
+
+
+
                         <div className={styles.conteinerNews__allNews} >
                             <h1 className={styles.conteinerNews__title}>{item.title}</h1>
                             <p className={styles.conteinerNews__text}>{item.text}</p>

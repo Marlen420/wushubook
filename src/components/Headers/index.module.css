@@ -55,10 +55,75 @@
     box-shadow: -1px -5px 55px 10px rgba(34, 60, 80, 0.21);
 } */
 
+.f {
+    width: 187px;
+    background: rebeccapurple;
+    background: red;
+    background: #F6F8FF;
+    border-radius: 8px;
+    position: relative;
+    height: 50px;
+}
+
+.headers_profil {
+
+    display: flex;
+
+}
+
+.headers_profil_icon {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 5px;
+}
+
+.headers_profil_pops {
+    margin-top: 4px;
+    background: #FFFFFF;
+    border: 1px solid #EFEFEF;
+    box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    padding-top: 5px;
+}
+
+.headers_profil_name {
+    align-self: center;
+    padding-left: 7px;
+}
+
+.headers_profil_popsUp {
+    display: flex;
+    margin-bottom: 5px;
+
+}
+
+.headers_profil_hover {
+    padding-top: 10px;
 
 
+}
+
+.headers_profil_pops :hover {
+    background: #F6F8FF;
+    cursor: pointer;
+
+}
 
 
+.arrow {
+    position: absolute;
+    z-index: 3;
+    right: 5%;
+    top: 45%;
+}
+
+
+.arrowOpenIcon {
+    position: absolute;
+    z-index: 3;
+    right: 5%;
+    top: 40%;
+}
 
 @media screen and (max-width: 845px) {
     .header__allIcon {

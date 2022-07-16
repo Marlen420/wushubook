@@ -107,7 +107,7 @@ function Statistics() {
                         <img src={payload} className={styles.arrow}
                             alt='Not find ArrowTopIcon' />}
                     {<input value={selesctClubs}
-                        className={styles.input} readOnly/>}
+                        className={styles.input} readOnly />}
                 </div >
                 {
                     isOpenSalary && (
@@ -116,7 +116,7 @@ function Statistics() {
                                 {
                                     nameClubs.map(option => (
                                         <div>
-                                            <li key={Math.random()} onClick={() => chooseClubs(option)}  >
+                                            <li className={styles.li} key={Math.random()} onClick={() => chooseClubs(option)}  >
                                                 {option}
                                             </li >
                                         </div>

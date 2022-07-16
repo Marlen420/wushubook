@@ -12,7 +12,7 @@ const All_Last_Events =
         {
             id: 2,
             title: "Чемпионат среди детей",
-            onlyDay: 25, // Здесь нужно передать только день проведение мероприятии
+            onlyDay: 25,
             onlyMonth: 'март', // Здесь только месяц проведение мероприятии
             startTimeFinish: '9:00-12:00', // Здесь время,  начало мероприятии и конец
             city: "Бишкек",
@@ -133,13 +133,13 @@ const All_New_Events =
 
 export const getNewEvent = createAsyncThunk(
     'main/getNewEvent',
-    async function(_, { rejectWithValue }) {
+    async function (_, { rejectWithValue }) {
         try {
-            const response = await API.get('events/newEvents')
+            const response = await API.get(`events?start=${new Date()}end=${2022 - 12 - 31}`)
             if (response.status !== 200) {
                 throw new Error("Server Error!")
             }
-
+            console.log("l: ", All_New_Events)
             return All_New_Events
 
         }
@@ -151,13 +151,13 @@ export const getNewEvent = createAsyncThunk(
 
 export const getLastEvent = createAsyncThunk(
     'main/getLastEvent',
-    async function(_, { rejectWithValue }) {
+    async function (_, { rejectWithValue }) {
         try {
-            const response = await API.get('/events/pastEvents')
+            const response = await API.get(`events?end=${new Date()}`)
             if (response.status !== 200) {
                 throw new Error("Server Error!")
             }
-
+            console.log("respose: ", response.data)
             return All_Last_Events
         }
         catch (error) {
@@ -170,7 +170,7 @@ export const getNews = createAsyncThunk(
     'main/getNews',
     async function (id, { rejectWithValue }) {
         try {
-            const response = await API.get(`news`)
+            const response = await API.get('news')
             if (response.status !== 200) {
                 throw new Error("Server Error!")
             }
@@ -200,4 +200,4 @@ export const getNewsId = createAsyncThunk(
             return rejectWithValue(error.message)
         }
 
-})
+    })
