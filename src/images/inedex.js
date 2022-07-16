@@ -44,8 +44,10 @@ import payloadClose from './PClose 2 (1).svg'
 import photoPeople from './Account.svg'
 import profilIcon from './profilIcon.svg'
 import goOutIcon from './IconGoOut.svg'
+import peopleNotIcon from './Iconssssssssss.svg'
 
 export {
+    peopleNotIcon,
     goOutIcon,
     profilIcon,
     photoPeople,

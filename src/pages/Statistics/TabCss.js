@@ -14,7 +14,7 @@ export const Tab = styled.button`
     cursor: pointer;
     background: 0;
     color: #565656;
-
+    line-height: 2em;
     @media (max-width: 462px) {
     padding-right: 0px;
     padding-left:2px;
@@ -31,7 +31,7 @@ export const Tab = styled.button`
     ${({ active }) =>
 
         active && `border-bottom:  3px solid #6786F4; 
-            line-height: 3em;
+            // line-height: 2em;
             font-weight: 700;
             color: #000000;
 
