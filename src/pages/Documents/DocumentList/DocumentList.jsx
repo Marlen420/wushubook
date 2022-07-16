@@ -8,6 +8,7 @@ const DocumentList = ({
     Other,
     deleteItem,
 }) => {
+    
     return (
         <div className={styles.list_holder}>
             { Today &&
