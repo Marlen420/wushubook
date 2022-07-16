@@ -84,7 +84,7 @@ function Home({ userStatus }) {
 
             <p className={styles.conteiner__tema}>Предыдущие мероприятия:</p>
             {
-                status == 'loading' && <div className={styles.spinner} >
+                status === 'loading' && <div className={styles.spinner} >
                     <Oval
                         ariaLabel="loading-indicator"
                         height={100}

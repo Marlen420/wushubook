@@ -12,7 +12,7 @@ function NotRegisteredHome() {
     const dispatch = useDispatch()
 
     const { status, error, newsEvents, lastEvents } = useSelector(state => state.main)
-    console.log("LasEvent: ", lastEvents)
+
 
     useEffect(() => {
         dispatch(getNewEvent())
@@ -48,7 +48,7 @@ function NotRegisteredHome() {
                     </div>
 
 
-                    <NavLink to='/login'> <button className={styles.headers__contact_btn}>Войти </button></NavLink>
+                    <NavLink style={{ textDecoration: 'none' }} to='/login'> <button className={styles.headers__contact_btn}>Войти </button></NavLink>
 
                 </div>
 
@@ -130,7 +130,7 @@ function NotRegisteredHome() {
             <Footer />
 
 
-        </div>
+        </div >
     )
 }
 

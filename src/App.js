@@ -43,23 +43,23 @@ function App() {
           <NavBar />
           <Routes>
             <Route path='/*' element={<Home userStatus={user.status} />} />
-            {/* {
-              user.status === 'Active' && */}
-            <>
-              <Route path='/clubs' element={<Clubs />} />
-              <Route path='/document' element={<Document />} />
-              <Route path='/events' element={<Events />} />
-              <Route path='/news' element={<MainNews />} />
-              <Route path='/statistics' element={<Statistics />} />
-              {
-                user.role === 'admin' &&
-                <Route path='/users' element={<Users />} />
-              }
-              <Route path='/profile' element={<Profile />} />
-              <Route path='/moreNews' element={<MoreNews />} />
-              <Route path='/chat' element={<Chat />} />
-            </>
-            {/* } */}
+            {
+              user.status === '1' &&
+              <>
+                <Route path='/clubs' element={<Clubs />} />
+                <Route path='/document' element={<Document />} />
+                <Route path='/events' element={<Events />} />
+                <Route path='/news' element={<MainNews />} />
+                <Route path='/statistics' element={<Statistics />} />
+                {
+                  user.role === 'admin' &&
+                  <Route path='/users' element={<Users />} />
+                }
+                <Route path='/profile' element={<Profile />} />
+                <Route path='/moreNews' element={<MoreNews />} />
+                <Route path='/chat' element={<Chat />} />
+              </>
+            }
             {
               isLogged &&
               <Route path='/calendar' element={<Calendar />} />

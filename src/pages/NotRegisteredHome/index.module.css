@@ -61,6 +61,7 @@
 
 
 .headers__contact_btn {
+    /* text-decoration: none; */
     padding-left: 18px;
     padding-right: 18px;
     background: #A6D89A;
