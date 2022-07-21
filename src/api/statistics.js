@@ -1,10 +1,9 @@
-import { API } from "./API"
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { array } from './mock/index'
 
 export const getStatistics = createAsyncThunk(
     'statistics/getStatistics',
-    async function (_, { rejectWithValue }) {
+    async function(_, { rejectWithValue }) {
         try {
             // const response = await API.get(`statistics`)
             // if (response.status !== 200) {
@@ -12,8 +11,7 @@ export const getStatistics = createAsyncThunk(
             // }
 
             return array
-        }
-        catch (error) {
+        } catch (error) {
             return rejectWithValue(error.message)
         }
 

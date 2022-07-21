@@ -1,4 +1,19 @@
-import { createNewEvent, deleteEvent, setEventList } from "../../api/event.api";
+import { createNewEvent, deleteEvent, setEventList, getEventById } from "../../api/event.api";
+
+// Get event by id
+export const getEventByIdExtra = {
+    [getEventById.pending]: (state) => {
+        state['currentEvent'] = { status: 'Loading event', error: null };
+    },
+    [getEventById.fulfilled]: (state, action) => {
+        state.currentEvent = {...state.currentEvent, ...action.payload };
+        state.currentEvent.error = null;
+    },
+    [getEventById.rejected]: (state, action) => {
+        state.currentEvent.error = action.payload;
+        state.currentEvent.status = 'Rejected load event';
+    }
+}
 
 // Delete event
 export const deleteEventExtra = {

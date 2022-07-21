@@ -1,5 +1,5 @@
 // import cn from 'classnames'
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 import styles from './style.module.css'
 
 const Button = ({children, type="button", projectType = 'primary', autoFocus, ...props}) => {

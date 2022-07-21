@@ -23,6 +23,8 @@
 .input_label {
     font-size: 12px;
     font-weight: 500;
+    margin-bottom: 5px;
+    display: inline-block;
 }
 
 .email_holder {
@@ -66,7 +68,7 @@
 .password_show_button {
     position: absolute;
     right: 3%;
-    top: 45%;
+    top: 50%;
     cursor: pointer;
 }
 
@@ -88,6 +90,7 @@
     font-weight: 700;
     color: red;
     margin: 20px 0;
+    font-size: 14px;
 }
 
 .button_holder {

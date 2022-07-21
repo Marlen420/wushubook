@@ -17,6 +17,7 @@ const perPage = 3;
 function Events() {
     // Constants
     const { data, selected, status, error } = useSelector(state=>state.events);
+    const { user } = useSelector(state=>state.profile);
     const dispatch = useDispatch();
 
     // Hooks
@@ -39,7 +40,6 @@ function Events() {
     // Onload
     useEffect(()=>{
         dispatch(setEventList({start: '', end: ''}));
-        console.log("Loading");
     }, [dispatch])
     
     useEffect(()=>{
@@ -109,6 +109,7 @@ function Events() {
                 handleSubmit={handleAddNewEvent}
                 closeWindow={handleCloseNewEvent}/>}
             <EventHeader
+                user={user}
                 handleNewEvent={handleNewEventOpen}/>
             <EventList
                 selected={selected}

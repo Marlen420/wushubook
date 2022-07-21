@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { createNewEventExtra, deleteEventExtra, setEventListExtra } from '../../extraReducers/eventExtraReducer';
+import { createNewEventExtra, deleteEventExtra, getEventByIdExtra, setEventListExtra } from '../../extraReducers/eventExtraReducer';
 
 
 export const counterSlice = createSlice({
@@ -15,6 +15,7 @@ export const counterSlice = createSlice({
         ...setEventListExtra,
         ...createNewEventExtra,
         ...deleteEventExtra,
+        ...getEventByIdExtra,
     },
     reducers: {
         setUnselectItem: (state, action) => {

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router';
 import { Checkbox } from '../../../components';
 import { EditIcon, UserDeleteIcon } from '../../../images/inedex';
 import { getDate } from '../../../utils';
@@ -10,11 +11,13 @@ const EventItem = ({
     item,
     onDelete
 }) => {
-
+    const navigate = useNavigate();
     const handleDeleteItem = () => onDelete(item.id);
-
+    const handleItemClick = () => navigate('/events/'+item.id);
     return (
-        <div className={style.item_holder + ' ' + (isSelectedItem(item.id) && style.selected_item)}>
+        <div 
+            onClick={handleItemClick}
+            className={style.item_holder + ' ' + (isSelectedItem(item.id) && style.selected_item)}>
             <div className={style.column_checkbox}>
                 <div className={style.checkbox_holder}>
                     <Checkbox

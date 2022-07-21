@@ -19,7 +19,6 @@ function Headers() {
     const [selesctClubs, setSelesctClubs] = useState('Все клубы')
 
     const { user } = useSelector(state => state.profile)
-    console.log("user: ", user)
 
     const name = user.name.split('/')
 

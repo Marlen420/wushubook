@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/index.jsx';
 import Calendar from './pages/Calendar/Calendar.jsx'
 import Clubs from './pages/Clubs/index.jsx'
@@ -17,7 +17,7 @@ import Chat from './pages/Chat/index.jsx';
 import { getStatistics } from './api/statistics.js';
 import NotRegisteredHome from './pages/NotRegisteredHome/index.jsx';
 
-import jwt_decode from "jwt-decode";
+import EventDetail from './pages/EventDetail/EventDetail.jsx';
 
 function App() {
   const { isLogged } = useSelector(state => state.profile.login);
@@ -44,11 +44,12 @@ function App() {
           <Routes>
             <Route path='/*' element={<Home userStatus={user.status} />} />
             {
-              user.status !== '2' &&
+              user.status !== '0' &&
               <>
                 <Route path='/clubs' element={<Clubs />} />
                 <Route path='/document' element={<Document />} />
                 <Route path='/events' element={<Events />} />
+                <Route path='/events/:id' element={<EventDetail />} />
                 <Route path='/news' element={<MainNews />} />
                 <Route path='/statistics' element={<Statistics />} />
                 {

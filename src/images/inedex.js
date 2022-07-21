@@ -49,6 +49,7 @@ import photoPeople from './Account.svg'
 import profilIcon from './profilIcon.svg'
 import goOutIcon from './IconGoOut.svg'
 import peopleNotIcon from './Iconssssssssss.svg'
+import Process from './process.png';
 
 export {
     peopleNotIcon,
@@ -100,4 +101,5 @@ export {
     Approve,
     addFileIcon,
     PdfIcon,
+    Process
 }

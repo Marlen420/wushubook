@@ -1,6 +1,20 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import API from '../utils/axiosConfig';
 
+// Get event by id
+export const getEventById = createAsyncThunk(
+    'event/getEventById',
+    async(id, { rejectWithValue }) => {
+        try {
+            const response = await API.get('/events/getById/' + id);
+            console.log(response.data);
+            return response.data;
+        } catch (e) {
+            return rejectWithValue(e.response.data.message);
+        }
+    }
+)
+
 // Delete event
 export const deleteEvent = createAsyncThunk(
     'event/deleteEvent',
