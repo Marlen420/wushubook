@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { getLastEvent, getNewEvent, getNews, getNewsId } from '../../api/main'
+import { getLastEvent, getNewEvent } from '../../api/main'
 
 
 export const setError = (state, action) => {
@@ -16,15 +16,11 @@ export const setLoading = (state) => {
 export const toolkitSlice = createSlice({
     name: 'main',
     initialState: {
-        news: [],
-        newsId: [],
         lastEvents: [],
         newsEvents: [],
         status: null,
-        errors: {
-            events: null,
-            news: null,
-        }
+
+        error: null
     },
 
     extraReducers: {
@@ -47,26 +43,6 @@ export const toolkitSlice = createSlice({
         [getLastEvent.rejected]: setError,
 
 
-        [getNews.pending]: setLoading,
-
-        [getNews.fulfilled]: (state, action) => {
-            state.status = 'resolved';
-            state.news = action.payload
-        },
-        [getNews.rejected]: setError,
-
-
-
-
-        [getNewsId.pending]: setLoading,
-
-        [getNewsId.fulfilled]: (state, action) => {
-
-            state.status = 'resolved';
-            state.newsId = action.payload
-
-        },
-        [getNewsId.rejected]: setError,
 
     }
 

@@ -9,15 +9,15 @@ import Events from './pages/Event/Events.jsx'
 import Statistics from './pages/Statistics/index.jsx'
 import Users from './pages/Users/Users.jsx'
 import { NavBar } from './components';
-import { getLastEvent, getNewEvent, getNews } from './api/main.js';
+import { getLastEvent, getNewEvent } from './api/main.js'
 import Profile from './pages/Profile/Profile.jsx';
 import Headers from './components/Headers/Headers.jsx'
 import { MainNews, MoreNews } from './pages/News/index.js';
 import Chat from './pages/Chat/index.jsx';
 import { getStatistics } from './api/statistics.js';
 import NotRegisteredHome from './pages/NotRegisteredHome/index.jsx';
-
-import jwt_decode from "jwt-decode";
+import { getDialogs } from './api/dialogs.js';
+import { getNews } from './api/news.js';
 
 function App() {
   const { isLogged } = useSelector(state => state.profile.login);
@@ -31,6 +31,7 @@ function App() {
     dispatch(getLastEvent())
     dispatch(getNews())
     dispatch(getStatistics())
+    dispatch(getDialogs())
   }, [dispatch])
 
 

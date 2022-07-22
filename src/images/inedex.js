@@ -38,7 +38,7 @@ import flyIcon from './111.png'
 import LogoOut from './logOut.png'
 import people from './people.svg'
 import Approve from './Approve.svg';
-import email from './Email.svg'
+import email from './email.svg'
 import telephonIconNotRegister from './telofaoIcon.svg'
 import payload from './Polygon 2.svg'
 import payloadClose from './PClose 2 (1).svg'
@@ -49,8 +49,23 @@ import photoPeople from './Account.svg'
 import profilIcon from './profilIcon.svg'
 import goOutIcon from './IconGoOut.svg'
 import peopleNotIcon from './Iconssssssssss.svg'
+import plusIcon from './Plus.svg'
+import crossIcon from './Union.svg'
+import photoIcon from './VectorImages.svg'
+import quetionsIcon from './queshions.webp'
+import editIconNew from './EditNews.svg'
+import crossIconNew from './CheckIcon.svg'
+import crossIconForNew from './CrossNewsss.svg'
+// 12345678BEM
 
 export {
+    crossIconForNew,
+    crossIconNew,
+    editIconNew,
+    quetionsIcon,
+    photoIcon,
+    crossIcon,
+    plusIcon,
     peopleNotIcon,
     goOutIcon,
     profilIcon,

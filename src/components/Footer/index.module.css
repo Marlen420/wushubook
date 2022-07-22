@@ -5,6 +5,7 @@
     display: flex;
     flex-wrap: wrap;
     Justify-content: space-between;
+    margin-bottom: 0
 }
 
 .footer__address {

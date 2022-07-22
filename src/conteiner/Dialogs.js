@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux';
 import { Dialogs as BaseDialogs } from '../components/Dialogs/Dialogs.jsx'
 
-const Dialogs = ({ items, }) => {
+const Dialogs = () => {
+
+    const { items } = useSelector(state => state.dialogs)
+    console.log("i: ", items)
     const [inputValue, setValue] = useState('');
 
     const [filtred, setFiltredItems] = useState(Array.from(items))
 
     const onChangeInput = value => {
-        console.log(value)
 
         setFiltredItems(items.filter(
             dialog => dialog.user.fullname.toLowerCase().indexOf(value.toLowerCase()) >= 0
