@@ -9,6 +9,13 @@ export const counterSlice = createSlice({
         error: null,
         pastEvents: null,
         newEvents: null,
+        subList: [
+            { id: 0, title: 'Международный чемпионат по ушу среди детей', trainers: [{ id: 0, name: 'Иванов Иван Иванович' }] },
+            { id: 1, title: 'Международный чемпионат по ушу среди детей', trainers: [{ id: 0, name: 'Иванов Иван Иванович' }] },
+            { id: 2, title: 'Международный чемпионат по ушу среди детей', trainers: [{ id: 0, name: 'Иванов Иван Иванович' }] },
+            { id: 3, title: 'Международный чемпионат по ушу среди детей', trainers: [{ id: 0, name: 'Иванов Иван Иванович' }] },
+            { id: 4, title: 'Международный чемпионат по ушу среди детей', trainers: [{ id: 0, name: 'Иванов Иван Иванович' }] },
+        ],
         selected: []
     },
     extraReducers: {

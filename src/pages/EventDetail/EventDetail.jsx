@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Route, Routes, useParams } from 'react-router';
+import { Route, Routes, useNavigate, useParams } from 'react-router';
 import { getEventById } from '../../api/event.api';
 import Banner from './Banner/Banner';
 import EventHeader from './EventHeader/EventHeader';
@@ -10,7 +10,8 @@ import Table from './Table';
 const EventDetail = () => {
     // Constants
     const { id } = useParams();
-    const { currentEvent } = useSelector(state=>state.events);
+    const { currentEvent, subList } = useSelector(state=>state.events);
+    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     // Onload
@@ -21,10 +22,12 @@ const EventDetail = () => {
 
 
     // Functions
+    const handleClubItemClick = (itemId) => navigate('/events/' + id + '/' + itemId);
+
     const handleCreateProtocol = () => {
         console.log('Creating protocol');
     }
-
+    console.log(handleClubItemClick);
     return (
         <div style={{width: '96%', margin: 'auto', padding: '50px 0'}}>
             <Banner
@@ -36,8 +39,8 @@ const EventDetail = () => {
             <EventHeader
                 handleButtonClick={handleCreateProtocol}/>
             <Routes>
-                <Route path="/" element={<Submissions/>}/>
-                <Route path="/:id" element={<Table/>} />
+                <Route path="/*" element={<Submissions list={subList || []} handleClubItemClick={handleClubItemClick}/>}/>
+                <Route path="/qqq" element={<Table/>} />
             </Routes>
         </div>
     )
