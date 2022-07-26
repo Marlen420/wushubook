@@ -15,8 +15,6 @@ import { tr } from 'date-fns/locale'
 function Chat() {
     const [isOpen, setIsOpen] = useState(false)
 
-
-
     const openChat = () => {
         setIsOpen(true)
 
@@ -47,15 +45,11 @@ function Chat() {
 
 
                 <div className={styles.chat__sidebar_dialogs} onClick={openChat} >
-
                     <Dialogs />
                 </div>
 
 
-
-
             </div>
-
 
             {
                 isOpen ?
@@ -81,8 +75,6 @@ function Chat() {
                         </div>
 
                         <div className={styles.chat__dialog_message}>
-
-
                             <Message
                                 avator={UserPhoto}
                                 text='Hello World' />
@@ -159,6 +151,8 @@ function Chat() {
                             <ChatInput />
                         </div>
                     </div> :
+
+
                     <div className={styles.chat__Notdialog} >
                         <img alt='' className={styles.chat__Notdialog_img} src={'https://img.freepik.com/free-vector/flat-woman-at-home-office-with-laptop-conducting-video-meeting-team-building-with-colleagues-girl-chatting-and-talking-with-friends-online-vector-illustration-for-videoconference-or-remote-work_88138-551.jpg'} />
                         <p className={styles.chat__Notdialog_text}>Выберите диалог</p>

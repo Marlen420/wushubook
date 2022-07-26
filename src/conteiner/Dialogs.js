@@ -4,26 +4,28 @@ import { Dialogs as BaseDialogs } from '../components/Dialogs/Dialogs.jsx'
 
 const Dialogs = () => {
 
-    const { items } = useSelector(state => state.dialogs)
-    console.log("i: ", items)
+    const { allUsers, status } = useSelector(state => state.chat)
+    console.log("aall: ", allUsers)
     const [inputValue, setValue] = useState('');
 
-    const [filtred, setFiltredItems] = useState(Array.from(items))
+    // const [filtred, setFiltredItems] = useState(Array.from(allUsers)) раньше было так 
+    const [filtred, setFiltredItems] = useState(Array.from(allUsers))
 
     const onChangeInput = value => {
 
-        setFiltredItems(items.filter(
-            dialog => dialog.user.fullname.toLowerCase().indexOf(value.toLowerCase()) >= 0
+        setFiltredItems(allUsers.filter( //Это всё для ручной сортировки 
+            dialog => dialog.name.toLowerCase().indexOf(value.toLowerCase()) >= 0
         ))
         setValue(value)
     }
 
-
+    console.log("filtred: ", filtred)
     return (
         <BaseDialogs
-            items={filtred}
-            onSearch={onChangeInput}
+            items={allUsers}
+            onSearch={onChangeInput} // это параметнр для поиска людей, но реализуем жто потом 
             inputValue={inputValue}
+        // onSelectDialog={setCurrentDialog}
         />
     )
 }

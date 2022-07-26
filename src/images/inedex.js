@@ -56,9 +56,11 @@ import quetionsIcon from './queshions.webp'
 import editIconNew from './EditNews.svg'
 import crossIconNew from './CheckIcon.svg'
 import crossIconForNew from './CrossNewsss.svg'
+import notNotificatons from './NotNotifications.png'
 // 12345678BEM
 
 export {
+    notNotificatons,
     crossIconForNew,
     crossIconNew,
     editIconNew,

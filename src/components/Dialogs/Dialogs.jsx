@@ -8,7 +8,7 @@ import orderBy from 'lodash/orderBy';
 
 
 export const Dialogs = ({ items, onSearch, inputValue }) => {
-    console.log("items: ", items)
+    console.log("itemsDialog: ", items)
 
     return (
         <div >
@@ -29,8 +29,8 @@ export const Dialogs = ({ items, onSearch, inputValue }) => {
             {orderBy(items, ["created_at"], ["desc"]).map(item => (
 
                 <DialogItem
-                    user={item.user}
-                    unreaded={items.user}
+                    user={item}
+                    unreaded={items}
                     message={item}
 
                 />

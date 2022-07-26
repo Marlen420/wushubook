@@ -4,6 +4,7 @@
     /* background: rebeccapurple; */
     margin: 10px;
     position: relative;
+
 }
 
 .headers1 {
@@ -13,6 +14,37 @@
 
 }
 
+.header__notification {
+    display: flex;
+    /* background: rebeccapurple; */
+    position: relative;
+
+}
+
+.header__icon_conteiner {
+
+    width: 18px;
+    height: 18px;
+    background: #CE5B5B;
+    border-radius: 50%;
+
+
+    /* font-weight: 600; */
+    font-size: 10px;
+    /* line-height: 10px; */
+    position: absolute;
+    right: 20%;
+    top: -5%;
+
+}
+
+.header__icon_count {
+    position: relative;
+    top: 10%;
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 10px;
+}
 
 .headers__title {
     font-family: 'Lato', sans-serif;

@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import styles from './index.module.css'
 import { NavLink } from 'react-router-dom';
 import { MenuItems } from './MenuItems.js'
-import { Menu, Cross } from '../../images/inedex.js'
-import { useSelector } from "react-redux";
+import { Menu, Cross } from '../../images/inedex.js';
+import { useSelector } from 'react-redux'
 
 //Headers
 
@@ -12,6 +12,7 @@ function NavBar() {
     const handleClick = () => {
         setClicked(!isClicked)
     }
+
     const { user } = useSelector(state => state.profile)
 
     return (
@@ -35,6 +36,7 @@ function NavBar() {
                             item.title === 'Пользователи' && user.role !== 'admin' ||
                             <NavLink key={index} className={styles.navbar__link}
                                 to={item.to} > {item.title} </NavLink>
+
                         )
                     })
                 }
