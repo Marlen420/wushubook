@@ -22,12 +22,12 @@ const EventDetail = () => {
 
 
     // Functions
-    const handleClubItemClick = (itemId) => navigate('/events/' + id + '/' + itemId);
+    const handleClubItemClick = (itemId) => navigate('/events/' + id + '/table/' + itemId);
 
     const handleCreateProtocol = () => {
         console.log('Creating protocol');
     }
-    console.log(handleClubItemClick);
+
     return (
         <div style={{width: '96%', margin: 'auto', padding: '50px 0'}}>
             <Banner
@@ -39,8 +39,8 @@ const EventDetail = () => {
             <EventHeader
                 handleButtonClick={handleCreateProtocol}/>
             <Routes>
-                <Route path="/*" element={<Submissions list={subList || []} handleClubItemClick={handleClubItemClick}/>}/>
-                <Route path="/qqq" element={<Table/>} />
+                <Route path="/table/:id" element={<Table/>} />
+                <Route path="/" element={<Submissions list={subList || []} handleClubItemClick={handleClubItemClick}/>}/>
             </Routes>
         </div>
     )

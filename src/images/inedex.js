@@ -38,7 +38,7 @@ import flyIcon from './111.png'
 import LogoOut from './logOut.png'
 import people from './people.svg'
 import Approve from './Approve.svg';
-import email from './Email.svg'
+import email from './email.svg'
 import telephonIconNotRegister from './telofaoIcon.svg'
 import payload from './Polygon 2.svg'
 import payloadClose from './PClose 2 (1).svg'
