@@ -1,30 +1,21 @@
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux';
-import { Dialogs as BaseDialogs } from '../components/Dialogs/Dialogs.jsx'
+import React from 'react'
+import DialogItem from '../components/DialogItem/index.jsx';
 
-const Dialogs = () => {
+const Dialogs = ({ dialogsList, me }) => {
 
-    const { items } = useSelector(state => state.dialogs)
-    console.log("i: ", items)
-    const [inputValue, setValue] = useState('');
+    return ( 
+        <div >
+            {dialogsList.map(item => (
 
-    const [filtred, setFiltredItems] = useState(Array.from(items))
+                <DialogItem
+                    key={item.id}
+                    user={item.authorId === me.id ? item.authorId : item.partnerId}
+                    unreaded={item.user || null}
+                    message={item || ''}
 
-    const onChangeInput = value => {
-
-        setFiltredItems(items.filter(
-            dialog => dialog.user.fullname.toLowerCase().indexOf(value.toLowerCase()) >= 0
-        ))
-        setValue(value)
-    }
-
-
-    return (
-        <BaseDialogs
-            items={filtred}
-            onSearch={onChangeInput}
-            inputValue={inputValue}
-        />
+                />
+            ))}
+        </div>
     )
 }
 

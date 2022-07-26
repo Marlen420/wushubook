@@ -1,8 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import API from '../utils/axiosConfig';
 
-let items = [
-    {
+let items = [{
         user: {
             fullname: 'Иван Петров',
             avator: 'https://media.istockphoto.com/photos/portrait-of-mature-hispanic-man-picture-id805012064?k=20&m=805012064&s=170667a&w=0&h=nhXnaKSbiapEENUn7PRcBwWS2EBaCBoy08638D9sfgU=',
@@ -119,16 +118,12 @@ let items = [
 
 export const getDialogs = createAsyncThunk(
     'dialogs/getDialogs',
-    async function (_, { rejectWithValue }) {
+    async function(_, { rejectWithValue }) {
         try {
-            const response = await API.get()
-            console.log("api: ", items)
-            return items
-
-
-
-        }
-        catch (error) {
+            const response = await API.get('/direct/get-my-directs');
+            console.log("dialgos: ", response.data);
+            return response.data;
+        } catch (error) {
             return rejectWithValue(error.response.data.message);
         }
 

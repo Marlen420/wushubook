@@ -30,7 +30,7 @@ function DialogItem({ user, message, unreaded }) {
 
             <div className={styles.dialog__item_avator}>
                 {
-                    <Avator user={user.avator} />
+                    <Avator user={user.avator || null} />
                 }
 
                 <div className={user.isOnline ? styles.dialog__item__online : ''}>
@@ -41,21 +41,21 @@ function DialogItem({ user, message, unreaded }) {
             <div className={styles.dialog__item_info}>
 
                 <div className={styles.dialog__item_info_top}>
-                    <b className={styles.dialog__item_info_name} >{user.fullname}</b>
+                    <b className={styles.dialog__item_info_name} >{user.name.split('/')[0] + ' ' + user.name.split('/')[1]}</b>
                     <div>
                         {user.isMe ? '' : <IconReaded isMe={false} isReaded={true} />}
                     </div>
                     <span className={!user.isMe ? styles.dialog__item_date : styles.dialog__item_dateMe} >
                         {/* <Time date={message.lastMessage.created_at} /> */}
                         {
-                            getMessageTime(message.lastMessage.created_at)
+                            // getMessageTime(message.lastMessage.created_at)
                         }
                     </span>
                 </div>
 
 
                 <div className={styles.dialog__item_info_bottom}>
-                    <p className={styles.dialog__item__text}>{message.lastMessage.text} </p>
+                    <p className={styles.dialog__item__text}>{message.lastMessage?.text} </p>
 
                     {user.unreaded > 0 && <div className={styles.dialog__item_info_cout}>{user.unreaded > 9 ? '99+' : user.unreaded}  </div>}
                 </div>

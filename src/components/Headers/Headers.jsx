@@ -112,8 +112,11 @@ function Headers() {
                             <div>
                                 <ul className={styles.headers_profil_pops} >
                                     {
-                                        infoProfil.map(option => (
-                                            <div className={styles.headers_profil_popsUp} onClick={option.onClick}  >
+                                        infoProfil.map((option, index) => (
+                                            <div
+                                                key={index} 
+                                                className={styles.headers_profil_popsUp} 
+                                                onClick={option.onClick}  >
                                                 <li className={styles.headers_profil_hover} key={Math.random()}>
                                                     <img src={option.icon} alt='' />
 
