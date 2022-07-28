@@ -1,16 +1,65 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import ClubsList from "./ClubsList/ClubsList";
 import styles from './index.module.css'
+import { Button } from '../../components';
+import NewClub from "./NewClub/NewClub";
+import { createClub, getAllClubs } from "../../api/club.api";
+import { setUsersList } from "../../api/users.api";
 
 //Клубы
 
 function Clubs() {
-    const { data } = useSelector(state=>state.clubs);
+    // Constants
+    const { data, status, error } = useSelector(state=>state.clubs);
+    const { trainer } = useSelector(state=>state.users);
+    const dispatch = useDispatch();
+
+    // States
+    const [newClub, setNewClub] = useState(false);
+
+    // Functions
+    const handleOpenNewClub = () => setNewClub(true);
+    const handleCloseNewClub = () => setNewClub(false);
+
+    const handleAddClub = () => {
+        handleOpenNewClub();
+        console.log("Adding club");
+    }
+
+    const handleSubmitClub = (data) => dispatch(createClub(data));
+
+    // Effects
+    useEffect(()=>{
+        if (trainer.data === null) dispatch(setUsersList({role: 'trainer'}))
+        dispatch(getAllClubs());
+    }, [dispatch])
+
+    useEffect(()=>{
+        if (status === 'Created new club') {
+            handleCloseNewClub();
+            dispatch(getAllClubs());
+        }
+    }, [status])
 
     return (
-        <div className={styles.content} >
-            <h2 className={styles.clubs_title}>Клубы</h2>
+        <div className={styles.content}>
+            {newClub && 
+            <NewClub 
+                closeModal={handleCloseNewClub} 
+                handleSubmitClub={handleSubmitClub}
+                status={status}
+                error={error}
+                trainers={trainer.data}/>}
+            <div className={styles.clubs_header}>
+                <h2 className={styles.clubs_title}>Клубы</h2>
+                <div className={styles.button_holder}>
+                    <Button
+                        type="button"
+                        onClick={handleAddClub}
+                        projectType="add_user">+ Добавить клуб</Button>
+                </div>
+            </div>
             <ClubsList clubs={data}/>
         </div>
     )

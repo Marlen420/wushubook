@@ -38,7 +38,7 @@ function Users() {
 
     // Onload
     useEffect(()=>{
-        dispatch(setUsersList({role: QUERY_ROLES[roleFilter], status: roleFilter === 4 ? 1 : ''}))
+        dispatch(setUsersList({role: QUERY_ROLES[1], status: roleFilter === 4 ? 1 : ''}))
     }, [roleFilter, dispatch])
 
     useEffect(()=>{

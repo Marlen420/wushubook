@@ -8,8 +8,19 @@
     text-align: center;
 }
 
+.clubs_header {
+    width: 96%;
+    margin: 50px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .clubs_title {
-    margin: 50px 2%;
     color: #000;
     text-align: start;
+}
+
+.button_holder {
+    width: 15%;
 }

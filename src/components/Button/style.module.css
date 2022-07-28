@@ -114,11 +114,12 @@ button {
     font-size: 18px;
     font-weight: 700;
     text-align: center;
+    align-self: center;
     background: none;
     color: #798FDF;
     padding: 12px 0;
     border-radius: 0 0 0 8px;
+    border: none;
     outline: none;
-    border: 1px solid #798FDF;
     cursor: pointer;
 }

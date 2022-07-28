@@ -30,7 +30,7 @@ export const setNewUser = createAsyncThunk(
 
 export const setUsersList = createAsyncThunk(
     'users/setUsersList',
-    async function({ role, status }, { rejectWithValue }) {
+    async function({ role, status = '' }, { rejectWithValue }) {
         try {
             let response = await API.get(`/users/get-role-status?role=${role}&status=${status}`);
             return {
