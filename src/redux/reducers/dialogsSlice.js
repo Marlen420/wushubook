@@ -11,11 +11,20 @@ export const dialodsSlice = createSlice({
         dialogs: [],
         currentDialog: null
     },
-
+    reducers: {
+        setCurrentDialog: (state, action) => {
+            state.currentDialog = { id: action.payload }
+        }
+    },
     extraReducers: {
         ...getDialogsExtra,
 
     }
 
 })
+
+export const {
+    setCurrentDialog
+} = dialodsSlice.actions;
+
 export default dialodsSlice.reducer

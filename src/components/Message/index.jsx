@@ -109,7 +109,7 @@ const MessageAudio = ({ audio }) => {
 
 
 function Message({ avator, user, text, isMe, isReaded, isTyping, attachments, audio }) {
-    console.log("attachments: ", user)
+
     let date = new Date()
     // const [isPlaying, setIsPlaying] = useState(false)
     // const audioElem = useRef(null)

@@ -18,13 +18,23 @@ import { getStatistics } from './api/statistics.js';
 import NotRegisteredHome from './pages/NotRegisteredHome/index.jsx';
 import { getDialogs } from './api/dialogs.js';
 import { getNews } from './api/news.js';
+import socket from './utils/socket.js';
 
 function App() {
   const { isLogged } = useSelector(state => state.profile.login);
   const { user } = useSelector(state => state.profile)
+  const { dialogs } = useSelector(state=>state.dialogs);
   const dispatch = useDispatch()
 
-
+  useEffect(()=> {
+    socket.emit('join-to-lobby', {
+      lobby_list: dialogs.map((item)=>item.direct_id)
+    })
+  }, [dialogs])
+  
+  useEffect(()=>{
+    socket.on('messages', (...args)=>console.log(args));
+  }, [socket])
 
   useEffect(() => {
     dispatch(getNewEvent())
@@ -33,6 +43,7 @@ function App() {
     dispatch(getStatistics())
     dispatch(getDialogs())
   }, [dispatch])
+  console.log(dialogs);
 
 
 

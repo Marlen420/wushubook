@@ -21,12 +21,12 @@ const getMessageTime = created_at => {
     }
 }
 
-function DialogItem({ user, message, unreaded }) {
-    // console.log("cre: ", message.lastMessage.created_at)
-
-
+function DialogItem({ id, user, message, unreaded, dialogClick }) {
+    const handleDialogClick = () => dialogClick(id);
     return (
-        <div className={styles.dialog__item}  >
+        <div 
+            onClick={handleDialogClick}
+            className={styles.dialog__item}>
 
             <div className={styles.dialog__item_avator}>
                 {
@@ -41,7 +41,7 @@ function DialogItem({ user, message, unreaded }) {
             <div className={styles.dialog__item_info}>
 
                 <div className={styles.dialog__item_info_top}>
-                    <b className={styles.dialog__item_info_name} >{user.name.split('/')[0] + ' ' + user.name.split('/')[1]}</b>
+                    <b className={styles.dialog__item_info_name} >{user.split('/')[0] + ' ' + user.split('/')[1]}</b>
                     <div>
                         {user.isMe ? '' : <IconReaded isMe={false} isReaded={true} />}
                     </div>
