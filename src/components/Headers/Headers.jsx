@@ -9,8 +9,6 @@ import jwt_decode from "jwt-decode";
 
 
 function Headers() {
-
-
     const navigations = useNavigate()
     const [isOpenNotificationIcon, setIsOpenNotificationIcon] = useState(false)
     const [isIconPerson, setIconPerson] = useState(PersonIcon)
@@ -18,8 +16,7 @@ function Headers() {
     const [isOpenSalary, setIsOpenSalary] = useState(false)
     const [selesctClubs, setSelesctClubs] = useState('Все клубы')
 
-    const { user } = useSelector(state => state.profile)
-    console.log("user: ", user)
+    const { user } = useSelector(state => state.profile);
 
     const name = user.name.split('/')
 

@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ChatLayout from "./ChatLayout.jsx";
-import { getDialogs } from "../../api/dialogs.js";
-import { setCurrentDialog } from "../../redux/reducers/dialogsSlice.js";
+import { getCurrentDialog, getDialogs } from "../../api/dialogs.js";
+import { addMessage, setCurrentDialog } from "../../redux/reducers/dialogsSlice.js";
 import socket from "../../utils/socket.js";
+import { useNavigate } from "react-router";
 
 function Chat() {
   // Constants
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { user } = useSelector((state) => state.profile);
   const { dialogs, currentDialog } = useSelector((state) => state.dialogs);
 
@@ -23,10 +25,9 @@ function Chat() {
     setIsOpen(false);
   };
   const handleSearchChange = (e) => setSearch(e.target.value);
-  const handleDialogClick = (id) => dispatch(setCurrentDialog(id));
-  // const loadDialog = (id) => dispatch(getDialogMessages(id));
+  const handleDialogClick = (id) => navigate('/chat/'+id);
+  const loadDialog = (id) => dispatch(getCurrentDialog(id));
   const handleSendMessage = ({ text, lobby = null }) => {
-    console.log(text);
     socket.emit("createMessage", {
       user: user.id,
       text,
@@ -34,7 +35,16 @@ function Chat() {
     });
   };
 
-  const setTyping = (flag, lobbyId) => socket.emit('typing', {id: user.id, lobbyId, typing: flag})
+  useEffect(()=>{
+    socket.on('message', (item)=>{
+      dispatch(addMessage(item));
+    });
+    return ()=>socket.off('message');
+  }, [socket]);
+
+  const setTyping = (flag, lobbyId) => {
+    socket.emit('typing', {userId: user.id, lobbyId, isTyping: flag})
+  }
   
 
   // Effects
@@ -44,7 +54,7 @@ function Chat() {
 
   return (
     <ChatLayout
-        setTyping={setTyping}
+      setTyping={setTyping}
       me={user}
       isOpen={isOpen}
       closeChat={closeChat}
@@ -53,7 +63,7 @@ function Chat() {
       dialogsList={dialogs}
       currentDialog={currentDialog}
       handleDialogClick={handleDialogClick}
-      loadDialog={null}
+      loadDialog={loadDialog}
       sendMessage={handleSendMessage}
     />
   );

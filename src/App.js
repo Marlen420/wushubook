@@ -27,23 +27,18 @@ function App() {
   const dispatch = useDispatch()
 
   useEffect(()=> {
+    console.log(dialogs);
     socket.emit('join-to-lobby', {
-      lobby_list: dialogs.map((item)=>item.direct_id)
+      lobby_list: dialogs.map((item)=>item.lobby_info.lobby_id)
     })
   }, [dialogs])
-  
-  useEffect(()=>{
-    socket.on('messages', (...args)=>console.log(args));
-  }, [socket])
 
   useEffect(() => {
     dispatch(getNewEvent())
     dispatch(getLastEvent())
     dispatch(getNews())
     dispatch(getStatistics())
-    dispatch(getDialogs())
   }, [dispatch])
-  console.log(dialogs);
 
 
 
@@ -69,7 +64,7 @@ function App() {
                 }
                 <Route path='/profile' element={<Profile />} />
                 <Route path='/moreNews' element={<MoreNews />} />
-                <Route path='/chat' element={<Chat />} />
+                <Route path='/chat/*' element={<Chat />} />
               </>
             }
             {

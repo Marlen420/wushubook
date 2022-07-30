@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from '../../index.module.css';
 import song from '../../anna_asti_-_po_baram_muzati.net.mp3'
 import Status from '../../../../components/Status/index.jsx'
@@ -6,12 +6,40 @@ import ChatInput from '../../../../components/ChatInput/index'
 import { UserPhoto, Check } from '../../../../images/inedex.js'
 import Message from '../../../../components/Message/index.jsx'
 import socket from "../../../../utils/socket";
+import { useNavigate, useParams } from "react-router";
+import { useSelector } from "react-redux";
+// import { getTime } from "date-fns";
 
-const DialogLayout = ({people, id, sendMessage, setTyping}) => {
-    // useEffect(()=>{
-    //     loadDialog(id);
-    // }, [])
-    socket.on('typing', (...args)=>console.log(args));
+
+const getTime = (date) =>{
+    const today = new Date(date);
+    return today.getHours() + ':' + today.getMinutes();
+}
+
+const DialogLayout = ({people, sendMessage, setTyping, loadDialog, me}) => {
+    const navigate = useNavigate();
+    const { id } = useParams();
+    const { currentDialog, status } = useSelector(state=>state.dialogs);
+    const messageListRef = useRef(null);
+    const [chat, setChat] = useState([]);
+
+    useEffect(()=>{
+        if (status === 'Active' && chat === undefined) navigate('/chat')
+    }, [chat, status])
+
+    useEffect(()=>{
+        loadDialog(id);
+    }, [id])
+
+    useEffect(()=>{
+        messageListRef.current.scrollTo(0, 99999);
+    }, [currentDialog?.response])
+
+    useEffect(()=>{
+        socket.on('typing', (args)=>{console.log(args)});
+        return ()=> socket.off('typing');
+    }, [socket])
+
     return (
         <div className={styles.chat__dialog}>
         <div className={styles.chat__dialog_header}>
@@ -27,11 +55,13 @@ const DialogLayout = ({people, id, sendMessage, setTyping}) => {
                                 } */}
         </div>
 
-        <div className={styles.chat__dialog_message}>
-            {/* <Message
-            avator={UserPhoto}
-            text="Hello World Hello  World Hello World Hello WorldHello World Hello World  World Hello World  World Hello World  "
-            /> */}
+        <div className={styles.chat__dialog_message} ref={messageListRef}>
+            {currentDialog?.response?.map((item)=>(
+                <Message 
+                    time={getTime(item.date)}
+                    isMe={item.user.id === me.id ? true : (item.user === me.id ? true : false)}
+                    text={item.text}/>
+            ))}
         </div>
         <div className={styles.chat__dialog_input}>
             <ChatInput 

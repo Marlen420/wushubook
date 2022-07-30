@@ -11,14 +11,15 @@ function ChatInput({sendMessage, id, setTyping}) {
 
     const handleSendMessage = (e) => {
         e.preventDefault();
+        setValue('');
         sendMessage({text: value, lobby: id});
     }
 
     useEffect(() => {
-        value === '' ? setTyping(false) : setTyping(true);
+        value !== '' && setTyping(true, id);
         let timer = setTimeout(() => {
           if (value !== '') setTyping(false, id);
-        }, 300);
+        }, 1000);
         return () => clearTimeout(timer);
       }, [value]);
 
@@ -34,9 +35,11 @@ function ChatInput({sendMessage, id, setTyping}) {
             </div>
 
             <input 
+                value={value}
                 className={styles.chat__input_text} 
                 onChange={e => setValue(e.target.value)}
-                type='text' placeholder="Напишите сообщение..." />
+                type='text' 
+                placeholder="Напишите сообщение..." />
 
             {
                 value ? <img className={styles.chat__input_simbvol_icon1} src={flyIcon} alt='' />
