@@ -18,6 +18,7 @@ import { getStatistics } from './api/statistics.js';
 import NotRegisteredHome from './pages/NotRegisteredHome/index.jsx';
 
 import EventDetail from './pages/EventDetail/EventDetail.jsx';
+import ClubDetail from './pages/ClubDetail/ClubDetail.jsx';
 
 function App() {
   const { isLogged } = useSelector(state => state.profile.login);
@@ -47,6 +48,7 @@ function App() {
               user.status !== '0' &&
               <>
                 <Route path='/clubs' element={<Clubs />} />
+                <Route path='/clubs/:id' element={<ClubDetail />} />
                 <Route path='/document' element={<Document />} />
                 <Route path='/events' element={<Events />} />
                 <Route path='/events/:id/*' element={<EventDetail />} />

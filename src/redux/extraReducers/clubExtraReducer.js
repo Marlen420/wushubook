@@ -1,4 +1,21 @@
-import { createClub, getAllClubs } from "../../api/club.api";
+import { createClub, getAllClubs, getClubById } from "../../api/club.api";
+
+// Get club by id
+export const getClubByIdExtra = {
+    [getClubById.pending]: (state) => {
+        state.status = 'Loading current club';
+        state.error = null;
+    },
+    [getClubById.fulfilled]: (state, action) => {
+        state.currentClub = action.payload;
+        state.status = 'Active';
+        state.error = null;
+    },
+    [getClubById.rejected]: (state, action) => {
+        state.status = 'Reject loading current club';
+        state.error = action.payload;
+    }
+}
 
 // Get all clubs
 export const getAllClubsExtra = {

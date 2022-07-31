@@ -1,4 +1,6 @@
 .table_holder {
+    width: 100%;
+    overflow-y: scroll;
     border-collapse: collapse;
     overflow-x: auto;
 }
