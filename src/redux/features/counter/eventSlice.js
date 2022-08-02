@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { protocol_list } from '../../../const/protocol_mock';
 import { createNewEventExtra, deleteEventExtra, getEventByIdExtra, setEventListExtra } from '../../extraReducers/eventExtraReducer';
 
 
@@ -16,6 +17,7 @@ export const counterSlice = createSlice({
             { id: 3, title: 'Международный чемпионат по ушу среди детей', trainers: [{ id: 0, name: 'Иванов Иван Иванович' }] },
             { id: 4, title: 'Международный чемпионат по ушу среди детей', trainers: [{ id: 0, name: 'Иванов Иван Иванович' }] },
         ],
+        protocols: protocol_list,
         selected: []
     },
     extraReducers: {

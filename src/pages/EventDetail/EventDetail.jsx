@@ -4,18 +4,20 @@ import { Route, Routes, useNavigate, useParams } from 'react-router';
 import { getEventById } from '../../api/event.api';
 import Banner from './Banner/Banner';
 import EventHeader from './EventHeader/EventHeader';
+import ProtocolHolder from './ProtocolHolder/ProtocolHolder';
 import Submissions from './Submissions/Submissions';
 import Table from './Table';
 
 const EventDetail = () => {
     // Constants
     const { id } = useParams();
-    const { currentEvent, subList } = useSelector(state=>state.events);
+    const { currentEvent, subList, protocols } = useSelector(state=>state.events);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
+    
     // States
     const [isOpenProtocol, setIsOpenProtocol] = useState(false);
+    const [isTableOpen, setIsTabelOpen] = useState(false);
 
     // Onload
     useEffect(()=>{
@@ -32,6 +34,10 @@ const EventDetail = () => {
         console.log('Creating protocol');
     }
 
+    const handleCreateArena = () => {
+        console.log('Creagin arena');
+    }
+
     return (
         <div style={{width: '96%', margin: 'auto', padding: '50px 0'}}>
             <Banner
@@ -40,12 +46,20 @@ const EventDetail = () => {
                 endDate={currentEvent?.end || null}
                 startTime={currentEvent?.time?.split('-')[0] || null}
                 deadline={currentEvent?.applicationDeadline}/>
-            <EventHeader
-                handleButtonClick={handleCreateProtocol}/>
-            <Routes>
-                <Route path="/table/:id" element={<Table/>} />
-                <Route path="/" element={<Submissions list={subList || []} handleClubItemClick={handleClubItemClick}/>}/>
-            </Routes>
+            {
+                !isTableOpen &&
+                <EventHeader
+                    isTableOpen={isTableOpen}
+                    handleButtonClick={handleCreateProtocol}/>
+            }
+                <Routes>
+                    <Route path="/table/:id" element={<Table setIsTableOpen={setIsTabelOpen}/>} />
+                    <Route path="/" element={<Submissions list={subList || []} handleClubItemClick={handleClubItemClick}/>}/>
+                </Routes>
+            {
+                isOpenProtocol &&
+                <ProtocolHolder list={protocols} handleCreateArena={handleCreateArena}/>
+            }
         </div>
     )
 }

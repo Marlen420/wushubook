@@ -46,7 +46,7 @@ const ClubDetail = () => {
 
     return (
         <div className={styles.page_holder}>
-            {currentClub &&
+            {(currentClub && currentClub.id === +id) &&
             <>
                 {addSportsman &&
                 <NewSportsman closeModal={handleCloseAddSportsman} addSportsman={handleSubmitAddSportsman}/>}

@@ -1,6 +1,7 @@
 .list_holder {
     width: 96%;
     margin: auto;
+    cursor: pointer;
 }
 
 .item_holder {

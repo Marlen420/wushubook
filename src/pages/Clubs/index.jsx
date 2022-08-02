@@ -6,6 +6,7 @@ import { Button } from '../../components';
 import NewClub from "./NewClub/NewClub";
 import { createClub, getAllClubs } from "../../api/club.api";
 import { setUsersList } from "../../api/users.api";
+import { useNavigate } from "react-router-dom";
 
 //Клубы
 
@@ -14,6 +15,7 @@ function Clubs() {
     const { data, status, error } = useSelector(state=>state.clubs);
     const { trainer } = useSelector(state=>state.users);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     // States
     const [newClub, setNewClub] = useState(false);
@@ -21,6 +23,7 @@ function Clubs() {
     // Functions
     const handleOpenNewClub = () => setNewClub(true);
     const handleCloseNewClub = () => setNewClub(false);
+    const handleClubClick = (id) => navigate('/clubs/'  + id);
 
     const handleAddClub = () => {
         handleOpenNewClub();
@@ -66,7 +69,7 @@ function Clubs() {
                         projectType="add_user">+ Добавить клуб</Button>
                 </div>
             </div>
-            <ClubsList clubs={data}/>
+            <ClubsList clubClick={handleClubClick} clubs={data}/>
         </div>
     )
 }

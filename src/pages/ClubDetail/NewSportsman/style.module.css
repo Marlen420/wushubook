@@ -15,7 +15,7 @@
     background-color: #fff;
     min-width: 450px;
     border-radius: 8px;
-    height: 80%;
+    max-height: 80%;
 }
 
 .event_catcher {
@@ -57,6 +57,11 @@
     height: 100%;
 
 }
+
+.input_holder {
+    margin: 8px 0;
+}
+
 .footer {
     width: 100%;
     display: flex;

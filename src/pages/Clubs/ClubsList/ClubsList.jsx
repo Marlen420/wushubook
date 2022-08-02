@@ -2,9 +2,10 @@ import { Star } from '@skbkontur/react-icons';
 import React from 'react';
 import styles from './style.module.css';
 
-const ClubItem = ({item}) => {
+const ClubItem = ({item, clubClick}) => {
+    const handleClick = () => clubClick(item.id);
     return (
-        <div className={styles.item_holder}>
+        <div className={styles.item_holder} onClick={handleClick}>
             <div style={{background: item.color}} className={styles.item_color}/>
             <div className={styles.item_content}>
                 <p className={styles.item_title}>{`Клуб <<${item.name}>>`}</p>
@@ -23,11 +24,11 @@ const ClubItem = ({item}) => {
     )
 }
 
-const ClubsList = ({clubs}) => {
+const ClubsList = ({clubs, clubClick}) => {
     return (
         <div className={styles.list_holder}>
             {clubs.map((item, index)=>(
-                <ClubItem key={item.id} item={item}/>
+                <ClubItem clubClick={clubClick} key={item.id} item={item}/>
             ))}
         </div>
     )

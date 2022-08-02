@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './style.module.css';
 
 const Submissions = ({list, handleClubItemClick}) => {
-    console.log(handleClubItemClick);
     return (
         <div>
             <div className={styles.list_holder}>
@@ -15,7 +14,7 @@ const Submissions = ({list, handleClubItemClick}) => {
                         <div className={styles.item_info_side}>
                             <p className={styles.item_title}>{item.title}</p>
                             {item.trainers.map((item)=>(
-                                <p className={styles.item_trainer}>Тренер: {item.name}</p>
+                                <p key={item.id} className={styles.item_trainer}>Тренер: {item.name}</p>
                             ))}
                         </div>
                     </div>

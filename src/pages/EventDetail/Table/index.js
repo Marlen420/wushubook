@@ -1,6 +1,13 @@
+import { useEffect } from 'react';
 import styles from './style.module.css';
 
-const Table = () => {
+const Table = ({setIsTableOpen}) => {
+
+    useEffect(()=>{
+        setIsTableOpen(true);
+        return () => setIsTableOpen(false);
+    }, [])
+
     return(
         <div className={styles.table_container}>
             <table className={styles.table_holder}>
