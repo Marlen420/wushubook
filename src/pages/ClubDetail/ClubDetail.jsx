@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
-import { getClubById } from '../../api/club.api';
+import { addSportsmanApi, getClubById } from '../../api/club.api';
 import { Button } from '../../components';
 import usePagination from '../../hooks/usePagination/usePagination';
 import Banner from './Banner/Banner';
+import NewSportsman from './NewSportsman/NewSportsman';
 import styles from './style.module.css';
 
 const ClubDetail = () => {
@@ -27,7 +28,16 @@ const ClubDetail = () => {
     } = usePagination([]);
 
     // Functions
-    const handleAddSportsman = () => setAddSportsman(addSportsman);
+    const handleAddSportsman = () => setAddSportsman(true);
+    const handleCloseAddSportsman = () => setAddSportsman(false);
+    const handleSubmitAddSportsman = async (data) => {
+        try {
+            return await dispatch(addSportsmanApi({...data, club: id}))
+        } catch (e) {
+            return e;
+        }
+        handleCloseAddSportsman();
+    }
 
     // Effects
     useEffect(()=>{
@@ -38,6 +48,8 @@ const ClubDetail = () => {
         <div className={styles.page_holder}>
             {currentClub &&
             <>
+                {addSportsman &&
+                <NewSportsman closeModal={handleCloseAddSportsman} addSportsman={handleSubmitAddSportsman}/>}
                 <Banner club={currentClub}/>
                 <div className={styles.all_sportsmans_header}>
                     <h3 className={styles.header_title}>Все спортсмены</h3>

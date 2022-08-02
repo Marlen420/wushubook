@@ -27,7 +27,13 @@ function Clubs() {
         console.log("Adding club");
     }
 
-    const handleSubmitClub = (data) => dispatch(createClub(data));
+    const handleSubmitClub = async (data) => {
+        try {
+            return await dispatch(createClub(data)).unwrap();
+        } catch (e) {
+            return e;
+        }
+    }
 
     // Effects
     useEffect(()=>{

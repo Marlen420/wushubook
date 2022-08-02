@@ -16,15 +16,16 @@ import { MainNews, MoreNews } from './pages/News/index.js';
 import Chat from './pages/Chat/index.jsx';
 import { getStatistics } from './api/statistics.js';
 import NotRegisteredHome from './pages/NotRegisteredHome/index.jsx';
+import styles from './app.module.css'
 
 import EventDetail from './pages/EventDetail/EventDetail.jsx';
 import ClubDetail from './pages/ClubDetail/ClubDetail.jsx';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   const { isLogged } = useSelector(state => state.profile.login);
   const { user } = useSelector(state => state.profile)
   const dispatch = useDispatch()
-
 
 
   useEffect(() => {
@@ -71,7 +72,6 @@ function App() {
           </Routes>
         </>
         : <NotRegisteredHome />}
-
     </div>
   );
 }

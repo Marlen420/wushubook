@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes, useNavigate, useParams } from 'react-router';
 import { getEventById } from '../../api/event.api';
@@ -14,6 +14,9 @@ const EventDetail = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    // States
+    const [isOpenProtocol, setIsOpenProtocol] = useState(false);
+
     // Onload
     useEffect(()=>{
         dispatch(getEventById(id));
@@ -25,6 +28,7 @@ const EventDetail = () => {
     const handleClubItemClick = (itemId) => navigate('/events/' + id + '/table/' + itemId);
 
     const handleCreateProtocol = () => {
+        setIsOpenProtocol(true);
         console.log('Creating protocol');
     }
 

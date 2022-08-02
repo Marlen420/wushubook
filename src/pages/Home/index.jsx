@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styles from './index.module.css';
 import {
-    TimeIcon, CheckIcon, LocationsIcon, EmailIcon, TelephonIcon,
+    TimeIcon, CheckIcon,
     PhotoMain
 } from '../../images/inedex.js'
 import { useDispatch, useSelector } from 'react-redux'

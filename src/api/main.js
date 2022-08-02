@@ -139,7 +139,6 @@ export const getNewEvent = createAsyncThunk(
             if (response.status !== 200) {
                 throw new Error("Server Error!")
             }
-            console.log("l: ", All_New_Events)
             return All_New_Events
 
         }
@@ -157,7 +156,6 @@ export const getLastEvent = createAsyncThunk(
             if (response.status !== 200) {
                 throw new Error("Server Error!")
             }
-            console.log("respose: ", response.data)
             return All_Last_Events
         }
         catch (error) {

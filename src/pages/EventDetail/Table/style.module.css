@@ -1,22 +1,56 @@
-.table_holder {
+.table_container {
     width: 100%;
     overflow-y: scroll;
-    border-collapse: collapse;
-    overflow-x: auto;
+    max-height: 500px;
+}
+
+.table_holder {
+    /* display: block; */
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: auto;
 }
 
 .table_holder thead {
     background-color: #798FDF;
+    position: sticky;
+    top: 0;
+    z-index: 30;
 }
 
-.table_holder th {
-    min-width: 200px;
+.table_holder tr {
+    
     border: 1px solid #4C61AF;
+}
+
+
+
+.table_holder th {
+    border: 1px solid #4C61AF;
+    min-width: 200px;
+    background-color: #798FDF;
     color: #fff;
+    background-color: #798FDF;
+    position: sticky;
+    top: 0;
+    z-index: 30;
 }
 
 .table_holder td {
-    border: 1px solid #E2E2E2;
+    border: 1px solid #E2E2E2 !important;
     padding: 10px 0px;
+    text-align: center;
     /* min-width: 200px; */
+}
+
+.sticky {
+    background-color: #798FDF;
+    position: sticky;
+    left: 0;
+}
+.sticky_data {
+    position: sticky;
+    left: 0;
+    background-color: #fff;
+    border-collapse: inherit;
 }

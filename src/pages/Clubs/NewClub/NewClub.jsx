@@ -4,6 +4,8 @@ import { CloseIcon } from '../../../images/inedex';
 import styles from './style.module.css';
 import Select from 'react-select';
 import { TailSpin } from 'react-loader-spinner';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const getName = (str) => str.split('/').join(' ');
 const getTrainerList = (list, selectedList) => list.filter((i)=>!selectedList.includes(i.id))
@@ -15,7 +17,6 @@ const NewClub = ({closeModal, handleSubmitClub, status, error, trainers}) => {
     const [trainerList, setTrainerList] = useState([-1]);
     const [trainersOptions, setTrainersOptions] = useState(getTrainerOptions(trainers));
 
-    console.log(trainersOptions);
 
     // Functions
     const handleTitleChange = (e) => setTitle(e.target.value);
@@ -25,10 +26,17 @@ const NewClub = ({closeModal, handleSubmitClub, status, error, trainers}) => {
     const handleSubmitForm = (e) => {
         e.preventDefault();
         if (trainerList.includes(-1)) return;
-        handleSubmitClub({
-            name: title,
-            trainers: trainerList
-        })
+        toast.promise(
+            handleSubmitClub({
+                name: title,
+                trainers: trainerList
+            }),
+            {
+                pending: 'Создание клуба',
+                success: 'Клуб создан успешно',
+                error: 'Ошибка при создании клуба'
+            }
+        )
     }
     
     
@@ -110,6 +118,7 @@ const NewClub = ({closeModal, handleSubmitClub, status, error, trainers}) => {
                     </div>
                 </div>
             </form>
+            <ToastContainer/>
         </div>
     )
 }

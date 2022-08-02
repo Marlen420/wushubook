@@ -1,8 +1,17 @@
 import { setUpdateUser, setForgotPassword, setLogin, setSignup, checkToken, setNewPassword, setConfirmStatus, setUpdatePassword, setProfile } from "../../api/login.api";
 
 export const setProfileExtra = {
+    [setProfile.pending]: (state) => {
+        state.status = "Loading profile";
+        state.error = null;
+    },
     [setProfile.fulfilled]: (state, action) => {
         state.user = action.payload;
+        localStorage.setItem('jwt-user', JSON.stringify(action.payload));
+    },
+    [setProfile.rejected]: (state, action) => {
+        state.status = 'Reject get profile';
+        state.error = action.payload;
     }
 }
 

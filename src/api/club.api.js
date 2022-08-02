@@ -1,6 +1,19 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import API from "../utils/axiosConfig";
 
+// Add sportsman
+export const addSportsmanApi = createAsyncThunk(
+    'club/addSportsman',
+    async (data, {rejectWithValue}) => {
+        try {
+            const response = await API.post('/sportsmen', data);
+            return response.data;
+        } catch (e) {
+            return rejectWithValue(e.response.data.message);
+        }
+    }
+)
+
 // Delete club by id
 export const deleteClub = createAsyncThunk(
     'club/deleteClub',
