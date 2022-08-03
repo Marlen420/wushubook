@@ -21,6 +21,7 @@ import { getDialogs } from './api/chat.js';
 import { getNews } from './api/news.js';
 import { io } from 'socket.io-client'
 import { setLocationUrl } from './redux/reducers/chatSlice.js';
+import { getEventCalendar } from './api/calendar.js';
 
 
 function App() {
@@ -38,9 +39,9 @@ function App() {
     dispatch(getNews())
     dispatch(getStatistics())
     dispatch(getDialogs())
-
+    dispatch(getEventCalendar())
     // dispatch(setLocationUrl())
-    // setSocket(io('....'))  ссылка на сокеты для уведомлений
+    // setSocket(io('....')) 
 
 
   }, [dispatch])
@@ -63,11 +64,11 @@ function App() {
                 <Route path='/events' element={<Events />} />
                 <Route path='/news' element={<MainNews />} />
                 <Route path='/statistics' element={<Statistics />} />
-                {/* {
+                {
                   user.role === 'admin' &&
                   <Route path='/users' element={<Users />} />
-                } */}
-                <Route path='/users' element={<Users />} />
+                }
+                {/* <Route path='/users' element={<Users />} /> */}
                 <Route path='/profile' element={<Profile />} />
                 <Route path='/moreNews' element={<MoreNews />} />
                 <Route path='/chat' element={<Chat />} />

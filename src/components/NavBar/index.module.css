@@ -64,7 +64,7 @@ li {
 @media screen and (max-width: 1009px) {
     .menuIcon {
 
-        margin-top: -1px;
+        margin-top: -5px;
 
     }
 
@@ -103,15 +103,5 @@ li {
 
     .d {
         padding: 10px;
-    }
-}
-
-
-@media screen and (max-width: 477px) {
-    .menuIcon {
-
-        margin-top: -15px;
-        /* background: rebeccapurple; */
-        margin-right: 42px;
     }
 }

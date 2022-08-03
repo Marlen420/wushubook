@@ -136,11 +136,9 @@ export const getNewEvent = createAsyncThunk(
     async function (_, { rejectWithValue }) {
         try {
             const response = await API.get(`events?start=${new Date()}end=${2022 - 12 - 31}`)
-            if (response.status !== 200) {
-                throw new Error("Server Error!")
-            }
-            console.log("l: ", All_New_Events)
-            return All_New_Events
+
+
+            return response.data
 
         }
         catch (error) {
@@ -154,11 +152,9 @@ export const getLastEvent = createAsyncThunk(
     async function (_, { rejectWithValue }) {
         try {
             const response = await API.get(`events?end=${new Date()}`)
-            if (response.status !== 200) {
-                throw new Error("Server Error!")
-            }
-            console.log("respose: ", response.data)
-            return All_Last_Events
+
+
+            return response.data
         }
         catch (error) {
             return rejectWithValue(error.message)

@@ -312,3 +312,12 @@
     color: red;
     /* identical to box height */
 }
+
+@media screen and (max-width: 487px) {
+
+
+
+    .conteiner {
+        width: 463px;
+    }
+}

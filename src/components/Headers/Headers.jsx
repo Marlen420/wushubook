@@ -9,9 +9,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import Notificatons from '../Notificatons/index.jsx'
 import { useDispatch, useSelector } from 'react-redux'
 import { setLogOut } from '../../redux/features/counter/profileSlice'
-import jwt_decode from "jwt-decode";
 import { useEffect } from 'react'
-import { setLocationUrl } from '../../redux/reducers/chatSlice'
 
 
 function Headers({ socket }) {
@@ -123,52 +121,53 @@ function Headers({ socket }) {
         <div className={styles.header} >
 
             <div className={styles.headers1} >
-                <NavLink to='/*'>     <img src={Logo} alt='' className={styles.header__logo} /> </NavLink>
+                <NavLink to='/*'><img src={Logo} alt='' className={styles.header__logo} /> </NavLink>
                 <h1 className={styles.headers__title}> Федерация традиционного ушу Кыргызской Республики </h1>
-
             </div>
 
             <div className={styles.header__allIcon} >
 
-                <NavLink to='/chat'>
-                    <img className={styles.header__icon}
-                        onClick={toggleIsOpenMessage}
-                        src={iconMessage} alt='' />
-                </NavLink>
+                <div className={styles.header__twoIcon} >
+
+                    <NavLink to='/chat'>
+                        <img className={styles.header__icon}
+                            onClick={toggleIsOpenMessage}
+                            src={iconMessage} alt='' />
+                    </NavLink>
 
 
-                {
-                    isOpenNotificationIcon ?
+                    {
+                        isOpenNotificationIcon ?
 
-                        <div className={styles.header__notification} >
-                            <img className={styles.header__icon}
-                                onClick={toggleIsCloseNotificationIcon}
-                                src={MousNotification} alt='' />
-                            {
-                                notificatons.length > 0 &&
-                                <div className={styles.header__icon_conteiner}>
-                                    <p className={styles.header__icon_count} > {notificatons.length}</p>
-                                </div>
-                            }
-                        </div>
+                            <div className={styles.header__notification} >
+                                <img className={styles.header__icon}
+                                    onClick={toggleIsCloseNotificationIcon}
+                                    src={MousNotification} alt='' />
+                                {
+                                    notificatons.length > 0 &&
+                                    <div className={styles.header__icon_conteiner}>
+                                        <p className={styles.header__icon_count} > {notificatons.length}</p>
+                                    </div>
+                                }
+                            </div>
 
-                        :
+                            :
 
-                        <div className={styles.header__notification} >
-                            <img className={styles.header__icon}
-                                onClick={toggleIsOpenNotificationIcon}
-                                src={NotificationIcon} alt='' />
-                            {
-                                notificatons.length > 0 &&
-                                <div className={styles.header__icon_conteiner}>
-                                    <p className={styles.header__icon_count} > {notificatons.length}</p>
-                                </div>
-                            }
-                        </div>
-                }
+                            <div className={styles.header__notification} >
+                                <img className={styles.header__icon}
+                                    onClick={toggleIsOpenNotificationIcon}
+                                    src={NotificationIcon} alt='' />
+                                {
+                                    notificatons.length > 0 &&
+                                    <div className={styles.header__icon_conteiner}>
+                                        <p className={styles.header__icon_count} > {notificatons.length}</p>
+                                    </div>
+                                }
+                            </div>
+                    }
 
 
-
+                </div>
 
                 <div className={styles.f} >
                     <div onClick={togglingSalary}>
