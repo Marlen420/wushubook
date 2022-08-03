@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes, useNavigate, useParams } from 'react-router';
 import { getEventById } from '../../api/event.api';
+import Arena from './Arena/Arena';
 import Banner from './Banner/Banner';
 import EventHeader from './EventHeader/EventHeader';
 import ProtocolHolder from './ProtocolHolder/ProtocolHolder';
@@ -18,6 +19,7 @@ const EventDetail = () => {
     // States
     const [isOpenProtocol, setIsOpenProtocol] = useState(false);
     const [isTableOpen, setIsTabelOpen] = useState(false);
+    const [isOpenArena, setIsOpenArena] = useState(false);
 
     // Onload
     useEffect(()=>{
@@ -35,6 +37,7 @@ const EventDetail = () => {
     }
 
     const handleCreateArena = () => {
+        setIsOpenArena(true);
         console.log('Creagin arena');
     }
 
@@ -58,7 +61,10 @@ const EventDetail = () => {
                 </Routes>
             {
                 isOpenProtocol &&
-                <ProtocolHolder list={protocols} handleCreateArena={handleCreateArena}/>
+                <ProtocolHolder 
+                    list={protocols} 
+                    handleCreateArena={handleCreateArena}
+                    isOpenArena={isOpenArena}/>
             }
         </div>
     )

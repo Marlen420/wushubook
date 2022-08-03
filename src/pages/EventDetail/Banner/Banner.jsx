@@ -1,4 +1,4 @@
-import React from 'react';
+import { memo } from 'react';
 import styles from './style.module.css';
 
 const Banner = ({
@@ -29,4 +29,4 @@ const Banner = ({
     )
 }
 
-export default Banner
+export default memo(Banner)

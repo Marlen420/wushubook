@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Button } from '../../../components';
 import { Process } from '../../../images/inedex';
+import Arena from '../Arena/Arena';
 import ProtocolTable from '../ProtocolTable/ProtocolTable';
 import styles from './style.module.css';
 
-const ProtocolHolder = ({list, handleCreateArena}) => {
+const ProtocolHolder = ({list, handleCreateArena, isOpenArena}) => {
   const [ subgroupState, setSubgroupState ] = useState(0);
   return (
     <div className={styles.protocol_holder}>
@@ -27,6 +28,10 @@ const ProtocolHolder = ({list, handleCreateArena}) => {
           Сформировать арену
         </Button>
       </div>
+      {
+        isOpenArena &&
+        <Arena divs={list[subgroupState].length} list={list[subgroupState]}/>
+      }
     </div>
   )
 }
