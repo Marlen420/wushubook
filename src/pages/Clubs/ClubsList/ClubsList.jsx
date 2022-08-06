@@ -6,7 +6,7 @@ const ClubItem = ({item, clubClick}) => {
     const handleClick = () => clubClick(item.id);
     return (
         <div className={styles.item_holder} onClick={handleClick}>
-            <div style={{background: item.color}} className={styles.item_color}/>
+            <div style={{background: item.options}} className={styles.item_color}/>
             <div className={styles.item_content}>
                 <p className={styles.item_title}>{`Клуб <<${item.name}>>`}</p>
                 {item.trainers?.map((item, i)=>(<p key={item.id} className={styles.item_trainer}>Тренер: {item.name.split('/').join(' ')}</p>))}

@@ -1,7 +1,12 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './style.module.css';
+import { Input } from '../../../components/index';
 
-const Table = ({setIsTableOpen}) => {
+const Table = ({setIsTableOpen, list}) => {
+
+    const [isEdit, setIsEdit] = useState(false);
+
+    console.log(isEdit);
 
     useEffect(()=>{
         setIsTableOpen(true);
@@ -40,7 +45,18 @@ const Table = ({setIsTableOpen}) => {
                 <tbody>
                     {(new Array(20)).fill(0).map((_, index)=>(
                         <tr key={index}>
-                            <td className={styles.sticky_data}>&nbsp;</td>
+                            <td
+                                onClick={()=>{
+                                    console.log("Hello")
+                                    setIsEdit({i: index, column: 'name'})
+                                }}
+                                className={styles.sticky_data}>
+                                &nbsp;
+                                {
+                                    (isEdit?.i === index && isEdit?.column === 'name') &&
+                                    <Input />
+                                }
+                            </td>
                             <td></td>
                             <td></td>
                             <td></td>

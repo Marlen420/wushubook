@@ -15,15 +15,12 @@ const getRowsCount = (divs) =>{
 }
 
 const Arena = ({list, divs}) => {
-  const [verticalDivs, setVerticalDivs] = useState(()=>divs > 2 ? 2 : 1);
-  const [horizontalDivs, setHorizontalDivs] = useState(()=>divs > 2 ? (divs / 2) : divs);
-  const [renderList, setRenderList] = useState(list.length > 2 ? [[...list.slice(0, list.length / 2)], [...list.slice(list.length / 2, list.length)]] : [list])
-
-  console.log(renderList);
+  
+  console.log(list);
 
   return (
     <>
-      <div className={styles.select_holder}>
+      {/* <div className={styles.select_holder}>
         <label htmlFor="vertical divs">Количество вертикальных делений</label>
         <Select 
           options={[
@@ -44,7 +41,7 @@ const Arena = ({list, divs}) => {
           value={{value: horizontalDivs, label: `${horizontalDivs}`}}
           onChange={(e)=>setHorizontalDivs(e.value)}
           name="vertical divs"/>
-      </div>
+      </div> */}
       <div className={styles.arena_holder}>
         <div className={styles.judge_side}>
           <div className={styles.judge_place} />
@@ -57,18 +54,35 @@ const Arena = ({list, divs}) => {
           <div className={styles.judge_place} />
         </div>
         <div className={styles.arena_square}>
+          <div className={styles.arena_wards_holder}>
+            <p className={styles.arena_wards_north}>Север</p>
+            <p className={styles.arena_wards_west}>Запад</p>
+            <p className={styles.arena_wards_south}>Юг</p>
+            <p className={styles.arena_wards_east}>Восток</p>
+          </div>
           {
-            renderList.map((_, i)=>(
-              <div 
-                key={i}
-                className={styles.square_row}>
-                {
-                  renderList[i].map((_, j)=>(
-                    <Square key={j} index={i === 0 ? j+1 : Math.floor(divs/2+1+j)}/>
-                  ))
-                }
+            list[0].arena === 'Север-Юг' &&
+            <div className={styles.square_row}>
+              <Square index={1}/>
+            </div>
+          }
+          {
+            (list[0].arena === 'Запад' || list[0].arena === 'Восток') &&
+            <div className={styles.square_row}>
+              <Square index={1}/>
+              <Square  index={2}/>
+            </div>
+          }
+          {
+            (list[0].arena === 'Север' || list[0].arena === 'Юг') &&
+            <>
+              <div className={styles.square_row}>
+                <Square index={1}/>
               </div>
-            ))
+              <div className={styles.square_row}>
+                <Square  index={2}/>
+              </div>
+            </>
           }
         </div>
         <div className={styles.judge_side}>

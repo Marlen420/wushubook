@@ -7,6 +7,7 @@ import NewClub from "./NewClub/NewClub";
 import { createClub, getAllClubs } from "../../api/club.api";
 import { setUsersList } from "../../api/users.api";
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 //Клубы
 
@@ -30,13 +31,7 @@ function Clubs() {
         console.log("Adding club");
     }
 
-    const handleSubmitClub = async (data) => {
-        try {
-            return await dispatch(createClub(data)).unwrap();
-        } catch (e) {
-            return e;
-        }
-    }
+    const handleSubmitClub = (data) => dispatch(createClub(data));
 
     // Effects
     useEffect(()=>{
@@ -48,6 +43,7 @@ function Clubs() {
         if (status === 'Created new club') {
             handleCloseNewClub();
             dispatch(getAllClubs());
+            toast.success('Клуб создан успешно');
         }
     }, [status])
 

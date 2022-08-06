@@ -1,30 +1,22 @@
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { toast } from 'react-toastify';
+import { TailSpin } from 'react-loader-spinner';
 import { Button, Input } from '../../../components';
 import { CloseIcon } from '../../../images/inedex';
 import styles from './style.module.css';
 
-const NewSportsman = ({closeModal, addSportsman}) => {
+const NewSportsman = ({closeModal, addSportsman, status}) => {
     const [name, setName] = useState('');
     const [lastname, setLastname] = useState('');
     const [stateRef, setStateRef] = useState('');
     const [rank, setRank] = useState('')
     const [dzi, setDzi] = useState('');
     const [duan, setDuan] = useState('');
-    // const [ofp, setOfp] = useState('');
 
     const handleSubmitForm = (e) => {
         e.preventDefault();
-        toast.promise(
-            addSportsman({name: name+'/'+lastname}),
-            {
-                pending: 'Добавление спортсмена',
-                success: 'Спортсмен добавлен успешно',
-                error: 'Ошибка при добавлении спортсмена'
-            }
-        )
+        addSportsman({name: name+'/'+lastname});
     }
 
     useEffect(()=>{
@@ -80,7 +72,15 @@ const NewSportsman = ({closeModal, addSportsman}) => {
                                     onClick={closeModal}>Назад</Button>
                                 <Button
                                     projectType='confirm_primary'
-                                    type="submit">Добавить</Button>
+                                    type="submit">
+                                        {
+                                            status === 'Adding sportsman to the club'
+                                            ?
+                                            <TailSpin height={24} color="#fff"/>
+                                            :
+                                            "Добавить"
+                                        }
+                                </Button>
                             </div>
                         </div>
                 </form>

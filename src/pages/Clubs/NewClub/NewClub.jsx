@@ -4,7 +4,6 @@ import { CloseIcon } from '../../../images/inedex';
 import styles from './style.module.css';
 import Select from 'react-select';
 import { TailSpin } from 'react-loader-spinner';
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const getName = (str) => str.split('/').join(' ');
@@ -26,17 +25,11 @@ const NewClub = ({closeModal, handleSubmitClub, status, error, trainers}) => {
     const handleSubmitForm = (e) => {
         e.preventDefault();
         if (trainerList.includes(-1)) return;
-        toast.promise(
-            handleSubmitClub({
-                name: title,
-                trainers: trainerList
-            }),
-            {
-                pending: 'Создание клуба',
-                success: 'Клуб создан успешно',
-                error: 'Ошибка при создании клуба'
-            }
-        )
+        handleSubmitClub({
+            name: title,
+            trainers: trainerList,
+            options: Math.floor(Math.random()*16777215).toString(16)
+        })
     }
     
     
@@ -118,7 +111,6 @@ const NewClub = ({closeModal, handleSubmitClub, status, error, trainers}) => {
                     </div>
                 </div>
             </form>
-            <ToastContainer/>
         </div>
     )
 }

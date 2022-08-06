@@ -7,6 +7,7 @@ import usePagination from '../../hooks/usePagination/usePagination';
 import Banner from './Banner/Banner';
 import NewSportsman from './NewSportsman/NewSportsman';
 import styles from './style.module.css';
+import { toast } from 'react-toastify';
 
 const ClubDetail = () => {
     // Constants
@@ -32,11 +33,12 @@ const ClubDetail = () => {
     const handleCloseAddSportsman = () => setAddSportsman(false);
     const handleSubmitAddSportsman = async (data) => {
         try {
-            return await dispatch(addSportsmanApi({...data, club: id}))
+            const res = await dispatch(addSportsmanApi({...data, club: id}));
+            handleCloseAddSportsman();
+            return res;
         } catch (e) {
             return e;
         }
-        handleCloseAddSportsman();
     }
 
     // Effects
@@ -44,12 +46,23 @@ const ClubDetail = () => {
         dispatch(getClubById(id));
     }, [dispatch]);
 
+    useEffect(()=>{
+        if (status === '') {
+            handleCloseAddSportsman();
+            dispatch(getClubById(id));
+            toast.success('Спортсмен добавлен успешно');
+        }
+        else if (status === 'Rejected add sportsman to the club') {
+            toast.error('Ошибка при добавлении спортсмена');
+        }
+    }, [status])
+
     return (
         <div className={styles.page_holder}>
             {(currentClub && currentClub.id === +id) &&
             <>
                 {addSportsman &&
-                <NewSportsman closeModal={handleCloseAddSportsman} addSportsman={handleSubmitAddSportsman}/>}
+                <NewSportsman status={status} closeModal={handleCloseAddSportsman} addSportsman={handleSubmitAddSportsman}/>}
                 <Banner club={currentClub}/>
                 <div className={styles.all_sportsmans_header}>
                     <h3 className={styles.header_title}>Все спортсмены</h3>
