@@ -56,7 +56,7 @@
     /* margin: 50% auto; */
     margin-bottom: 3rem;
     padding-top: 33px;
-    padding-left: 38px;
+    padding-left: 30px;
     padding-right: 30px;
     width: 40%;
 
@@ -212,7 +212,7 @@
     background: #798FDF;
     border-radius: 8px;
     align-items: center;
-    width: 226px;
+    width: 250px;
     height: 47px;
     font-weight: 700;
     font-size: 18px;
@@ -223,6 +223,29 @@
     margin-top: 45px;
     margin-bottom: 8px;
 
+}
+
+.modal__content_btnDelete {
+    display: flex;
+    background: red;
+    border-radius: 8px;
+    align-items: center;
+    width: 226px;
+    height: 47px;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    border: 0;
+    float: left;
+    color: #FFFFFF;
+    margin-top: 45px;
+    margin-bottom: 8px;
+}
+
+.modal__content_allBtn {
+    width: 100%;
+    display: flex;
+    /* background: red; */
 }
 
 .modal__content_input_time1 {

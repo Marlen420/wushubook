@@ -11,43 +11,84 @@ import Datetime from 'react-datetime';
 import "react-datetime/css/react-datetime.css";
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
-import { createNewEventCalendar } from '../../../api/calendar';
+import { createNewEventCalendar, deleteEventCalendar, editEventCalendar } from '../../../api/calendar';
 import 'moment/locale/ru'
+import { da } from 'date-fns/locale';
+import { setNullStatus } from '../../../redux/reducers/calendarSlice';
 
-function CalendarModal({ active, setActive, date, calendarEvents }) {
-
-    console.log(":", calendarEvents)
+function CalendarModal({ active, setActive, date, idEventItem }) {
 
     const dispatch = useDispatch()
-    const { status, error } = useSelector(state => state.calendar)
+    const { status, error, dataOneEvent } = useSelector(state => state.calendar)
+    console.log("status1: ", status.createEventStatus)
+    console.log("status: ", status.editEventStatus)
+    console.log("active: ", active.isOpen)
 
-    const [start, setStart] = useState(date)
-    const [end, setEnd] = useState(date)
-
-    useEffect(() => {
-        setStart(date)
-        setEnd(date)
-    }, [date])
-
-
-    useEffect(() => {
-        // dataNew ? setInitialValues(initialValuesEdit) : setInitialValues(initialValuesAdd)
-        document.body.style.overflow = 'hidden';
-        return () => document.body.style.overflow = 'auto';
-    }, [])
-
-    const refs = useRef()
-
+    const [start, setStart] = useState()
+    const [end, setEnd] = useState()
 
     const initialValues = {
-        id: Math.floor(Math.random() * 20000),
+        id: Number(Math.floor(Math.random() * 20000)),
         title: '',
         start: '',
         end: '',
         time: '',
         display: '',
-        color: ''
+        color: '',
+        allDay: false,
+        textColor: '',
+
     }
+
+    const initialValuesEdit = {
+        id: Number(idEventItem?.id),
+        title: idEventItem?.title,
+        start: idEventItem?.start,
+        end: idEventItem?.end,
+        display: idEventItem?.display,
+        color: idEventItem?.color,
+        time: '',
+        textColor: ''
+    }
+
+
+
+    useEffect(() => {
+        if (idEventItem) {
+            setStart(idEventItem.start)
+
+            !idEventItem.end ? setEnd(idEventItem.start)
+                : setEnd(idEventItem.end)
+
+        }
+        else {
+            setStart(date)
+            setEnd(date)
+        }
+
+        if (
+            status.createEventStatus === 'Creted event' ||
+            status.deleteEventStatus === 'Delted event' ||
+            status.editEventStatus === 'Edited event') {
+            setActive(false)
+            dispatch(setNullStatus())
+
+        }
+
+
+    }, [date, idEventItem, status])
+
+
+
+    // useEffect(() => {
+
+    //     document.body.style.overflow = 'hidden';
+    //     return () => document.body.style.overflow = 'auto';
+    // }, [])
+
+
+
+
 
 
     const handleCloseModal = () => {
@@ -55,7 +96,14 @@ function CalendarModal({ active, setActive, date, calendarEvents }) {
     }
 
 
-    const color = ['#FFE99C', '#F2F2F2', '#DAFBF9', '#5f9ea0'];
+    const colorBackground = ['rgb(238, 234, 255)', 'rgb(255,226,249)', 'rgb(215, 249, 245)'];
+    const colorText = {
+        'rgb(238, 234, 255)': 'rgb(111, 93,195)',
+        'rgb(255,226,249)': 'rgb(167, 24, 112)',
+        'rgb(215, 249, 245)': 'rgb(86, 141, 143)'
+
+    }
+
 
     const AddValidation = Yup.object().shape({
         title: Yup.string()
@@ -63,34 +111,34 @@ function CalendarModal({ active, setActive, date, calendarEvents }) {
 
     })
 
-
+    const handleDeleteEvent = (id) => {
+        dispatch(deleteEventCalendar(id))
+    }
 
 
     return (
         <div className={active ? styles.active : styles.modal}>
             <div className={styles.modal__content}>
                 <Formik
-                    initialValues={initialValues}
+                    initialValues={idEventItem ? initialValuesEdit : initialValues}
                     validationSchema={AddValidation}
                     onSubmit={(values) => {
 
-                        const randomIndex = Math.floor(Math.random() * (color.length - 1)); // генерируем случайный индекс в допустимом диапазоне
-                        const result = color[randomIndex]; // извлекаем значение под случайным индексом
+                        const randomIndex = Math.floor(Math.random() * (colorBackground.length - 1)); // генерируем случайный индекс в допустимом диапазоне
+                        const result = colorBackground[randomIndex]; // извлекаем значение под случайным индексом
 
-
-                        values.start = moment(start).format('MM-DD-YYYY, HH:MM')
-                        values.end = moment(end).format('MM-DD-YYYY, HH:MM')
-                        values.display = ""
+                        // values.textColor:  colorText[result]
+                        // values.start = moment(start).format('MM-DD-YYYY, HH:MM')
+                        values.start = moment(start).format('YYYY-MM-DD')
+                        values.end = moment(end).format('YYYY-MM-DD')
+                        values.display = 'Background'
                         values.color = result
+                        idEventItem == null ? dispatch(createNewEventCalendar(values))
+                            : dispatch(editEventCalendar(values))
 
-                        console.log("Values: ", values)
-                        // dispatch(setEvent(values))
-
-
-                        dispatch(createNewEventCalendar(values))
 
                     }}>
-                    {({ errors, touched }) => (
+                    {({ errors, touched, values }) => (
                         <Form>
                             <div className={styles.modal__content_cross} onClick={handleCloseModal} >
                                 <img src={crossIcon} alt='' />
@@ -130,17 +178,47 @@ function CalendarModal({ active, setActive, date, calendarEvents }) {
 
                             </div>
 
-                            <div className={styles.modal__content_btn} >
-                                <Button
-                                    projectType='add_user'
-                                    type='sumbit'>
-                                    {status.createEventStatus === 'Creating event' ?
-                                        <TailSpin
-                                            height={24}
-                                            color='white' />
-                                        : 'Сохранить'}
-                                </Button>
+                            <div className={styles.modal__content_allBtn}>
+                                {
 
+                                    idEventItem !== null ?
+
+                                        <div className={styles.modal__content_btnDelete}
+                                        >
+                                            <Button
+                                                onClick={() => handleDeleteEvent(values.id)}
+                                                style={{ background: 'red' }}
+                                                projectType='add_user'
+                                                type='button'
+
+                                            >
+
+                                                {
+                                                    status.deleteEventStatus === 'Deleting event' ?
+                                                        <TailSpin
+                                                            height={24}
+                                                            color='white' />
+                                                        : 'Удалить'}
+                                            </Button>
+                                        </div> : ''
+
+
+                                }
+                                <div className={styles.modal__content_btn} >
+                                    <Button
+                                        style={{ float: 'left' }}
+                                        projectType='add_user'
+                                        type='sumbit'>
+                                        {
+                                            status.createEventStatus === 'Creating event' ||
+                                                status.editEventStatus === 'Editing event' ?
+                                                <TailSpin
+                                                    height={24}
+                                                    color='white' />
+                                                : 'Сохранить'}
+                                    </Button>
+
+                                </div>
                             </div>
                         </Form>
                     )}

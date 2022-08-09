@@ -5,9 +5,11 @@
     font-size: 24px;
     line-height: 29px;
 
-    margin-top: 40px;
+    margin-top: 60px;
     position: relative;
+    /* margin-bottom: 50px; */
 
+    background: red;
 
 }
 
@@ -52,10 +54,23 @@
 .fc-day-number {
     font-size: 1.5em;
     color: #5c005c;
+    text-align: center;
 }
 
 /* override day title color and size */
 .fc-day-header {
     font-size: 1.5em;
     color: #00b294;
+}
+
+
+.fc-toolbar {
+    text-transform: capitalize;
+}
+
+@media screen and (max-width: 541px) {
+    .content {
+        margin-top: 150px;
+
+    }
 }

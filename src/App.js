@@ -41,6 +41,8 @@ function App() {
     dispatch(getDialogs())
     dispatch(getEventCalendar())
     // dispatch(setLocationUrl())
+
+
     // setSocket(io('....')) 
 
 
