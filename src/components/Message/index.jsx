@@ -108,8 +108,8 @@ const MessageAudio = ({ audio }) => {
 
 
 
-function Message({ avator, user, text, isMe, isReaded, isTyping, attachments, audio }) {
-    console.log("attachments: ", user)
+function Message({ avator, user, text, isMe, isReaded, isTyping, attachments, audio, time='00:00' }) {
+
     let date = new Date()
     // const [isPlaying, setIsPlaying] = useState(false)
     // const audioElem = useRef(null)
@@ -167,8 +167,10 @@ function Message({ avator, user, text, isMe, isReaded, isTyping, attachments, au
                             {
                                 attachments && (
                                     <div className={styles.message__attachments}>
-                                        {attachments.map(item => (
-                                            <div className={styles.message__attachments_item}>
+                                        {attachments.map((item, i) => (
+                                            <div 
+                                                key={i}
+                                                className={styles.message__attachments_item}>
                                                 <img src={item.url} alt={item.filename}
                                                     className={styles.message__attachments_img} />
                                             </div>
@@ -183,7 +185,7 @@ function Message({ avator, user, text, isMe, isReaded, isTyping, attachments, au
 
                                     <IconReaded isMe={isMe} isReaded={isReaded} /> </p>
                                 {/* {date && <p className={styles.message__date}><Time date={new Date()} /></p>} */}
-                                <p className={styles.message__date}> 23:30</p>
+                                <p className={styles.message__date}>{time}</p>
                             </div>
 
                         </div>

@@ -4,7 +4,8 @@ import { OtherNews } from '../index.js'
 import styles from './index.module.css'
 import { Oval } from 'react-loader-spinner'
 import Footer from '../../../components/Footer/index.jsx'
-import { NavLink, useNavigate, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
+import { quetionsIcon } from '../../../images/inedex.js'
 
 function MoreNews() {
     const { pathname } = useLocation();
@@ -13,7 +14,7 @@ function MoreNews() {
         window.scrollTo(0, 0);
     }, [pathname]);
 
-    const { newsId, status } = useSelector(state => state.main)
+    const { newsId, status } = useSelector(state => state.news)
 
     return (
         <div>
@@ -35,7 +36,7 @@ function MoreNews() {
 
             <div className={styles.content} key={newsId.id} >
                 {/* <div className={styles.conteiner__images}> */}
-                <img src={newsId.image} alt='' className={styles.content__image} />
+                <img src={newsId.image ? newsId.image : quetionsIcon} alt='' className={styles.content__image} />
                 {/* </div> */}
 
                 <div className={styles.content__info} >

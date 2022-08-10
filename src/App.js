@@ -9,7 +9,7 @@ import Events from './pages/Event/Events.jsx'
 import Statistics from './pages/Statistics/index.jsx'
 import Users from './pages/Users/Users.jsx'
 import { NavBar } from './components';
-import { getLastEvent, getNewEvent, getNews } from './api/main.js';
+import { getLastEvent, getNewEvent } from './api/main.js'
 import Profile from './pages/Profile/Profile.jsx';
 import Headers from './components/Headers/Headers.jsx'
 import { MainNews, MoreNews } from './pages/News/index.js';
@@ -21,12 +21,22 @@ import styles from './app.module.css'
 import EventDetail from './pages/EventDetail/EventDetail.jsx';
 import ClubDetail from './pages/ClubDetail/ClubDetail.jsx';
 import { ToastContainer } from 'react-toastify';
+import { getDialogs } from './api/dialogs.js';
+import { getNews } from './api/news.js';
+import socket from './utils/socket.js';
 
 function App() {
   const { isLogged } = useSelector(state => state.profile.login);
   const { user } = useSelector(state => state.profile)
+  const { dialogs } = useSelector(state=>state.dialogs);
   const dispatch = useDispatch()
 
+  useEffect(()=> {
+    console.log(dialogs);
+    socket.emit('join-to-lobby', {
+      lobby_list: dialogs.map((item)=>item.lobby_info.lobby_id)
+    })
+  }, [dialogs])
 
   useEffect(() => {
     dispatch(getNewEvent())
@@ -61,7 +71,7 @@ function App() {
                 }
                 <Route path='/profile' element={<Profile />} />
                 <Route path='/moreNews' element={<MoreNews />} />
-                <Route path='/chat' element={<Chat />} />
+                <Route path='/chat/*' element={<Chat />} />
               </>
             }
             {

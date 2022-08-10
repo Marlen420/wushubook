@@ -49,9 +49,27 @@ import photoPeople from './Account.svg'
 import profilIcon from './profilIcon.svg'
 import goOutIcon from './IconGoOut.svg'
 import peopleNotIcon from './Iconssssssssss.svg'
+<<<<<<< HEAD
 import Process from './process.png';
+=======
+import plusIcon from './Plus.svg'
+import crossIcon from './Union.svg'
+import photoIcon from './VectorImages.svg'
+import quetionsIcon from './queshions.webp'
+import editIconNew from './EditNews.svg'
+import crossIconNew from './CheckIcon.svg'
+import crossIconForNew from './CrossNewsss.svg'
+// 12345678BEM
+>>>>>>> chat_marlen
 
 export {
+    crossIconForNew,
+    crossIconNew,
+    editIconNew,
+    quetionsIcon,
+    photoIcon,
+    crossIcon,
+    plusIcon,
     peopleNotIcon,
     goOutIcon,
     profilIcon,

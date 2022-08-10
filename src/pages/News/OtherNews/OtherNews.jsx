@@ -1,17 +1,17 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styles from './index.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { Oval } from 'react-loader-spinner'
-import { NavLink, useNavigate, useLocation } from 'react-router-dom'
-import { getNewsId } from '../../../api/main'
+import { useNavigate } from 'react-router-dom'
+import { getNewsId } from '../../../api/news.js'
+import { quetionsIcon } from '../../../images/inedex.js'
 
 function OtherNews() {
     const dispatch = useDispatch()
     const navigations = useNavigate()
-    const { status, error, news } = useSelector(state => state.main)
+    const { status, error, news } = useSelector(state => state.news)
 
     const readMore = (item) => {
-
         dispatch(getNewsId({ id: item.id, navigations }))
         window.scrollTo(0, 0);
     }
@@ -21,7 +21,7 @@ function OtherNews() {
     return (
         <div className={styles.conteinerNews}>
             {
-                status == 'loading' && <div className={styles.spinner} >
+                status.newsStatus === 'loading' && <div className={styles.spinner} >
                     <Oval
                         ariaLabel="loading-indicator"
                         height={100}
@@ -43,7 +43,7 @@ function OtherNews() {
                     <article key={item.id} className={styles.conteinerNews__block} onClick={() => readMore(item)} >
 
                         <div className={styles.conteinerNews__block_for_img} >
-                            <img src={item.image} alt='' className={styles.conteinerNews__images} />
+                            <img src={item.image ? item.image : quetionsIcon} alt='' className={styles.conteinerNews__images} />
                         </div>
 
 

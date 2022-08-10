@@ -1,16 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from './index.module.css'
 import { Skrepka, mikrafon, flyIcon } from '../../images/inedex.js'
 
-function ChatInput() {
+function ChatInput({sendMessage, id, setTyping}) {
     const [value, setValue] = useState('')
 
     const valueMessage = (e) => {
         setValue(e.target.value)
     }
 
+    const handleSendMessage = (e) => {
+        e.preventDefault();
+        setValue('');
+        sendMessage({text: value, lobby: id});
+    }
+
+    useEffect(() => {
+        value !== '' && setTyping(true, id);
+        let timer = setTimeout(() => {
+          if (value !== '') setTyping(false, id);
+        }, 1000);
+        return () => clearTimeout(timer);
+      }, [value]);
+
     return (
-        <div className={styles.chat__input} >
+        <form 
+            onSubmit={handleSendMessage}
+            className={styles.chat__input} >
 
             <div className={styles.chat__input_simbvol}>
                 <img className={styles.chat__input_simbvol_icon} src={Skrepka} alt='' />
@@ -18,8 +34,12 @@ function ChatInput() {
 
             </div>
 
-            <input className={styles.chat__input_text} onChange={e => setValue(e.target.value)}
-                type='text' placeholder="Напишите сообщение..." />
+            <input 
+                value={value}
+                className={styles.chat__input_text} 
+                onChange={e => setValue(e.target.value)}
+                type='text' 
+                placeholder="Напишите сообщение..." />
 
             {
                 value ? <img className={styles.chat__input_simbvol_icon1} src={flyIcon} alt='' />
@@ -28,7 +48,7 @@ function ChatInput() {
 
             }
 
-        </div>
+        </form>
     )
 }
 

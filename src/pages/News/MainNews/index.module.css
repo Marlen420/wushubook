@@ -1,6 +1,8 @@
 .news {
+
     margin-left: 28px;
-    margin-top: 70px;
+    margin-top: 15px;
+
     font-style: normal;
     font-family: 'Lato', sans-serif;
 }
@@ -14,9 +16,47 @@
     color: #000000;
 }
 
-.conteiner__texst {
-    /* background: red; */
+
+
+.conteiner__addNew {
+
+    margin-top: 75px;
+    display: flex;
+    justify-content: flex-end;
+
+
+
 }
+
+.conteiner__addNew_text {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    margin-top: 10px;
+    cursor: pointer;
+    color: #FFFFFF;
+
+}
+
+.conteiner__addNew_icon {
+    width: 28px;
+    height: 28px;
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-right: 8px;
+}
+
+.conteiner__addNew_btn {
+    background: #798FDF;
+    border-radius: 8px;
+    display: flex;
+    margin-right: 20px;
+
+    width: 231px;
+    height: 48px;
+
+}
+
 
 .conteiner {
     width: 98%;
@@ -61,11 +101,26 @@
 
 .conteiner__texst {
     margin-left: 21px;
-    width: 52%;
 
+    width: 52%;
+    /* background: red; */
 
 
 }
+
+.conteiner__options {
+    position: absolute;
+    /* top: 90%; */
+    cursor: pointer;
+    left: 92.5%;
+    /* background: rebeccapurple; */
+
+}
+
+.conteiner__options_edit {
+    margin-right: 20px;
+}
+
 
 .conteiner__texst_date {
     font-family: 'Lato', sans-serif;
@@ -119,7 +174,7 @@
     font-weight: 800;
     font-size: 18px;
     line-height: 22px;
-
+    cursor: pointer;
     position: absolute;
     top: 90%;
     left: 88%;
@@ -128,6 +183,9 @@
     white-space: nowrap;
 
 }
+
+
+
 
 @media screen and (max-width: 997px) {
     .conteiner {

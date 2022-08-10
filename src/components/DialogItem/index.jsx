@@ -21,19 +21,28 @@ const getMessageTime = created_at => {
     }
 }
 
-function DialogItem({ user, message, unreaded }) {
-    // console.log("cre: ", message.lastMessage.created_at)
-
-
+function DialogItem({ 
+    id, 
+    name = '', 
+    photo = null,
+    last_message = '', 
+    isOnline = false,
+    isMe=false,
+    unreaded, 
+    dialogClick
+}) {
+    const handleDialogClick = () => dialogClick(id);
     return (
-        <div className={styles.dialog__item}  >
+        <div 
+            onClick={handleDialogClick}
+            className={styles.dialog__item}>
 
             <div className={styles.dialog__item_avator}>
                 {
-                    <Avator user={user.avator} />
+                    <Avator user={photo} />
                 }
 
-                <div className={user.isOnline ? styles.dialog__item__online : ''}>
+                <div className={isOnline ? styles.dialog__item__online : ''}>
                 </div>
 
             </div>
@@ -41,23 +50,23 @@ function DialogItem({ user, message, unreaded }) {
             <div className={styles.dialog__item_info}>
 
                 <div className={styles.dialog__item_info_top}>
-                    <b className={styles.dialog__item_info_name} >{user.fullname}</b>
+                    <b className={styles.dialog__item_info_name} >{name.split('/').join(' ')}</b>
                     <div>
-                        {user.isMe ? '' : <IconReaded isMe={false} isReaded={true} />}
+                        {isMe ? '' : <IconReaded isMe={false} isReaded={true} />}
                     </div>
-                    <span className={!user.isMe ? styles.dialog__item_date : styles.dialog__item_dateMe} >
+                    <span className={!isMe ? styles.dialog__item_date : styles.dialog__item_dateMe} >
                         {/* <Time date={message.lastMessage.created_at} /> */}
                         {
-                            getMessageTime(message.lastMessage.created_at)
+                            // getMessageTime(message.lastMessage.created_at)
                         }
                     </span>
                 </div>
 
 
                 <div className={styles.dialog__item_info_bottom}>
-                    <p className={styles.dialog__item__text}>{message.lastMessage.text} </p>
+                    <p className={styles.dialog__item__text}>{last_message} </p>
 
-                    {user.unreaded > 0 && <div className={styles.dialog__item_info_cout}>{user.unreaded > 9 ? '99+' : user.unreaded}  </div>}
+                    {unreaded > 0 && <div className={styles.dialog__item_info_cout}>{unreaded > 9 ? '99+' : unreaded}  </div>}
                 </div>
 
             </div>

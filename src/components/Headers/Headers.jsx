@@ -9,8 +9,6 @@ import jwt_decode from "jwt-decode";
 
 
 function Headers() {
-
-
     const navigations = useNavigate()
     const [isOpenNotificationIcon, setIsOpenNotificationIcon] = useState(false)
     const [isIconPerson, setIconPerson] = useState(PersonIcon)
@@ -18,7 +16,11 @@ function Headers() {
     const [isOpenSalary, setIsOpenSalary] = useState(false)
     const [selesctClubs, setSelesctClubs] = useState('Все клубы')
 
+<<<<<<< HEAD
     const { user } = useSelector(state => state.profile)
+=======
+    const { user } = useSelector(state => state.profile);
+>>>>>>> chat_marlen
 
     const name = user.name.split('/')
 
@@ -111,8 +113,11 @@ function Headers() {
                             <div>
                                 <ul className={styles.headers_profil_pops} >
                                     {
-                                        infoProfil.map(option => (
-                                            <div className={styles.headers_profil_popsUp} onClick={option.onClick}  >
+                                        infoProfil.map((option, index) => (
+                                            <div
+                                                key={index} 
+                                                className={styles.headers_profil_popsUp} 
+                                                onClick={option.onClick}  >
                                                 <li className={styles.headers_profil_hover} key={Math.random()}>
                                                     <img src={option.icon} alt='' />
 
