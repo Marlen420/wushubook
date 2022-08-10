@@ -66,3 +66,26 @@
     width: 100%;
     display: flex;
 }
+
+.sex_list_holder {
+    margin: 15px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sex_holder {
+    display: flex;
+    align-items: center;
+}
+
+.sex_list_holder label {
+    cursor: pointer;
+    font-size: 16px;
+    text-align: start;
+    margin: 0 5px;
+}
+
+.radio_input_holder {
+    cursor: pointer;
+}

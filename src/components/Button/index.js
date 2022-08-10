@@ -14,4 +14,4 @@ const Button = ({children, type="button", projectType = 'primary', autoFocus, ..
   )
 }
 
-export default Button
+export default React.memo(Button);

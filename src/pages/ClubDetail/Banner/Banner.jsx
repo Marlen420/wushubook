@@ -2,9 +2,11 @@ import React from 'react';
 import styles from './style.module.css';
 
 const Banner = ({club}) => {
-    const { name, trainers } = club;
+    const { name, trainers, options } = club;
     return (
-        <div className={styles.banner_holder}>
+        <div 
+            style={{backgroundColor: (options ? `#${options}` : '#F46767')}}
+            className={styles.banner_holder}>
             <h1 className={styles.title}>Клуб {`<<${name}>>`}</h1>
             <p className={styles.subtitle}>Тренеры</p>
             {trainers.map((item)=>(
@@ -14,4 +16,4 @@ const Banner = ({club}) => {
     )
 }
 
-export default Banner;
+export default React.memo(Banner);

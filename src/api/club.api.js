@@ -1,10 +1,23 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import API from "../utils/axiosConfig";
 
+// Get sportsman by club
+export const getClubSportsmans = createAsyncThunk(
+    'club/getClubSportsmans',
+    async(id, { rejectWithValue }) => {
+        try {
+            const response = await API.get('/sportsmen/get-by-club/' + id);
+            return response.data;
+        } catch (e) {
+            return rejectWithValue(e.response.data.message);
+        }
+    }
+)
+
 // Add sportsman
 export const addSportsmanApi = createAsyncThunk(
     'club/addSportsman',
-    async (data, {rejectWithValue}) => {
+    async(data, { rejectWithValue }) => {
         try {
             const response = await API.post('/sportsmen', data);
             return response.data;
@@ -32,7 +45,7 @@ export const getClubById = createAsyncThunk(
     'club/getClubById',
     async(id, { rejectedWithValue }) => {
         try {
-            const response = await API.get('/clubs/getById/' + id);
+            const response = await API.get('/clubs/get-by-id/' + id);
             return response.data;
         } catch (e) {
             return rejectedWithValue(e.response.data.message);
@@ -46,7 +59,6 @@ export const getAllClubs = createAsyncThunk(
     async(_, { rejectedWithValue }) => {
         try {
             const response = await API.get('/clubs');
-            console.log(response.data);
             return response.data;
         } catch (e) {
             return rejectedWithValue(e.response.data.message);

@@ -1,5 +1,5 @@
 const getDate = (date) => {
-    const fileDate = new Date(date.created_date);
+    const fileDate = new Date(date.date);
     const fileDay = fileDate.getDate();
     const fileMonth = fileDate.getMonth();
     const fileYear = fileDate.getFullYear();

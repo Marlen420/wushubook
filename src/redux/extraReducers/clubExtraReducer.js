@@ -1,6 +1,16 @@
 import startOfYesterday from "date-fns/startOfYesterday/index";
-import { addSportsmanApi, createClub, getAllClubs, getClubById } from "../../api/club.api";
+import { addSportsmanApi, createClub, getAllClubs, getClubById, getClubSportsmans } from "../../api/club.api";
 
+// Get sportsmans by club
+export const getClubSportsmansExtra = {
+    [getClubSportsmans.fulfilled]: (state, action) => {
+        state.clubSportsmans = action.payload;
+    },
+    [getClubSportsmans.rejected]: (state, action) => {
+        state.status = 'Rejected load club sportsmans';
+        state.error = action.payload;
+    }
+}
 
 // Add sportsman to the club
 export const addSportsmanExtra = {

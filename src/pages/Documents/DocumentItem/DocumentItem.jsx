@@ -7,8 +7,8 @@ const DocumentItem = ({item, deleteItem}) => {
     const [isHovered, setIsHovered] = useState(false);
     const [isHoveredTrash, setIsHoveredTrash] = useState(false);
 
-    const onMouse = () => setIsHovered(true);
-    const outMouse = () => setIsHovered(false);
+    const onMouse = () => deleteItem && setIsHovered(true);
+    const outMouse = () => deleteItem && setIsHovered(false);
     const onMouseTrash = () => setIsHoveredTrash(true);
     const outMouseTrash = () => setIsHoveredTrash(false);
 
@@ -29,8 +29,17 @@ const DocumentItem = ({item, deleteItem}) => {
                     color={!isHoveredTrash ? "#6F6F6F" : "red"}
                     className={styles.trash_icon}/>}
             <img src={PdfIcon} className={styles.pdf_icon}/>
-            <p className={styles.item_title}>{item.title}</p>
+            <p className={styles.item_title}>{item.docsKey.split('.')[0]}</p>
             <p className={styles.item_size}>{item.size}</p>
+            {
+                item.percent !== undefined &&
+                <div 
+                    className={styles.item_progress_bar_holder}>
+                        <div 
+                            style={{width: item.percent + '%'}}
+                            className={styles.item_progress_bar} />
+                </div>
+            }
         </div>
     )
 }

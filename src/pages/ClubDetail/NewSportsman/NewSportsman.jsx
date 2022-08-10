@@ -9,14 +9,23 @@ import styles from './style.module.css';
 const NewSportsman = ({closeModal, addSportsman, status}) => {
     const [name, setName] = useState('');
     const [lastname, setLastname] = useState('');
+    const [sex, setSex] = useState('');
+    const [age, setAge] = useState('');
     const [stateRef, setStateRef] = useState('');
     const [rank, setRank] = useState('')
     const [dzi, setDzi] = useState('');
     const [duan, setDuan] = useState('');
 
+
     const handleSubmitForm = (e) => {
         e.preventDefault();
-        addSportsman({name: name+'/'+lastname});
+        const data = {
+            name: name+'/'+lastname,
+            gender: sex,
+            age: +age,
+            rank
+        }
+        addSportsman(data);
     }
 
     useEffect(()=>{
@@ -51,6 +60,46 @@ const NewSportsman = ({closeModal, addSportsman, status}) => {
                                 <div className={styles.input_holder}>
                                         <label htmlFor="Фамилия">Фамилия</label>
                                         <Input type="text" name="Фамилия" value={lastname} onChange={(e)=>setLastname(e.target.value)}/>
+                                </div>
+                                <div className={styles.input_holder}>
+                                    <label htmlFor="Пол">Пол</label>
+                                    <div className={styles.sex_list_holder}>
+                                        <div className={styles.sex_holder}>
+                                            <div className={styles.radio_input_holder}>
+                                                <Input
+                                                    type="radio"
+                                                    projectType='radio'
+                                                    value="female"
+                                                    name="sex"
+                                                    checked={sex === 'female' ? true : false}
+                                                    onChange={(e)=>setSex(e.target.value)}
+                                                    id="sex-female"/>
+                                            </div>
+                                            <label htmlFor="sex-female">Женский</label>
+                                        </div>
+                                        <div className={styles.sex_holder}>
+                                            <div className={styles.radio_input_holder}>
+                                                <Input
+                                                    type="radio"
+                                                    projectType='radio'
+                                                    value="male"
+                                                    name="sex"
+                                                    checked={sex === 'male' ? true : false}
+                                                    onChange={(e)=>setSex(e.target.value)}
+                                                    id="sex-male"/>
+                                            </div>
+                                            <label htmlFor="sex-male">Мужской</label>
+                                        </div>
+                                    </div>
+                                        
+                                </div>
+                                <div className={styles.input_holder}>
+                                        <label htmlFor="Возраст">Возраст</label>
+                                        <Input type="text" name="Возраст" value={age} onChange={(e)=>setAge(e.target.value)}/>
+                                </div>
+                                <div className={styles.input_holder}>
+                                        <label htmlFor="Спортивный разряд">Спортивный разряд</label>
+                                        <Input type="text" name="Спортивный разряд" value={rank} onChange={(e)=>setRank(e.target.value)}/>
                                 </div>
                                 <div className={styles.input_holder}>
                                         <label htmlFor="Справка">Справка о физическом состоянии</label>

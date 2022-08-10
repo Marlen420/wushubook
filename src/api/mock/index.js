@@ -12,15 +12,15 @@ export let array = [
 
 
 export let documents_mock = [
-    { id: 0, title: 'Баллы турнира (2022)', type: 'pdf', created_date: '05-15-2022', size: '74мб', src: null },
-    { id: 1, title: 'Баллы турнира (2022)', type: 'pdf', created_date: '05-15-2022', size: '10мб', src: null },
-    { id: 2, title: 'Баллы турнира (2022)', type: 'pdf', created_date: '05-15-2022', size: '30мб', src: null },
-    { id: 3, title: 'Баллы турнира (2022)', type: 'pdf', created_date: '05-15-2022', size: '67мб', src: null },
-    { id: 4, title: 'Баллы турнира (2022)', type: 'pdf', created_date: '05-15-2022', size: '35мб', src: null },
-    { id: 5, title: 'Баллы турнира (2022)', type: 'pdf', created_date: '05-15-2022', size: '45мб', src: null },
-    { id: 6, title: 'Баллы турнира (2022)', type: 'pdf', created_date: '05-15-2022', size: '42мб', src: null },
-    { id: 7, title: 'Баллы турнира (2022)', type: 'pdf', created_date: '07-15-2022', size: '46мб', src: null },
-    { id: 8, title: 'Баллы турнира (2022)', type: 'pdf', created_date: '07-15-2022', size: '35мб', src: null },
-    { id: 9, title: 'Баллы турнира (2022)', type: 'pdf', created_date: '07-16-2022', size: '12мб', src: null },
-    { id: 10, title: 'Баллы турнира (2022)', type: 'pdf', created_date: '07-16-2022', size: '64мб', src: null },
+    { id: 0, docsKey: 'Баллы турнира (2022).pdf', type: 'pdf', date: '05-15-2022', size: '74мб', src: null },
+    { id: 1, docsKey: 'Баллы турнира (2022).pdf', type: 'pdf', date: '05-15-2022', size: '10мб', src: null },
+    { id: 2, docsKey: 'Баллы турнира (2022).pdf', type: 'pdf', date: '05-15-2022', size: '30мб', src: null },
+    { id: 3, docsKey: 'Баллы турнира (2022).pdf', type: 'pdf', date: '05-15-2022', size: '67мб', src: null },
+    { id: 4, docsKey: 'Баллы турнира (2022).pdf', type: 'pdf', date: '05-15-2022', size: '35мб', src: null },
+    { id: 5, docsKey: 'Баллы турнира (2022).pdf', type: 'pdf', date: '05-15-2022', size: '45мб', src: null },
+    { id: 6, docsKey: 'Баллы турнира (2022).pdf', type: 'pdf', date: '05-15-2022', size: '42мб', src: null },
+    { id: 7, docsKey: 'Баллы турнира (2022).pdf', type: 'pdf', date: '07-15-2022', size: '46мб', src: null },
+    { id: 8, docsKey: 'Баллы турнира (2022).pdf', type: 'pdf', date: '07-15-2022', size: '35мб', src: null },
+    { id: 9, docsKey: 'Баллы турнира (2022).pdf', type: 'pdf', date: '07-16-2022', size: '12мб', src: null },
+    { id: 10, docsKey: 'Баллы турнира (2022).pdf', type: 'pdf', date: '07-16-2022', size: '64мб', src: null },
 ]

@@ -6,26 +6,27 @@ const DocumentList = ({
     Today,
     Yesterday,
     Other,
+    UploadData,
     deleteItem,
 }) => {
-    
     return (
         <div className={styles.list_holder}>
-            { Today &&
+            { (Today.length > 0 || UploadData.length > 0) &&
             <div className={styles.series_listlist_series}>
                 <p className={styles.list_title}>Сегодня</p>
                 <div className={styles.item_list}>
+                    {UploadData.map((item)=><DocumentItem key={item.id} item={item}/>)}
                     {Today.map((item)=><DocumentItem key={item.id} item={item} deleteItem={deleteItem}/>)}
                 </div>
             </div>}
-            { Yesterday &&
+            { Yesterday.length > 0 &&
             <div className={styles.series_listlist_series}>
                 <p className={styles.list_title}>Вчера</p>
                 <div className={styles.item_list}>
                     {Yesterday.map((item)=><DocumentItem key={item.id} item={item} deleteItem={deleteItem}/>)}
                 </div>
             </div>}
-            { Other &&
+            { Other.length > 0 &&
             <div className={styles.series_listlist_series}>
                 <p className={styles.list_title}>Ранее</p>
                 <div className={styles.item_list}>

@@ -8,6 +8,7 @@ import { createClub, getAllClubs } from "../../api/club.api";
 import { setUsersList } from "../../api/users.api";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
+import { usePagination } from '../../hooks';
 
 //Клубы
 
@@ -17,6 +18,16 @@ function Clubs() {
     const { trainer } = useSelector(state=>state.users);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    // Hooks
+    const { 
+        currentData,
+        currentPage,
+        jump,
+        maxPage,
+        next,
+        prev
+    } = usePagination(data, 10);
 
     // States
     const [newClub, setNewClub] = useState(false);
@@ -65,7 +76,14 @@ function Clubs() {
                         projectType="add_user">+ Добавить клуб</Button>
                 </div>
             </div>
-            <ClubsList clubClick={handleClubClick} clubs={data}/>
+            <ClubsList 
+                clubClick={handleClubClick}
+                clubs={currentData}
+                maxPage={maxPage}
+                currentPage={currentPage}
+                jump={jump}
+                next={next}
+                prev={prev}/>
         </div>
     )
 }

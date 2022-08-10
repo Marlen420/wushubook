@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
-import { addSportsmanApi, getClubById } from '../../api/club.api';
+import { addSportsmanApi, getClubById, getClubSportsmans } from '../../api/club.api';
 import { Button } from '../../components';
 import usePagination from '../../hooks/usePagination/usePagination';
 import Banner from './Banner/Banner';
@@ -43,7 +43,8 @@ const ClubDetail = () => {
 
     // Effects
     useEffect(()=>{
-        dispatch(getClubById(id));
+        dispatch(getClubById(id))
+        .then(()=>dispatch(getClubSportsmans(id)));
     }, [dispatch]);
 
     useEffect(()=>{
