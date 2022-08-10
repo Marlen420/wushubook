@@ -41,7 +41,7 @@ export const editEventCalendar = createAsyncThunk(
     'calendar/editEventCalendar',
     async (data, { rejectWithValue, dispatch }) => {
         try {
-
+            console.log("data: ", data)
             const response = await API.patch(`/calendar/${data.id}`, data);
             if (response.status >= 200 && response.status <= 299) {
                 handleAlertEdit('Мероприятие было успешно редактированно')

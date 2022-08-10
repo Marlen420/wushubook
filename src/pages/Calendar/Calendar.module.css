@@ -9,7 +9,7 @@
     position: relative;
     /* margin-bottom: 50px; */
 
-    background: red;
+    display: inline;
 
 }
 
@@ -28,11 +28,13 @@
 
     letter-spacing: 0.04em;
 
-
     position: absolute;
     top: -14px;
     left: 28px;
-    padding-bottom: 44px;
+    /* padding-bottom: 44px; */
+    /* margin-bottom: 50px; */
+
+
 
 }
 
@@ -44,10 +46,10 @@
     font-size: 32px;
     line-height: 120%;
     /* or 38px */
-
     letter-spacing: 0.04em;
 
     color: #000000;
+
     /* background: rebeccapurple; */
 }
 
@@ -73,4 +75,8 @@
         margin-top: 150px;
 
     }
+}
+
+.view_title {
+    background: rebeccapurple;
 }

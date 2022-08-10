@@ -94,8 +94,7 @@
 
 .f {
     width: 187px;
-    background: rebeccapurple;
-    background: red;
+
     background: #F6F8FF;
     border-radius: 8px;
     position: relative;
@@ -222,7 +221,7 @@
         top: 20px;
 
         /* bottom: 80px; */
-        background: red;
+
         width: 100%;
         display: flex;
 

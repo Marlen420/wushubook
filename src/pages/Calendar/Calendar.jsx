@@ -3,25 +3,24 @@ import styles from './Calendar.module.css';
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from "@fullcalendar/interaction"
-// import 'bootstrap/dist/css/bootstrap.css';
-// import 'bootstrap-icons/font/bootstrap-icons.css';
+
 import NnLocale from '@fullcalendar/core/locales/ne';
+
 import { useState } from 'react';
 import CalendarModal from '../../components/Modals/CalendarModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import timeGridPlugin from '@fullcalendar/timegrid'
 
-import { FullCalendarWrapper } from './cs.js'
-
-
-
+import { StyleWrapper } from './cs.js'
+import { sliceEvents, createPlugin } from '@fullcalendar/core';
+import customViewPlugin from "./CastomView.jsx";
+import { deleteEventCalendar, editEventCalendar } from '../../api/calendar';
+import allLocales from '@fullcalendar/core/locales-all';
 
 function Calendar() {
 
     const { status, error, allEventForCalendar } = useSelector(state => state.calendar)
-    console.log("allEventForCalendar: ", allEventForCalendar)
-
 
     const [active, setActive] = useState({ isOpen: false, date: null, idEventItem: null }) //data - данные
 
@@ -30,6 +29,7 @@ function Calendar() {
 
 
     const [state, setState] = useState({ events: [] })
+    console.log("evemt: ", state.events)
 
     useEffect(() => {
         setState({ events: allEventForCalendar })
@@ -41,10 +41,7 @@ function Calendar() {
 
 
     const handleEventClick = (info) => {
-
-        console.log("in: ", info.event) // также от тужда можно вытащить  textColor, borderColor
-
-
+        console.log("info: ", info)
         setActive({
             isOpen: true, idEventItem:
             {
@@ -59,71 +56,76 @@ function Calendar() {
         })
     }
 
-    const event = [
-        {//Польный состав данных которые мне нужны
-            id: 137,
-            title: "gbgcd",
-            city: null,
-            start: '2022-08-03T14:30', // Надо время отображать так чтобы отображалось время
 
-            end: '2022-08-05T18:30:00',
-            display: "Background",
-            textColor: 'rgb(111, 93,195)',
-            color: "rgb(238, 234, 255)",
-            allDay: false,
-        },
+    const handleEventDrop = (event, delta, revertFunc, jsEvent, ui, view) => {
 
-    ]
+        let valuesEdit = {
+            id: Number(event.event._def.publicId),
+            title: event.event.title,
+            start: event.event.start,
+            end: event.event.end,
+            display: event.event.display,
+            color: event.event.backgroundColor,
+            textColor: event.event.textColor
+        }
+
+        dispatch(editEventCalendar(valuesEdit))
+
+    }
+
+
+
 
     return (
         <div className={styles.content}>
 
             <h1 className={styles.content__title}> Календарь </h1>
             <div className={styles.content_calendar} >
-                {/* <FullCalendarWrapper> */}
-                <FullCalendar
-                    defaultView="dayGridMonth"
-                    locale={NnLocale}
-                    plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin]}
-                    ref={calendarComponentRef}
-                    initialView="dayGridMonth"
+                <StyleWrapper>
+                    <FullCalendar
 
-                    headerToolbar={{
-                        right: 'prev,next',
-                        center: 'title',
-                        left: ''
+                        defaultView="dayGridMonth"
+                        locale={NnLocale}
 
-                    }}
-                    views={{
-                        dayGridMonth: {
-                            titleFormat: { year: 'numeric', month: 'long' }
-
-                        }
-                    }}
-                    contentHeight='650px'
-
-                    eventTimeFormat={{
-                        hour: '2-digit',
-                        minute: '2-digit',
-                        // second: '2-digit',
-                        // meridiem: false
-                    }}
+                        plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin]}
+                        ref={calendarComponentRef}
 
 
-                    events={event}
-                    eventClick={handleEventClick}
+                        headerToolbar={{
+                            right: 'prev,next',
+                            center: 'title',
+                            left: '',
 
-                    displayEventEnd={true}
+                        }}
+                        views={{
+                            dayGridMonth: {
+                                titleFormat: { year: 'numeric', month: 'long' }
 
-                    editable={true}
-                    selectable={true}
-                    selectMirror={true}
-                    dayMaxEvents={true}
-                    dateClick={handleDateClick}
-                // select={handleDateSelect}
+                            }
+                        }}
 
-                />
-                {/* </FullCalendarWrapper> */}
+
+                        events={state.events}
+                        contentHeight='650px'
+                        eventTimeFormat={{
+                            hour: '2-digit',
+                            minute: '2-digit',
+                        }}
+
+                        displayEventEnd={true}
+
+                        droppable={true}
+
+                        eventDrop={handleEventDrop}
+                        eventLimit={true}
+                        editable={true}
+                        selectable={true}
+                        selectMirror={true}
+                        dayMaxEvents={true}
+                        dateClick={handleDateClick}
+                        eventClick={handleEventClick}
+                    />
+                </StyleWrapper>
             </div>
 
 

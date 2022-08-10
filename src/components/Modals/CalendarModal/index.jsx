@@ -20,9 +20,7 @@ function CalendarModal({ active, setActive, date, idEventItem }) {
 
     const dispatch = useDispatch()
     const { status, error, dataOneEvent } = useSelector(state => state.calendar)
-    console.log("status1: ", status.createEventStatus)
-    console.log("status: ", status.editEventStatus)
-    console.log("active: ", active.isOpen)
+
 
     const [start, setStart] = useState()
     const [end, setEnd] = useState()
@@ -80,11 +78,11 @@ function CalendarModal({ active, setActive, date, idEventItem }) {
 
 
 
-    // useEffect(() => {
+    useEffect(() => {
 
-    //     document.body.style.overflow = 'hidden';
-    //     return () => document.body.style.overflow = 'auto';
-    // }, [])
+        document.body.style.overflow = 'hidden';
+        return () => document.body.style.overflow = 'auto';
+    }, [])
 
 
 
@@ -127,12 +125,17 @@ function CalendarModal({ active, setActive, date, idEventItem }) {
                         const randomIndex = Math.floor(Math.random() * (colorBackground.length - 1)); // генерируем случайный индекс в допустимом диапазоне
                         const result = colorBackground[randomIndex]; // извлекаем значение под случайным индексом
 
-                        // values.textColor:  colorText[result]
-                        // values.start = moment(start).format('MM-DD-YYYY, HH:MM')
-                        values.start = moment(start).format('YYYY-MM-DD')
-                        values.end = moment(end).format('YYYY-MM-DD')
+
+                        values.start = start
+                        values.end = end
+                        // values.start = moment(start).format('YYYY-MM-DDTHH:MM')
+                        // values.end = moment(end).format('YYYY-MM-DDTHH:MM')
                         values.display = 'Background'
                         values.color = result
+                        values.textColor = colorText[result]
+
+
+                        console.log("values: ", values)
                         idEventItem == null ? dispatch(createNewEventCalendar(values))
                             : dispatch(editEventCalendar(values))
 
@@ -161,7 +164,7 @@ function CalendarModal({ active, setActive, date, idEventItem }) {
 
                                     <Datetime value={start}
                                         locale="ru"
-                                        dateFormat={moment(start).format('MM-DD-YYYY, ')}
+                                        dateFormat={moment(start).format('MM-DD-YYYY')}
                                         onChange={data => setStart(data)}
 
                                     />
