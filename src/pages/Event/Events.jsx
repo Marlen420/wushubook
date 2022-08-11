@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import { createNewEvent, deleteEvent, setEventList} from "../../api/event.api";
 import NewEvent from "./NewEvent/NewEvent";
 import { setEventListExtra } from "../../redux/extraReducers/eventExtraReducer";
+import { toast } from "react-toastify";
 
 //Мероприятия
 const perPage = 3;
@@ -35,7 +36,11 @@ function Events() {
     const [isNewEvent, setIsNewEvent] = useState(false);
     const [eventName, setEventName] = useState('');
     const [eventCity, setEventCity] = useState('');
+    const [eventAddress, setEventAddress] = useState('');
     const [eventDate, setEventDate] = useState('');
+    const [eventDeadline, setEventDeadline] = useState('');
+    const [applicationDeadline, setApplicationDeadline] = useState('');
+    const [eventTime, setEventTime] = useState('')
     
     // Onload
     useEffect(()=>{
@@ -45,12 +50,13 @@ function Events() {
     useEffect(()=>{
         if (status === 'Deleted event') {
             dispatch(setStatus('Active'));
-            dispatch(setEventListExtra())
+            dispatch(setEventList({start: '', end: ''}));
         }
         if (status === 'Created new event') {
+            toast.success('Мероприятие успешно создано')
             setIsNewEvent(false);
             dispatch(setStatus('Active'));
-            dispatch(setEventListExtra())
+            dispatch(setEventList({start: '', end: ''}));
         }
     }, [status, dispatch])
 
@@ -58,6 +64,10 @@ function Events() {
     const handleEventNameChange = (e) => setEventName(e.target.value);
     const handleEventCityChange = (e) => setEventCity(e.target.value);
     const handleEventDateChange = (e) => setEventDate(e.target.value);
+    const handleEventDeadlineChange = (e) => setEventDeadline(e.target.value);
+    const handleEventApplicationDeadlineChange = (e) => setApplicationDeadline(e.target.value);
+    const handleEventTimeChange = (e) => setEventTime(e.target.value);
+    const handleEventAddressChange = (e) => setEventAddress(e.target.value);
 
     const handleCloseNewEvent = useCallback(() => setIsNewEvent(false), []);
 
@@ -91,7 +101,7 @@ function Events() {
     const handleAddNewEvent = useCallback((e)=>{
         e.preventDefault();
         e.stopPropagation();
-        dispatch(createNewEvent({title: eventName, city: eventCity, date: eventDate}))
+        dispatch(createNewEvent({title: eventName, city: eventCity, address: eventAddress, start: eventDate, end: eventDeadline, time: eventTime, applicationDeadline: eventDeadline}))
     }, [eventName, eventCity, eventDate, dispatch])
 
     return (
@@ -104,8 +114,16 @@ function Events() {
                 setDate={handleEventDateChange}
                 name={eventName}
                 city={eventCity}
+                eventDeadline={eventDeadline}
+                applicationDeadline={applicationDeadline}
+                time={eventTime}
+                address={eventAddress}
                 setName={handleEventNameChange}
                 setCity={handleEventCityChange}
+                setEventDeadline={handleEventDeadlineChange}
+                setApplicationDeadline={handleEventApplicationDeadlineChange}
+                setTime={handleEventTimeChange}
+                setAddress={handleEventAddressChange}
                 handleSubmit={handleAddNewEvent}
                 closeWindow={handleCloseNewEvent}/>}
             <EventHeader

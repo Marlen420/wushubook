@@ -6,7 +6,7 @@ export const getEventById = createAsyncThunk(
     'event/getEventById',
     async(id, { rejectWithValue }) => {
         try {
-            const response = await API.get('/events/getById/' + id);
+            const response = await API.get('/events/get-by-id/' + id);
             console.log(response.data);
             return response.data;
         } catch (e) {

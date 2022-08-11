@@ -27,7 +27,7 @@ function Clubs() {
         maxPage,
         next,
         prev
-    } = usePagination(data, 10);
+    } = usePagination(data, 2);
 
     // States
     const [newClub, setNewClub] = useState(false);

@@ -60,35 +60,35 @@ const NewUserView = ({
                                     checked={role === 'trainer' ? true : false}
                                     onChange={setRole}
                                     id="role-trainer"/>
-                                </div>
-                                <label htmlFor="role-trainer">Тренер</label>
                             </div>
-                            <div className={styles.form_radio_holder}>
-                                <div className={styles.radio_input_holder}>
-                                    <Input
-                                        type="radio"
-                                        projectType='radio'
-                                        value="secretary"
-                                        name="role"
-                                        checked={role === 'secretary' ? true : false}
-                                        onChange={setRole}
-                                        id="role-secretar"/>
-                                </div>
-                                <label htmlFor="role-secretar">Секретарь</label>
+                            <label htmlFor="role-trainer">Тренер</label>
+                        </div>
+                        <div className={styles.form_radio_holder}>
+                            <div className={styles.radio_input_holder}>
+                                <Input
+                                    type="radio"
+                                    projectType='radio'
+                                    value="secretary"
+                                    name="role"
+                                    checked={role === 'secretary' ? true : false}
+                                    onChange={setRole}
+                                    id="role-secretar"/>
                             </div>
-                            <div className={styles.form_radio_holder}>
-                                <div className={styles.radio_input_holder}>
-                                    <Input
-                                        type="radio"
-                                        projectType='radio'
-                                        value="judge"
-                                        name="role"
-                                        checked={role === 'judge' ? true : false}
-                                        onChange={setRole}
-                                        id="role-judge"/>
-                                </div>
-                                <label htmlFor="role-judge">Судья</label>
+                            <label htmlFor="role-secretar">Секретарь</label>
+                        </div>
+                        <div className={styles.form_radio_holder}>
+                            <div className={styles.radio_input_holder}>
+                                <Input
+                                    type="radio"
+                                    projectType='radio'
+                                    value="judge"
+                                    name="role"
+                                    checked={role === 'judge' ? true : false}
+                                    onChange={setRole}
+                                    id="role-judge"/>
                             </div>
+                            <label htmlFor="role-judge">Судья</label>
+                        </div>
                     </div>
                     {role === 'trainer' &&
                     <TrainerRole 

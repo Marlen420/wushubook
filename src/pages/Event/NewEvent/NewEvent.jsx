@@ -14,8 +14,16 @@ const NewEvent = ({
     setName,
     city,
     setCity,
+    address,
+    setAddress,
     date,
-    setDate
+    time,
+    setTime,
+    setDate,
+    eventDeadline,
+    setEventDeadline,
+    applicationDeadline,
+    setApplicationDeadline
 }) => {
     useEffect(()=>{
         document.body.style.overflow = 'hidden';
@@ -50,6 +58,13 @@ const NewEvent = ({
                             name="city"/>
                     </div>
                     <div className={style.input_holder}>
+                        <label htmlFor="city">Адрес</label>
+                        <Input
+                            value={address}
+                            onChange={setAddress}
+                            name="city"/>
+                    </div>
+                    <div className={style.input_holder}>
                         <label htmlFor="date">Дата проведения</label>
                         <Input
                             value={date}
@@ -59,11 +74,22 @@ const NewEvent = ({
                     <div className={style.input_holder}>
                         <label htmlFor="time">Время начала</label>
                         <Input
+                            value={time}
+                            onChange={setTime}
                             name="time"/>
+                    </div>
+                    <div className={style.input_holder}>
+                        <label htmlFor="end-date">Дата окончания мероприятия</label>
+                        <Input
+                            value={eventDeadline}
+                            onChange={setEventDeadline}
+                            name="end-date"/>
                     </div>
                     <div className={style.input_holder}>
                         <label htmlFor="end-date">Дата окончания принятия заявок</label>
                         <Input
+                            value={applicationDeadline}
+                            onChange={setApplicationDeadline}
                             name="end-date"/>
                     </div>
                     {error &&

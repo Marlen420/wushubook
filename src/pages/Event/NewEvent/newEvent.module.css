@@ -14,7 +14,7 @@
 .form_window {
     min-width: 800px;
     min-height: 400px;
-    height: 80%;
+    max-height: 80%;
     background: #fff;
     box-sizing: border-box;
     padding: 50px 135px;

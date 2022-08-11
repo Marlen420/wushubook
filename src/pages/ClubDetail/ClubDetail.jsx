@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { addSportsmanApi, getClubById, getClubSportsmans } from '../../api/club.api';
@@ -8,11 +8,13 @@ import Banner from './Banner/Banner';
 import NewSportsman from './NewSportsman/NewSportsman';
 import styles from './style.module.css';
 import { toast } from 'react-toastify';
+import SportsmanList from './SportsmanList/SportsmanList';
+import { selectAll, selectItem, unSelectAll, unSelectItem } from '../../redux/features/counter/clubsSlice';
 
 const ClubDetail = () => {
     // Constants
     const { id } = useParams();
-    const { currentClub, status, error } = useSelector(state=>state.clubs);
+    const { currentClub, selectedSportsmen, status, error } = useSelector(state=>state.clubs);
     const dispatch = useDispatch();
 
     // States
@@ -26,7 +28,7 @@ const ClubDetail = () => {
         maxPage,
         next,
         prev
-    } = usePagination([]);
+    } = usePagination(currentClub?.sportsmen || [], 10);
 
     // Functions
     const handleAddSportsman = () => setAddSportsman(true);
@@ -41,10 +43,21 @@ const ClubDetail = () => {
         }
     }
 
+    const handleSelectItem = (id) => isSelectedItem(id) === -1 ? dispatch(selectItem(id)) :  dispatch(unSelectItem(id));
+    const handelSelectAll = () => isSelectedAll() ? dispatch(unSelectAll()) : dispatch(selectAll(currentData()));
+
+    const isSelectedItem = useCallback((id) => selectedSportsmen.findIndex((i)=>i.id === id), [selectedSportsmen]);
+    const isSelectedAll = useCallback(() => {
+        if (selectedSportsmen.length === 0) return false;
+        for (let i of currentData()) {
+            if (!selectedSportsmen.includes(i.id)) return false;
+        }
+        return true;
+    }, [selectedSportsmen]);
+
     // Effects
     useEffect(()=>{
         dispatch(getClubById(id))
-        .then(()=>dispatch(getClubSportsmans(id)));
     }, [dispatch]);
 
     useEffect(()=>{
@@ -74,6 +87,17 @@ const ClubDetail = () => {
                             onClick={handleAddSportsman}>+ Добавить спортсмена</Button>
                     </div>
                 </div>
+                <SportsmanList 
+                    isSelectedAll={isSelectedAll}
+                    isSelectedItem={isSelectedItem}
+                    onSelectItem={handleSelectItem}
+                    onSelectAll={handelSelectAll}
+                    list={currentClub?.sportsmen || []}
+                    jump={jump}
+                    next={next}
+                    prev={prev}
+                    maxPage={maxPage}
+                    currentPage={currentPage}/>
             </>}
         </div>
     )

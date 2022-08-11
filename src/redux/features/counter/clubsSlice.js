@@ -10,6 +10,7 @@ export const counterSlice = createSlice({
         error: null,
         data: [],
         currentClub: null,
+        selectedSportsmen: []
     },
     extraReducers: {
         ...createClubExtra,
@@ -19,6 +20,18 @@ export const counterSlice = createSlice({
     reducers: {
         deleteClub: (state, action) => {
             state.data = state.data.filter(item => item.id !== action.payload);
+        },
+        selectItem: (state, action) => {
+            state.selectedSportsmen = [action.payload, ...state.selectedSportsmen];
+        },
+        unSelectItem: (state, action) => {
+            state.selectedSportsmen = state.selectedSportsmen.filter((i) => i.id !== action.payload);
+        },
+        selectAll: (state, action) => {
+            state.selectedSportsmen = action.payload.map((i) => i.id);
+        },
+        unSelectAll: (state) => {
+            state.selectedSportsmen = [];
         }
     },
 })
@@ -26,6 +39,10 @@ export const counterSlice = createSlice({
 
 export const {
     deleteDocument,
+    selectItem,
+    unSelectItem,
+    selectAll,
+    unSelectAll
 } = counterSlice.actions;
 
-export default counterSlice.reducer
+export default counterSlice.reducer;
