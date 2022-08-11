@@ -7,6 +7,7 @@ import profileSlice from './features/counter/profileSlice'
 import usersSlice from './features/counter/usersSlice';
 import calendarSlice from './reducers/calendarSlice';
 import chatSlice from './reducers/chatSlice';
+import dialodsSlice from './reducers/dialogsSlice';
 
 
 
@@ -25,7 +26,7 @@ export default configureStore({
         statistics: statisticsSlice,
         documents: documentSlice,
         clubs: clubsSlice,
-        // dialogs: dialodsSlice,
+        dialogs: dialodsSlice,
         calendar: calendarSlice,
         news: newsSlice,
         chat: chatSlice

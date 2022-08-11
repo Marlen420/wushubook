@@ -1,7 +1,7 @@
 import { createSlice, current } from '@reduxjs/toolkit'
 import { getCurrentDialogExtra, getDialogsExtra } from '../extraReducers/dialogExtraReducer';
 
-export const dialodsSlice = createSlice({
+export const dialogsSlice = createSlice({
     name: 'dialogs',
     initialState: {
         items: [],
@@ -46,6 +46,6 @@ export const dialodsSlice = createSlice({
 export const {
     setCurrentDialog,
     addMessage
-} = dialodsSlice.actions;
+} = dialogsSlice.actions;
 
-export default dialodsSlice.reducer
+export default dialogsSlice.reducer
