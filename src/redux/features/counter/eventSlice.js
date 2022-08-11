@@ -54,4 +54,4 @@ export const {
     setStatus,
 } = counterSlice.actions;
 
-export default counterSlice.reducer
+export default counterSlice.reducer;
