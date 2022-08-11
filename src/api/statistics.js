@@ -1,4 +1,4 @@
-import { API } from "./API"
+
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { array } from './mock/index'
 

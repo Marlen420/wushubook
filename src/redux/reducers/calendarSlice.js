@@ -94,7 +94,6 @@ const calendarSlice = createSlice({
         [deleteEventCalendar.fulfilled]: (state, action) => {
 
             state.status.deleteEventStatus = 'Delted event';
-            // state.news = [action.payload, ...state.news]
             state.allEventForCalendar = [...state.allEventForCalendar]
             state.error.deleteEventError = null
         },

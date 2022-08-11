@@ -40,7 +40,7 @@ function App() {
     dispatch(getStatistics())
     dispatch(getDialogs())
     dispatch(getEventCalendar())
-    // dispatch(setLocationUrl())
+
 
 
     // setSocket(io('....')) 
@@ -59,7 +59,7 @@ function App() {
           <Routes>
             <Route path='/*' element={<Home userStatus={user.status} />} />
             {
-              user.status !== '2' &&
+              user.status !== '0' &&
               <>
                 <Route path='/clubs' element={<Clubs />} />
                 <Route path='/document' element={<Document />} />
@@ -70,7 +70,6 @@ function App() {
                   user.role === 'admin' &&
                   <Route path='/users' element={<Users />} />
                 }
-                {/* <Route path='/users' element={<Users />} /> */}
                 <Route path='/profile' element={<Profile />} />
                 <Route path='/moreNews' element={<MoreNews />} />
                 <Route path='/chat' element={<Chat />} />

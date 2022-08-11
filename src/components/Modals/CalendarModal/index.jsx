@@ -3,7 +3,6 @@ import { TailSpin } from 'react-loader-spinner';
 import Button from '../../Button';
 import styles from './index.module.css'
 import { crossIcon } from '../../../images/inedex.js'
-import DatePicker from "react-datepicker";
 import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
 import { useState } from 'react';
@@ -13,7 +12,6 @@ import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
 import { createNewEventCalendar, deleteEventCalendar, editEventCalendar } from '../../../api/calendar';
 import 'moment/locale/ru'
-import { da } from 'date-fns/locale';
 import { setNullStatus } from '../../../redux/reducers/calendarSlice';
 
 function CalendarModal({ active, setActive, date, idEventItem }) {
@@ -99,14 +97,12 @@ function CalendarModal({ active, setActive, date, idEventItem }) {
         'rgb(238, 234, 255)': 'rgb(111, 93,195)',
         'rgb(255,226,249)': 'rgb(167, 24, 112)',
         'rgb(215, 249, 245)': 'rgb(86, 141, 143)'
-
     }
 
 
     const AddValidation = Yup.object().shape({
         title: Yup.string()
             .required('Поле не может быть пустым.'),
-
     })
 
     const handleDeleteEvent = (id) => {
@@ -122,14 +118,13 @@ function CalendarModal({ active, setActive, date, idEventItem }) {
                     validationSchema={AddValidation}
                     onSubmit={(values) => {
 
-                        const randomIndex = Math.floor(Math.random() * (colorBackground.length - 1)); // генерируем случайный индекс в допустимом диапазоне
-                        const result = colorBackground[randomIndex]; // извлекаем значение под случайным индексом
+                        const randomIndex = Math.floor(Math.random() * (colorBackground.length - 1));
+                        const result = colorBackground[randomIndex];
 
 
                         values.start = start
                         values.end = end
-                        // values.start = moment(start).format('YYYY-MM-DDTHH:MM')
-                        // values.end = moment(end).format('YYYY-MM-DDTHH:MM')
+
                         values.display = 'Background'
                         values.color = result
                         values.textColor = colorText[result]

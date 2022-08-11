@@ -5,31 +5,25 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from "@fullcalendar/interaction"
 
 import NnLocale from '@fullcalendar/core/locales/ne';
-
 import { useState } from 'react';
 import CalendarModal from '../../components/Modals/CalendarModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import timeGridPlugin from '@fullcalendar/timegrid'
+import { StyleWrapper } from './stylesCalendar.js'
+import { editEventCalendar } from '../../api/calendar';
 
-import { StyleWrapper } from './cs.js'
-import { sliceEvents, createPlugin } from '@fullcalendar/core';
-import customViewPlugin from "./CastomView.jsx";
-import { deleteEventCalendar, editEventCalendar } from '../../api/calendar';
-import allLocales from '@fullcalendar/core/locales-all';
 
 function Calendar() {
 
     const { status, error, allEventForCalendar } = useSelector(state => state.calendar)
 
-    const [active, setActive] = useState({ isOpen: false, date: null, idEventItem: null }) //data - данные
+    const [active, setActive] = useState({ isOpen: false, date: null, idEventItem: null })
+    const [state, setState] = useState({ events: [] })
 
     const dispatch = useDispatch()
-    const calendarComponentRef = useRef(); //
+    const calendarComponentRef = useRef();
 
-
-    const [state, setState] = useState({ events: [] })
-    console.log("evemt: ", state.events)
 
     useEffect(() => {
         setState({ events: allEventForCalendar })
@@ -41,7 +35,6 @@ function Calendar() {
 
 
     const handleEventClick = (info) => {
-        console.log("info: ", info)
         setActive({
             isOpen: true, idEventItem:
             {
@@ -57,8 +50,7 @@ function Calendar() {
     }
 
 
-    const handleEventDrop = (event, delta, revertFunc, jsEvent, ui, view) => {
-
+    const handleEventDrop = (event) => {
         let valuesEdit = {
             id: Number(event.event._def.publicId),
             title: event.event.title,
@@ -68,9 +60,7 @@ function Calendar() {
             color: event.event.backgroundColor,
             textColor: event.event.textColor
         }
-
         dispatch(editEventCalendar(valuesEdit))
-
     }
 
 
@@ -101,12 +91,17 @@ function Calendar() {
                             dayGridMonth: {
                                 titleFormat: { year: 'numeric', month: 'long' }
 
+                            },
+                            timeGrid: {
+                                eventLimit: 3
                             }
-                        }}
 
+                        }}
 
                         events={state.events}
                         contentHeight='650px'
+
+
                         eventTimeFormat={{
                             hour: '2-digit',
                             minute: '2-digit',

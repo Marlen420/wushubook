@@ -2,10 +2,12 @@
     display: flex;
     justify-content: space-between;
 
-    margin: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 5px;
     position: relative;
     /* color: '#FFE99C', */
-    background: rebeccapurple;
+    /* background: rebeccapurple; */
     position: relative;
 
 
@@ -82,8 +84,19 @@
 .header__allIcon {
     display: flex;
     margin-top: 12px;
-    margin-right: 20px;
+    margin-right: 18px;
 }
+
+
+
+@media screen and (max-width: 1009px) {
+    .header__allIcon {
+
+        margin-right: 50px;
+    }
+
+}
+
 
 /* 
 .header__logo:hover {
@@ -179,63 +192,58 @@
     .header__icon {
         margin-right: 0px;
     }
+
+
+    .header__icon_conteiner {
+        position: absolute;
+        right: 0;
+        top: -5%;
+    }
 }
 
-/* 
-@media screen and (max-width: 477px) {
-    .header__icon {
-        width: 40px;
-        height: 40px;
-        /* margin-right: 10px;
-        margin-top: 12px; */
-/* margin-bottom: 5px; */
-/*  */
-/* }
 
-.header__allIcon {
-    margin-top: 0px;
-    display: flex;
-    flex-direction: column;
-    /* margin-right: 48px; */
-
-/* }
-
-
-.headers__title {
-
-    width: 40%;
-    padding-top: 39px;
-
-} */
 .header__twoIcon {
     display: flex;
 
 }
 
+@media screen and (max-width: 413px) {
+
+    .header {
+        margin-bottom: 100px;
+    }
+
+    .header__allIcon {
+
+        margin-top: 83px;
+
+    }
+}
+
+
 
 @media screen and (max-width: 541px) {
+
     .header__allIcon {
 
         position: absolute;
         left: 0;
         top: 20px;
-
-        /* bottom: 80px; */
-
         width: 100%;
         display: flex;
+        /* background: red; */
+        justify-content: space-between;
 
-        /* flex-direction: column;
-        /* justify-content: end; */
+
 
     }
 
+    .headers__title {
+
+        width: 60%;
+    }
+
     .f {
-        /* width: 187px; */
-        /* background: rebeccapurple;
-        background: red;
-        background: #F6F8FF;
-        border-radius: 8px; */
         justify-content: end;
         position: relative;
         float: right;

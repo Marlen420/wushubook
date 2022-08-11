@@ -9,10 +9,6 @@ import { TailSpin } from 'react-loader-spinner';
 import { Button } from '../../../components';
 
 function AddNews({ active, dataNew, setActive }) {
-    console.log("daaaa: ", dataNew)
-
-
-
     let data = new FormData();
     const dispatch = useDispatch()
     const [selectedImage, setSelectedImage] = useState(null);
@@ -24,7 +20,7 @@ function AddNews({ active, dataNew, setActive }) {
     }
     const hanleClose = () => {
         setActive({ active: false, dataNew: null })
-        console.log("data11: ", dataNew)
+
     }
 
     const initialValuesEdit = {
@@ -45,7 +41,7 @@ function AddNews({ active, dataNew, setActive }) {
 
 
     useEffect(() => {
-       
+
         document.body.style.overflow = 'hidden';
         return () => document.body.style.overflow = 'auto';
     }, [])

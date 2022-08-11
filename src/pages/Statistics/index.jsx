@@ -119,7 +119,8 @@ function Statistics() {
                                 {
                                     nameClubs.map(option => (
                                         <div>
-                                            <li className={styles.li} key={Math.random()} onClick={() => chooseClubs(option)}  >
+                                            <li className={styles.li} key={Math.random()}
+                                                onClick={() => chooseClubs(option)}  >
                                                 {option}
                                             </li >
                                         </div>

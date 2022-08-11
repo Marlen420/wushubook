@@ -64,8 +64,7 @@ color: #000000;
 }
 
 .fc-daygrid-day-events {
-    margin-top: 22px;
-
+    margin-top: 20px;
 }
 
 .fc-col-header-cell-cushion {
@@ -140,23 +139,40 @@ tr {
 
 .fc-day.fc-day-today::after {
     border-radius: 0;
-    width: 45px;
-height: 45px;
+    width: 36px;
+height: 36px;
 background: #5B73CE;
 border-radius: 50%;
 
 }
 .fc-theme-standard td{
     border: 1px solid #F2F2F2;
-
+}
 .fc-scrollgrid{
     border: 1px solid #F2F2F2;
+ 
 
-.fc-prev-button.fc-button.fc-button-primary{
-    bor
 }
 
 
+.fc, .fc-daygrid-more-link{
+   
+  
+    color: black;
+}
+ .fc-popover-header{
+    background: #C9F9C8;
+    position: relative;
+    z-index: 10;
+    color: black;
+  
+}
+.fc-popover-body {
+    background: white;
+    position: relative;
+    z-index: 10;
+    color: black;
+}
 
 
 

@@ -1,9 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './index.module.css'
-import { Check, NoReact } from '../../images/inedex.js'
-// import { ThreeDots } from '@bit/mhnpd.react-loader-spinner.three-dots';
 import { ThreeDots } from 'react-loader-spinner'
-
 import { Wave, Play, Pausa } from '../../images/inedex.js'
 import IconReaded from '../IconReaded/index'
 import convertCurrentTime from '../../helpers/convertCurrentTime.js'

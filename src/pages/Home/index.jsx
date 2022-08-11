@@ -17,11 +17,8 @@ import Main from '../../components/Modals/Main';
 
 function Home({ userStatus }) {
 
-
-    console.log(userStatus)
-    console.log(typeof userStatus)
     const { status, error, newsEvents, lastEvents } = useSelector(state => state.main)
-    console.log("newsEvents: ", newsEvents)
+
 
 
     return (
