@@ -1,12 +1,10 @@
-
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import API from '../utils/axiosConfig';
 
 
 
 
-const All_Last_Events =
-{
+const All_Last_Events = {
     NotRegistering_Date_Last_Event: [
 
         {
@@ -48,8 +46,7 @@ const All_Last_Events =
         },
     ],
 
-    Registering_Date_Last_Event: [
-        {
+    Registering_Date_Last_Event: [{
             id: 1,
 
             title: "Чемпионат среди детей",
@@ -68,8 +65,7 @@ const All_Last_Events =
 
 
 
-const All_New_Events =
-{
+const All_New_Events = {
     NotRegistering_Date_News_Event: [
 
         {
@@ -111,8 +107,7 @@ const All_New_Events =
         },
     ],
 
-    Registering_Date_NewEvent: [
-        {
+    Registering_Date_NewEvent: [{
             id: 1,
 
             title: "Чемпионат среди детей",
@@ -133,22 +128,14 @@ const All_New_Events =
 
 export const getNewEvent = createAsyncThunk(
     'main/getNewEvent',
-    async function (_, { rejectWithValue }) {
+    async function(_, { rejectWithValue }) {
         try {
             const response = await API.get(`events?start=${new Date()}end=${2022 - 12 - 31}`)
-<<<<<<< HEAD
-            if (response.status !== 200) {
-                throw new Error("Server Error!")
-            }
-            return All_New_Events
-=======
 
 
             return response.data
->>>>>>> dev2
 
-        }
-        catch (error) {
+        } catch (error) {
             return rejectWithValue(error.message)
         }
 
@@ -156,23 +143,14 @@ export const getNewEvent = createAsyncThunk(
 
 export const getLastEvent = createAsyncThunk(
     'main/getLastEvent',
-    async function (_, { rejectWithValue }) {
+    async function(_, { rejectWithValue }) {
         try {
             const response = await API.get(`events?end=${new Date()}`)
-<<<<<<< HEAD
-            if (response.status !== 200) {
-                throw new Error("Server Error!")
-            }
-            return All_Last_Events
-=======
 
 
             return response.data
->>>>>>> dev2
-        }
-        catch (error) {
+        } catch (error) {
             return rejectWithValue(error.message)
         }
 
     })
-

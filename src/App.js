@@ -25,8 +25,6 @@ import { ToastContainer } from 'react-toastify';
 import { getDialogs } from './api/dialogs.js';
 import { getNews } from './api/news.js';
 import socket from './utils/socket.js';
-import { getDialogs } from './api/chat.js';
-import { getNews } from './api/news.js';
 import { io } from 'socket.io-client'
 import { setLocationUrl } from './redux/reducers/chatSlice.js';
 import { getEventCalendar } from './api/calendar.js';
@@ -34,12 +32,10 @@ import { getEventCalendar } from './api/calendar.js';
 
 function App() {
   const dispatch = useDispatch()
-  const [socket, setSocket] = useState(null)
 
   const { isLogged } = useSelector(state => state.profile.login);
   const { user } = useSelector(state => state.profile)
   const { dialogs } = useSelector(state=>state.dialogs);
-  const dispatch = useDispatch()
 
   useEffect(()=> {
     console.log(dialogs);

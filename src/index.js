@@ -9,13 +9,8 @@ import store from './redux/store';
 import CreatePassword from './pages/Login/CreatePassword/CreatePassword';
 import RecoverPassword from './pages/Login/CreatePassword/RecoverPassword';
 import ConfirmAccount from './pages/Login/CreatePassword/ConfirmAccount';
-<<<<<<< HEAD
 import Table from './pages/EventDetail/Table';
-
-=======
-import Table from './pages/Event/Table';
 import { render } from 'react-dom';
->>>>>>> dev2
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 

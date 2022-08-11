@@ -21,7 +21,14 @@ const getMessageTime = created_at => {
     }
 }
 
-function DialogItem({ user, message, unreaded }) {
+function DialogItem({ 
+    user, 
+    message, 
+    unreaded ,
+    isMe = false,
+    isOnline=false,
+    last_message=''
+}) {
 
 
 
