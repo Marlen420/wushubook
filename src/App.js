@@ -17,7 +17,6 @@ import { MainNews, MoreNews } from './pages/News/index.js';
 import Chat from './pages/Chat/index.jsx';
 import { getStatistics } from './api/statistics.js';
 import NotRegisteredHome from './pages/NotRegisteredHome/index.jsx';
-<<<<<<< HEAD
 import styles from './app.module.css'
 
 import EventDetail from './pages/EventDetail/EventDetail.jsx';
@@ -26,91 +25,115 @@ import { ToastContainer } from 'react-toastify';
 import { getDialogs } from './api/dialogs.js';
 import { getNews } from './api/news.js';
 import socket from './utils/socket.js';
-=======
 import { getDialogs } from './api/chat.js';
 import { getNews } from './api/news.js';
 import { io } from 'socket.io-client'
 import { setLocationUrl } from './redux/reducers/chatSlice.js';
 import { getEventCalendar } from './api/calendar.js';
 
->>>>>>> dev2
 
 function App() {
-  const dispatch = useDispatch()
-  const [socket, setSocket] = useState(null)
+    const dispatch = useDispatch()
+    const [socket, setSocket] = useState(null)
 
-  const { isLogged } = useSelector(state => state.profile.login);
-  const { user } = useSelector(state => state.profile)
-<<<<<<< HEAD
-  const { dialogs } = useSelector(state=>state.dialogs);
-  const dispatch = useDispatch()
-=======
->>>>>>> dev2
+    const { isLogged } = useSelector(state => state.profile.login);
+    const { user } = useSelector(state => state.profile)
+    const { dialogs } = useSelector(state => state.dialogs);
+    const dispatch = useDispatch()
 
-  useEffect(()=> {
-    console.log(dialogs);
-    socket.emit('join-to-lobby', {
-      lobby_list: dialogs.map((item)=>item.lobby_info.lobby_id)
-    })
-  }, [dialogs])
+    useEffect(() => {
+        console.log(dialogs);
+        socket.emit('join-to-lobby', {
+            lobby_list: dialogs.map((item) => item.lobby_info.lobby_id)
+        })
+    }, [dialogs])
 
-  useEffect(() => {
-    dispatch(getNewEvent())
-    dispatch(getLastEvent())
-    dispatch(getNews())
-    dispatch(getStatistics())
-<<<<<<< HEAD
-=======
-    dispatch(getDialogs())
-    dispatch(getEventCalendar())
-    // dispatch(setLocationUrl())
-    // setSocket(io('....')) 
+    useEffect(() => {
+        dispatch(getNewEvent())
+        dispatch(getLastEvent())
+        dispatch(getNews())
+        dispatch(getStatistics())
+        dispatch(getDialogs())
+        dispatch(getEventCalendar())
+            // dispatch(setLocationUrl())
+            // setSocket(io('....')) 
 
 
->>>>>>> dev2
-  }, [dispatch])
+    }, [dispatch])
 
 
 
-  return (
-    <div>
-      {isLogged
-        ? <>
-          <Headers socket={socket} />
-          <NavBar />
-          <Routes>
-            <Route path='/*' element={<Home userStatus={user.status} />} />
-            {
-              user.status !== '0' &&
-              <>
-                <Route path='/clubs' element={<Clubs />} />
-                <Route path='/clubs/:id' element={<ClubDetail />} />
-                <Route path='/document' element={<Document />} />
-                <Route path='/events' element={<Events />} />
-                <Route path='/events/:id/*' element={<EventDetail />} />
-                <Route path='/news' element={<MainNews />} />
-                <Route path='/statistics' element={<Statistics />} />
-                {
-                  user.role === 'admin' &&
-                  <Route path='/users' element={<Users />} />
+    return ( <
+        div > {
+            isLogged ?
+            < >
+            <
+            Headers socket = { socket }
+            /> <
+            NavBar / >
+            <
+            Routes >
+            <
+            Route path = '/*'
+            element = { < Home userStatus = { user.status }
+                />} / > {
+                    user.status !== '0' &&
+                    <
+                    >
+                    <
+                    Route path = '/clubs'
+                    element = { < Clubs / > }
+                    /> <
+                    Route path = '/clubs/:id'
+                    element = { < ClubDetail / > }
+                    /> <
+                    Route path = '/document'
+                    element = { < Document / > }
+                    /> <
+                    Route path = '/events'
+                    element = { < Events / > }
+                    /> <
+                    Route path = '/events/:id/*'
+                    element = { < EventDetail / > }
+                    /> <
+                    Route path = '/news'
+                    element = { < MainNews / > }
+                    /> <
+                    Route path = '/statistics'
+                    element = { < Statistics / > }
+                    /> {
+                        user.role === 'admin' &&
+                            <
+                            Route path = '/users'
+                        element = { < Users / > }
+                        />
+                    } { /* <Route path='/users' element={<Users />} /> */ } <
+                    Route path = '/profile'
+                    element = { < Profile / > }
+                    /> <
+                    Route path = '/moreNews'
+                    element = { < MoreNews / > }
+                    /> <
+                    Route path = '/chat/*'
+                    element = { < Chat / > }
+                    /> <
+                    />
+                } {
+                    isLogged &&
+                        <
+                        Route path = '/calendar'
+                    element = { < Calendar / > }
+                    />
                 }
-                {/* <Route path='/users' element={<Users />} /> */}
-                <Route path='/profile' element={<Profile />} />
-                <Route path='/moreNews' element={<MoreNews />} />
-                <Route path='/chat/*' element={<Chat />} />
-              </>
-            }
-            {
-              isLogged &&
-              <Route path='/calendar' element={<Calendar />} />
-            }
 
-          </Routes>
-        </>
-        : <NotRegisteredHome />}
-        <ToastContainer/>
-    </div>
-  );
-}
+                <
+                /Routes> <
+                />: < NotRegisteredHome / >
+            } <
+            ToastContainer / >
+            <
+            /div>
+        );
+    }
 
-export default App;
+    export default App;
