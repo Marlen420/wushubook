@@ -23,11 +23,25 @@
     /* position: absolute;
     top: 67px; */
     margin-right: 100px;
+    position: relative;
 
 
 
 }
 
+.notifications_notFind {
+    /* text-align: center;
+    position: absolute;
+    font-size: 28px;
+    opacity: 0.3; */
+    width: 60px;
+    height: 60px;
+    opacity: 0.3;
+    position: absolute;
+
+    top: 40%;
+    left: 45%;
+}
 
 @media screen and (max-width:840px) {
     .notificatons__conteiner {
@@ -54,6 +68,20 @@
 
 
     }
+
+    .notifications_notFind {
+        /* text-align: center;
+        position: absolute;
+        font-size: 28px;
+        opacity: 0.3; */
+        width: 50px;
+        height: 50px;
+        opacity: 0.3;
+        position: absolute;
+        top: 40%;
+        left: 40%;
+    }
+
 
     .notifications {
         margin: auto;
@@ -88,6 +116,7 @@
     overflow: auto;
     margin-bottom: 50px;
     /* background: red; */
+    position: relative;
 }
 
 

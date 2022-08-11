@@ -18,6 +18,7 @@ import Main from '../../components/Modals/Main';
 function Home({ userStatus }) {
 
     const { status, error, newsEvents, lastEvents } = useSelector(state => state.main)
+    console.log("newsEvents: ", newsEvents)
 
 
     return (
@@ -39,7 +40,7 @@ function Home({ userStatus }) {
             <p className={styles.conteiner__tema}>Новые мероприятия:</p>
 
             {
-                status == 'loading' && <div className={styles.spinner} >
+                status === 'loading' && <div className={styles.spinner} >
                     <Oval
                         ariaLabel="loading-indicator"
                         height={100}
@@ -59,7 +60,7 @@ function Home({ userStatus }) {
             }
 
             {
-                newsEvents.Registering_Date_NewEvent?.map((item) =>
+                newsEvents.slice(0, 2)?.map((item) =>
                     <div key={item.id} className={styles.wrapper}>
 
                         <article className={styles.wrapper__events}>
@@ -68,7 +69,7 @@ function Home({ userStatus }) {
                             <div >
                                 <h1 className={styles.wrapper__title} >{item.title} </h1>
                                 <p className={styles.wrapper__city}>{item.city} </p>
-                                <time className={styles.wrapper__time}>{item.allDataTime}</time>
+                                <time className={styles.wrapper__time}>{item.start}, {item.time} </time>
                             </div>
 
                         </article>
@@ -101,14 +102,14 @@ function Home({ userStatus }) {
             <div className={styles.content}>
 
                 {
-                    lastEvents.Registering_Date_Last_Event?.map(item =>
+                    lastEvents.slice(0, 2)?.map(item =>
                         <article key={item.id} className={styles.wrapperLastEvents__lastEvents}>
                             <img src={CheckIcon} alt='' className={styles.wrapper__icon} />
 
                             <div className={styles.wrapperLastEvents__lastEvents2} >
                                 <h1 className={styles.wrapper__title} >{item.title} </h1>
                                 <p className={styles.wrapper__city}>{item.city} </p>
-                                <time className={styles.wrapper__time}>{item.allDataTime}</time>
+                                <time className={styles.wrapper__time}>{item.start}, {item.time}</time>
                             </div>
                         </article>
                     )

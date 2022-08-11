@@ -5,7 +5,10 @@ import eventSlice from './features/counter/eventSlice';
 
 import profileSlice from './features/counter/profileSlice'
 import usersSlice from './features/counter/usersSlice';
-import dialodsSlice from './reducers/dialogsSlice';
+import calendarSlice from './reducers/calendarSlice';
+import chatSlice from './reducers/chatSlice';
+
+
 
 import mainSlice from './reducers/mainSlice'
 import newsSlice from './reducers/newsSlice';
@@ -22,7 +25,9 @@ export default configureStore({
         statistics: statisticsSlice,
         documents: documentSlice,
         clubs: clubsSlice,
-        dialogs: dialodsSlice,
-        news: newsSlice
+        // dialogs: dialodsSlice,
+        calendar: calendarSlice,
+        news: newsSlice,
+        chat: chatSlice
     },
 })

@@ -10,7 +10,7 @@ import Avator from "../Avator/index.jsx";
 import { tr } from "date-fns/locale";
 import { useDispatch, useSelector } from "react-redux";
 
-
+//DialogItem
 
 
 const getMessageTime = created_at => {
@@ -21,25 +21,28 @@ const getMessageTime = created_at => {
     }
 }
 
-function DialogItem({ 
-    id, 
-    name = '', 
-    photo = null,
-    last_message = '', 
-    isOnline = false,
-    isMe=false,
-    unreaded, 
-    dialogClick
-}) {
-    const handleDialogClick = () => dialogClick(id);
+function DialogItem({ user, message, unreaded }) {
+
+
+
+
+    const getName = (name) => {
+        const str = name.split('');
+        str[str.findIndex((i) => i === '/')] = ' ';
+        return str.join('');
+    }
+
+    const e = (item) => {
+        console.log("eee: ", item)
+    }
+
+
     return (
-        <div 
-            onClick={handleDialogClick}
-            className={styles.dialog__item}>
+        <div className={styles.dialog__item} onClick={() => e(user)}  >
 
             <div className={styles.dialog__item_avator}>
                 {
-                    <Avator user={photo} />
+                    <Avator user={user.photo} />
                 }
 
                 <div className={isOnline ? styles.dialog__item__online : ''}>
@@ -50,15 +53,15 @@ function DialogItem({
             <div className={styles.dialog__item_info}>
 
                 <div className={styles.dialog__item_info_top}>
-                    <b className={styles.dialog__item_info_name} >{name.split('/').join(' ')}</b>
+                    <b className={styles.dialog__item_info_name} >{getName(user.name)}</b>
                     <div>
                         {isMe ? '' : <IconReaded isMe={false} isReaded={true} />}
                     </div>
                     <span className={!isMe ? styles.dialog__item_date : styles.dialog__item_dateMe} >
                         {/* <Time date={message.lastMessage.created_at} /> */}
-                        {
-                            // getMessageTime(message.lastMessage.created_at)
-                        }
+                        {/* {
+                            getMessageTime(message?.lastMessage.created_at)
+                        } */}
                     </span>
                 </div>
 

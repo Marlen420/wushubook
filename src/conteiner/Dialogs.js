@@ -8,19 +8,17 @@ const getDialogOption = (item, me, option) => {
 }
 
 const Dialogs = ({ dialogsList, me, handleDialogClick }) => {
-    return ( <
-        div > {
-            dialogsList.map(item => ( <
-                DialogItem key = { item.lobby_info.lobby_id }
+    return ( 
+        <div > 
+            {dialogsList.map(item => ( 
+            <DialogItem 
+                key = { item.lobby_info.lobby_id }
                 photo = { item.direct ? getDialogOption(item, me, 'photo') : getLobbyPhoto(item.lobby_info) }
                 last_message = { item.last_message.text }
                 name = { item.direct ? getDialogOption(item, me, 'name').split('/').join(' ') : item.lobby_info.lobby_name }
                 id = { item.lobby_info.lobby_id }
-                dialogClick = { handleDialogClick }
-                />
-            ))
-        } <
-        /div>
+                dialogClick = { handleDialogClick }/>))}
+        </div>
     )
 }
 

@@ -45,7 +45,7 @@ function AddNews({ active, dataNew, setActive }) {
 
 
     useEffect(() => {
-        // dataNew ? setInitialValues(initialValuesEdit) : setInitialValues(initialValuesAdd)
+       
         document.body.style.overflow = 'hidden';
         return () => document.body.style.overflow = 'auto';
     }, [])

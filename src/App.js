@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/index.jsx';
@@ -10,12 +10,14 @@ import Statistics from './pages/Statistics/index.jsx'
 import Users from './pages/Users/Users.jsx'
 import { NavBar } from './components';
 import { getLastEvent, getNewEvent } from './api/main.js'
+
 import Profile from './pages/Profile/Profile.jsx';
 import Headers from './components/Headers/Headers.jsx'
 import { MainNews, MoreNews } from './pages/News/index.js';
 import Chat from './pages/Chat/index.jsx';
 import { getStatistics } from './api/statistics.js';
 import NotRegisteredHome from './pages/NotRegisteredHome/index.jsx';
+<<<<<<< HEAD
 import styles from './app.module.css'
 
 import EventDetail from './pages/EventDetail/EventDetail.jsx';
@@ -24,12 +26,26 @@ import { ToastContainer } from 'react-toastify';
 import { getDialogs } from './api/dialogs.js';
 import { getNews } from './api/news.js';
 import socket from './utils/socket.js';
+=======
+import { getDialogs } from './api/chat.js';
+import { getNews } from './api/news.js';
+import { io } from 'socket.io-client'
+import { setLocationUrl } from './redux/reducers/chatSlice.js';
+import { getEventCalendar } from './api/calendar.js';
+
+>>>>>>> dev2
 
 function App() {
+  const dispatch = useDispatch()
+  const [socket, setSocket] = useState(null)
+
   const { isLogged } = useSelector(state => state.profile.login);
   const { user } = useSelector(state => state.profile)
+<<<<<<< HEAD
   const { dialogs } = useSelector(state=>state.dialogs);
   const dispatch = useDispatch()
+=======
+>>>>>>> dev2
 
   useEffect(()=> {
     console.log(dialogs);
@@ -43,6 +59,15 @@ function App() {
     dispatch(getLastEvent())
     dispatch(getNews())
     dispatch(getStatistics())
+<<<<<<< HEAD
+=======
+    dispatch(getDialogs())
+    dispatch(getEventCalendar())
+    // dispatch(setLocationUrl())
+    // setSocket(io('....')) 
+
+
+>>>>>>> dev2
   }, [dispatch])
 
 
@@ -51,7 +76,7 @@ function App() {
     <div>
       {isLogged
         ? <>
-          <Headers />
+          <Headers socket={socket} />
           <NavBar />
           <Routes>
             <Route path='/*' element={<Home userStatus={user.status} />} />
@@ -69,6 +94,7 @@ function App() {
                   user.role === 'admin' &&
                   <Route path='/users' element={<Users />} />
                 }
+                {/* <Route path='/users' element={<Users />} /> */}
                 <Route path='/profile' element={<Profile />} />
                 <Route path='/moreNews' element={<MoreNews />} />
                 <Route path='/chat/*' element={<Chat />} />
