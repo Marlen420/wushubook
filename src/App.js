@@ -15,7 +15,7 @@ import Profile from './pages/Profile/Profile.jsx';
 import Headers from './components/Headers/Headers.jsx'
 import { MainNews, MoreNews } from './pages/News/index.js';
 import Chat from './pages/Chat/index.jsx';
-import { getStatistics } from './api/statistics.js';
+import { getClubsStatistics, getStatistics } from './api/statistics.js';
 import NotRegisteredHome from './pages/NotRegisteredHome/index.jsx';
 import { getDialogs } from './api/chat.js';
 import { getNews } from './api/news.js';
@@ -40,6 +40,7 @@ function App() {
     dispatch(getStatistics())
     dispatch(getDialogs())
     dispatch(getEventCalendar())
+    dispatch(getClubsStatistics())
 
 
 

@@ -3,7 +3,6 @@ import styles from './Calendar.module.css';
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from "@fullcalendar/interaction"
-
 import NnLocale from '@fullcalendar/core/locales/ne';
 import { useState } from 'react';
 import CalendarModal from '../../components/Modals/CalendarModal';
@@ -64,7 +63,9 @@ function Calendar() {
     }
 
 
-
+    const handleMoreLinkContent = (arg) => {
+        return 'Ещё ' + arg.num;
+    }
 
     return (
         <div className={styles.content}>
@@ -90,28 +91,21 @@ function Calendar() {
                         views={{
                             dayGridMonth: {
                                 titleFormat: { year: 'numeric', month: 'long' }
-
                             },
                             timeGrid: {
                                 eventLimit: 3
                             }
-
                         }}
 
                         events={state.events}
                         contentHeight='650px'
-
-
                         eventTimeFormat={{
                             hour: '2-digit',
                             minute: '2-digit',
                         }}
 
                         displayEventEnd={true}
-
                         droppable={true}
-
-                        eventDrop={handleEventDrop}
                         eventLimit={true}
                         editable={true}
                         selectable={true}
@@ -119,15 +113,19 @@ function Calendar() {
                         dayMaxEvents={true}
                         dateClick={handleDateClick}
                         eventClick={handleEventClick}
+                        eventDrop={handleEventDrop}
+                        moreLinkContent={handleMoreLinkContent}
                     />
-                </StyleWrapper>
-            </div>
 
+                </StyleWrapper>
+
+            </div>
 
             {
                 active && <CalendarModal idEventItem={active.idEventItem} active={active.isOpen} date={active.date}
                     setActive={setActive} />
             }
+
         </div >
     )
 }

@@ -23,10 +23,14 @@ export const createNew = createAsyncThunk(
     'news/createNew',
     async function (data, { rejectWithValue, dispatch }) {
         try {
+            for (let [i, value] of data) {
+                console.log("PP; ", value.name)
+            }
             const response = await API.post('news', data)
             return response.data
         }
         catch (error) {
+
             return rejectWithValue(error.message)
         }
 

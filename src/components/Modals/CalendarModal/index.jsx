@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from 'react'
 import { TailSpin } from 'react-loader-spinner';
 import Button from '../../Button';
 import styles from './index.module.css'
-import { crossIcon } from '../../../images/inedex.js'
 import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
 import { useState } from 'react';
@@ -76,11 +75,13 @@ function CalendarModal({ active, setActive, date, idEventItem }) {
 
 
 
-    useEffect(() => {
 
-        document.body.style.overflow = 'hidden';
-        return () => document.body.style.overflow = 'auto';
-    }, [])
+    useEffect(() => {
+        if (active) {
+            document.body.style.overflow = 'hidden';
+            return () => document.body.style.overflow = 'auto';
+        }
+    }, [active])
 
 
 
@@ -92,7 +93,7 @@ function CalendarModal({ active, setActive, date, idEventItem }) {
     }
 
 
-    const colorBackground = ['rgb(238, 234, 255)', 'rgb(255,226,249)', 'rgb(215, 249, 245)'];
+    const colorBackground = ['rgb(238, 234, 255)', 'rgb(215, 249, 245)', 'rgb(255,226,249)'];
     const colorText = {
         'rgb(238, 234, 255)': 'rgb(111, 93,195)',
         'rgb(255,226,249)': 'rgb(167, 24, 112)',
@@ -111,8 +112,8 @@ function CalendarModal({ active, setActive, date, idEventItem }) {
 
 
     return (
-        <div className={active ? styles.active : styles.modal}>
-            <div className={styles.modal__content}>
+        <div className={active ? styles.active : styles.modal} onClick={handleCloseModal}>
+            <div className={styles.modal__content} onClick={(e) => e.stopPropagation()} >
                 <Formik
                     initialValues={idEventItem ? initialValuesEdit : initialValues}
                     validationSchema={AddValidation}
@@ -137,11 +138,7 @@ function CalendarModal({ active, setActive, date, idEventItem }) {
 
                     }}>
                     {({ errors, touched, values }) => (
-                        <Form>
-                            <div className={styles.modal__content_cross} onClick={handleCloseModal} >
-                                <img src={crossIcon} alt='' />
-                            </div>
-
+                        <Form >
 
                             <Field name='title' type='text' placeholder='Добавить название'
                                 className={styles.modal__content_input} />
@@ -149,19 +146,20 @@ function CalendarModal({ active, setActive, date, idEventItem }) {
                                 errors.title && touched.title ?
                                     (
                                         <div className={styles.errors}>{errors.title}</div>
-                                    ) : null
+                                    ) : <div className={styles.errors}> </div>
                             }
 
                             <div className={styles.modal__content_input_time}>
 
                                 <div className={styles.modal__content_input_time1} >
-                                    <label className={styles.modal__content_input_text} >Начало даты </label>
+                                    <label className={styles.modal__content_input_text} >Начала даты </label>
 
                                     <Datetime value={start}
                                         locale="ru"
+                                        className={styles.dataTime}
                                         dateFormat={moment(start).format('MM-DD-YYYY')}
                                         onChange={data => setStart(data)}
-
+                                        inputProps={{ className: styles.datetime }}
                                     />
                                 </div>
 
@@ -169,6 +167,9 @@ function CalendarModal({ active, setActive, date, idEventItem }) {
                                 <div>
                                     <label className={styles.modal__content_input_text}>Конец даты </label>
                                     <Datetime value={end}
+                                        inputProps={{ className: styles.datetime }}
+
+                                        className={styles.dataTime}
                                         locale="ru"
                                         dateFormat={moment(end).format('MM-DD-YYYY, ')}
                                         onChange={data => setEnd(data)} />
@@ -176,33 +177,48 @@ function CalendarModal({ active, setActive, date, idEventItem }) {
 
                             </div>
 
-                            <div className={styles.modal__content_allBtn}>
-                                {
 
-                                    idEventItem !== null ?
-
-                                        <div className={styles.modal__content_btnDelete}
+                            {
+                                idEventItem &&
+                                <div className={styles.modal__content_allBtn}>
+                                    <div className={styles.modal__content_btnDelete}
+                                    >
+                                        <Button
+                                            onClick={() => handleDeleteEvent(values.id)}
+                                            style={{ background: 'red' }}
+                                            projectType='add_user'
+                                            type='button'
                                         >
-                                            <Button
-                                                onClick={() => handleDeleteEvent(values.id)}
-                                                style={{ background: 'red' }}
-                                                projectType='add_user'
-                                                type='button'
+                                            {
+                                                status.deleteEventStatus === 'Deleting event' ?
+                                                    <TailSpin
+                                                        height={24}
+                                                        color='white' />
+                                                    : 'Удалить'}
+                                        </Button>
+                                    </div>
+                                    <div className={idEventItem !== null ?
+                                        styles.modal__content_btn : styles.modal__contentNot_btn}>
+                                        <Button
+                                            style={{ float: 'left' }}
+                                            projectType='add_user'
+                                            type='sumbit'>
+                                            {
+                                                status.createEventStatus === 'Creating event' ||
+                                                    status.editEventStatus === 'Editing event' ?
+                                                    <TailSpin
+                                                        height={24}
+                                                        color='white' />
+                                                    : 'Сохранить'}
+                                        </Button>
 
-                                            >
+                                    </div>
+                                </div>
+                            }
 
-                                                {
-                                                    status.deleteEventStatus === 'Deleting event' ?
-                                                        <TailSpin
-                                                            height={24}
-                                                            color='white' />
-                                                        : 'Удалить'}
-                                            </Button>
-                                        </div> : ''
-
-
-                                }
-                                <div className={styles.modal__content_btn} >
+                            {
+                                !idEventItem &&
+                                <div className={styles.modal__content_btn}>
                                     <Button
                                         style={{ float: 'left' }}
                                         projectType='add_user'
@@ -213,11 +229,13 @@ function CalendarModal({ active, setActive, date, idEventItem }) {
                                                 <TailSpin
                                                     height={24}
                                                     color='white' />
-                                                : 'Сохранить'}
+                                                : 'Сохранить'
+                                        }
                                     </Button>
 
                                 </div>
-                            </div>
+                            }
+
                         </Form>
                     )}
                 </Formik >

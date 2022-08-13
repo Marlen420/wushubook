@@ -9,10 +9,9 @@ import { useSelector } from 'react-redux';
 
 
 function Statistics() {
-    const { statistics } = useSelector(state => state.statistics)
+    const { statistics, clubs } = useSelector(state => state.statistics)
+    console.log("clunbs: ", clubs)
 
-    const nameClubs = ['Все клубы', 'Черный дракон ', 'Оранжевая кошка', 'Скорпион',
-        'Печать спящего дракона', 'Шаолинь']
     const TabТame = ['Оценка показателя ОФП', 'Оценка показателей спортсменов', 'Достижения клубов']
 
     const [active, setActive] = useState(TabТame[0])
@@ -117,12 +116,12 @@ function Statistics() {
                         <div>
                             <ul>
                                 {
-                                    nameClubs.map(option => (
-                                        <div>
-                                            <li className={styles.li} key={Math.random()}
-                                                onClick={() => chooseClubs(option)}  >
-                                                {option}
-                                            </li >
+                                    clubs.map(option => (
+                                        <div key={option.id}>
+                                            <li className={styles.li}
+                                                onClick={() => chooseClubs(option.name)}  >
+                                                {option.name}
+                                            </li>
                                         </div>
                                     ))
                                 }
@@ -134,8 +133,8 @@ function Statistics() {
 
 
             <div className={styles.ButtonNavigations} >
-                {TabТame.map(type => (
-                    <Tab key={type}
+                {TabТame.map((type, index) => (
+                    <Tab key={index}
                         active={active === type} onClick={() => onTabClick(type)}>
                         {type}</Tab>
                 ))}

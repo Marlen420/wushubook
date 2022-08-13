@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { getStatistics } from '../../api/statistics';
+import { getClubs, getClubss, getClubsStatistics, getStatistics } from '../../api/statistics';
 
 
 export const setError = (state, action) => {
@@ -17,21 +17,45 @@ export const statisticsSlice = createSlice({
     name: 'statistics',
     initialState: {
         statistics: [],
-        status: null,
+        clubs: [],
+        status: {
+            getClubsStatus: null
+        },
         errors: {
-            events: null,
-            news: null,
+            getClubsError: null
         }
     },
 
     extraReducers: {
-        [getStatistics.pending]: setLoading,
-
-        [getStatistics.fulfilled]: (state, action) => {
-            state.status = 'resolved';
-            state.statistics = action.payload
+        //get Club
+        [getClubsStatistics.pending]: (state, action) => {
+            state.status.getClubsStatus = 'Getting clubs';
+            state.errors.getClubsError = null
         },
-        [getStatistics.rejected]: setError,
+        [getClubsStatistics.fulfilled]: (state, action) => {
+            state.status.getClubsStatus = 'Geted clubs';
+            state.errors.ClubsError = null
+            state.clubs = action.payload
+        },
+        [getClubsStatistics.rejected]: (state, action) => {
+            state.status.getClubsStatus = 'Rejected get clubs'
+            state.errors.getClubsError = action.payload
+        },
+
+
+
+
+
+
+
+
+        // [getStatistics.pending]: setLoading,
+
+        // [getStatistics.fulfilled]: (state, action) => {
+        //     state.status = 'resolved';
+        //     state.statistics = action.payload
+        // },
+        // [getStatistics.rejected]: setError,
     }
 })
 

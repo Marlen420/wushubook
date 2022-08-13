@@ -5,7 +5,7 @@
     line-height: 50px;
     margin: 0 auto;
     margin-top: 80px;
-    font-family: 'Lato', sans-serif;
+
     border-bottom: 1px solid #ABABAB;
     line-height: 0.1em;
     /* margin: 20px; */
@@ -17,9 +17,19 @@
 
 }
 
+
+
+
+@media screen and (max-width: 541px) {
+    .conteiner {
+        /* background: red; */
+        margin-top: 90px;
+    }
+}
+
 .conteiner__banner {
 
-    width: 96%;
+    width: 97%;
     margin: 0 auto;
     /* background: #C4C4C4; */
     border: 1px solid #E3E9FF;
@@ -44,7 +54,7 @@
 }
 
 .conteiner__tema {
-    font-family: 'Lato', sans-serif;
+
 
     font-weight: 400;
     font-size: 18px;
@@ -74,7 +84,7 @@
 }
 
 .wrapper__title {
-    font-family: 'Lato', sans-serif;
+
     font-style: normal;
     padding-top: 42px;
     font-size: 25px;
@@ -86,8 +96,8 @@
 }
 
 .wrapper__city {
-    font-family: 'Lato', sans-serif;
-    font-style: normal;
+
+
     font-weight: 500;
     /* font-size: 18px; */
     line-height: 22px;
@@ -102,8 +112,7 @@
     position: relative;
     top: -21px;
 
-    font-family: 'Lato', sans-serif;
-    font-style: normal;
+
     font-weight: 400;
     font-size: 18px;
     line-height: 22px;
@@ -185,6 +194,7 @@
 }
 
 
+
 @media screen and (max-width: 459px) {
     .conteinerNews__block {
 
@@ -205,8 +215,7 @@
 }
 
 .conteinerNews__title {
-    font-family: 'Lato', sans-serif;
-    font-style: normal;
+
     font-weight: 700;
     font-size: 22px;
     line-height: 29px;
@@ -214,8 +223,7 @@
 }
 
 .conteinerNews__text {
-    font-family: 'Lato', sans-serif;
-    font-style: normal;
+
     font-weight: 400;
     font-size: 15px;
     line-height: 120%;
@@ -245,8 +253,7 @@
 
 
 .conteinerNews__date {
-    font-family: 'Lato', sans-serif;
-    font-style: italic;
+
     font-weight: 600;
     font-size: 12px;
     line-height: 14px;
@@ -277,7 +284,8 @@
 @media screen and (max-width: 657px) {
     .wrapperLastEvents__lastEvents {
 
-        width: 80%;
+        width: 96%;
+
     }
 
     .wrapper__title {
@@ -285,6 +293,8 @@
 
     }
 }
+
+
 
 @media screen and (max-width: 729px) {
     .wrapper__time {
@@ -304,8 +314,7 @@
 .spinner {
     display: flex;
     justify-content: center;
-    font-family: 'Lato', sans-serif;
-    font-style: normal;
+
     font-weight: 400;
     font-size: 22px;
     line-height: 22px;
@@ -313,11 +322,10 @@
     /* identical to box height */
 }
 
-@media screen and (max-width: 487px) {
 
-
+/* @media screen and (max-width: 487px) {
 
     .conteiner {
         width: 463px;
     }
-}
+} */

@@ -198,6 +198,9 @@ textarea::-webkit-scrollbar-thumb {
     color: red;
 }
 
+.modal__content_title {
+    word-wrap: break-all;
+}
 
 @media screen and (max-width: 865px) {
     .modal__content {
@@ -231,5 +234,13 @@ textarea::-webkit-scrollbar-thumb {
     .modal__content_title {
         font-size: 25px;
 
+    }
+}
+
+@media screen and (max-width: 411px) {
+
+    .modal__content_title {
+
+        font-size: 20px;
     }
 }

@@ -18,6 +18,8 @@ export const StyleWrapper = styled.div`
 
 .fc-toolbar-title{
     text-transform:  capitalize;
+    font-size: 24px;
+    letter-spacing: 0.04em;
 }
 
   .fc-icon-chevron-left:before {
@@ -56,8 +58,19 @@ tr{
 font-size: 18px;
 line-height: 22px;
 color: #000000;
+
+
 }
 
+.fc .fc-daygrid-more-link {
+    font-weight: 600;
+font-size: 15px;
+line-height: 120%;
+letter-spacing: 0.04em;
+
+color: #000000;
+
+}
 
 .fc-daygrid-day-top{
     max-height: 18px;
@@ -98,7 +111,7 @@ tr {
 }
 
 .fc-view-harness {
-    margin-bottom: 250px;
+    margin-bottom:  44px;
 }
   
 //Styles today
@@ -156,23 +169,96 @@ border-radius: 50%;
 
 
 .fc, .fc-daygrid-more-link{
-   
-  
     color: black;
 }
+
+
+table{
+    position: relative;
+}
+
  .fc-popover-header{
-    background: #C9F9C8;
+    background: white;
     position: relative;
     z-index: 10;
     color: black;
   
 }
+
+
+
+.fc-popover-header {
+    border-radius: 10px;
+}
+.fc-popover-body{
+    border-radius: 10px;
+}
+
 .fc-popover-body {
     background: white;
     position: relative;
     z-index: 10;
     color: black;
 }
+
+table{
+    width: 100%;
+}
+
+
+
+
+
+.fc .fc-button {
+
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding:  0; 
+  
+}
+
+
+.fc-button.fc-prev-button.fc-button-primary{
+    @media (max-width: 512px) {
+        position: absolute;
+   
+        right: 40px;
+        color: red;
+    }
+
+}
+
+
+.fc-button.fc-next-button.fc-button-primary{
+    @media (max-width: 512px) {
+        position: absolute;
+        right: 0px;
+    }
+
+}
+
+
+.fc-popover{
+    box-shadow: 0 2px 6px rgb(0 0 0 / 80%);
+    width: 50%;
+    border-radius: 10px;
+    // margin-top:50px;
+    position: absolute;
+    background: ffffff;
+    top: 7%;
+    left: 25%;
+    border: 1px solid #F2F2F2;
+    border-radius: 10px;
+    @media (max-width: 472px) {
+        width:  80%;
+       
+        top: 7%;
+        left: 5%;
+        border: 1px solid #F2F2F2;
+        border-radius: 10px;
+    }
+}
+
 
 
 

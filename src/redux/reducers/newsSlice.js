@@ -73,7 +73,7 @@ export const newsSlice = createSlice({
         },
         [createNew.rejected]: (state, action) => {
             state.status.createNewSatatus = 'Rejected create new';
-            state.createNewSatatusError.error = action.payload;
+            state.errors.createNewSatatusError = action.payload;
         },
 
 
@@ -83,17 +83,17 @@ export const newsSlice = createSlice({
 
         [deleteNew.pending]: (state, action) => {
             state.status.deleteNew = 'Deleting new';
-            state.error = null
+            state.errors.deleteNewError = null
         },
 
         [deleteNew.fulfilled]: (state, action) => {
             console.log("stataeActiom: ", state.payload)
             state.status.deleteNew = 'Deleted new';
-            state.error = null
+            state.errors.deleteNewError = null
         },
         [deleteNew.rejected]: (state, action) => {
             state.status.deleteNew = 'Rejected Delete new';
-            state.error = action.payload;
+            state.errors.deleteNewError = action.payload;
         },
 
 
@@ -101,16 +101,16 @@ export const newsSlice = createSlice({
 
         [editNew.pending]: (state, action) => {
             state.status.editNew = 'Editing new';
-            state.error = null
+            state.errors.editNewError = null
         },
         [editNew.fulfilled]: (state, action) => {
             state.status.editNew = 'Edited new';
             state.news = [action.payload, ...state.news]
-            state.error = null
+            state.errors.editNewError = null
         },
         [editNew.rejected]: (state, action) => {
             state.status.editNew = 'Rejected Edit new';
-            state.error = action.payload;
+            state.errors.editNewError = action.payload;
         },
     }
 

@@ -35,8 +35,8 @@ export const Tab = styled.button`
             font-weight: 700;
             color: #000000;
 
-            @media (max-width: 780px) {
-                line-height: 1em;
-            }
+            // @media (max-width: 780px) {
+            //     // line-height: 1em;
+            // }
     `} 
 `;
