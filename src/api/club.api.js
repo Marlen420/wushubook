@@ -1,12 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import API from "../utils/axiosConfig";
 
-// Get sportsman by club
-export const getClubSportsmans = createAsyncThunk(
-    'club/getClubSportsmans',
+// Get sportsman by id
+export const getSportsmanById = createAsyncThunk(
+    'club/getSportsmanById',
     async(id, { rejectWithValue }) => {
         try {
-            const response = await API.get('/sportsmen/get-by-club/' + id);
+            const response = await API.get('/sportsmen/get-by-id/' + id);
             return response.data;
         } catch (e) {
             return rejectWithValue(e.response.data.message);

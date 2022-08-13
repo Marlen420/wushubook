@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { addSportsmanApi, getClubById, getClubSportsmans } from '../../api/club.api';
 import { Button } from '../../components';
 import usePagination from '../../hooks/usePagination/usePagination';
@@ -16,6 +16,7 @@ const ClubDetail = () => {
     const { id } = useParams();
     const { currentClub, selectedSportsmen, status, error } = useSelector(state=>state.clubs);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     // States
     const [addSportsman, setAddSportsman] = useState(false);
@@ -43,10 +44,8 @@ const ClubDetail = () => {
         }
     }
 
-    const handleSelectItem = (id) => isSelectedItem(id) === -1 ? dispatch(selectItem(id)) :  dispatch(unSelectItem(id));
-    const handelSelectAll = () => isSelectedAll() ? dispatch(unSelectAll()) : dispatch(selectAll(currentData()));
-
-    const isSelectedItem = useCallback((id) => selectedSportsmen.findIndex((i)=>i.id === id), [selectedSportsmen]);
+    
+    const isSelectedItem = useCallback((id) => selectedSportsmen.findIndex((i)=>i === id), [selectedSportsmen]);
     const isSelectedAll = useCallback(() => {
         if (selectedSportsmen.length === 0) return false;
         for (let i of currentData()) {
@@ -54,6 +53,11 @@ const ClubDetail = () => {
         }
         return true;
     }, [selectedSportsmen]);
+    
+    const handleSelectItem = (id) => isSelectedItem(id) === -1 ? dispatch(selectItem(id)) :  dispatch(unSelectItem(id));
+    const handelSelectAll = () => isSelectedAll() ? dispatch(unSelectAll()) : dispatch(selectAll(currentData()));
+
+    const handleItemClick = (id) => navigate('/sportsman/'+id);
 
     // Effects
     useEffect(()=>{
@@ -92,6 +96,7 @@ const ClubDetail = () => {
                     isSelectedItem={isSelectedItem}
                     onSelectItem={handleSelectItem}
                     onSelectAll={handelSelectAll}
+                    onItemClick={handleItemClick}
                     list={currentClub?.sportsmen || []}
                     jump={jump}
                     next={next}

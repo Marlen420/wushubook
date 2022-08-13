@@ -1,0 +1,45 @@
+.page_holder {
+    width: 96%;
+    margin: 0 auto;
+    padding-top: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.personal_info {
+    width: 35%;
+    margin-right: 30px;
+}
+
+.achievement {
+    width: 65%;
+    margin-left: 30px;
+}
+
+.header_title {
+    width: 100%;
+    text-align: start;
+}
+
+.card {
+    width: 100%;
+    border: 1px solid #F6F8FF;
+    box-shadow: 0px 0px 5px rgba(146, 167, 243, 0.5);
+    margin: 20px 0;
+}
+
+.card_title {
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.card_club_title {
+    width: 100%;
+    text-align: center;
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 50px;
+}

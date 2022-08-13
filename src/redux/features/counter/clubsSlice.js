@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { documents_mock } from '../../../api/mock';
-import { createClubExtra, getAllClubsExtra, getClubByIdExtra } from '../../extraReducers/clubExtraReducer';
+import { createClubExtra, getAllClubsExtra, getClubByIdExtra, getSportsmanByIdExtra } from '../../extraReducers/clubExtraReducer';
 
 
 export const counterSlice = createSlice({
@@ -10,12 +10,14 @@ export const counterSlice = createSlice({
         error: null,
         data: [],
         currentClub: null,
-        selectedSportsmen: []
+        selectedSportsmen: [],
+        currentSportsman: null,
     },
     extraReducers: {
         ...createClubExtra,
         ...getAllClubsExtra,
         ...getClubByIdExtra,
+        ...getSportsmanByIdExtra,
     },
     reducers: {
         deleteClub: (state, action) => {
@@ -25,7 +27,7 @@ export const counterSlice = createSlice({
             state.selectedSportsmen = [action.payload, ...state.selectedSportsmen];
         },
         unSelectItem: (state, action) => {
-            state.selectedSportsmen = state.selectedSportsmen.filter((i) => i.id !== action.payload);
+            state.selectedSportsmen = state.selectedSportsmen.filter((i) => i !== action.payload);
         },
         selectAll: (state, action) => {
             state.selectedSportsmen = action.payload.map((i) => i.id);

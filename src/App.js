@@ -28,6 +28,7 @@ import socket from './utils/socket.js';
 import { io } from 'socket.io-client'
 import { setLocationUrl } from './redux/reducers/chatSlice.js';
 import { getEventCalendar } from './api/calendar.js';
+import Sportsman from './pages/Sportsman/Sportsman.jsx';
 
 
 function App() {
@@ -71,7 +72,8 @@ function App() {
               user.status !== '0' &&
               <>
                 <Route path='/clubs' element={<Clubs />} />
-                <Route path='/clubs/:id' element={<ClubDetail />} />
+                <Route path='/clubs/:id/*' element={<ClubDetail />} />
+                <Route path='/sportsman/:id' element={<Sportsman/>}/>
                 <Route path='/document' element={<Document />} />
                 <Route path='/events' element={<Events />} />
                 <Route path='/events/:id/*' element={<EventDetail />} />

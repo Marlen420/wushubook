@@ -1,5 +1,5 @@
 import io from 'socket.io-client'
 
-const socket = io('http://192.168.0.142:5000');
+const socket = io(process.env.REACT_APP_API);
 
 export default socket
