@@ -15,7 +15,7 @@ import Profile from './pages/Profile/Profile.jsx';
 import Headers from './components/Headers/Headers.jsx'
 import { MainNews, MoreNews } from './pages/News/index.js';
 import Chat from './pages/Chat/index.jsx';
-import { getStatistics } from './api/statistics.js';
+import { getClubsStatistics, getStatistics } from './api/statistics.js';
 import NotRegisteredHome from './pages/NotRegisteredHome/index.jsx';
 import styles from './app.module.css'
 
@@ -52,7 +52,10 @@ function App() {
     dispatch(getStatistics())
     dispatch(getDialogs())
     dispatch(getEventCalendar())
-    // dispatch(setLocationUrl())
+    dispatch(getClubsStatistics())
+
+
+
     // setSocket(io('....')) 
 
 
@@ -83,7 +86,6 @@ function App() {
                   user.role === 'admin' &&
                   <Route path='/users' element={<Users />} />
                 }
-                {/* <Route path='/users' element={<Users />} /> */}
                 <Route path='/profile' element={<Profile />} />
                 <Route path='/moreNews' element={<MoreNews />} />
                 <Route path='/chat/*' element={<Chat />} />

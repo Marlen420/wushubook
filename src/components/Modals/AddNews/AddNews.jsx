@@ -9,43 +9,45 @@ import { TailSpin } from 'react-loader-spinner';
 import { Button } from '../../../components';
 
 function AddNews({ active, dataNew, setActive }) {
-    console.log("daaaa: ", dataNew)
-
-
-
     let data = new FormData();
     const dispatch = useDispatch()
     const [selectedImage, setSelectedImage] = useState(null);
+
     const { status } = useSelector(state => state.news)
 
+    console.log("status: ", status.createNewSatatus)
 
     const handleCloseImage = () => {
         setSelectedImage(null)
     }
     const hanleClose = () => {
         setActive({ active: false, dataNew: null })
-        console.log("data11: ", dataNew)
+
     }
 
     const initialValuesEdit = {
         id: dataNew?.id,
         image: dataNew?.image,
         title: dataNew?.title,
-        text: dataNew?.text
+        text: dataNew?.text,
+        date: dataNew?.date,
+        imageKey: dataNew?.imageKey
     }
 
     const initialValuesAdd = {
         id: Math.floor(Math.random() * 20000),
         image: '',
         title: '',
-        text: ''
+        text: '',
+        date: '',
+        imageKey: ''
     }
 
 
 
 
     useEffect(() => {
-       
+
         document.body.style.overflow = 'hidden';
         return () => document.body.style.overflow = 'auto';
     }, [])
@@ -75,7 +77,6 @@ function AddNews({ active, dataNew, setActive }) {
                         if (!selectedImage) {
                             setSelectedImage(null)
                             data.append('image', selectedImage);
-
                         }
                         else {
                             data.append('image', selectedImage, selectedImage.name);
@@ -85,13 +86,15 @@ function AddNews({ active, dataNew, setActive }) {
                         data.append('id', values.id)
                         data.append('title', values.title)
                         data.append('text', values.text)
+                        data.append('date', new Date())
+                        data.append('imageKey', null)
 
                         dataNew !== null ? dispatch(editNew(data)) : dispatch(createNew(data))
 
                         setSelectedImage(null)
                         values.title = ''
                         values.text = ''
-                        console.log("values: ", values)
+
                     }}>
                     {({ errors, touched }) => (
                         <Form>

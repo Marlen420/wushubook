@@ -3,7 +3,7 @@ const useFilePgrogress = (data) => {
 
         // alert(file.name+" | "+file.size+" | "+file.type);
         var formdata = new FormData();
-        formdata.append("file1", file);
+        // formdata.append("file1", file);
         var ajax = new XMLHttpRequest();
         ajax.upload.addEventListener("progress", progressHandler, false);
         ajax.addEventListener("load", completeHandler, false);

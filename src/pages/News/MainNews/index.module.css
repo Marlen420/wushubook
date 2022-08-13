@@ -7,6 +7,7 @@
     font-family: 'Lato', sans-serif;
 }
 
+
 .news__title {
 
 
@@ -229,4 +230,22 @@
 
 
     }
+}
+
+@media screen and (max-width: 541px) {
+
+    .conteiner__addNew {
+        margin-top: 110px;
+
+    }
+
+    .news {
+
+        margin-left: 13px;
+        margin-top: 15px;
+        margin-right: 0;
+        font-style: normal;
+        font-family: 'Lato', sans-serif;
+    }
+
 }

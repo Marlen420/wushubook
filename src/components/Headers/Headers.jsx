@@ -33,7 +33,7 @@ function Headers({ socket }) {
 
 
     useEffect(() => {
-        // socket.on("getNotificatons", data => { используем когда будет готова сокеты для уведомлений 
+        // socket.on("getNotificatons", data => { 
         //     setNotificatons((prev) => [...prev, data])
         // })
         setNotificatons([

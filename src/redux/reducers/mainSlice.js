@@ -35,7 +35,6 @@ export const toolkitSlice = createSlice({
 
 
         [getLastEvent.pending]: setLoading,
-
         [getLastEvent.fulfilled]: (state, action) => {
             state.status = 'resolved';
             state.lastEvents = action.payload

@@ -43,8 +43,9 @@
         "styled-components": "^5.3.5",
         "web-vitals": "^2.1.4",
         "yup": "^0.32.11",
+        "sweetalert": "^2.1.2",
+        "vue-custom-calendar": "^1.0.0",
         "react-toastify": "^9.0.7",
-        "websocket": "^1.0.34"
     },
     "scripts": {
         "start": "react-scripts start",
