@@ -22,45 +22,36 @@ const getMessageTime = created_at => {
 }
 
 function DialogItem({ 
-    user, 
+    photo,
+    name,
+    id,
     message, 
     unreaded ,
     isMe = false,
     isOnline=false,
-    last_message=''
+    last_message='',
+    dialogClick,
 }) {
-
-
-
-
+    
     const getName = (name) => {
         const str = name.split('');
         str[str.findIndex((i) => i === '/')] = ' ';
         return str.join('');
     }
 
-    const e = (item) => {
-        console.log("eee: ", item)
-    }
-
 
     return (
-        <div className={styles.dialog__item} onClick={() => e(user)}  >
-
+        <div className={styles.dialog__item} onClick={()=>dialogClick(id)}>
             <div className={styles.dialog__item_avator}>
                 {
-                    <Avator user={user.photo} />
+                    <Avator user={photo} />
                 }
-
                 <div className={isOnline ? styles.dialog__item__online : ''}>
                 </div>
-
             </div>
-
             <div className={styles.dialog__item_info}>
-
                 <div className={styles.dialog__item_info_top}>
-                    <b className={styles.dialog__item_info_name} >{getName(user.name)}</b>
+                    <b className={styles.dialog__item_info_name} >{name}</b>
                     <div>
                         {isMe ? '' : <IconReaded isMe={false} isReaded={true} />}
                     </div>
@@ -71,8 +62,6 @@ function DialogItem({
                         } */}
                     </span>
                 </div>
-
-
                 <div className={styles.dialog__item_info_bottom}>
                     <p className={styles.dialog__item__text}>{last_message} </p>
 

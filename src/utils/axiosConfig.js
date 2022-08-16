@@ -1,7 +1,5 @@
 import axios from "axios";
 
-const token = localStorage.getItem('jwt-token') || null;
-
 const API = axios.create({
     baseURL: process.env.REACT_APP_API,
     headers: {
@@ -11,7 +9,7 @@ const API = axios.create({
 
 API.interceptors.request.use(
     async req => {
-        req.headers['Authorization'] = `Bearer ${token}`;
+        req.headers['Authorization'] = `Bearer ${localStorage.getItem('jwt-token')}`;
         return req;
     }
 )

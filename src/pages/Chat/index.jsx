@@ -5,6 +5,8 @@ import { getCurrentDialog, getDialogs } from "../../api/dialogs.js";
 import { addMessage, setCurrentDialog } from "../../redux/reducers/dialogsSlice.js";
 import socket from "../../utils/socket.js";
 import { useNavigate } from "react-router";
+import { setModal } from '../../redux/features/counter/generalSlice';
+import { useModal } from '../../hooks/useModal';
 
 function Chat() {
   // Constants
@@ -17,6 +19,11 @@ function Chat() {
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState("");
 
+  const {
+    openModal,
+    closeModal
+  } = useModal();
+
   // Functions
   const openChat = () => {
     setIsOpen(true);
@@ -27,13 +34,18 @@ function Chat() {
   const handleSearchChange = (e) => setSearch(e.target.value);
   const handleDialogClick = (id) => navigate('/chat/'+id);
   const loadDialog = (id) => dispatch(getCurrentDialog(id));
-  const handleSendMessage = ({ text, lobby = null }) => {
+  const handleSendMessage = (data) => {
     socket.emit("createMessage", {
       user: user.id,
-      text,
-      lobby,
+      ...data,
     });
   };
+
+  const handleCreateDirect = () => {
+    
+  }
+
+  const handleOpenCreateDirect = () => openModal('new_direct', {myId: user.id, idList: []});
 
   useEffect(()=>{
     socket.on('message', (item)=>{
@@ -65,6 +77,7 @@ function Chat() {
       handleDialogClick={handleDialogClick}
       loadDialog={loadDialog}
       sendMessage={handleSendMessage}
+      onCreateDirect={handleOpenCreateDirect}
     />
   );
 }

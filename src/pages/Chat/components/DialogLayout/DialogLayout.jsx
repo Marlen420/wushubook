@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import styles from '../../index.module.css';
 import song from '../../anna_asti_-_po_baram_muzati.net.mp3'
 import Status from '../../../../components/Status/index.jsx'
@@ -22,6 +22,9 @@ const DialogLayout = ({people, sendMessage, setTyping, loadDialog, me}) => {
     const { currentDialog, status } = useSelector(state=>state.dialogs);
     const messageListRef = useRef(null);
     const [chat, setChat] = useState([]);
+
+
+    const lobbyTitle = currentDialog?.lobby?.direct ? "" : (currentDialog?.lobby?.name || "");
 
     useEffect(()=>{
         if (status === 'Active' && chat === undefined) navigate('/chat')
@@ -47,7 +50,7 @@ const DialogLayout = ({people, sendMessage, setTyping, loadDialog, me}) => {
             <img src={UserPhoto} alt="" />
             </div>
             <div className={styles.chat__dialog_header_Online}>
-            <b className={styles.chat__dialog_header_Online_name}>Иван Петоров</b>
+            <b className={styles.chat__dialog_header_Online_name}>{lobbyTitle}</b>
             <Status online={true} />
             </div>
             {/* {
@@ -58,6 +61,7 @@ const DialogLayout = ({people, sendMessage, setTyping, loadDialog, me}) => {
         <div className={styles.chat__dialog_message} ref={messageListRef}>
             {currentDialog?.response?.map((item)=>(
                 <Message 
+                    key={item.id}
                     time={getTime(item.date)}
                     isMe={item.user.id === me.id ? true : (item.user === me.id ? true : false)}
                     text={item.text}/>

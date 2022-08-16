@@ -7,15 +7,19 @@ const getDialogOption = (item, me, option) => {
     return partner[option] === '' ? null : partner[option];
 }
 
+
 const Dialogs = ({ dialogsList, me, handleDialogClick }) => {
+    const getPhoto = (item) => item.direct ? getDialogOption(item, me, 'photo') : getLobbyPhoto(item.lobby_info);
+    const getName = (item) => item.direct ? getDialogOption(item, me, 'name').split('/').join(' ') : item.lobby_info.lobby_name
+
     return ( 
         <div > 
-            {dialogsList.map(item => ( 
+            {dialogsList.map(item => (
             <DialogItem 
                 key = { item.lobby_info.lobby_id }
-                photo = { item.direct ? getDialogOption(item, me, 'photo') : getLobbyPhoto(item.lobby_info) }
+                photo = {getPhoto(item)}
                 last_message = { item.last_message.text }
-                name = { item.direct ? getDialogOption(item, me, 'name').split('/').join(' ') : item.lobby_info.lobby_name }
+                name = {getName(item)}
                 id = { item.lobby_info.lobby_id }
                 dialogClick = { handleDialogClick }/>))}
         </div>

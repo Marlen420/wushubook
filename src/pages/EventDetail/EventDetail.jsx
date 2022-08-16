@@ -7,12 +7,14 @@ import Banner from './Banner/Banner';
 import EventHeader from './EventHeader/EventHeader';
 import ProtocolHolder from './ProtocolHolder/ProtocolHolder';
 import Submissions from './Submissions/Submissions';
-import Table from './Table';
+import TrainerPage from './TrainerPage';
 
 const EventDetail = () => {
     // Constants
     const { id } = useParams();
     const { currentEvent, subList, protocols } = useSelector(state=>state.events);
+    const { user } = useSelector(state=>state.profile);
+    const { role } = user;
     const navigate = useNavigate();
     const dispatch = useDispatch();
     
@@ -25,7 +27,6 @@ const EventDetail = () => {
     useEffect(()=>{
         dispatch(getEventById(id));
     }, [dispatch]);
-
 
 
     // Functions
@@ -50,6 +51,10 @@ const EventDetail = () => {
                 startTime={currentEvent?.time?.split('-')[0] || null}
                 deadline={currentEvent?.applicationDeadline}/>
             {
+                role === 'trainer' &&
+                <TrainerPage eventId={id}/>
+            }
+            {/* {
                 !isTableOpen &&
                 <EventHeader
                     isTableOpen={isTableOpen}
@@ -65,7 +70,7 @@ const EventDetail = () => {
                     list={protocols} 
                     handleCreateArena={handleCreateArena}
                     isOpenArena={isOpenArena}/>
-            }
+            } */}
         </div>
     )
 }

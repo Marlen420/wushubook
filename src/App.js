@@ -29,14 +29,16 @@ import { io } from 'socket.io-client'
 import { setLocationUrl } from './redux/reducers/chatSlice.js';
 import { getEventCalendar } from './api/calendar.js';
 import Sportsman from './pages/Sportsman/Sportsman.jsx';
+import Modal from './hooks/useModal/Modal.jsx';
 
 
 function App() {
   const dispatch = useDispatch()
 
   const { isLogged } = useSelector(state => state.profile.login);
-  const { user } = useSelector(state => state.profile)
+  const { user } = useSelector(state => state.profile);
   const { dialogs } = useSelector(state=>state.dialogs);
+  const { modal } = useSelector(state=>state.general);
 
   useEffect(()=> {
     console.log(dialogs);
@@ -55,16 +57,14 @@ function App() {
     dispatch(getClubsStatistics())
 
 
-
-    // setSocket(io('....')) 
-
-
   }, [dispatch])
-
-
 
   return (
     <div>
+      {
+        modal.type !== null &&
+        <Modal store={modal} props={modal.props}/>
+      }
       {isLogged
         ? <>
           <Headers socket={socket} />

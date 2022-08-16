@@ -26,7 +26,6 @@ function Message({
     audio ,
     time="09:00"
 }) {
-    console.log("attachments: ", user)
     let date = new Date()
     // const [isPlaying, setIsPlaying] = useState(false)
     // const audioElem = useRef(null)

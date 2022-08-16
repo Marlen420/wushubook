@@ -9,9 +9,9 @@ const Banner = ({club}) => {
             className={styles.banner_holder}>
             <h1 className={styles.title}>Клуб {`<<${name}>>`}</h1>
             <p className={styles.subtitle}>Тренеры</p>
-            {trainers.map((item)=>(
+            {/* {trainers.map((item)=>(
                 <p className={styles.subtitle} key={item.id}>{item.name.split('/').join(' ')}</p>
-            ))}
+            ))} */}
         </div>
     )
 }

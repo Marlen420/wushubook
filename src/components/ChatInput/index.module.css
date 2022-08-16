@@ -4,12 +4,8 @@
     justify-content: space-between;
     padding-left: 18px;
     padding-right: 18px;
-
-
     margin-bottom: 20px;
 }
-
-
 
 .chat__input_simbvol {
     display: flex;
@@ -24,7 +20,6 @@
     padding-left: 17px;
     /* margin-right: 20px; */
     margin-left: 15px;
-
 }
 
 .chat__input_text::placeholder {
@@ -33,7 +28,6 @@
     font-weight: 500;
     font-size: 16px;
     line-height: 19px;
-
     color: #D9D9D9;
 }
 
@@ -47,6 +41,7 @@
     height: 25px;
     /* background: red; */
     margin-left: 10px;
+    cursor: pointer;
 }
 
 .chat__input_simbvol_icon1 {

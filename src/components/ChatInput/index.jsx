@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from './index.module.css'
 import { Skrepka, mikrafon, flyIcon } from '../../images/inedex.js'
+import socket from "../../utils/socket";
 
 function ChatInput({sendMessage, id, setTyping}) {
     const [value, setValue] = useState('')
+    const [file, setFile] = useState('');
+
+    const inputFile = useRef(null);
 
     const valueMessage = (e) => {
         setValue(e.target.value)
@@ -11,8 +15,14 @@ function ChatInput({sendMessage, id, setTyping}) {
 
     const handleSendMessage = (e) => {
         e.preventDefault();
-        setValue('');
-        sendMessage({text: value, lobby: id});
+        if (value === '' && file === '') return;
+        const data = {
+            lobby: id,
+            edited: true,
+            text: value,
+            attachment: file
+        }
+        sendMessage(data);
     }
 
     useEffect(() => {
@@ -29,7 +39,18 @@ function ChatInput({sendMessage, id, setTyping}) {
             className={styles.chat__input} >
 
             <div className={styles.chat__input_simbvol}>
-                <img className={styles.chat__input_simbvol_icon} src={Skrepka} alt='' />
+                <img 
+                    onClick={()=>inputFile.current?.click()}
+                    className={styles.chat__input_simbvol_icon} 
+                    src={Skrepka} 
+                    alt='' />
+                <input 
+                    ref={inputFile} 
+                    type="file" 
+                    style={{display: 'none'}}
+                    onChange={(e)=>setFile(e.target.files[0])}
+                    accept="image/apng, image/avif, image/gif, image/jpeg, image/png, image/svg+xml, image/webp"/>
+
                 {/* <p className={styles.chat__input_simbvol_icon} style={{ visibility: 'hidden' }} >&#128521;</p> */}
 
             </div>

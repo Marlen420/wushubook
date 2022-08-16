@@ -1,7 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
+import applicationSlice from './features/counter/applicationSlice';
 import clubsSlice from './features/counter/clubsSlice';
 import documentSlice from './features/counter/documentSlice';
 import eventSlice from './features/counter/eventSlice';
+import generalSlice from './features/counter/generalSlice';
 
 import profileSlice from './features/counter/profileSlice'
 import sportsmanSlice from './features/counter/sportsmanSlice';
@@ -30,6 +32,8 @@ export default configureStore({
         dialogs: dialodsSlice,
         calendar: calendarSlice,
         news: newsSlice,
-        chat: chatSlice
+        chat: chatSlice,
+        general: generalSlice,
+        applications: applicationSlice,
     },
 })

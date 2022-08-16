@@ -17,7 +17,8 @@ const ChatLayout = ({
     people=null,
     loadDialog,
     sendMessage,
-    setTyping
+    setTyping,
+    onCreateDirect
 }) => {
 
     return (
@@ -25,7 +26,8 @@ const ChatLayout = ({
             <div className={styles.chat__sidebar}>
                 <DialogsHeader 
                     search={search} 
-                    setSearch={setSearch}/>
+                    setSearch={setSearch}
+                    onCreateDirect={onCreateDirect}/>
 
                 <div className={styles.chat__sidebar_dialogs} >
                     <Dialogs
