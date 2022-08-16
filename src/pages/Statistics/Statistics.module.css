@@ -6,8 +6,7 @@
 }
 
 .content__title {
-    /* font-family: 'Lato'; */
-    font-style: normal;
+
     font-weight: 700;
     font-size: 32px;
     line-height: 120%;
@@ -25,12 +24,17 @@ select {
     height: 49px;
     padding-left: 15px;
     margin-top: 44px;
-    font-family: 'Lato';
-    font-style: normal;
+
     font-weight: 500;
     font-size: 18px;
     border-radius: 8px;
     line-height: 22px;
+}
+
+.over {
+    background: red;
+    height: 200px;
+    overflow-y: scroll;
 }
 
 option {
@@ -40,6 +44,7 @@ option {
     background: #F9F9FF;
     border: 1px solid #EFEFEF;
     border-radius: 8px;
+
 }
 
 .ButtonNavigations {
@@ -104,8 +109,7 @@ option {
 }
 
 .content li {
-    font-family: 'Lato';
-    font-style: normal;
+
     font-weight: 400;
     font-size: 16px;
     line-height: 19px;
@@ -113,11 +117,44 @@ option {
     padding-left: 18px;
     padding-bottom: 15px;
     padding-top: 5px;
+
+
 }
 
 .content li:hover {
     background: #E0E6FF;
 }
+
+
+
+.select {
+    width: 100%;
+    font-size: 16px;
+    text-align: start;
+    border-radius: 8px;
+    background: rebeccapurple;
+}
+
+.f {
+    width: 187px;
+    cursor: pointer;
+
+    border-radius: 8px;
+    position: relative;
+    height: 50px;
+}
+
+
+@media screen and (max-width: 541px) {
+    .content {
+        margin-left: 3%;
+        margin-top: 100px;
+        margin-right: 28px;
+
+    }
+}
+
+
 
 @media screen and (max-width: 1075px) {
     .chart {

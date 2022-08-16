@@ -11,6 +11,7 @@
     position: relative;
 
 
+
 }
 
 
@@ -42,8 +43,8 @@
     font-size: 10px;
     /* line-height: 10px; */
     position: absolute;
-    right: 20%;
-    top: -5%;
+    right: 35%;
+    top: -4%;
 
 }
 
@@ -72,22 +73,76 @@
     display: flex;
 }
 
-.header__icon {
+
+.header__allIcon {
+    display: flex;
+    margin-top: 0px;
+    align-self: flex-end;
     margin-right: 18px;
-    width: 48px;
-    height: 48px;
+    /* position: relative; */
+    /* background: red; */
+}
+
+
+
+.header__notIcon {
+
+    margin-top: 3px;
+    width: 32.6px;
+    height: 32.6px;
+    padding: 10px;
+    /* border: 1px solid #F2F2F2; */
+    filter: drop-shadow(0px 0px 5px #C8C8C8);
+    border-radius: 8px;
+}
+
+
+.header__notIcon1 {
+
+    margin-top: 3px;
+    width: 32.6px;
+    height: 32.6px;
+
+    filter: drop-shadow(0px 0px 5px #C8C8C8);
+    border-radius: 8px;
+    position: relative;
+}
+
+
+
+.headers_profil {
+    display: flex;
+
+}
+
+
+
+.headers_profil1 {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+}
+
+
+.headers_profil_icon {
+    position: absolute;
+    top: 25%;
+    left: 28%;
+}
+
+
+.header__icon {
+    margin-right: 28px;
+    width: 38px;
+    height: 38px;
+    /* position: absolute;
+    bottom: 0; */
 }
 
 .header__logo {
     margin-left: 13px;
 }
 
-
-.header__allIcon {
-    display: flex;
-    margin-top: 12px;
-    margin-right: 18px;
-}
 
 
 
@@ -104,27 +159,12 @@
 .f {
     width: 187px;
 
-    background: #F6F8FF;
-    border-radius: 8px;
+
     position: relative;
     height: 50px;
 }
 
-.headers_profil {
 
-    display: flex;
-
-
-
-
-}
-
-.headers_profil_icon {
-    padding-top: 15px;
-    padding-bottom: 3px;
-    padding-left: 10px;
-
-}
 
 .headers_profil_pops {
 
@@ -141,8 +181,11 @@
 
 .headers_profil_name {
     align-self: center;
-    padding-left: 7px;
+    padding-left: 10px;
     padding-top: 10px;
+
+    font-size: 14px;
+    line-height: 19px;
 }
 
 .headers_profil_popsUp {
@@ -171,34 +214,40 @@
     position: absolute;
     z-index: 3;
     right: 5%;
-    top: 45%;
+    top: 42%;
 }
 
 
 .arrowOpenIcon {
+
     position: absolute;
     z-index: 3;
     right: 5%;
-    top: 40%;
+    top: 34%;
 }
 
 @media screen and (max-width: 845px) {
     .header__allIcon {
         margin-top: 55px;
 
+
         margin-right: 0px;
+
     }
 
     .header__icon {
-        margin-right: 0px;
+        margin-right: 20px;
     }
 
 
     .header__icon_conteiner {
         position: absolute;
-        right: 0;
+        right: 15px;
         top: -5%;
     }
+
+
+
 }
 
 

@@ -19,6 +19,7 @@
         "bootstrap": "^5.2.0",
         "bootstrap-icons": "^1.9.1",
         "chart.js": "^3.8.0",
+        "chartjs-plugin-zoom": "^1.2.1",
         "classnames": "^2.3.1",
         "custom-css": "^1.0.1",
         "date-fns": "^2.29.1",
@@ -39,13 +40,13 @@
         "react-router-dom": "^6.3.0",
         "react-scripts": "5.0.1",
         "react-select": "^5.4.0",
+        "react-toastify": "^9.0.7",
         "socket.io-client": "^4.5.1",
         "styled-components": "^5.3.5",
-        "web-vitals": "^2.1.4",
-        "yup": "^0.32.11",
         "sweetalert": "^2.1.2",
         "vue-custom-calendar": "^1.0.0",
-        "react-toastify": "^9.0.7"
+        "web-vitals": "^2.1.4",
+        "yup": "^0.32.11"
     },
     "scripts": {
         "start": "react-scripts start",

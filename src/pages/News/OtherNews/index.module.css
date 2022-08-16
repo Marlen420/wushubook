@@ -33,8 +33,7 @@
 }
 
 .conteinerNews__title {
-    font-family: 'Lato', sans-serif;
-    font-style: normal;
+
     font-weight: 700;
     font-size: 22px;
     line-height: 29px;
@@ -42,8 +41,8 @@
 }
 
 .conteinerNews__text {
-    font-family: 'Lato', sans-serif;
-    font-style: normal;
+
+
     font-weight: 400;
     font-size: 15px;
     line-height: 120%;
@@ -85,8 +84,7 @@
 
 
 .conteinerNews__date {
-    font-family: 'Lato', sans-serif;
-    font-style: italic;
+
     font-weight: 600;
     font-size: 12px;
     line-height: 14px;
@@ -105,8 +103,7 @@
 .spinner {
     display: flex;
     justify-content: center;
-    font-family: 'Lato', sans-serif;
-    font-style: normal;
+
     font-weight: 400;
     font-size: 22px;
     line-height: 22px;

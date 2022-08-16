@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { getClubs, getClubss, getClubsStatistics, getStatistics } from '../../api/statistics';
+import { getAthleteStortsmentById, getClubs, getClubsForStatistics, getClubss, getClubsStatistics, getOfpStortsmentById, getStatistics } from '../../api/statistics';
 
 
 export const setError = (state, action) => {
@@ -18,26 +18,36 @@ export const statisticsSlice = createSlice({
     initialState: {
         statistics: [],
         clubs: [],
+        ofpById: [],
+        athleteById: [],
+
         status: {
-            getClubsStatus: null
+            getClubsStatus: null,
+            getDataStatus: null,
+            getOfpByIdStatus: null,
+            getAthleteByIdStatus: null
         },
         errors: {
-            getClubsError: null
+            getClubsError: null,
+            getDataError: null,
+            getOfpByIdError: null,
+            getAthleteByIdError: null
         }
     },
 
     extraReducers: {
         //get Club
-        [getClubsStatistics.pending]: (state, action) => {
+        [getClubsForStatistics.pending]: (state, action) => {
+
             state.status.getClubsStatus = 'Getting clubs';
             state.errors.getClubsError = null
         },
-        [getClubsStatistics.fulfilled]: (state, action) => {
+        [getClubsForStatistics.fulfilled]: (state, action) => {
             state.status.getClubsStatus = 'Geted clubs';
-            state.errors.ClubsError = null
+            state.errors.getClubsError = null
             state.clubs = action.payload
         },
-        [getClubsStatistics.rejected]: (state, action) => {
+        [getClubsForStatistics.rejected]: (state, action) => {
             state.status.getClubsStatus = 'Rejected get clubs'
             state.errors.getClubsError = action.payload
         },
@@ -45,17 +55,55 @@ export const statisticsSlice = createSlice({
 
 
 
+        [getStatistics.pending]: (state, action) => {
+            state.status.getDataStatus = 'Getting data statistics';
+            state.errors.getDataError = null
+        },
+        [getStatistics.fulfilled]: (state, action) => {
+            state.status.getDataStatus = 'Geted data statistics';
+            state.errors.getDataError = null
+            state.statistics = action.payload
+        },
+        [getStatistics.rejected]: (state, action) => {
+            state.status.getDataStatus = 'Rejected get data statistics'
+            state.errors.getDataError = action.payload
+        },
 
 
+        //Ofp one Sportsmen
+        [getOfpStortsmentById.pending]: (state, action) => {
+            state.status.getOfpByIdStatus = 'Getting ofp';
+            state.errors.getOfpByIdError = null
+        },
+        [getOfpStortsmentById.fulfilled]: (state, action) => {
+            state.status.getOfpByIdStatus = 'Geted ofp';
+            state.errors.getOfpByIdError = null
+            state.ofpById = action.payload.sort((a, b) => a.year - b.year)
+        },
+        [getOfpStortsmentById.rejected]: (state, action) => {
+            state.ofpById = []
+            state.status.getOfpByIdStatus = 'Rejected get ofp'
+            state.errors.getOfpByIdError = action.payload
+        },
+
+        //Athlete achievements
+        [getAthleteStortsmentById.pending]: (state, action) => {
+            state.status.getAthleteByIdStatus = 'Getting athlete';
+            state.errors.getAthleteByIdError = null
+        },
+        [getAthleteStortsmentById.fulfilled]: (state, action) => {
+            state.status.getAthleteByIdStatus = 'Geted athlete';
+            state.errors.getAthleteByIdError = null
+            state.athleteById = action.payload.sort((a, b) => a.year - b.year)
+        },
+        [getAthleteStortsmentById.rejected]: (state, action) => {
+
+            state.athleteById = []
+            state.status.getAthleteByIdStatus = 'Rejected get athlete'
+            state.errors.getAthleteByIdError = action.payload
+        },
 
 
-        // [getStatistics.pending]: setLoading,
-
-        // [getStatistics.fulfilled]: (state, action) => {
-        //     state.status = 'resolved';
-        //     state.statistics = action.payload
-        // },
-        // [getStatistics.rejected]: setError,
     }
 })
 

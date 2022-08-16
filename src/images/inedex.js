@@ -58,9 +58,11 @@ import editIconNew from './EditNews.svg'
 import crossIconNew from './CheckIcon.svg'
 import crossIconForNew from './CrossNewsss.svg'
 import notNotificatons from './NotNotifications.png'
+import avatorka from './aa.jfif'
 // 12345678BEM
 
 export {
+    avatorka,
     notNotificatons,
     crossIconForNew,
     crossIconNew,

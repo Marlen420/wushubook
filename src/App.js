@@ -15,7 +15,7 @@ import Profile from './pages/Profile/Profile.jsx';
 import Headers from './components/Headers/Headers.jsx'
 import { MainNews, MoreNews } from './pages/News/index.js';
 import Chat from './pages/Chat/index.jsx';
-import { getClubsStatistics, getStatistics } from './api/statistics.js';
+import { getClubsForStatistics, getClubsStatistics, getStatistics } from './api/statistics.js';
 import NotRegisteredHome from './pages/NotRegisteredHome/index.jsx';
 import styles from './app.module.css'
 
@@ -36,12 +36,12 @@ function App() {
 
   const { isLogged } = useSelector(state => state.profile.login);
   const { user } = useSelector(state => state.profile)
-  const { dialogs } = useSelector(state=>state.dialogs);
+  const { dialogs } = useSelector(state => state.dialogs);
 
-  useEffect(()=> {
+  useEffect(() => {
     console.log(dialogs);
     socket.emit('join-to-lobby', {
-      lobby_list: dialogs.map((item)=>item.lobby_info.lobby_id)
+      lobby_list: dialogs.map((item) => item.lobby_info.lobby_id)
     })
   }, [dialogs])
 
@@ -52,7 +52,7 @@ function App() {
     dispatch(getStatistics())
     dispatch(getDialogs())
     dispatch(getEventCalendar())
-    dispatch(getClubsStatistics())
+    dispatch(getClubsForStatistics())
 
 
 
@@ -76,7 +76,7 @@ function App() {
               <>
                 <Route path='/clubs' element={<Clubs />} />
                 <Route path='/clubs/:id/*' element={<ClubDetail />} />
-                <Route path='/sportsman/:id' element={<Sportsman/>}/>
+                <Route path='/sportsman/:id' element={<Sportsman />} />
                 <Route path='/document' element={<Document />} />
                 <Route path='/events' element={<Events />} />
                 <Route path='/events/:id/*' element={<EventDetail />} />
@@ -99,7 +99,7 @@ function App() {
           </Routes>
         </>
         : <NotRegisteredHome />}
-        <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 }

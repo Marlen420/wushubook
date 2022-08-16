@@ -8,8 +8,9 @@ import { useSelector } from 'react-redux';
 
 
 function Statistics() {
-    const { statistics, clubs } = useSelector(state => state.statistics)
+    const { statistics, clubs, status } = useSelector(state => state.statistics)
     console.log("clunbs: ", clubs)
+    console.log("satata: ", status.getClubsStatus)
 
     const TabТame = ['Оценка показателя ОФП', 'Оценка показателей спортсменов', 'Достижения клубов']
 
@@ -17,7 +18,7 @@ function Statistics() {
     const [type, setType] = useState('')
     const [isOpenSalary, setIsOpenSalary] = useState(false)
     const [dates, setDates] = useState([])
-    const [selesctClubs, setSelesctClubs] = useState('Все клубы')
+    const [selesctClubs, setSelesctClubs] = useState('Выберите клуб...')
 
     const togglingSalary = () => {
         setIsOpenSalary(!isOpenSalary)
@@ -97,8 +98,9 @@ function Statistics() {
 
 
 
-            <div  >
-                <div className={styles.content__OpenIcon} onClick={togglingSalary}>
+            <div className={styles.f} >
+                <div className={styles.content__OpenIcon}
+                    onClick={togglingSalary}>
                     {isOpenSalary ? <img src={payloadClose} alt='Not find ArrowDownIcon'
                         className={styles.arrow1} />
                         :
@@ -107,16 +109,17 @@ function Statistics() {
                     {<input value={selesctClubs}
                         className={styles.input} readOnly />}
 
-                </div >
+                </div>
 
 
                 {
                     isOpenSalary && (
                         <div>
-                            <ul>
+                            <ul className={styles.over} >
                                 {
+
                                     clubs.map(option => (
-                                        <div key={option.id}>
+                                        <div key={option.id} >
                                             <li className={styles.li}
                                                 onClick={() => chooseClubs(option.name)}  >
                                                 {option.name}

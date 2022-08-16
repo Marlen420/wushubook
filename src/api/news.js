@@ -41,7 +41,7 @@ export const getNewsId = createAsyncThunk(
 
     async function ({ id, navigations }, { rejectWithValue }) {
         try {
-            const response = await API.get(`news/getById/${id}`)
+            const response = await API.get(`news/get-by-id/${id}`)
 
             navigations('/moreNews')
             return response.data
@@ -74,19 +74,16 @@ export const deleteNew = createAsyncThunk(
 
 export const editNew = createAsyncThunk(
     'news/editNew',
-    async function (data, { rejectWithValue }) {
+    async function ({ id, data }, { rejectWithValue, dispatch }) {
 
         try {
             let userData = {};
-            data.forEach((value, key) => {
-                userData[key] = value;
 
+            const response = await API.patch(`news/${id}`,
+                data
+            )
 
-            });
-
-            const response = await API.patch(`news/${userData.id}`, userData)
-
-            return response.data
+            dispatch(getNews())
         }
         catch (error) {
             return rejectWithValue(error.message)

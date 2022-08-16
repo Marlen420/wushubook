@@ -24,3 +24,10 @@ export let documents_mock = [
     { id: 9, docsKey: 'Баллы турнира (2022).pdf', type: 'pdf', date: '07-16-2022', size: '12мб', src: null },
     { id: 10, docsKey: 'Баллы турнира (2022).pdf', type: 'pdf', date: '07-16-2022', size: '64мб', src: null },
 ]
+
+export let AthleteStortsments = [
+    { id: 0, years: '2022', athlete: '2.8' },
+    { id: 0, years: '2019', athlete: '4.8' },
+    { id: 0, years: '2018', athlete: '9.8' },
+    { id: 0, years: '2017', athlete: '7.8' },
+]

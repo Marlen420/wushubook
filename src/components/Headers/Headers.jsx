@@ -3,7 +3,7 @@ import styles from './index.module.css'
 import {
     Logo, PersonIcon, profilIcon, goOutIcon, peopleNotIcon,
     payloadClose, payload, NotificationIcon, MessageIcon, MousMesssage,
-    photoPeople, MousNotification, MousPerson
+    photoPeople, MousNotification, MousPerson, avatorka
 } from '../../images/inedex.js'
 import { NavLink, useNavigate } from 'react-router-dom'
 import Notificatons from '../Notificatons/index.jsx'
@@ -179,11 +179,16 @@ function Headers({ socket }) {
 
                         <div className={styles.headers_profil}>
                             {
-                                user.image ? <img src={user.image} alt=''
-                                    className={styles.headers_profil_icon} />
+                                user.image ?
+                                    <div className={styles.header__notIcon1}>
+                                        <img src={user.image} alt=''
+                                            className={styles.headers_profil1} />
+                                    </div>
                                     :
-                                    <img src={peopleNotIcon} alt=''
-                                        className={styles.headers_profil_icon} />
+                                    <div className={styles.header__notIcon}>
+                                        <img src={peopleNotIcon} alt=''
+                                            className={styles.headers_profil_icon} />
+                                    </div>
                             }
 
                             <p className={styles.headers_profil_name}>{getName(user.name)} </p >
