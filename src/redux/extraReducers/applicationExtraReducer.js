@@ -25,9 +25,16 @@ export const getApplicationsExtra = {
     [getApplications.fulfilled]: (state, action) => {
         state.status = "Active";
         state.error = null;
-        state.data = action.payload;
+        const data = [];
+        action.payload.forEach((item) => {
+            const index = data.findIndex(q => q.trainerId === item.trainerId);
+            if (index !== -1) data[index]['sportsmans'] = [item, ...data[index]['sportsmans']];
+            else data.push({ trainerId: item.trainerId, trainer: item.trainer, club: item.club, sportsmans: [item] });
+        })
+        state.data = data;
+        console.log(data);
     },
-    [getApplications.fulfilled]: (state, action) => {
+    [getApplications.rejected]: (state, action) => {
         state.status = "Rejected get applications";
         state.error = action.payload;
     }

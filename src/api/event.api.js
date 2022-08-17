@@ -7,7 +7,6 @@ export const getEventById = createAsyncThunk(
     async(id, { rejectWithValue }) => {
         try {
             const response = await API.get('/events/get-by-id/' + id);
-            console.log(response.data);
             return response.data;
         } catch (e) {
             return rejectWithValue(e.response.data.message);
@@ -47,7 +46,6 @@ export const setEventList = createAsyncThunk(
     async({ start, end }, { rejectWithValue }) => {
         try {
             const response = await API.get(`/events/by-date?start=${start}&end=${end==='' ? "2030-05-05" : end}`);
-            console.log(response.data);
             return response.data;
         } catch (e) {
             return rejectWithValue(e.response.data.messgae);

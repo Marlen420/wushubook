@@ -6,6 +6,7 @@ import Arena from './Arena/Arena';
 import Banner from './Banner/Banner';
 import EventHeader from './EventHeader/EventHeader';
 import ProtocolHolder from './ProtocolHolder/ProtocolHolder';
+import SecretaryPage from './SecretaryPage';
 import Submissions from './Submissions/Submissions';
 import TrainerPage from './TrainerPage';
 
@@ -54,16 +55,15 @@ const EventDetail = () => {
                 role === 'trainer' &&
                 <TrainerPage eventId={id}/>
             }
+            {
+                (role === 'secretary' || role === 'admin') &&
+                <SecretaryPage eventId={id} eventTitle={currentEvent?.title}/>
+            }
             {/* {
                 !isTableOpen &&
-                <EventHeader
-                    isTableOpen={isTableOpen}
-                    handleButtonClick={handleCreateProtocol}/>
+                
             }
-                <Routes>
-                    <Route path="/table/:id" element={<Table setIsTableOpen={setIsTabelOpen}/>} />
-                    <Route path="/" element={<Submissions list={subList || []} handleClubItemClick={handleClubItemClick}/>}/>
-                </Routes>
+                
             {
                 isOpenProtocol &&
                 <ProtocolHolder 

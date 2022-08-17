@@ -38,12 +38,12 @@ function Users() {
 
     // Onload
     useEffect(()=>{
-        dispatch(setUsersList({role: QUERY_ROLES[1], status: roleFilter === 4 ? 1 : ''}))
+        dispatch(setUsersList({role: QUERY_ROLES[roleFilter], status: roleFilter === 4 ? 1 : ''}))
     }, [roleFilter, dispatch])
 
     useEffect(()=>{
         if (users.user.status === 'Set new user') setNewUserWindow(false);
-        if (users.user.status === 'User deleted' || users.user.status === 'User approved') dispatch(setUsersList({role: QUERY_ROLES[roleFilter], status: roleFilter === 4 ? 0 : ''}))
+        if (users.user.status === 'User deleted' || users.user.status === 'User approved') dispatch(setUsersList({role: QUERY_ROLES[roleFilter], status: roleFilter === 4 ? 1 : ''}))
     }, [users.user.status])
 
     // Functions
@@ -75,7 +75,7 @@ function Users() {
 
     const handleDeleteUser = (id) => dispatch(deleteUser(id));
     const handleNewUserSet = (data) => dispatch(setNewUser(data))
-    const handleApproveUser = (id) => dispatch(approveUser(id));
+    const handleApproveUser = (id) => dispatch(approveUser({id, data: {appointment_date: new Date()}}));
 
     // Debug
 

@@ -5,7 +5,7 @@ import { EditIcon, UserDeleteIcon } from '../../../images/inedex';
 import { getDate } from '../../../utils';
 import style from './eventItem.module.css';
 
-const EventItem = ({
+const SecretaryEventItem = ({
     isSelectedItem,
     onSelectItem,
     item,
@@ -14,6 +14,16 @@ const EventItem = ({
     const navigate = useNavigate();
     const handleDeleteItem = () => onDelete(item.id);
     const handleItemClick = () => navigate('/events/'+item.id);
+    const getStatus = () => {
+        const today = new Date();
+        const applicationDeadline = new Date(item.applicationDeadline);
+        const start = new Date(item.start);
+        const end = new Date(item.end);
+        if (today <= applicationDeadline) return "Прием заявок";
+        if (today < start) return "В ожидании начало";
+        if (today <= end) return "Проводится";
+        return "Закончен";
+    }
     return (
         <div 
             onClick={handleItemClick}
@@ -28,6 +38,7 @@ const EventItem = ({
             </div>
             <p className={style.item_column + ' ' + style.column_name}>{item.title}</p>
             <p className={style.item_column + ' ' + style.column_date}>{getDate(item.start)}</p>
+            <p className={style.item_column + ' ' + style.column_status}>{getStatus()}</p>   
             <div className={style.item_column + ' ' + style.column_options}>
                 <img 
                     className={style.options_edit}
@@ -43,4 +54,4 @@ const EventItem = ({
     )
 }
 
-export default EventItem
+export default SecretaryEventItem;

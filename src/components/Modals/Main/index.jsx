@@ -18,7 +18,7 @@ function Main() {
     }, [])
     useEffect(()=>{
         dispatch(setProfile(id));
-    }, [dispatch, window]);
+    }, [dispatch]);
     return (
 
         <div className={styles.active}

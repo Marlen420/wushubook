@@ -3,9 +3,9 @@ import API from "../utils/axiosConfig";
 
 export const approveUser = createAsyncThunk(
     'users/approveUser',
-    async(id, { rejectWithValue }) => {
+    async({ id, data }, { rejectWithValue }) => {
         try {
-            const response = await API.patch(`/users/approve-user/${id}`);
+            const response = await API.patch(`/users/${id}`, data);
             console.log(response.data);
             return response.data;
         } catch (e) {

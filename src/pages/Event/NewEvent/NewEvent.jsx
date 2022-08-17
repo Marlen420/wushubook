@@ -67,6 +67,7 @@ const NewEvent = ({
                     <div className={style.input_holder}>
                         <label htmlFor="date">Дата проведения</label>
                         <Input
+                            type="date"
                             value={date}
                             onChange={setDate}
                             name="date"/>
@@ -81,6 +82,7 @@ const NewEvent = ({
                     <div className={style.input_holder}>
                         <label htmlFor="end-date">Дата окончания мероприятия</label>
                         <Input
+                            type="date"
                             value={eventDeadline}
                             onChange={setEventDeadline}
                             name="end-date"/>
@@ -88,6 +90,7 @@ const NewEvent = ({
                     <div className={style.input_holder}>
                         <label htmlFor="end-date">Дата окончания принятия заявок</label>
                         <Input
+                            type="date"
                             value={applicationDeadline}
                             onChange={setApplicationDeadline}
                             name="end-date"/>

@@ -53,7 +53,10 @@ export const setUsersListExtra = {
     [setUsersList.fulfilled]: (state, action) => {
         state.status = "Active";
         state.error = null;
-        state[action.payload.role] = {...state[action.payload.role], ...action.payload };
+        let data = [];
+        if (action.payload.role !== 'pending') data = action.payload.data.filter((item) => item.status === 2);
+        else data = action.payload.data;
+        state[action.payload.role] = {...state[action.payload.role], data };
     },
     [setUsersList.rejected]: (state, action) => {
         state.status = "Rejected loading users list";

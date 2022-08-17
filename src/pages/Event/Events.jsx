@@ -91,8 +91,8 @@ function Events() {
 
     const getAllId = useCallback(() => currentData().map(item=>item.id), [currentData]);
 
-    const onSelectItem = useCallback((id) => isSelectedItem(id) ? dispatch(setUnselectItem(id)) : dispatch(setSelectItem(id)), [dispatch, isSelectedItem])
-    const onSelectAll = useCallback(() => isSelectedAll() ? dispatch(setUnselectAll()) : dispatch(setSelectAll(getAllId())), [dispatch, isSelectedAll, getAllId])
+    const onSelectItem = useCallback((id) => isSelectedItem(id) ? dispatch(setUnselectItem(id)) : dispatch(setSelectItem(id)), [dispatch, isSelectedItem]);
+    const onSelectAll = useCallback(() => isSelectedAll() ? dispatch(setUnselectAll()) : dispatch(setSelectAll(getAllId())), [dispatch, isSelectedAll, getAllId]);
 
     const handleNewEventOpen = useCallback(() => {
         setIsNewEvent(true);
@@ -101,7 +101,16 @@ function Events() {
     const handleAddNewEvent = useCallback((e)=>{
         e.preventDefault();
         e.stopPropagation();
-        dispatch(createNewEvent({title: eventName, city: eventCity, address: eventAddress, start: eventDate, end: eventDeadline, time: eventTime, applicationDeadline: eventDeadline}))
+        const data = {
+            title: eventName, 
+            city: eventCity, 
+            address: eventAddress, 
+            start: eventDate, 
+            end: eventDeadline, 
+            time: eventTime, 
+            applicationDeadline: eventDeadline
+        }
+        dispatch(createNewEvent(data))
     }, [eventName, eventCity, eventDate, dispatch])
 
     return (
@@ -142,7 +151,8 @@ function Events() {
                 jump={jump}
                 prev={prev}
                 next={next}
-                onDelete={handleDeleteEvent}/>
+                onDelete={handleDeleteEvent}
+                role={user.role}/>
         </div>
     )
 }

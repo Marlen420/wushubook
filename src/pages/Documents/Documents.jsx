@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllDocuments, uploadDocument } from "../../api/documents.api";
+import { deleteDocument, getAllDocuments, uploadDocument } from "../../api/documents.api";
 import useFile from "../../hooks/usePagination/useFile";
-import { deleteDocument, uploadFileHanlde } from "../../redux/features/counter/documentSlice";
+import { uploadFileHanlde } from "../../redux/features/counter/documentSlice";
 import DocumentHeader from "./DocumentHeader/DocumentHeader";
 import DocumentList from "./DocumentList/DocumentList";
 import styles from './Documents.module.css'
 import { updateProgressBar, setStatus } from '../../redux/features/counter/documentSlice';
+import { toast } from "react-toastify";
 
 
 
@@ -29,7 +30,7 @@ function Documents() {
 
     // Functions
     const handleAddFile = (e) => e.target.nextSibling?.click();
-    const handleDeleteDocument = (id) => dispatch(deleteDocument(id));
+    const handleDeleteDocument = (id) => dispatch(deleteDocument(id)).unwrap().then(({meta})=>meta.requestStatus === 'fulfilled' && toast.success('Документ успешно удален'));
     const handleUploadFilesChange = (e) => setUploadFiles(e.target.files);
 
     const handleUploadProgress = (id, percent) => {

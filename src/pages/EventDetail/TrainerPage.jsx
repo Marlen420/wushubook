@@ -29,7 +29,7 @@ const TrainerPage = ({eventId}) => {
 
     return (
         <div>
-            <ApplicationTable status={status} error={error} onSubmitForm={handleSubmitForm}/>
+            <ApplicationTable eventId={eventId} status={status} error={error} onSubmitForm={handleSubmitForm}/>
         </div>
     )
 }

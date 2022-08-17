@@ -1,6 +1,18 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import API from "../utils/axiosConfig";
 
+// Delete document
+export const deleteDocument = createAsyncThunk(
+    'documents/upload',
+    async(id, { rejectedWithValue, dispatch }) => {
+        try {
+            const response = await API.delete('/docs/' + id).then(() => dispatch(getAllDocuments()));
+            return response;
+        } catch (e) {
+            return rejectedWithValue(e.response.data.message);
+        }
+    }
+)
 
 // Upload document
 export const uploadDocument = createAsyncThunk(
@@ -10,6 +22,7 @@ export const uploadDocument = createAsyncThunk(
             const response = await API.post('/docs', data, {
                 onUploadProgress: callback
             });
+            console.log(response.data);
             return { localId, response: response.data };
         } catch (e) {
             return rejectedWithValue(e.response.data.message);

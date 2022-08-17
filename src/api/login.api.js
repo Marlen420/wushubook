@@ -6,7 +6,7 @@ export const setProfile = createAsyncThunk(
     'profile/setStatus',
     async(id, { rejectWithValue }) => {
         try {
-            const response = await API.get(`/users/getById/${id}`);
+            const response = await API.get(`/users/get-by-id/${id}`);
             return response.data;
         } catch (e) {
             return rejectWithValue(e.response.data.message);

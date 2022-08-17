@@ -1,37 +1,19 @@
-import { useEffect, useState } from 'react';
-import styles from './style.module.css';
+import React, { useEffect, useState } from 'react';
 import { Button, Input } from '../../../components/index';
-import { filterApplication, validateApplication } from '../../../utils/tableValidtions';
+import styles from './style.module.css';
 import Select from 'react-select';
 import { TailSpin } from 'react-loader-spinner';
+import { filterApplication, validateApplication } from '../../../utils/tableValidtions';
+import { useParams } from 'react-router';
 
-const getTable = (id) => {
-    let table = localStorage.getItem('application_table');
-    if (table) {
-        table = JSON.parse(table);
-        if (table.eventId === id) return table.data;
-    }
-    const listObj = {
-        name: '',
-        gender: '',
-        age: '',
-        club: '',
-        quan_shu: '',
-        cisse: '',
-        tai_chi_quan_shu: '',
-        tai_chi_quan_cisse: '',
-        duilian: '',
-        team_number: '',
-        comment: ''
-    }
-    return  (new Array(10).fill(0).map((i)=>listObj));
-}
 
 const getGenderValue = (gender) => ({value: gender, label: gender === 'male' ? 'Мужской' : (gender === 'female' ? 'Женский' : '' )})
 
-const ApplicationTable = ({onSubmitForm, list = null, status, error, eventId}) => {
-
-    const [dataList, setDataList] = useState(list === null ? getTable(eventId) : list);
+const SecretaryTable = ({list = [], eventId, status, setIsTableOpen}) => {
+    const { id } = useParams();
+    
+    const [dataList, setDataList] = useState((list.find(i=>i.trainerId===+id)).sportsmans || []);
+    console.log(list.find(i=>i.trainerId===+id))
     const genderOptions = [
         {value: 'reset', label: 'Сбросить', name: 'gender'},
         {value: 'male', label: 'Мужской', name:'gender'}, 
@@ -58,17 +40,14 @@ const ApplicationTable = ({onSubmitForm, list = null, status, error, eventId}) =
         }
     }
 
-    const handleSubmitApplication = () => {
-        if (!validateApplication(dataList)) return;
-        onSubmitForm(filterApplication(dataList));
-    }
+    const handleSubmitApplication = () => console.log("SEND");
 
-    // useEffect(()=>{
-    //     setIsTableOpen(true);
-    //     return () => setIsTableOpen(false);
-    // }, [])
+    useEffect(()=>{
+        setIsTableOpen(true);
+        return () => setIsTableOpen(false);
+    }, [])
 
-    return(
+    return (
         <>
             <div className={styles.buttons_holder}>
                 <Button type="button" projectType="add_user" onClick={handleSubmitApplication}>
@@ -92,6 +71,8 @@ const ApplicationTable = ({onSubmitForm, list = null, status, error, eventId}) =
                             <th rowSpan="1" colSpan="2">Тайцзи цюань</th>
                             <th rowSpan="4">Дуайлянь(фамилия партнера)</th>
                             <th rowSpan="4">Групповые выступления (номер команды)</th>
+                            <th rowSpan="4">Время выступления</th>
+                            <th rowSpan="4">Уровень</th>
                             <th rowSpan="4">Примечание</th>
                         </tr>
                         <tr>
@@ -139,6 +120,12 @@ const ApplicationTable = ({onSubmitForm, list = null, status, error, eventId}) =
                                     <input type="text" name="team_number" value={item.team_number} onChange={(e)=>handleInputChange(e, index)}/>
                                 </td>
                                 <td>
+                                    <input type="text" name="performance_duration" value={item.performance_duration} onChange={(e)=>handleInputChange(e, index)}/>
+                                </td>
+                                <td>
+                                    <input type="text" name="level" value={item.level} onChange={(e)=>handleInputChange(e, index)}/>
+                                </td>
+                                <td>
                                     <input type="text" name="comment" value={item.comment} onChange={(e)=>handleInputChange(e, index)}/>
                                 </td>
                             </tr>
@@ -150,4 +137,4 @@ const ApplicationTable = ({onSubmitForm, list = null, status, error, eventId}) =
     )
 }
 
-export default ApplicationTable;
+export default SecretaryTable;
