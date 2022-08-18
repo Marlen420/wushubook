@@ -15,7 +15,7 @@ import Profile from './pages/Profile/Profile.jsx';
 import Headers from './components/Headers/Headers.jsx'
 import { MainNews, MoreNews } from './pages/News/index.js';
 import Chat from './pages/Chat/index.jsx';
-import { getClubsStatistics, getStatistics } from './api/statistics.js';
+import { getClubsForStatistics, getClubsStatistics, getStatistics } from './api/statistics.js';
 import NotRegisteredHome from './pages/NotRegisteredHome/index.jsx';
 import styles from './app.module.css'
 
@@ -40,7 +40,7 @@ function App() {
   const { dialogs } = useSelector(state=>state.dialogs);
   const { modal } = useSelector(state=>state.general);
 
-  useEffect(()=> {
+  useEffect(() => {
     console.log(dialogs);
     socket.emit('join-to-lobby', {
       lobby_list: dialogs.map((item)=>item.lobby_id)
@@ -54,7 +54,7 @@ function App() {
     dispatch(getStatistics())
     dispatch(getDialogs())
     dispatch(getEventCalendar())
-    dispatch(getClubsStatistics())
+    dispatch(getClubsForStatistics())
 
 
   }, [dispatch])
@@ -76,14 +76,14 @@ function App() {
               <>
                 <Route path='/clubs' element={<Clubs />} />
                 <Route path='/clubs/:id/*' element={<ClubDetail />} />
-                <Route path='/sportsman/:id' element={<Sportsman/>}/>
+                <Route path='/sportsman/:id' element={<Sportsman />} />
                 <Route path='/document' element={<Document />} />
                 <Route path='/events' element={<Events />} />
                 <Route path='/events/:id/*' element={<EventDetail />} />
                 <Route path='/news' element={<MainNews />} />
                 <Route path='/statistics' element={<Statistics />} />
                 {
-                  user.role === 'admin' &&
+                  user.role !== 'admin' &&
                   <Route path='/users' element={<Users />} />
                 }
                 <Route path='/profile' element={<Profile />} />
@@ -99,7 +99,7 @@ function App() {
           </Routes>
         </>
         : <NotRegisteredHome />}
-        <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 }

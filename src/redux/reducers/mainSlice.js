@@ -1,47 +1,53 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { getLastEvent, getNewEvent } from '../../api/main'
-
-
-export const setError = (state, action) => {
-    state.status = 'rejected';
-    state.error = action.payload
-}
-
-export const setLoading = (state) => {
-    state.status = 'loading';
-    state.error = null
-}
-
+import moment from 'moment';
 
 export const toolkitSlice = createSlice({
     name: 'main',
     initialState: {
         lastEvents: [],
         newsEvents: [],
-        status: null,
+        status: {
+            getLastEventStatus: null,
+            getNewsEventStatus: null
+        },
 
-        error: null
+        error: {
+            getLastEventError: null,
+            getNewsEventError: null
+        }
     },
 
     extraReducers: {
-        [getNewEvent.pending]: setLoading,
+        [getNewEvent.pending]: (state) => {
+            state.status.getNewsEventStatus = 'loading';
+            state.error.getNewsEventError = null
+        },
 
         [getNewEvent.fulfilled]: (state, action) => {
-            state.status = 'resolved';
+            state.status.getNewsEventStatus = 'resolved';
             state.newsEvents = action.payload
         },
-        [getNewEvent.rejected]: setError,
-
-
-
-        [getLastEvent.pending]: setLoading,
-        [getLastEvent.fulfilled]: (state, action) => {
-            state.status = 'resolved';
-            state.lastEvents = action.payload
+        [getNewEvent.rejected]: (state, action) => {
+            state.status.getNewsEventStatus = 'rejected';
+            state.error.getNewsEventError = action.payload
         },
-        [getLastEvent.rejected]: setError,
+
+        [getLastEvent.pending]: (state) => {
+            state.status.getLastEventStatus = 'loading';
+            state.error.getLastEventError = null
+        },
+        [getLastEvent.fulfilled]: (state, action) => {
+            state.status.getLastEventStatus = 'resolved';
+            state.lastEvents = action.payload
 
 
+
+        },
+        [getLastEvent.rejected]: (state, action) => {
+            state.status.getLastEventStatus = 'rejected';
+            state.error.getLastEventError = action.payload
+        },
 
     }
 

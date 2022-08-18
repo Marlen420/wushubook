@@ -105,15 +105,27 @@ export const newsSlice = createSlice({
         },
         [editNew.fulfilled]: (state, action) => {
             state.status.editNew = 'Edited new';
-            state.news = [action.payload, ...state.news]
+            state.news = action.paylod
             state.errors.editNewError = null
         },
         [editNew.rejected]: (state, action) => {
             state.status.editNew = 'Rejected Edit new';
             state.errors.editNewError = action.payload;
         },
+    },
+    reducers: {
+        setNullStatus: (state, action) => {
+            state.status.deleteNew = null
+            state.status.createNewSatatus = null
+            state.status.editNew = null
+        }
     }
 
+
 })
+
+export const {
+    setNullStatus
+} = newsSlice.actions
 
 export default newsSlice.reducer

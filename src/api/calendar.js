@@ -26,9 +26,7 @@ export const createNewEventCalendar = createAsyncThunk(
         console.log("postApi")
         try {
             const response = await API.post('/calendar', data);
-            if (response.status >= 200 && response.status <= 299) {
-                handleAlertPost('Мероприятия было успешно создана')
-            }
+
             return response.data
 
         } catch (e) {
@@ -43,9 +41,7 @@ export const editEventCalendar = createAsyncThunk(
         try {
             console.log("data: ", data)
             const response = await API.patch(`/calendar/${data.id}`, data);
-            if (response.status >= 200 && response.status <= 299) {
-                handleAlertEdit('Мероприятия было успешно  редактировано')
-            }
+
             dispatch(getEventCalendar())
 
         } catch (e) {
@@ -60,10 +56,9 @@ export const deleteEventCalendar = createAsyncThunk(
         try {
 
             const response = await API.delete(`/calendar/${id}`);
-            if (response.status >= 200 && response.status <= 299) {
-                dispatch(getEventCalendar())
-                handleAlertDelete("Мероприятия было успешно удаленно")
-            }
+
+            dispatch(getEventCalendar())
+
 
         } catch (e) {
             return rejectWithValue(e.response.data.message);

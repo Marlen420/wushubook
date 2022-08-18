@@ -19,33 +19,36 @@ function Footer() {
                     </div>
                 </div>
 
+                <div>
 
 
-                <div className={styles.footer__contact} >
+                    <div className={styles.footer__contact} >
 
-                    <div className={styles.footer__contact_phone}>
-                        <img src={TelephonIcon} alt='' />
+                        <div className={styles.footer__contact_phone}>
+                            <img src={TelephonIcon} alt='' />
 
 
-                        <div className={styles.footer__contact__number} >
-                            <h1 className={styles.footer__contact_text} >Контактные телефоны:</h1>
-                            <p className={styles.footer__phone}>(+996 312) 66 29 14</p>
-                            <p className={styles.footer_phone}>(+996 554) 40 44 51</p>
+                            <div className={styles.footer__contact__number} >
+                                <h1 className={styles.footer__contact_text} >Контактные телефоны:</h1>
+                                <p className={styles.footer__phone}>(+996 312) 66 29 14</p>
+                                <p className={styles.footer_phone}>(+996 554) 40 44 51</p>
+                            </div>
                         </div>
-                    </div>
 
 
-                    <div className={styles.footer__contact_phone}>
-                        <img src={EmailIcon} alt='' />
+                        <div className={styles.footer__contact_phone}>
+                            <img src={EmailIcon} alt='' />
 
 
-                        <div className={styles.footer__contact__number} >
-                            <h1 className={styles.footer__contact_text} >E-mail:</h1>
-                            <p className={styles.footer__phone}>wuseitek@mail.ru</p>
+                            <div className={styles.footer__contact__number} >
+                                <h1 className={styles.footer__contact_text} >E-mail:</h1>
+                                <p className={styles.footer__phone}>wuseitek@mail.ru</p>
+
+                            </div>
 
                         </div>
-                    </div>
 
+                    </div>
 
                 </div>
 

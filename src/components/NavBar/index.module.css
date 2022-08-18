@@ -75,7 +75,7 @@ li {
     .menuIcon {
         display: block;
         position: absolute;
-        top: -15px;
+        top: -8px;
         right: -29px;
 
         transform: translate(-100%, 60%);

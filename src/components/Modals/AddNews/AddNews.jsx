@@ -9,17 +9,16 @@ import { TailSpin } from 'react-loader-spinner';
 import { Button } from '../../../components';
 
 function AddNews({ active, dataNew, setActive }) {
-    let data = new FormData();
+
+
     const dispatch = useDispatch()
-    const [selectedImage, setSelectedImage] = useState(null);
+
 
     const { status } = useSelector(state => state.news)
 
-    console.log("status: ", status.createNewSatatus)
 
-    const handleCloseImage = () => {
-        setSelectedImage(null)
-    }
+
+
     const hanleClose = () => {
         setActive({ active: false, dataNew: null })
 
@@ -35,7 +34,7 @@ function AddNews({ active, dataNew, setActive }) {
     }
 
     const initialValuesAdd = {
-        id: Math.floor(Math.random() * 20000),
+
         image: '',
         title: '',
         text: '',
@@ -44,14 +43,11 @@ function AddNews({ active, dataNew, setActive }) {
     }
 
 
-
-
     useEffect(() => {
 
         document.body.style.overflow = 'hidden';
         return () => document.body.style.overflow = 'auto';
     }, [])
-
 
     const AddValidation = Yup.object().shape({
         title: Yup.string()
@@ -59,7 +55,22 @@ function AddNews({ active, dataNew, setActive }) {
         text: Yup.string()
             .required('Поле не может быть пустым.')
     })
+    const [img, setImg] = useState();
+    const [imgURL, setImgURL] = useState(dataNew?.image);
 
+    const selectedImg = (event) => {
+        setImg(event.target.files[0]);
+
+        if (event.target.files && event.target.files[0]) {
+            setImgURL(URL.createObjectURL(event.target.files[0]));
+        }
+
+    };
+
+
+    const handleCloseImage = () => {
+        setImgURL(null)
+    }
 
 
 
@@ -71,29 +82,32 @@ function AddNews({ active, dataNew, setActive }) {
                 <Formik
 
                     initialValues={dataNew ? initialValuesEdit : initialValuesAdd}
-
+                    enableReinitialize={true}
                     validationSchema={AddValidation}
                     onSubmit={(values) => {
-                        if (!selectedImage) {
-                            setSelectedImage(null)
-                            data.append('image', selectedImage);
+
+                        let data = new FormData();
+                        if (img) {
+                            data.append('image', img, img.name);
+                            data.append('title', values.title)
+                            data.append('text', values.text)
                         }
                         else {
-                            data.append('image', selectedImage, selectedImage.name);
+                            data.append('title', values.title)
+                            data.append('text', values.text)
+                            data.append('image', '');
+
                         }
 
+                        dataNew !== null ? dispatch(editNew({ id: values.id, data: data }))
+                            : dispatch(createNew(data))
 
-                        data.append('id', values.id)
-                        data.append('title', values.title)
-                        data.append('text', values.text)
-                        data.append('date', new Date())
-                        data.append('imageKey', null)
-
-                        dataNew !== null ? dispatch(editNew(data)) : dispatch(createNew(data))
-
-                        setSelectedImage(null)
-                        values.title = ''
-                        values.text = ''
+                        if (status.createNewSatatus === 'Created new'
+                            || status.editNew === 'Editing new') {
+                            setImgURL(null)
+                            values.title = ''
+                            values.text = ''
+                        }
 
                     }}>
                     {({ errors, touched }) => (
@@ -102,37 +116,33 @@ function AddNews({ active, dataNew, setActive }) {
                                 <h1 className={styles.modal__content_title}>Добавление новостей</h1>
 
                                 <div className={styles.modal__content_files}>
-
                                     <div className={styles.modal__content_img}>
                                         <img src={photoIcon} className={styles.modal__content_imgIcon} alt='' /><br />
-                                        <label htmlFor="files" className={styles.modal__content_photo_texst} >
+                                        <label htmlFor="image" className={styles.modal__content_photo_texst} >
                                             Добавить фото  </label>
-
                                         <input
+                                            onChange={(e) => selectedImg(e)}
                                             type="file"
-                                            id="files"
-                                            name="file"
+                                            id="image"
+                                            name="image"
                                             className={styles.uploadPhoto}
-
-                                            onChange={(event) => {
-                                                setSelectedImage(event.target.files[0]);
-                                            }} />
+                                        />
 
                                     </div>
 
-
                                     {
-                                        selectedImage &&
+                                        imgURL &&
                                         <div className={styles.modal__content_cross} >
                                             <img src={crossIcon} alt='' className={styles.modal__content_closeIcon}
                                                 onClick={handleCloseImage} />
 
                                             <img alt="not find" name='image' width={'130px'} height={'71px'}
                                                 className={styles.modal__content_photo}
-                                                src={URL.createObjectURL(selectedImage)} />
+
+                                                src={imgURL}
+                                            />
                                         </div>
                                     }
-
                                 </div>
 
                                 <div className={styles.modal__content_date}>
@@ -166,11 +176,11 @@ function AddNews({ active, dataNew, setActive }) {
 
                                 <div className={styles.modal__content_btn}>
                                     <Button
-
                                         projectType='add_user'
                                         type='sumbit'>
-                                        {status.createNewSatatus === 'Creating new'
-                                            ? <TailSpin
+                                        {status.createNewSatatus === 'Creating new' ||
+                                            status.editNew === 'Editing new' ?
+                                            <TailSpin
                                                 height={24}
                                                 color='white' />
                                             : 'Сохранить'}

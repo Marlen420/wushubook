@@ -10,6 +10,7 @@ import Footer from '../../components/Footer/index.jsx';
 
 import OtherNews from '../News/OtherNews/OtherNews';
 import Main from '../../components/Modals/Main';
+import { getLastEvent, getNewEvent } from '../../api/main';
 
 
 
@@ -17,8 +18,14 @@ import Main from '../../components/Modals/Main';
 
 function Home({ userStatus }) {
 
-    const { status, error, newsEvents, lastEvents } = useSelector(state => state.main)
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getNewEvent())
+        dispatch(getLastEvent())
+    }, [])
 
+
+    const { status, error, newsEvents, lastEvents } = useSelector(state => state.main)
 
     return (
         <div className={styles.conteiner}>
@@ -38,7 +45,7 @@ function Home({ userStatus }) {
             <p className={styles.conteiner__tema}>Новые мероприятия:</p>
 
             {
-                status === 'loading' && <div className={styles.spinner} >
+                status.getNewsEventStatus === 'loading' && <div className={styles.spinner} >
                     <Oval
                         ariaLabel="loading-indicator"
                         height={100}
@@ -54,11 +61,12 @@ function Home({ userStatus }) {
             }
 
             {
-                error && <div className={styles.spinner} >{error}</div>
+                error.getNewsEventError && <div className={styles.spinner} >{error}</div>
             }
 
             {
-                newsEvents.slice(0, 2)?.map((item) =>
+                // splice(newsEvents.length - 2, newsEvents.length - 1
+                newsEvents.map((item) =>
                     <div key={item.id} className={styles.wrapper}>
 
                         <article className={styles.wrapper__events}>
@@ -80,7 +88,7 @@ function Home({ userStatus }) {
 
             <p className={styles.conteiner__tema}>Предыдущие мероприятия:</p>
             {
-                status === 'loading' && <div className={styles.spinner} >
+                status.getLastEventStatus === 'loading' && <div className={styles.spinner} >
                     <Oval
                         ariaLabel="loading-indicator"
                         height={100}
@@ -95,12 +103,12 @@ function Home({ userStatus }) {
                 </div>
             }
 
-            {error && <div className={styles.spinner} >{error}</div>}
+            {error.getLastEventError && <div className={styles.spinner} >{error}</div>}
 
             <div className={styles.content}>
 
                 {
-                    lastEvents.slice(0, 2)?.map(item =>
+                    lastEvents.map(item =>
                         <article key={item.id} className={styles.wrapperLastEvents__lastEvents}>
                             <img src={CheckIcon} alt='' className={styles.wrapper__icon} />
 

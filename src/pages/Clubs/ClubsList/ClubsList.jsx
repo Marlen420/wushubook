@@ -26,26 +26,27 @@ const ClubItem = ({item, clubClick}) => {
     )
 }
 
-const ClubsList = ({clubs, clubClick, maxPage, prev, next, jump, perPage, currentPage}) => {
+const ClubsList = ({ clubs, clubClick, maxPage, prev, next, jump, perPage, currentPage }) => {
     return (
         <>
-        <div className={styles.list_holder}>
-            {clubs().map((item, index)=>(
-                <ClubItem clubClick={clubClick} key={item.id} item={item}/>
-            ))}
-        </div>
-        <div style={{width: '96%', margin: 'auto'}}>
-            {
-                maxPage > 1 &&
-                <Pagination 
-                currentPage={currentPage}
-                limitPerPage={perPage}
-                onIndexClick={jump}
-                onNextClick={next}
-                onPrevClick={prev}
-                max={maxPage}/>
-            }
-        </div>
+            <div className={styles.list_holder}>
+                {clubs().map((item, index) => (
+                    <ClubItem clubClick={clubClick} key={item.id} item={item} />
+                ))}
+            </div>
+            <div style={{ width: '96%', margin: 'auto' }}>
+                {
+                    maxPage > 1 &&
+                    <Pagination
+                        currentPage={currentPage}
+                        limitPerPage={perPage}
+                        onIndexClick={jump}
+                        onNextClick={next}
+                        onPrevClick={prev}
+                        max={maxPage} />
+                }
+            </div>
+      
         </>
     )
 }

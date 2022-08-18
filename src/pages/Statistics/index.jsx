@@ -4,60 +4,32 @@ import styles from './Statistics.module.css'
 import { Tab } from './TabCss';
 import { Bar, Line } from 'react-chartjs-2';
 import { payload, payloadClose } from '../../images/inedex.js'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getStatistics } from '../../api/statistics';
+import { useEffect } from 'react';
 
 
 function Statistics() {
-    const { statistics, clubs } = useSelector(state => state.statistics)
-    console.log("clunbs: ", clubs)
+    const { statistics, clubs, status, errors } = useSelector(state => state.statistics)
+    const dispatch = useDispatch()
+    console.log('statisticsById: ', statistics)
+    console.log("error: ", errors.getDataError)
+    console.log("status: ", status.getDataStatus)
 
-    const TabТame = ['Оценка показателя ОФП', 'Оценка показателей спортсменов', 'Достижения клубов']
+
+    const TabТame = ['Оценка показателя ОФП', 'Достижения клубов']
 
     const [active, setActive] = useState(TabТame[0])
-    const [type, setType] = useState('')
+    const [type, setType] = useState('Оценка показателя ОФП')
     const [isOpenSalary, setIsOpenSalary] = useState(false)
+
     const [dates, setDates] = useState([])
-    const [selesctClubs, setSelesctClubs] = useState('Все клубы')
+
+    const [selesctClubs, setSelesctClubs] = useState('')
 
     const togglingSalary = () => {
         setIsOpenSalary(!isOpenSalary)
     }
-
-
-    const dataBar = {
-        labels: dates.map(item => item.name),
-        datasets: [
-            {
-                label: 'январь-май',
-                data: dates.map((item) => item.first_half_year),
-                backgroundColor: 'rgba(255, 99, 132, 0.5)',
-            },
-            {
-                label: 'июнь-декабрь',
-                data: dates.map((item) => item.second_half_year),
-                backgroundColor: 'rgba(53, 162, 235, 0.5)',
-            },
-        ],
-    };
-
-
-    const dataLine = {
-        labels: dates.map(item => item.name),
-        datasets: [
-            {
-                label: 'январь-май',
-                data: dates.map((item) => item.first_half_year),
-                borderColor: 'rgb(255, 99, 132)',
-                backgroundColor: 'rgba(255, 99, 132, 0.5)',
-            },
-            {
-                label: 'июнь-декабрь',
-                data: dates.map((item) => item.second_half_year),
-                borderColor: 'rgb(53, 162, 235)',
-                backgroundColor: 'rgba(53, 162, 235, 0.5)',
-            },
-        ],
-    };
 
 
 
@@ -66,28 +38,56 @@ function Statistics() {
         setActive(type)
         if (type === 'Оценка показателя ОФП') {
             setType('Оценка показателя ОФП')
-            setDates(statistics)
-
-        }
-        else if (type === 'Оценка показателей спортсменов') {
-            setType("Оценка показателей спортсменов")
-            setDates(statistics)
-
+            setDates(statistics.ofpResponse)
 
         }
         else if (type === 'Достижения клубов') {
             setType("Достижения клубов")
-            setDates(statistics)
+            setDates(statistics.achievementResponse)
 
         }
+
     }
+
+    console.log("type: ", type)
+    console.log("data: ", dates)
+
+    const dataOfp = {
+        labels: statistics.ofpResponse?.map(item => item.year),
+        datasets: [
+            {
+                label: statistics.ofpResponse?.length > 0 ? 'Офп' : 'Выберите клуб',
+                data: statistics.ofpResponse?.map((item) => item.ofp),
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            }
+
+        ],
+    };
+
+
+    const dataClubs = {
+        labels: statistics.achievementResponse?.map(item => item.year),
+        datasets: [
+            {
+                label: statistics.achievementResponse?.length > 0 ? 'Достижение' : 'Выберите клуб',
+                data: statistics.achievementResponse?.map((item) => item.points),
+                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            }
+        ],
+    };
+
 
 
 
 
     const chooseClubs = (option) => {
-        setSelesctClubs(option)
+
+        setSelesctClubs(option.name)
+
+        dispatch(getStatistics(option.id))
         setIsOpenSalary(false)
+
     }
 
 
@@ -97,28 +97,34 @@ function Statistics() {
 
 
 
-            <div  >
-                <div className={styles.content__OpenIcon} onClick={togglingSalary}>
+            <div className={styles.f} >
+                <div className={styles.content__OpenIcon}
+                    onClick={togglingSalary}>
                     {isOpenSalary ? <img src={payloadClose} alt='Not find ArrowDownIcon'
                         className={styles.arrow1} />
                         :
                         <img src={payload} className={styles.arrow}
                             alt='Not find ArrowTopIcon' />}
-                    {<input value={selesctClubs}
-                        className={styles.input} readOnly />}
+                    {<input
+                        type='text'
+                        placeholder='Выберите клуб...'
+                        className={styles.input}
+                        value={selesctClubs}
+                        readOnly />}
 
-                </div >
+                </div>
 
 
                 {
                     isOpenSalary && (
                         <div>
-                            <ul>
+                            <ul className={styles.over} >
                                 {
+
                                     clubs.map(option => (
-                                        <div key={option.id}>
+                                        <div key={option.id} >
                                             <li className={styles.li}
-                                                onClick={() => chooseClubs(option.name)}  >
+                                                onClick={() => chooseClubs(option)}  >
                                                 {option.name}
                                             </li>
                                         </div>
@@ -142,22 +148,20 @@ function Statistics() {
 
             <div className={styles.chart} >
                 {
-                    type === 'Оценка показателя ОФП' ||
-                        type === 'Достижения клубов' ||
-                        type === '' ?
-                        <Bar data={dataBar} width={1250} height={616}
+                    type === 'Оценка показателя ОФП' ?
+
+                        <Bar data={dataOfp} width={1250} height={616}
                             className={styles.chart_diagram}
                             options={{ maintainAspectRatio: false }}
 
                         />
                         :
-                        <Line className={styles.chart_diagram} data={dataLine}
-                            width={1250} height={616}
-
+                        <Bar data={dataClubs} width={1250} height={616}
+                            className={styles.chart_diagram}
                             options={{ maintainAspectRatio: false }}
+
                         />
                 }
-
             </div>
         </div >
     )

@@ -48,7 +48,9 @@ function NotRegisteredHome() {
                     </div>
 
 
-                    <NavLink style={{ textDecoration: 'none' }} to='/login'> <button className={styles.headers__contact_btn}>Войти </button></NavLink>
+                    <NavLink style={{ textDecoration: 'none' }} to='/login'>
+                        <button className={styles.headers__contact_btn}>Войти </button>
+                    </NavLink>
 
                 </div>
 
@@ -69,23 +71,21 @@ function NotRegisteredHome() {
                         width={100}
                         strokeWidth={5}
                         strokeWidthSecondary={3}
-
                         color="lightblue"
                         secondaryColor="white"
-
                     />
                 </div>
             }
 
             <div className={styles.content}>
                 {
-                    newsEvents.NotRegistering_Date_News_Event?.slice(0, 3).map(item =>
+                    newsEvents.slice(newsEvents.length - 3)?.map(item =>
 
                         <div key={item.id} className={styles.content_block}>
-                            <h1 className={styles.content__date}> {item.onlyDay} <span className={styles.content__data2}>{item.onlyMonth}</span></h1>
+                            <h1 className={styles.content__date}> {item.day} <span className={styles.content__data2}>{item.month}</span></h1>
                             <h1 className={styles.content__title}>{item.title}</h1>
-                            <p className={styles.content__time}>{item.startTimeFinish}</p>
-                            <p className={styles.content__address}>{item.city}, {item.adress} </p>
+                            <p className={styles.content__time}>{item.time}</p>
+                            <p className={styles.content__address}>{item.city}, {item.address} </p>
 
 
                         </div>
@@ -113,14 +113,14 @@ function NotRegisteredHome() {
             }
             <div className={styles.content}>
                 {
-                    lastEvents.NotRegistering_Date_Last_Event?.slice(0, 3).map((item) =>
+                    lastEvents.slice(0, 3)?.map((item) =>
 
                         <div key={item.id} className={styles.content_block}>
-                            <h1 className={styles.content__date}> {item.onlyDay} <span className={styles.content__data2}>{item.onlyMonth}</span></h1>
+                            <h1 className={styles.content__date}> {item.day} <span className={styles.content__data2}>{item.month}</span></h1>
                             <h1 className={styles.content__title}>{item.title}</h1>
-                            <p className={styles.content__time}>{item.startTimeFinish}</p>
+                            <p className={styles.content__time}>{item.time}</p>
                             {/* <p className={styles.content__address}>{item.address}</p> */}
-                            <p className={styles.content__address}>{item.city}, {item.adress} </p>
+                            <p className={styles.content__address}>{item.city}, {item.address} </p>
                         </div>
                     )}
 

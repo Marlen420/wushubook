@@ -5,8 +5,8 @@
     display: flex;
     flex-wrap: wrap;
     Justify-content: space-between;
-    margin-bottom: 0;
-    display: block;
+
+    /* display: block; */
 }
 
 
@@ -97,16 +97,4 @@
         margin-bottom: 0;
         margin-top: 12px;
     }
-}
-
-
-@media screen and (max-width: 487px) {
-
-
-
-    .footer1 {
-        /* width: 463px; */
-        /* max-width: 100vw; */
-    }
-
 }
