@@ -20,14 +20,12 @@ export const getClubsForStatistics = createAsyncThunk(
 
 export const getStatistics = createAsyncThunk(
     'statistics/getStatistics',
-    async function (_, { rejectWithValue }) {
+    async function (id, { rejectWithValue }) {
         try {
-            // const response = await API.get(`statistics`)
-            // if (response.status !== 200) {
-            // throw new Error("Server Error!")
-            // }
+            const response = await API.get(`club-rating/rating-by-club/${id}`)
 
-            return array
+            console.log("resonseS: ", response.data)
+            return response.data
         } catch (error) {
             return rejectWithValue(error.message)
         }

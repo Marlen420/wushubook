@@ -59,9 +59,13 @@ import crossIconNew from './CheckIcon.svg'
 import crossIconForNew from './CrossNewsss.svg'
 import notNotificatons from './NotNotifications.png'
 import avatorka from './aa.jfif'
+import icondeleteCalendar from './Delete.svg'
+import deleteIconD from './Union.svg'
 // 12345678BEM
 
 export {
+    deleteIconD,
+    icondeleteCalendar,
     avatorka,
     notNotificatons,
     crossIconForNew,

@@ -11,13 +11,18 @@ import { toast } from 'react-toastify';
 import { setNullStatus } from "../../../redux/reducers/newsSlice";
 import moment from "moment";
 import { Oval, Circles } from 'react-loader-spinner'
+import { TailSpin } from 'react-loader-spinner';
+import ConfirmDelete from "../../../components/Modals/ConfirmDelete/ConfirmDelete";
 
 
 function MainNews() {
     const [isOpenModal, setIsOpenModal] = useState({ isOpen: false, dataNew: null })
+    const [idElement, setIdElement] = useState()
+    const [isConfirmModal, setIsConfirmModal] = useState({ isOpen: false, id: null })
 
     const { news, status } = useSelector(state => state.news)
     const { user } = useSelector(state => state.profile)
+
 
     const dispatch = useDispatch()
     const navigations = useNavigate()
@@ -29,22 +34,27 @@ function MainNews() {
     }
 
     const readMore = (item) => {
+        setIdElement(item.id)
         dispatch(getNewsId({ id: item.id, navigations }))
     }
 
     const handleDelete = (id) => {
-        dispatch(deleteNew(id))
+
+        setIsConfirmModal({
+            isOpen: true,
+            id: id
+        })
+        // dispatch(deleteNew(id))
     }
 
     const handleOpenModalEdit = (item) => {
-
         setIsOpenModal({ isOpen: true, dataNew: item })
     }
 
 
     useEffect(() => {
         if (status.createNewSatatus === 'Created new') {
-            toast.success('Новост  добавлен успешно');
+            toast.success('Новост  успешно создан');
 
             setIsOpenModal({ isOpen: false })
 
@@ -96,11 +106,11 @@ function MainNews() {
 
             <div className={styles.conteiner__addNew}>
                 {
-                    user.role === 'admin' &&
-                    <div className={styles.conteiner__addNew_btn} onClick={toggleModal} >
-                        <img src={plusIcon} alt='' className={styles.conteiner__addNew_icon} />
-                        <p className={styles.conteiner__addNew_text}>Добавить новости</p>
-                    </div>
+                    user.role === 'admin' || user.role === 'secretary' ?
+                        <div className={styles.conteiner__addNew_btn} onClick={toggleModal} >
+                            <img src={plusIcon} alt='' className={styles.conteiner__addNew_icon} />
+                            <p className={styles.conteiner__addNew_text}>Добавить новости</p>
+                        </div> : ''
                 }
             </div>
 
@@ -128,7 +138,7 @@ function MainNews() {
                                 </div>
 
                                 {
-                                    user.role === 'secretary' &&
+                                    user.role === 'admin' &&
                                     <div className={styles.conteiner__options} >
                                         <img src={editIconNew} alt='' onClick={() => handleOpenModalEdit(item)} className={styles.conteiner__options_edit} />
                                         <img src={crossIconForNew} alt='' onClick={() => handleDelete(item.id)} />
@@ -137,7 +147,18 @@ function MainNews() {
                                 }
 
                                 <button className={styles.conteiner__about}
-                                    onClick={() => readMore(item)} > Читать далее </button>
+                                    onClick={() => readMore(item)} >
+                                    {
+
+                                        idElement === item.id && status.newsIdStatus === 'loading' ?
+                                            <TailSpin
+                                                height={24}
+
+                                                color='blue' /> :
+                                            'Читать далее'
+                                    }
+
+                                </button>
 
 
                             </div>
@@ -152,9 +173,16 @@ function MainNews() {
                 isOpenModal.isOpen && <AddNews active={isOpenModal.isOpen}
                     dataNew={isOpenModal.dataNew} setActive={setIsOpenModal} />
             }
+            {
+                isConfirmModal.isOpen && <ConfirmDelete
+                    modal={isConfirmModal.isOpen}
+                    setModal={setIsConfirmModal}
+                    id={isConfirmModal.id}
+                />
+            }
             <Footer />
 
-        </div>
+        </div >
 
     )
 }

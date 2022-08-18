@@ -62,20 +62,28 @@ const Sportsman = () => {
     };
 
     const options = {
-        maintainAspectRatio: false,
         responsive: true,
-
         plugins: {
-            zoom: {
+            title: {
+                display: true,
+
+            },
+            zoom: { // This should be zoom not plugins
                 pan: {
                     enabled: true,
-                    mode: "x",
-                    speed: 100
-                }
-            }
-        }
+                    mode: 'x',
+                },
+                limits: {
+                    x: { min: 5, max: 7 },
+                },
+                zoom: {
+                    pan: {
+                        enabled: true,
+                    },
+                },
+            },
+        },
     };
-
 
 
 

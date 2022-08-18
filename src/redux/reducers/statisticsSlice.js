@@ -67,6 +67,7 @@ export const statisticsSlice = createSlice({
         [getStatistics.rejected]: (state, action) => {
             state.status.getDataStatus = 'Rejected get data statistics'
             state.errors.getDataError = action.payload
+            state.statistics = []
         },
 
 

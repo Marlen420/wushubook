@@ -4,7 +4,7 @@ import API from '../utils/axiosConfig';
 // Get event by id
 export const getEventById = createAsyncThunk(
     'event/getEventById',
-    async(id, { rejectWithValue }) => {
+    async (id, { rejectWithValue }) => {
         try {
             const response = await API.get('/events/get-by-id/' + id);
             console.log(response.data);
@@ -18,7 +18,7 @@ export const getEventById = createAsyncThunk(
 // Delete event
 export const deleteEvent = createAsyncThunk(
     'event/deleteEvent',
-    async(id, { rejectWithValue }) => {
+    async (id, { rejectWithValue }) => {
         try {
             const response = await API.delete('/events/' + id);
             return response.data;
@@ -31,7 +31,7 @@ export const deleteEvent = createAsyncThunk(
 // Create event
 export const createNewEvent = createAsyncThunk(
     'event/createNewEvent',
-    async(data, { rejectWithValue }) => {
+    async (data, { rejectWithValue }) => {
         try {
             const response = await API.post('/events', data);
             return response.data;
@@ -44,9 +44,9 @@ export const createNewEvent = createAsyncThunk(
 // Set events list
 export const setEventList = createAsyncThunk(
     'event/setEventList',
-    async({ start, end }, { rejectWithValue }) => {
+    async ({ start, end }, { rejectWithValue }) => {
         try {
-            const response = await API.get(`/events/by-date?start=${start}&end=${end==='' ? "2030-05-05" : end}`);
+            const response = await API.get(`/events/by-date?start=${start}&end=${end === '' ? "2030-05-05" : end}`);
             console.log(response.data);
             return response.data;
         } catch (e) {

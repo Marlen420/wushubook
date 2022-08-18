@@ -25,6 +25,7 @@ function Headers({ socket }) {
 
 
     const { user } = useSelector(state => state.profile)
+
     const getName = (name) => {
         const str = name.split('');
         str[str.findIndex((i) => i === '/')] = ' ';
@@ -137,86 +138,74 @@ function Headers({ socket }) {
 
 
                     {
-                        isOpenNotificationIcon ?
+                        user.status === 1 &&
+                        <div className={styles.header__notification} >
+                            <img className={styles.header__icon}
 
-                            <div className={styles.header__notification} >
-                                <img className={styles.header__icon}
-                                    onClick={toggleIsCloseNotificationIcon}
-                                    src={MousNotification} alt='' />
-                                {
-                                    notificatons.length > 0 &&
-                                    <div className={styles.header__icon_conteiner}>
-                                        <p className={styles.header__icon_count} > {notificatons.length}</p>
-                                    </div>
-                                }
-                            </div>
+                                src={PersonIcon} alt='' />
 
-                            :
+                        </div>
 
-                            <div className={styles.header__notification} >
-                                <img className={styles.header__icon}
-                                    onClick={toggleIsOpenNotificationIcon}
-                                    src={NotificationIcon} alt='' />
-                                {
-                                    notificatons.length > 0 &&
-                                    <div className={styles.header__icon_conteiner}>
-                                        <p className={styles.header__icon_count} > {notificatons.length}</p>
-                                    </div>
-                                }
-                            </div>
+
                     }
 
 
                 </div>
 
-                <div className={styles.f} >
-                    <div onClick={togglingSalary}>
-                        {isOpenSalary ? <img src={payloadClose} alt='Not find ArrowDownIcon'
-                            className={styles.arrowOpenIcon} />
-                            :
-                            <img src={payload} className={styles.arrow}
-                                alt='Not find ArrowTopIcon' />}
 
-                        <div className={styles.headers_profil}>
-                            {
-                                user.image ?
-                                    <div className={styles.header__notIcon1}>
-                                        <img src={user.image} alt=''
-                                            className={styles.headers_profil1} />
-                                    </div>
-                                    :
-                                    <div className={styles.header__notIcon}>
-                                        <img src={peopleNotIcon} alt=''
-                                            className={styles.headers_profil_icon} />
-                                    </div>
-                            }
+                {
+                    user.status !== 1 &&
+                    <div className={styles.f} >
+                        <div onClick={togglingSalary}>
+                            {isOpenSalary ? <img src={payloadClose} alt='Not find ArrowDownIcon'
+                                className={styles.arrowOpenIcon} />
+                                :
+                                <img src={payload} className={styles.arrow}
+                                    alt='Not find ArrowTopIcon' />}
 
-                            <p className={styles.headers_profil_name}>{getName(user.name)} </p >
-                        </div>
+                            <div className={styles.headers_profil}>
+                                {
+                                    user.image ?
+                                        <div className={styles.header__notIcon1}>
+                                            <img src={user.image} alt=''
+                                                className={styles.headers_profil1} />
+                                        </div>
+                                        :
+                                        <div className={styles.header__notIcon}>
+                                            <img src={peopleNotIcon} alt=''
+                                                className={styles.headers_profil_icon} />
+                                        </div>
+                                }
 
-                    </div >
-                    {
-                        isOpenSalary && (
-                            <div>
-                                <ul className={styles.headers_profil_pops} >
-                                    {
-                                        infoProfil.map((option, index) => (
-                                            <div key={index} className={styles.headers_profil_popsUp} onClick={option.onClick}  >
-                                                <li className={styles.headers_profil_hover} key={Math.random()}>
-                                                    <img src={option.icon} alt='' />
-
-                                                </li >
-                                                <li className={styles.headers_profil_hover} key={Math.random()}>
-                                                    {option.text}
-
-                                                </li >
-                                            </div>
-                                        ))
-                                    }
-                                </ul>
+                                <p className={styles.headers_profil_name}>{getName(user.name)} </p >
                             </div>
-                        )}
-                </div>
+
+                        </div >
+
+
+                        {
+                            isOpenSalary && (
+                                <div>
+                                    <ul className={styles.headers_profil_pops} >
+                                        {
+                                            infoProfil.map((option, index) => (
+                                                <div key={index} className={styles.headers_profil_popsUp} onClick={option.onClick}  >
+                                                    <li className={styles.headers_profil_hover} key={Math.random()}>
+                                                        <img src={option.icon} alt='' />
+
+                                                    </li >
+                                                    <li className={styles.headers_profil_hover} key={Math.random()}>
+                                                        {option.text}
+
+                                                    </li >
+                                                </div>
+                                            ))
+                                        }
+                                    </ul>
+                                </div>
+                            )}
+                    </div>
+                }
 
             </div>
 
@@ -225,7 +214,7 @@ function Headers({ socket }) {
                 isOpenNotificationIcon && <Notificatons notificatons={notificatons} />
             }
 
-        </div>
+        </div >
     )
 }
 

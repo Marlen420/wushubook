@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { getLastEvent, getNewEvent } from '../../api/main'
-
+import moment from 'moment';
 
 export const toolkitSlice = createSlice({
     name: 'main',
@@ -33,8 +33,6 @@ export const toolkitSlice = createSlice({
             state.error.getNewsEventError = action.payload
         },
 
-
-
         [getLastEvent.pending]: (state) => {
             state.status.getLastEventStatus = 'loading';
             state.error.getLastEventError = null
@@ -42,6 +40,9 @@ export const toolkitSlice = createSlice({
         [getLastEvent.fulfilled]: (state, action) => {
             state.status.getLastEventStatus = 'resolved';
             state.lastEvents = action.payload
+
+
+
         },
         [getLastEvent.rejected]: (state, action) => {
             state.status.getLastEventStatus = 'rejected';

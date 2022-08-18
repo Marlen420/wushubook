@@ -67,7 +67,7 @@ function Home({ userStatus }) {
 
             {
                 // splice(newsEvents.length - 2, newsEvents.length - 1
-                newsEvents.slice(newsEvents.length - 2)?.map((item) =>
+                newsEvents.map((item) =>
                     <div key={item.id} className={styles.wrapper}>
 
                         <article className={styles.wrapper__events}>
@@ -109,7 +109,7 @@ function Home({ userStatus }) {
             <div className={styles.content}>
 
                 {
-                    lastEvents.slice(0, 2)?.map(item =>
+                    lastEvents.map(item =>
                         <article key={item.id} className={styles.wrapperLastEvents__lastEvents}>
                             <img src={CheckIcon} alt='' className={styles.wrapper__icon} />
 
