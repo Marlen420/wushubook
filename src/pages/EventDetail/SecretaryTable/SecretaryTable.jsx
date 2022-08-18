@@ -71,7 +71,7 @@ const SecretaryTable = ({list = [], eventId, status, setIsTableOpen}) => {
                             <th rowSpan="1" colSpan="2">Тайцзи цюань</th>
                             <th rowSpan="4">Дуайлянь(фамилия партнера)</th>
                             <th rowSpan="4">Групповые выступления (номер команды)</th>
-                            <th rowSpan="4">Время выступления</th>
+                            <th rowSpan="4">Длительность выступления</th>
                             <th rowSpan="4">Уровень</th>
                             <th rowSpan="4">Примечание</th>
                         </tr>

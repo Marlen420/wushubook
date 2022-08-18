@@ -43,7 +43,7 @@ function MainNews() {
 
             <div className={styles.conteiner__addNew}>
                 {
-                    user.role !== 'admin' &&
+                    (user.role === 'admin' || user.role === 'secretary') &&
                     <div className={styles.conteiner__addNew_btn} onClick={toggleModal} >
                         <img src={plusIcon} alt='' className={styles.conteiner__addNew_icon} />
                         <p className={styles.conteiner__addNew_text}>Добавить новости</p>

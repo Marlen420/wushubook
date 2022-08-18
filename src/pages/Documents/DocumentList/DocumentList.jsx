@@ -7,6 +7,7 @@ const DocumentList = ({
     Yesterday,
     Other,
     UploadData,
+    role,
     deleteItem,
 }) => {
     return (
@@ -15,22 +16,23 @@ const DocumentList = ({
             <div className={styles.series_listlist_series}>
                 <p className={styles.list_title}>Сегодня</p>
                 <div className={styles.item_list}>
-                    {UploadData.map((item)=><DocumentItem key={item.id} item={item}/>)}
-                    {Today.map((item)=><DocumentItem key={item.id} item={item} deleteItem={deleteItem}/>)}
+                    {UploadData.map((item)=><DocumentItem role={role} key={item.id} item={item}/>)}
+                    {Today.map((item)=><DocumentItem role={role} key={item.id} item={item} deleteItem={deleteItem}/>)}
                 </div>
             </div>}
             { Yesterday.length > 0 &&
-            <div className={styles.series_listlist_series}>
-                <p className={styles.list_title}>Вчера</p>
-                <div className={styles.item_list}>
-                    {Yesterday.map((item)=><DocumentItem key={item.id} item={item} deleteItem={deleteItem}/>)}
+                <div className={styles.series_listlist_series}>
+                    <p className={styles.list_title}>Вчера</p>
+                    <div className={styles.item_list}>
+                        {Yesterday.map((item)=><DocumentItem role={role} key={item.id} item={item} deleteItem={deleteItem}/>)}
+                    </div>
                 </div>
-            </div>}
+            }
             { Other.length > 0 &&
             <div className={styles.series_listlist_series}>
                 <p className={styles.list_title}>Ранее</p>
                 <div className={styles.item_list}>
-                    {Other.map((item)=><DocumentItem key={item.id} item={item} deleteItem={deleteItem}/>)}
+                    {Other.map((item)=><DocumentItem role={role} key={item.id} item={item} deleteItem={deleteItem}/>)}
                 </div>
             </div>}
         </div>

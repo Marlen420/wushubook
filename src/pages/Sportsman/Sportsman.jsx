@@ -20,7 +20,7 @@ const Sportsman = () => {
                 currentSportsman &&
                 <div className={styles.page_holder}>
                     <div className={styles.personal_info}>
-                        <h1 className={styles.header_title}>Личная информация</h1>
+                        <h2 className={styles.header_title}>Личная информация</h2>
                         <div className={styles.card}>
                             <p className={styles.card_title}>{currentSportsman.name.split('/').join(' ')}</p>
                             <p className={styles.card_club_title}>Клуб {`<<Название клуба>>`}</p>
@@ -28,7 +28,7 @@ const Sportsman = () => {
                         <div className={styles.card}></div>
                     </div>
                     <div className={styles.achievement}>
-                        <h1 className={styles.header_title}>Достижения</h1>
+                        <h2 className={styles.header_title}>Достижения</h2>
                         <div className={styles.card}></div>
                     </div>
                 </div>

@@ -3,7 +3,7 @@ import styles from '../../index.module.css';
 import song from '../../anna_asti_-_po_baram_muzati.net.mp3'
 import Status from '../../../../components/Status/index.jsx'
 import ChatInput from '../../../../components/ChatInput/index'
-import { UserPhoto, Check } from '../../../../images/inedex.js'
+import { UserPhoto, Check, UserNotIcon } from '../../../../images/inedex.js'
 import Message from '../../../../components/Message/index.jsx'
 import socket from "../../../../utils/socket";
 import { useNavigate, useParams } from "react-router";
@@ -16,7 +16,7 @@ const getTime = (date) =>{
     return today.getHours() + ':' + today.getMinutes();
 }
 
-const DialogLayout = ({people, sendMessage, setTyping, loadDialog, me}) => {
+const DialogLayout = ({people, sendMessage, setTyping, loadDialog, me, photo=null}) => {
     const navigate = useNavigate();
     const { id } = useParams();
     const { currentDialog, status } = useSelector(state=>state.dialogs);
@@ -31,7 +31,7 @@ const DialogLayout = ({people, sendMessage, setTyping, loadDialog, me}) => {
     }, [chat, status])
 
     useEffect(()=>{
-        loadDialog(id);
+        loadDialog({lobbyId: id});
     }, [id])
 
     useEffect(()=>{
@@ -47,7 +47,7 @@ const DialogLayout = ({people, sendMessage, setTyping, loadDialog, me}) => {
         <div className={styles.chat__dialog}>
         <div className={styles.chat__dialog_header}>
             <div className={styles.chat__dialog_header_conteiner}>
-            <img src={UserPhoto} alt="" />
+                <img src={photo ? photo : UserNotIcon} alt="" />
             </div>
             <div className={styles.chat__dialog_header_Online}>
             <b className={styles.chat__dialog_header_Online_name}>{lobbyTitle}</b>

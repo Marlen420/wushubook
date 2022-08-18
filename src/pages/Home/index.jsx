@@ -28,7 +28,6 @@ function Home({ userStatus }) {
             <div className={styles.conteiner__banner}>
                 <img src={PhotoMain} alt=''
                     className={styles.conteiner__photo} />
-
             </div>
 
             <h1 className={styles.conteiner__title} >

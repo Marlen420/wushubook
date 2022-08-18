@@ -1,3 +1,4 @@
+import { DocumentLite } from '@skbkontur/react-icons';
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -16,15 +17,14 @@ const NewSportsman = ({closeModal, addSportsman, status}) => {
     const [dzi, setDzi] = useState('');
     const [duan, setDuan] = useState('');
 
-
     const handleSubmitForm = (e) => {
         e.preventDefault();
-        const data = {
-            name: name+'/'+lastname,
-            gender: sex,
-            age: +age,
-            rank
-        }
+        const data = new FormData();
+        data.append('name', name+'/'+lastname);
+        data.append('gender', sex);
+        data.append('age', +age);
+        data.append('rank', rank);
+        data.append('reference', stateRef);
         addSportsman(data);
     }
 
@@ -102,8 +102,22 @@ const NewSportsman = ({closeModal, addSportsman, status}) => {
                                         <Input type="text" name="Спортивный разряд" value={rank} onChange={(e)=>setRank(e.target.value)}/>
                                 </div>
                                 <div className={styles.input_holder}>
-                                        <label htmlFor="Справка">Справка о физическом состоянии</label>
-                                        <Input type="text" name="Справка" value={stateRef} onChange={(e)=>setStateRef(e.target.value)}/>
+                                        <label htmlFor="Справка" className={styles.reference}>
+                                            Справка о физическом состоянии
+                                            <div className={styles.file_input}>
+                                                {
+                                                    stateRef !== '' && 
+                                                    <p className={styles.file_title}>Файл прикреплен</p>
+                                                }
+                                                <Input 
+                                                    type="file" 
+                                                    id="Справка" 
+                                                    name="Справка" 
+                                                    onChange={(e)=>setStateRef(e.target.files[0])}/>
+                                                <DocumentLite size={35}/>
+                                            </div>
+                                        </label>
+
                                 </div>
                                 <div className={styles.input_holder}>
                                         <label htmlFor="Дзи">Дзи</label>

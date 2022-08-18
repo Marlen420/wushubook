@@ -20,7 +20,7 @@ const Dialogs = ({ dialogsList, me, handleDialogClick }) => {
                 photo = {getPhoto(item)}
                 last_message = { item.last_message.text }
                 name = {getName(item)}
-                id = { item.lobby_info.lobby_id }
+                id = { item.lobby_id }
                 dialogClick = { handleDialogClick }/>))}
         </div>
     )

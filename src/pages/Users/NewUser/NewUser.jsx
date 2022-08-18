@@ -30,6 +30,8 @@ const NewUser = ({closeWindow, submitForm, status}) => {
     const handleCategoryChange = (e) => setCategory(e.target.value);
     const handleJudgeCategoryChange = (e) => setJudgeCategory(e.target.value);
     const handleEmailChange = (e) => setEmail(e.target.value);
+    const handleAppointmentDateChange = (e) => setAppointmentDate(e.target.value);
+    const handleExperienceChange = (e) => setExperience(e.target.value);
     
     const valid = (e) => e ? e : null;
     const isNumber = (e) => +e || null;
@@ -83,7 +85,9 @@ const NewUser = ({closeWindow, submitForm, status}) => {
         setClub={handleClubChange}
         setCategory={handleCategoryChange}
         setJudgeCategory={handleJudgeCategoryChange}
+        setExperience={handleExperienceChange}
         setEmail={handleEmailChange}
+        setAppointmentDate={handleAppointmentDateChange}
         addUser={handleSubmitForm}
         closeWindow={closeWindow}/>
     )

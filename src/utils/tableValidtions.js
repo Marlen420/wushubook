@@ -8,7 +8,6 @@ export const filterApplication = (list) => {
     });
     return arr.filter((item) => {
         for (let i in item) {
-
             if (item[i] !== '' && item[i] !== null) return item;
         }
         return null;
@@ -18,8 +17,10 @@ export const filterApplication = (list) => {
 export const validateApplication = (list) => {
     for (let i of filterApplication(list)) {
         for (let j in i) {
-            if (j === 'comment') continue;
-            if (i[j] === '' || i[j] === null) return false;
+            if ((i[j] === '' || i[j] === null) && j === 'name') return false;
+            if ((i[j] === '' || i[j] === null) && j === 'gender') return false;
+            if ((i[j] === '' || i[j] === null) && j === 'age') return false;
+            if ((i[j] === '' || i[j] === null) && j === 'club') return false;
         }
     }
     return true;

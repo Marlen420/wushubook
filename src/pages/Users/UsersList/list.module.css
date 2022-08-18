@@ -49,3 +49,11 @@
 .header_email {
     width: 22%;
 }
+
+.header_date {
+    width: 15%;
+}
+
+.header_options {
+    flex-grow: 1;
+}

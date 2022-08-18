@@ -43,7 +43,7 @@ function App() {
   useEffect(()=> {
     console.log(dialogs);
     socket.emit('join-to-lobby', {
-      lobby_list: dialogs.map((item)=>item.lobby_info.lobby_id)
+      lobby_list: dialogs.map((item)=>item.lobby_id)
     })
   }, [dialogs])
 

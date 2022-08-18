@@ -16,6 +16,7 @@ import { toast } from "react-toastify";
 function Documents() {
     // Constants
     const { data, uploadData, status, error } = useSelector(state=>state.documents);
+    const { user } = useSelector(state=>state.profile);
     const dispatch = useDispatch();
 
     // Hooks
@@ -71,12 +72,14 @@ function Documents() {
         <div className={styles.content}>
             <DocumentHeader
                 inputChange={handleUploadFilesChange}
-                addFile={handleAddFile}/>
+                addFile={handleAddFile}
+                role={user.role}/>
             <DocumentList
                 Today={Today}
                 Yesterday={Yesterday}
                 Other={Other}
                 UploadData={uploadData}
+                role={user.role}
                 deleteItem={handleDeleteDocument}/>
         </div>
     )

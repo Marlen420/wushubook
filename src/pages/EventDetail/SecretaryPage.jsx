@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes, useNavigate } from 'react-router';
 import { getApplications } from '../../api/applications';
+import { formProtocolByEvent, getProtocolByEvent } from '../../api/protocol';
 import EventHeader from './EventHeader/EventHeader';
 import SecretaryTable from './SecretaryTable/SecretaryTable';
 import Submissions from './Submissions/Submissions';
@@ -14,10 +15,11 @@ const SecretaryPage = ({eventId, eventTitle}) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { data, status } = useSelector(state=>state.applications);
+    const  { protocolList } = useSelector(state=>state.protocols);
     
     const [isTableOpen, setIsTableOpen] = useState(false);
 
-    const handleCreateProtocol = () => console.log("Creating");
+    const handleCreateProtocol = () => dispatch(formProtocolByEvent(eventId)).unwrap().then(({meta})=>console.log(meta));
     const handleClubItemClick = (id) => navigate('/events/' + eventId + '/' + id);
     const handleUpdateApplication = () => {
 
@@ -25,7 +27,8 @@ const SecretaryPage = ({eventId, eventTitle}) => {
 
     useEffect(()=>{
         dispatch(getApplications(eventId));
-    }, [dispatch])
+        dispatch(getProtocolByEvent(eventId));
+    }, [])
 
     return (
         <div>
@@ -39,7 +42,7 @@ const SecretaryPage = ({eventId, eventTitle}) => {
                 <Route path="/:id" element={<SecretaryTable setIsTableOpen={setIsTableOpen} list={data} eventId={eventId} status={status}/>} />
             </Routes>
             {
-                !isTableOpen &&
+                (!isTableOpen && protocolList?.length > 0) &&
                 <>
                     
                 </>

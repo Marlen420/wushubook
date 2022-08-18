@@ -65,9 +65,10 @@ const ClubDetail = () => {
     }, [dispatch]);
 
     useEffect(()=>{
-        if (status === '') {
+        if (status === 'Sportsman added') {
             handleCloseAddSportsman();
             dispatch(getClubById(id));
+            alert('Added');
             toast.success('Спортсмен добавлен успешно');
         }
         else if (status === 'Rejected add sportsman to the club') {
@@ -108,4 +109,4 @@ const ClubDetail = () => {
     )
 }
 
-export default ClubDetail
+export default ClubDetail;

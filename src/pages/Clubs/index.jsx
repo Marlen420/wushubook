@@ -16,6 +16,7 @@ function Clubs() {
     // Constants
     const { data, status, error } = useSelector(state=>state.clubs);
     const { trainer } = useSelector(state=>state.users);
+    const { user } = useSelector(state=>state.profile);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -27,7 +28,7 @@ function Clubs() {
         maxPage,
         next,
         prev
-    } = usePagination(data, 2);
+    } = usePagination(data, 10);
 
     // States
     const [newClub, setNewClub] = useState(false);
@@ -70,10 +71,13 @@ function Clubs() {
             <div className={styles.clubs_header}>
                 <h2 className={styles.clubs_title}>Клубы</h2>
                 <div className={styles.button_holder}>
-                    <Button
-                        type="button"
-                        onClick={handleAddClub}
-                        projectType="add_user">+ Добавить клуб</Button>
+                    {
+                        (user.role === 'admin' || user.role === 'secretary') &&
+                        <Button
+                            type="button"
+                            onClick={handleAddClub}
+                            projectType="add_user">+ Добавить клуб</Button>
+                    }
                 </div>
             </div>
             <ClubsList 

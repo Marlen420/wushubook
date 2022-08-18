@@ -110,6 +110,7 @@ function Events() {
             time: eventTime, 
             applicationDeadline: eventDeadline
         }
+        console.log(data);
         dispatch(createNewEvent(data))
     }, [eventName, eventCity, eventDate, dispatch])
 

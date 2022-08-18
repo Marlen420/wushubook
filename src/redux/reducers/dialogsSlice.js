@@ -17,7 +17,7 @@ export const dialogsSlice = createSlice({
         },
         addMessage: (state, action) => {
             if (+action.payload.lobby === state.currentDialog.lobby.id) {
-                const list = state.currentDialog.response.slice(state.currentDialog.response.length - 1, state.currentDialog.response.length - 10);
+                const list = state.currentDialog.response.slice(state.currentDialog.response.length - 10, state.currentDialog.response.length - 1);
                 let flag = false;
                 for (let i of list) {
                     if (i.id === +action.payload.id) {
@@ -26,12 +26,12 @@ export const dialogsSlice = createSlice({
                     }
                 }
                 if (!flag) state.currentDialog.response = [...state.currentDialog.response, action.payload];
+                console.log(current(state.currentDialog));
             }
             const dialog = current(state.dialogs.find((item) => item.lobby_info.lobby_id === +action.payload.lobby)) ? {...current(state.dialogs.find((item) => item.lobby_info.lobby_id === +action.payload.lobby)) } : null
             const dialogIndex = state.dialogs.findIndex((item) => item.lobby_info.lobby_id === +action.payload.lobby);
-            console.log(dialog);
             if (dialog) {
-                // dialog['chat'] = dialog['chat'] ? [...dialog['chat'], action.payload] : [action.payload];
+                dialog['chat'] = dialog['chat'] ? [...dialog['chat'], action.payload] : [action.payload];
                 dialog.last_message = action.payload;
                 state.dialogs[dialogIndex] = dialog;
             }

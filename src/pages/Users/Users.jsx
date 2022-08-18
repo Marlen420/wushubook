@@ -75,7 +75,7 @@ function Users() {
 
     const handleDeleteUser = (id) => dispatch(deleteUser(id));
     const handleNewUserSet = (data) => dispatch(setNewUser(data))
-    const handleApproveUser = (id) => dispatch(approveUser({id, data: {appointment_date: new Date()}}));
+    const handleApproveUser = (id) => dispatch(approveUser({id, data: {appointment_date: new Date(), status: 2}}));
 
     // Debug
 

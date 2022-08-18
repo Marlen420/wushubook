@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { documents_mock } from '../../../api/mock';
-import { createClubExtra, getAllClubsExtra, getClubByIdExtra, getSportsmanByIdExtra } from '../../extraReducers/clubExtraReducer';
+import { addSportsmanExtra, createClubExtra, getAllClubsExtra, getClubByIdExtra, getSportsmanByIdExtra } from '../../extraReducers/clubExtraReducer';
 
 
 export const counterSlice = createSlice({
@@ -18,6 +18,7 @@ export const counterSlice = createSlice({
         ...getAllClubsExtra,
         ...getClubByIdExtra,
         ...getSportsmanByIdExtra,
+        ...addSportsmanExtra,
     },
     reducers: {
         deleteClub: (state, action) => {

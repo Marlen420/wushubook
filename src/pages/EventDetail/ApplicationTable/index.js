@@ -60,6 +60,7 @@ const ApplicationTable = ({onSubmitForm, list = null, status, error, eventId}) =
 
     const handleSubmitApplication = () => {
         if (!validateApplication(dataList)) return;
+        console.log(filterApplication(dataList));
         onSubmitForm(filterApplication(dataList));
     }
 
