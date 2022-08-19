@@ -7,6 +7,7 @@ export const formProtocolByEvent = createAsyncThunk(
     async(id, { rejectWithValue, dispatch }) => {
         try {
             const response = await API.get('/subgroups/' + id).then(() => dispatch(getProtocolByEvent()));
+            console.log(response.data);
             return response.data;
         } catch (e) {
             return rejectWithValue(e.response.data.message);

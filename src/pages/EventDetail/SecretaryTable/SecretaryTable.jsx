@@ -13,7 +13,6 @@ const SecretaryTable = ({list = [], eventId, status, setIsTableOpen}) => {
     const { id } = useParams();
     
     const [dataList, setDataList] = useState((list.find(i=>i.trainerId===+id)).sportsmans || []);
-    console.log(list.find(i=>i.trainerId===+id))
     const genderOptions = [
         {value: 'reset', label: 'Сбросить', name: 'gender'},
         {value: 'male', label: 'Мужской', name:'gender'}, 

@@ -19,6 +19,7 @@ const SecretaryPage = ({eventId, eventTitle}) => {
     
     const [isTableOpen, setIsTableOpen] = useState(false);
 
+    console.log(eventId);
     const handleCreateProtocol = () => dispatch(formProtocolByEvent(eventId)).unwrap().then(({meta})=>console.log(meta));
     const handleClubItemClick = (id) => navigate('/events/' + eventId + '/' + id);
     const handleUpdateApplication = () => {
