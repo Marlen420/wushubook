@@ -36,7 +36,8 @@ const ClubDetail = () => {
     const handleCloseAddSportsman = () => setAddSportsman(false);
     const handleSubmitAddSportsman = async (data) => {
         try {
-            const res = await dispatch(addSportsmanApi({...data, club: id}));
+            data.append('club', id)
+            const res = await dispatch(addSportsmanApi(data));
             handleCloseAddSportsman();
             return res;
         } catch (e) {

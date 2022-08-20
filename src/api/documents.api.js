@@ -17,12 +17,11 @@ export const deleteDocument = createAsyncThunk(
 // Upload document
 export const uploadDocument = createAsyncThunk(
     'documents/upload',
-    async({ localId, data, callback }, { rejectedWithValue }) => {
+    async({ localId, data, callback }, { rejectedWithValue, dispatch }) => {
         try {
             const response = await API.post('/docs', data, {
                 onUploadProgress: callback
-            });
-            console.log(response.data);
+            }).then(() => dispatch(getAllDocuments()))
             return { localId, response: response.data };
         } catch (e) {
             return rejectedWithValue(e.response.data.message);

@@ -35,6 +35,7 @@ function Chat() {
   const handleDialogClick = (id) => navigate('/chat/'+id);
   const loadDialog = (id) => dispatch(getCurrentDialog(id));
   const handleSendMessage = (data) => {
+    console.log('Message', data);
     socket.emit("createMessage", {
       user: user.id,
       ...data,

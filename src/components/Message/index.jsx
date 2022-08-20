@@ -24,6 +24,7 @@ function Message({
     isTyping,
     attachments, 
     audio ,
+    filetype,
     time="09:00"
 }) {
     let date = new Date()
@@ -81,16 +82,13 @@ function Message({
 
 
                             {
-                                attachments && (
+                                (attachments && filetype === 'image') && (
                                     <div className={styles.message__attachments}>
-                                        {attachments.map((item, i) => (
                                             <div 
-                                                key={i}
                                                 className={styles.message__attachments_item}>
-                                                <img src={item.url} alt={item.filename}
+                                                <img src={attachments} alt="message"
                                                     className={styles.message__attachments_img} />
                                             </div>
-                                        ))}
 
                                     </div>
 

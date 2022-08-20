@@ -5,10 +5,21 @@ import { getEventById } from '../../api/event.api';
 import Arena from './Arena/Arena';
 import Banner from './Banner/Banner';
 import EventHeader from './EventHeader/EventHeader';
+import JudgePage from './JudgePage';
 import ProtocolHolder from './ProtocolHolder/ProtocolHolder';
 import SecretaryPage from './SecretaryPage';
 import Submissions from './Submissions/Submissions';
+import TotalTable from './TotalTable/TotalTable';
 import TrainerPage from './TrainerPage';
+
+const isFinished = (end) => {
+    if (end){
+        const today = new Date();
+        const endDay = new Date(end[3]+end[4]+'-'+end[0]+end[1]+'-'+end[6]+end[7]+end[8]+end[9]);
+        if (today > endDay) return true;
+    }
+    return false;
+}
 
 const EventDetail = () => {
     // Constants
@@ -52,25 +63,26 @@ const EventDetail = () => {
                 startTime={currentEvent?.time?.split('-')[0] || null}
                 deadline={currentEvent?.applicationDeadline}/>
             {
-                role === 'trainer' &&
-                <TrainerPage eventId={id}/>
+                (isFinished(currentEvent?.end) && currentEvent?.id) &&
+                <TotalTable />
             }
             {
-                (role === 'secretary' || role === 'admin') &&
-                <SecretaryPage eventId={id} eventTitle={currentEvent?.title}/>
+                (!isFinished(currentEvent?.end) && currentEvent?.id) &&
+                <>
+                    {
+                        role === 'trainer' &&
+                        <TrainerPage eventId={id}/>
+                    }
+                    {
+                        (role === 'secretary' || role === 'admin') &&
+                        <SecretaryPage eventId={id} eventTitle={currentEvent?.title}/>
+                    }
+                    {
+                        (role === 'main_judge') &&
+                        <JudgePage eventId={id} eventTitle={currentEvent?.title}/>
+                    }
+                </>
             }
-            {/* {
-                !isTableOpen &&
-                
-            }
-                
-            {
-                isOpenProtocol &&
-                <ProtocolHolder 
-                    list={protocols} 
-                    handleCreateArena={handleCreateArena}
-                    isOpenArena={isOpenArena}/>
-            } */}
         </div>
     )
 }

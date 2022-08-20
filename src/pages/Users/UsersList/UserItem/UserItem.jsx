@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styles from './user.module.css';
-import { Checkbox } from '../../../../components/index';
+import { Checkbox, Input } from '../../../../components/index';
 import { useDispatch } from 'react-redux';
 import { Approve, EditIcon, UserDeleteIcon } from '../../../../images/inedex';
 import { setDeleteId } from '../../../../redux/features/counter/usersSlice';
 import getUnixTime from 'date-fns/esm/fp/getUnixTime/index';
+import Select from 'react-select';
 
 
 const getTime = (date) => {
@@ -28,17 +29,55 @@ const getName = (name) => {
 }
 
 
-const UserItem = ({item, isSelectedItem, onSelectItem, deleteUser, roleFilter, approveUser}) => {
-    
+
+const UserItem = ({
+    item, 
+    isSelectedItem, 
+    onSelectItem, 
+    deleteUser, 
+    editUser, 
+    roleFilter, 
+    approveUser, 
+    onEdit, 
+    onInputChange, 
+    onUpdateUser
+}) => {
+
+    const USER_ROLES = [
+        {value: 'admin', label: 'Админ'},
+        {value: 'judge', label: 'Судья'},
+        {value: 'trainer', label: 'Тренер'},
+        {value: 'secretary', label: 'Секретарь'}
+    ]
     
     const handleDeleteItem = () => {
         deleteUser(item.id)
     }
 
+    const handleEditUser = () => {
+        const data = {
+            id: item.id,
+            prevRole: item.role,
+            name: item.name.split('/')[0],
+            lastname: item.name.split('/')[1],
+            role: item.role
+        }
+        editUser(data);
+    }
+
+    const handleSubmitEdition = () => {
+        const data = {
+            name: onEdit.name + '/' + onEdit.lastname,
+            role: onEdit.role
+        }
+        onUpdateUser(item.id, data);
+    }
+    const handleRejectEdition = () => editUser(null);
+
     const handleAppriveUtem = () => approveUser(item.id);
 
     return (
-        <div className={styles.item_holder + ' ' + (isSelectedItem(item.id) && styles.selected_item)}>
+        <div className={styles.item_holder + ' ' + (isSelectedItem(item.id) && styles.selected_item) + ' ' + (onEdit?.id === item.id && styles.input_edit_mode)}>
             <div className={styles.column_checkbox}>
                 <div className={styles.checkbox_holder}>
                     <Checkbox
@@ -48,29 +87,54 @@ const UserItem = ({item, isSelectedItem, onSelectItem, deleteUser, roleFilter, a
                 </div>
             </div>
             <p className={styles.item_column + ' ' + styles.column_id}>{item.id}</p>
-            <p className={styles.item_column + ' ' + styles.column_name}>{getName(item.name)}</p>
-            <p className={styles.item_column + ' ' + styles.column_role}>{getRole[item.role]}</p>
+            <div className={styles.item_column + ' ' + styles.column_name}>
+                {
+                    onEdit?.id === item.id
+                    ? 
+                    <>
+                        <Input type="text" projectType="edit_name_input" name="name" value={onEdit.name} onChange={onInputChange}/>
+                        <Input type="text" projectType="edit_name_input" name="edit_name_input" value={onEdit.lastname} onChange={onInputChange}/>
+                    </>
+                    : <p>{getName(item.name)}</p>
+                }
+                
+            </div>
+            <div className={styles.item_column + ' ' + styles.column_role}>
+                {
+                    onEdit?.id === item.id 
+                    ? <Select 
+                        className={styles.select} 
+                        options={USER_ROLES} 
+                        name="role"
+                        value={{value: onEdit?.role, label: getRole[onEdit?.role]}}
+                        onChange={(e) => onInputChange({target: e})}/> 
+                    : <p>{getRole[item.role]}</p>
+                }
+            </div>
             <p className={styles.item_column + ' ' + styles.column_email}>{item.email}</p>
             <p className={styles.item_column + ' ' + styles.column_date}>{getTime(item.appointment_date)}</p>
-            <p className={styles.item_column + ' ' + styles.column_options}>
-                {roleFilter === 4
-                ? <img 
-                    className={styles.options_approve}
-                    src={Approve}
-                    onClick={handleAppriveUtem}
-                    alt="edit"/>
-                : <img 
-                    className={styles.options_edit}
-                    src={EditIcon}
-                    alt="edit"/>}
-                <img
-                    onClick={handleDeleteItem}
-                    className={styles.options_delete}
-                    src={UserDeleteIcon} 
-                    alt="edit"/>
-            </p>
+            <div className={styles.item_column + ' ' + styles.column_options}>
+                <div className={styles.options_holder}>
+                    {(roleFilter === 4 || onEdit?.id === item.id)
+                    ? <img 
+                        className={styles.options_approve}
+                        src={Approve}
+                        onClick={onEdit?.id === item.id ? handleSubmitEdition : handleAppriveUtem}
+                        alt="edit"/>
+                    : <img 
+                        className={styles.options_edit}
+                        onClick={handleEditUser}
+                        src={EditIcon}
+                        alt="edit"/>}
+                    <img
+                        onClick={onEdit?.id === item.id ? handleRejectEdition : handleDeleteItem}
+                        className={styles.options_delete}
+                        src={UserDeleteIcon} 
+                        alt="edit"/>
+                </div>
+            </div>
         </div>
     )
 }
 
-export default UserItem
+export default memo(UserItem);

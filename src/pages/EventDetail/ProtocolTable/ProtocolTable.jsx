@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styles from './style.module.css';
 
-const ProtocolTable = ({list}) => {
+
+
+const ProtocolTable = ({list, arena}) => {
   return (
     <div className={styles.protocol_table}>
       <table>
@@ -17,17 +19,17 @@ const ProtocolTable = ({list}) => {
           {
             list.map((item)=>(
               <tr key={item.id}>
-                <td className={styles.id_td}>{item.id}</td>
+                <td className={styles.id_td}>{item.application.id}</td>
                 <td className={styles.name_td}>
-                  {item.sportsmans.map((item)=>(
-                    <p key={item.id}>
-                      {item.name}
-                      <br/>
-                    </p>
-                  ))}
+                  <p>
+                    {item.application.name}
+                  </p>
+                  <p>
+                    {item.application.duilian}
+                  </p>
                 </td>
-                <td className={styles.club_td}>{item.club}</td>
-                <td className={styles.arena_td}>{item.arena}</td>
+                <td className={styles.club_td}>{item.application.club}</td>
+                <td className={styles.arena_td}>{arena}</td>
               </tr>
             ))
           }
@@ -37,4 +39,4 @@ const ProtocolTable = ({list}) => {
   )
 }
 
-export default ProtocolTable
+export default memo(ProtocolTable)

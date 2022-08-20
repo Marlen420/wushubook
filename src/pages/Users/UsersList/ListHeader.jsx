@@ -28,7 +28,7 @@ const ListHeader = ({isSelectedAll, onSelectAll}) => {
                 <div className={styles.header_date}>
                     <p className={styles.header_title}>Дата назначения</p>
                 </div>
-                <div className={styles.header_options}></div>
+                <div className={styles.header_options}>-</div>
         </div>
     )
 }

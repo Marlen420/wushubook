@@ -12,16 +12,22 @@ const DocumentItem = ({item, deleteItem, role}) => {
     const onMouseTrash = () => setIsHoveredTrash(true);
     const outMouseTrash = () => setIsHoveredTrash(false);
 
-    const handleDeleteItem = () => deleteItem(item.id);
+    const handleDeleteItem = (e) => {
+        e.stopPropogation();
+        deleteItem(item.id);
+    }
 
     return (
-        <div 
+        <a 
+            style={{textDecoration: 'none'}}
+            href={item.docs}
+            target="_blank"
             className={styles.item_holder}
             onMouseEnter={onMouse}
             onMouseLeave={outMouse}>
             {/* {isHovered && <img src={Trash}/>} */}
             {
-                (role === 'admin' && role === 'secretary') &&
+                (role === 'admin' || role === 'secretary') &&
                 <>
                 {isHovered && 
                     <Trash
@@ -45,7 +51,7 @@ const DocumentItem = ({item, deleteItem, role}) => {
                             className={styles.item_progress_bar} />
                 </div>
             }
-        </div>
+        </a>
     )
 }
 

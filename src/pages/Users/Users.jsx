@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { approveUser, deleteUser, setNewUser, setUsersList } from '../../api/users.api';
 import { QUERY_ROLES, ROLES_FIND } from '../../const/user_roles';
 import usePagination from '../../hooks/usePagination/usePagination';
@@ -23,6 +24,7 @@ function Users() {
     const [search, setSearch] = useState('');
     const [roleFilter, setRoleFilter] = useState(0);
     const [newUserWindow, setNewUserWindow] = useState(false);
+    const [onEdit, setOnEdit] = useState(null);
 
     
     // Hooks
@@ -72,7 +74,22 @@ function Users() {
 
     const onSelectItem = useCallback((id) => isSelectedItem(id) ? dispatch(setUnselectItem(id)) : dispatch(setSelectItem(id)), [dispatch, isSelectedItem])
     const onSelectAll = useCallback(() => isSelectedAll() ? dispatch(setUnselectAll()) : dispatch(setSelectAll(getAllId())), [dispatch, isSelectedAll,  getAllId])
+    const onInputChange = (e) => {
+        const { name, value, label } = e.target;
+        setOnEdit(prev => {
+            const obj = JSON.parse(JSON.stringify(prev));
+            if (label) obj.role = value;
+            else obj[name] = value;
+            return obj;
+        })
+    }
 
+    const handleUpdateUser = (id, data) => {
+        if (onEdit.prevRole !== data.role) data['appointment_date'] = new Date();
+        dispatch(approveUser({id, data})).unwrap().then((res)=>res.status === 200 && toast.success('Пользователь успешно обновлен'));
+        setOnEdit(null);
+    }
+    const handleEditUser = (data) => setOnEdit(data); // {id, prev, new}
     const handleDeleteUser = (id) => dispatch(deleteUser(id));
     const handleNewUserSet = (data) => dispatch(setNewUser(data))
     const handleApproveUser = (id) => dispatch(approveUser({id, data: {appointment_date: new Date(), status: 2}}));
@@ -101,6 +118,8 @@ function Users() {
                 search={search}
                 setSearch={setSearch}
                 deleteUser={handleDeleteUser}
+                editUser={handleEditUser}
+                onEdit={onEdit}
                 approveUser={handleApproveUser}
                 roleFilter={roleFilter}
                 selected={users.selected}
@@ -114,7 +133,9 @@ function Users() {
                 jump={jump}
                 prev={prev}
                 next={next}
-                addUser={handleAddUser}/>
+                addUser={handleAddUser}
+                onInputChange={onInputChange}
+                onUpdateUser={handleUpdateUser}/>
         </div>
     )
 }

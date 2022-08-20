@@ -6,8 +6,7 @@ export const approveUser = createAsyncThunk(
     async({ id, data }, { rejectWithValue }) => {
         try {
             const response = await API.patch(`/users/${id}`, data);
-            console.log(response.data);
-            return response.data;
+            return {...response.data, status: response.status };
         } catch (e) {
             return rejectWithValue(e.respones.data.message);
         }

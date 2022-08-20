@@ -61,9 +61,13 @@ import notNotificatons from './NotNotifications.png'
 import avatorka from './aa.jfif'
 import icondeleteCalendar from './Delete.svg'
 import deleteIconD from './Union.svg'
+import WhiteApprove from './White approve.svg';
+import AddIcon from './AddIcon.svg';
 // 12345678BEM
 
 export {
+    AddIcon,
+    WhiteApprove,
     deleteIconD,
     icondeleteCalendar,
     avatorka,

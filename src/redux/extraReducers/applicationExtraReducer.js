@@ -32,7 +32,6 @@ export const getApplicationsExtra = {
             else data.push({ trainerId: item.trainerId, trainer: item.trainer, club: item.club, sportsmans: [item] });
         })
         state.data = data;
-        console.log(data);
     },
     [getApplications.rejected]: (state, action) => {
         state.status = "Rejected get applications";

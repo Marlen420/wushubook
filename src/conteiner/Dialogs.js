@@ -16,7 +16,7 @@ const Dialogs = ({ dialogsList, me, handleDialogClick }) => {
         <div > 
             {dialogsList.map(item => (
             <DialogItem 
-                key = { item.lobby_info.lobby_id }
+                key = { item.lobby_id }
                 photo = {getPhoto(item)}
                 last_message = { item.last_message.text }
                 name = {getName(item)}

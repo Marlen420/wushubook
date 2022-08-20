@@ -124,3 +124,18 @@ button {
     outline: none;
     cursor: pointer;
 }
+
+.reject {
+    width: 100%;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    align-self: center;
+    background: none;
+    color: #DF797F;
+    padding: 12px 0;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}

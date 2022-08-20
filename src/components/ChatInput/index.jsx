@@ -3,6 +3,13 @@ import styles from './index.module.css'
 import { Skrepka, mikrafon, flyIcon } from '../../images/inedex.js'
 import socket from "../../utils/socket";
 
+const getImage = (file) => {
+    if (file) {
+        return URL.createObjectURL(file)
+    }
+    return null;
+}
+
 function ChatInput({sendMessage, id, setTyping}) {
     const [value, setValue] = useState('')
     const [file, setFile] = useState('');
@@ -20,9 +27,12 @@ function ChatInput({sendMessage, id, setTyping}) {
             lobby: id,
             edited: true,
             text: value,
-            attachment: file
+            attachment: '',
+            file: file
         }
         sendMessage(data);
+        setValue('');
+        setFile('');
     }
 
     useEffect(() => {
@@ -39,6 +49,14 @@ function ChatInput({sendMessage, id, setTyping}) {
             className={styles.chat__input} >
 
             <div className={styles.chat__input_simbvol}>
+                {
+                    file &&
+                    <div className={styles.chat_ref_image}>
+                        <img
+                            src={getImage(file)} />
+                        <p onClick={()=>setFile('')}>X</p>
+                    </div>
+                }
                 <img 
                     onClick={()=>inputFile.current?.click()}
                     className={styles.chat__input_simbvol_icon} 
@@ -49,7 +67,7 @@ function ChatInput({sendMessage, id, setTyping}) {
                     type="file" 
                     style={{display: 'none'}}
                     onChange={(e)=>setFile(e.target.files[0])}
-                    accept="image/apng, image/avif, image/gif, image/jpeg, image/png, image/svg+xml, image/webp"/>
+                    accept="image/apng, image/avif, image/gif, image/jpeg, image/png, image/svg+xml, image/webp, audio/*"/>
 
                 {/* <p className={styles.chat__input_simbvol_icon} style={{ visibility: 'hidden' }} >&#128521;</p> */}
 

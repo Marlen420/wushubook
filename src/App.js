@@ -41,7 +41,6 @@ function App() {
   const { modal } = useSelector(state=>state.general);
 
   useEffect(() => {
-    console.log(dialogs);
     socket.emit('join-to-lobby', {
       lobby_list: dialogs.map((item)=>item.lobby_id)
     })
@@ -83,7 +82,7 @@ function App() {
                 <Route path='/news' element={<MainNews />} />
                 <Route path='/statistics' element={<Statistics />} />
                 {
-                  user.role !== 'admin' &&
+                  user.role === 'admin' &&
                   <Route path='/users' element={<Users />} />
                 }
                 <Route path='/profile' element={<Profile />} />

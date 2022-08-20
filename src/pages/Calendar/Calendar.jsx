@@ -4,7 +4,7 @@ import styles from './Calendar.module.css';
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from "@fullcalendar/interaction"
-import NnLocale from '@fullcalendar/core/locales/ne';
+import esLocale from '@fullcalendar/core/locales/ne';
 import { useState } from 'react';
 import CalendarModal from '../../components/Modals/CalendarModal';
 import { useDispatch, useSelector } from 'react-redux';
@@ -148,7 +148,7 @@ function Calendar() {
                     <FullCalendar
 
                         defaultView="dayGridMonth"
-                        locale={NnLocale}
+                        locale={esLocale}
 
                         plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin]}
                         ref={calendarComponentRef}

@@ -4,11 +4,9 @@ import API from "../utils/axiosConfig";
 // Get messages in current dialog
 export const getCurrentDialog = createAsyncThunk(
     "dialogs/getDialogMessages",
-    async(params, { rejectWithValue }) => {
+    async(id, { rejectWithValue }) => {
         try {
-            const response = await API.get('/get-messages', {
-                params
-            });
+            const response = await API.get('/lobby/message-lobby/' + id);
             return response.data;
         } catch (e) {
             return rejectWithValue(e.response.data.message);
@@ -21,7 +19,7 @@ export const getDialogs = createAsyncThunk(
     "dialogs/getDialogs",
     async function(_, { rejectWithValue }) {
         try {
-            const response = await API.get("/get-my-groups");
+            const response = await API.get("/lobby/get-my-groups");
             return response.data;
         } catch (error) {
             return rejectWithValue(error.response.data.message);

@@ -5,7 +5,12 @@
     margin: 80px 0;
 }
 
+.list_header th {
+    text-align: start;
+}
+
 .holder_inner {
+    table-layout: fixed;
     width: 96%;
 }
 
@@ -40,20 +45,33 @@
 
 .header_name {
     width: 18%;
+    white-space: nowrap;
+    text-overflow: clip;
+    overflow: hidden;
 }
 
 .header_role {
     width: 15%;
+    white-space: nowrap;
+    text-overflow: clip;
+    overflow: hidden;
 }
 
 .header_email {
     width: 22%;
+    white-space: nowrap;
+    text-overflow: clip;
+    overflow: hidden;
 }
 
 .header_date {
     width: 15%;
+    white-space: nowrap;
+    text-overflow: clip;
+    overflow: hidden;
 }
 
 .header_options {
+    color: transparent;
     flex-grow: 1;
 }

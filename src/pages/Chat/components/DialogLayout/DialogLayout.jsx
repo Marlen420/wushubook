@@ -22,6 +22,7 @@ const DialogLayout = ({people, sendMessage, setTyping, loadDialog, me, photo=nul
     const { currentDialog, status } = useSelector(state=>state.dialogs);
     const messageListRef = useRef(null);
     const [chat, setChat] = useState([]);
+    const [ isTyping, setIsTyping] = useState(false);
 
 
     const lobbyTitle = currentDialog?.lobby?.direct ? "" : (currentDialog?.lobby?.name || "");
@@ -31,7 +32,7 @@ const DialogLayout = ({people, sendMessage, setTyping, loadDialog, me, photo=nul
     }, [chat, status])
 
     useEffect(()=>{
-        loadDialog({lobbyId: id});
+        loadDialog(id);
     }, [id])
 
     useEffect(()=>{
@@ -39,8 +40,11 @@ const DialogLayout = ({people, sendMessage, setTyping, loadDialog, me, photo=nul
     }, [currentDialog?.response])
 
     useEffect(()=>{
-        socket.on('typing', (args)=>{console.log(args)});
-        return ()=> socket.off('typing');
+        socket.on('typing', (args)=>{setIsTyping(args)});
+        return ()=> {
+            socket.off('typing');
+            setIsTyping(false)
+        }
     }, [socket])
 
     return (
@@ -64,8 +68,15 @@ const DialogLayout = ({people, sendMessage, setTyping, loadDialog, me, photo=nul
                     key={item.id}
                     time={getTime(item.date)}
                     isMe={item.user.id === me.id ? true : (item.user === me.id ? true : false)}
-                    text={item.text}/>
-            ))}
+                    text={item.text}
+                    attachments={item.attachment}
+                    filetype={item.fileType}/>
+                    ))}
+                    {
+                        isTyping &&
+                        <Message 
+                        isTyping={isTyping}/>   
+                    }
         </div>
         <div className={styles.chat__dialog_input}>
             <ChatInput 

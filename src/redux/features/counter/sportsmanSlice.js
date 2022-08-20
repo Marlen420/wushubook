@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { getSportsmanAchievementsExtra, getSportsmanStandardsExtra } from '../../extraReducers/sportsmanExtraReducer';
 
 
 export const counterSlice = createSlice({
@@ -6,8 +7,13 @@ export const counterSlice = createSlice({
     initialState: {
         status: 'Active',
         error: null,
+        achievements: [],
+        standards: []
     },
-    extraReducers: {},
+    extraReducers: {
+        ...getSportsmanAchievementsExtra,
+        ...getSportsmanStandardsExtra,
+    },
     reducers: {},
 })
 

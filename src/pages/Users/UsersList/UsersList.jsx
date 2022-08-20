@@ -5,6 +5,8 @@ import Pagination from '../../../components/Pagination/index';
 import UserItem from './UserItem/UserItem';
 
 const UsersList = ({
+    editUser,
+    onEdit,
     allData,
     search,
     setSearch,
@@ -23,7 +25,9 @@ const UsersList = ({
     jump,
     prev,
     next,
+    onInputChange,
     handleNewUserButton,
+    onUpdateUser,
 }) => {
 
 
@@ -41,22 +45,30 @@ const UsersList = ({
                            <UserItem
                                 key={item.id}
                                 item={item}
+                                onEdit={onEdit}
                                 roleFilter={roleFilter}
                                 isSelectedItem={isSelectedItem}
                                 onSelectItem={onSelectItem}
                                 deleteUser={deleteUser}
-                                approveUser={approveUser}/>
+                                editUser={editUser}
+                                onInputChange={onInputChange}
+                                approveUser={approveUser}
+                                onUpdateUser={onUpdateUser}/>
                         ))
                         : allData.filter((item)=>item.name.toLowerCase().includes(search.toLowerCase()) || item.email.toLowerCase().includes(search.toLowerCase()))
                         .map((item)=>(
                             <UserItem
                                 key={item.id}
                                 item={item}
+                                onEdit={onEdit}
                                 roleFilter={roleFilter}
                                 isSelectedItem={isSelectedItem}
                                 onSelectItem={onSelectItem}
                                 deleteUser={deleteUser}
-                                approveUser={approveUser}/>
+                                editUser={editUser}
+                                onInputChange={onInputChange}
+                                approveUser={approveUser}
+                                onUpdateUser={onUpdateUser}/>
                         ))}
                     </div>
                 </div>

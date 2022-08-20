@@ -26,10 +26,9 @@ export const dialogsSlice = createSlice({
                     }
                 }
                 if (!flag) state.currentDialog.response = [...state.currentDialog.response, action.payload];
-                console.log(current(state.currentDialog));
             }
-            const dialog = current(state.dialogs.find((item) => item.lobby_info.lobby_id === +action.payload.lobby)) ? {...current(state.dialogs.find((item) => item.lobby_info.lobby_id === +action.payload.lobby)) } : null
-            const dialogIndex = state.dialogs.findIndex((item) => item.lobby_info.lobby_id === +action.payload.lobby);
+            const dialog = state.dialogs.find((item) => item.lobby_id === +action.payload.lobby) ? {...state.dialogs.find((item) => item.lobby_id === +action.payload.lobby) } : null
+            const dialogIndex = state.dialogs.findIndex((item) => item.lobby_id === +action.payload.lobby);
             if (dialog) {
                 dialog['chat'] = dialog['chat'] ? [...dialog['chat'], action.payload] : [action.payload];
                 dialog.last_message = action.payload;

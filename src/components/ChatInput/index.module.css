@@ -33,6 +33,7 @@
 
 .chat__input_simbvol {
     margin: auto;
+    position: relative;
 }
 
 .chat__input_simbvol_icon {
@@ -49,4 +50,27 @@
     width: 30px;
     height: 30px;
     margin-left: 10px;
+}
+
+.chat_ref_image {
+    width: 100px;
+    background: #000;
+    position: absolute;
+    top: -80px;
+    /* border: 1px solid rgba(100, 100, 100); */
+}
+
+.chat_ref_image img {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.chat_ref_image p {
+    font-weight: 700;
+    color: rgba(255, 255, 255);
+    position: absolute;
+    top: -5px;
+    right: 0px;
+    cursor: pointer;
 }

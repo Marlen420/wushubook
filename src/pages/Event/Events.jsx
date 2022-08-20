@@ -13,7 +13,7 @@ import { setEventListExtra } from "../../redux/extraReducers/eventExtraReducer";
 import { toast } from "react-toastify";
 
 //Мероприятия
-const perPage = 3;
+const perPage = 10;
 
 function Events() {
     // Constants

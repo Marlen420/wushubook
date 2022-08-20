@@ -16,8 +16,11 @@ const EventHeader = ({
                 <Button
                     type="button"
                     onClick={handleButtonClick}>
-                    <img src={Process} alt="icon"/>
-                    Сформировать протокол
+                    <img src={Process} alt="icon" className={status === 'Forming protocol' ? styles.loading_arrow : ''}/>
+                    {
+                        status !== 'Forming protocol' &&
+                        "Сформировать протокол"
+                    }
                 </Button>
             </div>
         </div>

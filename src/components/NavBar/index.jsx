@@ -32,12 +32,25 @@ function NavBar() {
 
                 {
                     MenuItems.map((item, index) => {
-                        return (
-                            item.title === 'Пользователи' && user.role === 'admin' ||
-                            <NavLink key={index} className={styles.navbar__link}
-                                to={item.to} > {item.title} </NavLink>
-
-                        )
+                        if (user.role === 'admin') {
+                            return (
+                            <NavLink 
+                                key={index} 
+                                className={styles.navbar__link} 
+                                to={item.to}>
+                                    {item.title}
+                            </NavLink>)
+                        }
+                        if (item.title !== 'Пользователи') {
+                            return (
+                            <NavLink 
+                                key={index} 
+                                className={styles.navbar__link} 
+                                to={item.to}>
+                                    {item.title}
+                            </NavLink>)
+                        }
+                        return null;
                     })
                 }
             </ul >
